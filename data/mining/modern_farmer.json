@@ -1,0 +1,388 @@
+[
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover",
+      "clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "detail": "high in magnesium",
+        "source": "Modern Farmer (2019), How to Read Your Weeds",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "detail": "low in nitrogen",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Cyperus esculentus",
+    "common_names": [
+      "yellow nutsedge",
+      "sedge"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor",
+        "detail": "poor drainage",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Alliaria petiolata",
+    "common_names": [
+      "garlic mustard"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates fertile",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates alkaline",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "broadleaf plantain",
+      "plantain"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "organic_matter",
+        "relationship": "indicates rich",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel",
+      "sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Cichorium intybus",
+    "common_names": [
+      "chicory"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates alkaline",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Cirsium arvense",
+    "common_names": [
+      "Canada thistle",
+      "thistle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "copper",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Verbascum thapsus",
+    "common_names": [
+      "common mullein",
+      "mullein"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "property": "moisture",
+        "relationship": "indicates excessively dry",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Equisetum arvense",
+    "common_names": [
+      "horsetail"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poorly drained",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Convolvulus arvensis",
+    "common_names": [
+      "field bindweed",
+      "bindweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted clay",
+        "detail": "compacted clay soil",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Oxalis spp.",
+    "common_names": [
+      "oxalis",
+      "wood sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates fertile",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex crispus",
+    "common_names": [
+      "curly dock",
+      "yellow dock"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted clay",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Centaurea spp.",
+    "common_names": [
+      "knapweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "yarrow"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates sandy and dry",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Pteridium aquilinum",
+    "common_names": [
+      "bracken fern"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Amaranthus retroflexus",
+    "common_names": [
+      "redroot pigweed",
+      "pigweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low",
+        "source": "Modern Farmer (2019)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  }
+]

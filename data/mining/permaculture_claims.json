@@ -1,0 +1,386 @@
+[
+  {
+    "scientific_name": "Trifolium pratense",
+    "common_names": [
+      "red clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "boron",
+        "relationship": "indicates deficiency",
+        "detail": "Red clover with distorted flowering may indicate boron deficiency",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates good fertility",
+        "source": "Ellenberg N=6",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Rapid growth in fertile phosphate-rich soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "Accumulates potassium; used as mineral-rich compost activator",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates high fertility",
+        "detail": "Ellenberg N=7; strong indicator of high nitrogen",
+        "source": "Ellenberg indicator system",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Chenopodium album",
+    "common_names": [
+      "lambsquarters",
+      "fat hen"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicator",
+        "detail": "Strong indicator of nitrogen-rich soils; thrives on manure heaps",
+        "source": "PFAF / Permaculture tradition",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "detail": "Efficiently accumulates phosphorus",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "High in potassium; used as nutrient-dense green manure",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicator",
+        "detail": "Plant directly responds to magnesium content of soil; can be used to indicate presence of that element",
+        "source": "PFAF",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates high fertility",
+        "detail": "Ellenberg N=7; thrives in nitrogen-rich fertile soils",
+        "source": "Ellenberg indicator system",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "broadleaf plantain"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicator",
+        "detail": "Associated with calcium-rich or well-limed soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "strong indicator",
+        "detail": "Most reliable indicator of soil compaction",
+        "source": "Permaculture tradition",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicator",
+        "detail": "Ellenberg R=6-7; prefers circumneutral to slightly alkaline",
+        "source": "Ellenberg indicator system",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Plantago lanceolata",
+    "common_names": [
+      "ribwort plantain"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicator",
+        "detail": "Associated with calcium-rich soils; scarce on strongly acidic soils",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Common on compacted soils and trampled areas",
+        "source": "Wikipedia",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates moderate fertility",
+        "detail": "Ellenberg N=5",
+        "source": "Ellenberg indicator system",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Symphytum officinale",
+    "common_names": [
+      "comfrey"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "Classic dynamic accumulator; leaves contain 2-3% potassium dry weight",
+        "source": "Permaculture tradition",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "accumulator",
+        "detail": "Leaves nitrogen-rich 3-4% dry weight",
+        "source": "Permaculture tradition",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "detail": "Deep roots access phosphorus from lower soil horizons",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "detail": "Leaves calcium-rich up to 1% dry weight",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates",
+        "detail": "Prefers moist fertile soils; thrives in nitrogen-rich conditions",
+        "source": "PFAF",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cichorium intybus",
+    "common_names": [
+      "chicory"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicator",
+        "detail": "Associated with calcium-rich well-limed soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "Deep taproot accesses subsoil minerals",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Deep taproot penetrates compacted layers",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates well-drained",
+        "detail": "Prefers well-drained soils",
+        "source": "Wikipedia",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates deficiency",
+        "detail": "Ellenberg N=2-3; nitrogen-poor soils",
+        "source": "Ellenberg indicator system",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicator",
+        "detail": "Avoids calcium-rich soils; strong indicator of calcium-poor conditions",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "indicator",
+        "detail": "Often indicates high iron/manganese associated with acidic conditions",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "acidity",
+        "relationship": "strongest indicator",
+        "detail": "Strongest indicator of acidic soil pH 4.0-6.0 among common weeds",
+        "source": "Ellenberg system / Permaculture",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "Ellenberg N=2-3",
+        "source": "Ellenberg indicator system",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Verbascum thapsus",
+    "common_names": [
+      "great mullein"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicator",
+        "detail": "Considered indicator of potassium-deficient soil by some sources",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low-moderate",
+        "detail": "Ellenberg N=4; thrives in poor sandy soils",
+        "source": "Ellenberg indicator system",
+        "confidence": "medium"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates",
+        "detail": "Strongly prefers well-drained light soils",
+        "source": "Wikipedia",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Daucus carota",
+    "common_names": [
+      "wild carrot",
+      "Queen Anne's lace"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicator",
+        "detail": "Indicates calcium-rich alkaline soil",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "Considered potassium accumulator",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates",
+        "detail": "Prefers well-drained soils; thrives in dry meadows",
+        "source": "Wikipedia",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "yarrow"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "copper",
+        "relationship": "accumulator",
+        "detail": "Permaculture tradition considers yarrow a copper accumulator",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicator",
+        "detail": "Often found in potassium-rich soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "Thrives in poor dry soils",
+        "source": "Wikipedia",
+        "confidence": "medium"
+      }
+    ]
+  }
+]

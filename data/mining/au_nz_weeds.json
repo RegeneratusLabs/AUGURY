@@ -1,0 +1,537 @@
+[
+  {
+    "scientific_name": "Echium plantagineum",
+    "common_names": [
+      "Paterson's curse",
+      "Salvation Jane"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "competes well in phosphorus-deficient pastures",
+        "source": "NSW DPI",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates declining fertility",
+        "detail": "colonises overgrazed, nutrient-depleted paddocks",
+        "source": "Victorian Landcare",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Arctotheca calendula",
+    "common_names": [
+      "capeweed"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "dominant on low-phosphorus, acidic soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "indicates acidic, low-fertility, often compacted soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "detail": "thrives on low-pH soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soils",
+        "source": "Agriculture Victoria",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Nassella trichotoma",
+    "common_names": [
+      "serrated tussock"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "invades low-phosphorus soils; suppressed by P fertiliser and competitive pastures",
+        "source": "NSW DPI",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "dominant on low-fertility, degraded pastures",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Eragrostis curvula",
+    "common_names": [
+      "African lovegrass"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "invades low-P acidic soils; responds to P fertiliser",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "thrives on low-fertility acidic sandy soils",
+        "source": "Weeds Australia",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Senecio madagascariensis",
+    "common_names": [
+      "fireweed"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low-moderate phosphorus",
+        "detail": "invades low-fertility, often P-deficient pastures",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "colonises overgrazed, low-fertility coastal pastures",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "disturbance",
+        "relationship": "indicates overgrazing",
+        "source": "NSW DPI",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Xanthium spinosum",
+    "common_names": [
+      "Bathurst burr"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "associated with high-N livestock camps",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates high fertility spots",
+        "detail": "common around sheep camps and disturbed fertile areas",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Hypericum perforatum",
+    "common_names": [
+      "St John's wort"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "invades low-P pastures",
+        "source": "Agriculture Victoria",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "thrives on low-fertility, often acidic soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Ulex europaeus",
+    "common_names": [
+      "gorse",
+      "furze"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "thrives on low-P acidic soils",
+        "source": "Agriculture Victoria / AgResearch NZ",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "invades low-fertility, acidic, often eroded soils",
+        "source": "Weeds Australia / Landcare NZ",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rubus fruticosus",
+    "common_names": [
+      "blackberry",
+      "European blackberry"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "thrives in high-N soils; common on enriched riparian and disturbed areas",
+        "source": "Agriculture Victoria",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates high fertility",
+        "detail": "colonises fertile, moist, well-watered sites",
+        "source": "Weeds Australia",
+        "confidence": "high"
+      },
+      {
+        "property": "moisture",
+        "relationship": "indicates moist soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Hordeum leporinum",
+    "common_names": [
+      "barley grass",
+      "wall barley"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "strongly associated with high-N fertile soils",
+        "source": "NSW DPI / AgResearch NZ",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequate phosphorus",
+        "detail": "responds to P fertiliser; common in improved pastures",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates high fertility",
+        "source": "NSW DPI",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soils",
+        "detail": "grows on hard-setting soils around gateways",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Vulpia bromoides",
+    "common_names": [
+      "silver grass"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "dominant on low-P infertile soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "abundant on low-fertility acidic soils",
+        "source": "NSW DPI / AgResearch NZ",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "Agriculture Victoria",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Hypochaeris radicata",
+    "common_names": [
+      "catsear",
+      "flatweed",
+      "false dandelion"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "common in low-P pastures",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low fertility",
+        "detail": "abundant in infertile degraded pastures",
+        "source": "Agriculture Victoria / Landcare NZ",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "tolerates compacted soils",
+        "source": "Weeds Australia",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cynodon dactylon",
+    "common_names": [
+      "couch grass",
+      "Bermuda grass"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "responds strongly to N fertiliser",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soils",
+        "source": "Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates moderate-high fertility",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Polygonum aviculare",
+    "common_names": [
+      "wireweed",
+      "knotgrass"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soils",
+        "detail": "strongly associated with compacted trampled hard ground",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Salvia reflexa",
+    "common_names": [
+      "mintweed",
+      "lanceleaf sage"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates low phosphorus",
+        "detail": "associated with low-P soils",
+        "source": "NSW DPI",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates alkaline soils",
+        "detail": "indicator of sodic or high-pH soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Phyla canescens",
+    "common_names": [
+      "lippia",
+      "carpet weed"
+    ],
+    "region": [
+      "Australia"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "sodicity",
+        "relationship": "indicates sodic soils",
+        "detail": "strongly associated with sodic, saline or alkaline clay soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rhaponticum repens",
+    "common_names": [
+      "creeping knapweed",
+      "Russian knapweed",
+      "hardheads"
+    ],
+    "region": [
+      "Australia",
+      "New Zealand"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "sodicity",
+        "relationship": "indicates sodic/alkaline soils",
+        "detail": "common on heavy clay, sodic or alkaline soils",
+        "source": "NSW DPI / Agriculture Victoria",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soils",
+        "source": "Agriculture Victoria",
+        "confidence": "medium"
+      }
+    ]
+  }
+]

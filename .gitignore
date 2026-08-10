@@ -1,0 +1,43 @@
+# ---- model weights / adapters / quantized files (download or publish to HF Hub) ----
+models/
+minicpm5_v3_lora/
+augury_minicpm5_v3_lora_merged_fp16/
+*.gguf
+*.safetensors
+*.bin
+
+# ---- vision image data (15GB; published separately, see docs/HANDOVER_VISION.md) ----
+data/vision/images/
+data/vision/images_unknown/
+data/vision/raw/
+data/vision/output/
+
+# ---- packaging artifacts ----
+data/vision_cap15/
+zipstage/
+*.zip
+
+# ---- training environments ----
+.venv*/
+venv/
+__pycache__/
+*.pyc
+unsloth_compiled_cache/
+
+# ---- vendored clones / third-party (pin versions in docs instead) ----
+llama.cpp/
+third_party/
+
+# ---- agent session state (private) ----
+.reasonix/
+reasonix.toml
+
+# ---- archived reference material ----
+archive/
+
+# ---- copyrighted source PDFs (do not redistribute; cite instead) ----
+data/sources/*.pdf
+
+# ---- misc ----
+.DS_Store
+*.log

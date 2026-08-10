@@ -1,0 +1,227 @@
+[
+  {
+    "scientific_name": "Convolvulus arvensis",
+    "common_names": [
+      "field bindweed",
+      "bindweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "low calcium; proper calcium level with other cations in balance",
+        "source": "Walters via SmilingGardener / Underwood Gardens",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "low phosphorus",
+        "source": "Walters via SmilingGardener / Underwood Gardens",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates deficiency",
+        "detail": "low potassium",
+        "source": "Walters via SmilingGardener",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates excess",
+        "detail": "excess accumulation of heavy soil metals such as magnesium",
+        "source": "Walters via Underwood Gardens",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "organic_matter",
+        "relationship": "indicates improper decay",
+        "detail": "reflector of improper decay of organic matter and excess accumulation of heavy soil metals",
+        "source": "Walters via SmilingGardener",
+        "confidence": "medium"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "compaction, sedimentation, and improper tillage timing",
+        "source": "Walters via SmilingGardener",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "imbalanced",
+        "detail": "pH issues; can be either excessively low or high",
+        "source": "Walters via Underwood Gardens",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cirsium arvense",
+    "common_names": [
+      "Canada thistle",
+      "creeping thistle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "low calcium",
+        "source": "SmilingGardener (comment response)",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates deficiency",
+        "detail": "possibly low magnesium",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates deficiency",
+        "detail": "low manganese, often because of high iron",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "soil_biology",
+        "relationship": "indicates poor",
+        "detail": "poor soil biology that isn't properly breaking down organic matter",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "often thrive in soils with low calcium/humus",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "low calcium",
+        "source": "SmilingGardener (comment response)",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "low phosphorus",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "compacted soil without much organic matter",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Portulaca oleracea",
+    "common_names": [
+      "purslane"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "low calcium",
+        "source": "SmilingGardener (comment)",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "low phosphorus",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "organic_matter",
+        "relationship": "thrives when",
+        "detail": "too much organic matter that isn't being broken down fast enough",
+        "source": "SmilingGardener (comment)",
+        "confidence": "low"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Equisetum arvense",
+    "common_names": [
+      "horsetail"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor",
+        "detail": "wet and poorly draining soils",
+        "source": "SmilingGardener (comment)",
+        "confidence": "low"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "detail": "low fertility soils",
+        "source": "SmilingGardener",
+        "confidence": "low"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Lepidium draba",
+    "common_names": [
+      "hoary cress",
+      "white top"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "can't stand prosperity; a proper calcium level with other cations in balance",
+        "source": "Walters, Weeds: Control Without Poisons (via SmilingGardener)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  }
+]

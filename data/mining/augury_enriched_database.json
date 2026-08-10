@@ -1,0 +1,4509 @@
+{
+  "version": "1.0",
+  "description": "AUGURY enriched species database \u2014 merged from multiple sources including Charles Walters, university extension factsheets, permaculture practitioner knowledge, academic Ellenberg enrichment, and AU-NZ pastoral weed guides.",
+  "total_species": 74,
+  "stats": {
+    "high_confidence": 43,
+    "medium_confidence": 10,
+    "low_confidence": 21,
+    "contradictions": 1,
+    "species_with_nutrients": 63
+  },
+  "species": [
+    {
+      "scientific_name": "Achillea millefolium",
+      "common_names": [
+        "yarrow"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicator",
+          "detail": "Often found in potassium-rich soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "accumulator",
+          "detail": "Permaculture tradition considers yarrow a copper accumulator",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Long considered a copper-deficiency indicator in pastures",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "Thrives in poor dry soils",
+          "source": "Wikipedia",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates sandy, dry",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates sandy and dry",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 11,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Alliaria petiolata",
+      "common_names": [
+        "garlic mustard"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates fertile",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates alkaline",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Allium vineale",
+      "common_names": [
+        "wild garlic"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sodium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 5,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Amaranthus retroflexus",
+      "common_names": [
+        "redroot pigweed",
+        "pigweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates adequacy",
+          "detail": "Luxuriant growth signals high nitrogen availability",
+          "source": "University of Nebraska Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates abundance",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Thrives in phosphorus-rich fertile soils",
+          "source": "University of Nebraska Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates",
+          "detail": "Strong indicator of highly fertile agricultural soils",
+          "source": "University of Nebraska Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 7,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Amaranthus spp.",
+      "common_names": [
+        "redroot pigweed",
+        "pigweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequate availability",
+          "detail": "germinates when phosphate conversion is good",
+          "source": "Walters (1999) via EcoFarming Daily",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "general fertility",
+          "relationship": "indicates good fertility",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Ambrosia artemisiifolia",
+      "common_names": [
+        "common ragweed",
+        "ragweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates poor quality/wrong form",
+          "detail": "poor quality and wrong form of potassium during dry season",
+          "source": "Walters (1999) via EcoFarming Daily",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "moisture",
+          "relationship": "indicates dry conditions",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Arctium minus",
+      "common_names": [
+        "burdock"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "iron",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sulfur",
+          "relationship": "indicates very high sulfate",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 4,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Arctotheca calendula",
+      "common_names": [
+        "capeweed"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "dominant on low-phosphorus, acidic soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "indicates acidic, low-fertility, often compacted soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "detail": "thrives on low-pH soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soils",
+          "source": "Agriculture Victoria",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Bellis perennis",
+      "common_names": [
+        "English daisy",
+        "daisy"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "moisture",
+          "relationship": "indicates dry",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "pH",
+          "relationship": "neutral or acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Brassica rapa",
+      "common_names": [
+        "field mustard",
+        "wild mustard"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "molybdenum",
+          "relationship": "indicates deficiency",
+          "detail": "Brassicas highly sensitive to Mo deficiency; whiptail disease",
+          "source": "Stiles, Trace Elements in Plants",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Grows vigorously on copper-deficient soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Brassica spp.",
+      "common_names": [
+        "mustard"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "moisture",
+          "relationship": "indicates dry, sandy",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Capsella bursa-pastoris",
+      "common_names": [
+        "shepherd's purse"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "zinc",
+          "relationship": "indicates deficiency",
+          "detail": "Known zinc accumulator",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Cited as copper indicator in agricultural soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 2,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Cardamine hirsuta",
+      "common_names": [
+        "hairy bittercress"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates poorly drained, moist",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Centaurea spp.",
+      "common_names": [
+        "knapweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates fertile",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Chenopodium album",
+      "common_names": [
+        "lambsquarters",
+        "fat hen"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "zinc",
+          "relationship": "indicates deficiency",
+          "detail": "Zinc accumulator; bioindicator of zinc-deficient soils",
+          "source": "Ohio State University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicator",
+          "detail": "Strong indicator of nitrogen-rich soils; thrives on manure heaps",
+          "source": "PFAF / Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "detail": "Efficiently accumulates phosphorus",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequate availability",
+          "detail": "requires good quality available phosphate",
+          "source": "Walters (1999) via EcoFarming Daily",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "High in potassium; used as nutrient-dense green manure",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicator",
+          "detail": "Plant directly responds to magnesium content of soil; can be used to indicate presence of that element",
+          "source": "PFAF",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Grows well on low-copper soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates high fertility",
+          "detail": "Ellenberg N=7; thrives in nitrogen-rich fertile soils",
+          "source": "Ellenberg indicator system",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "general fertility",
+          "relationship": "indicates good fertility",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 10,
+      "source_count": 9,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Cichorium intybus",
+      "common_names": [
+        "chicory"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicator",
+          "detail": "Associated with calcium-rich well-limed soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "Deep taproot accesses subsoil minerals",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates deficiency",
+          "detail": "Deep taproot mines subsoil iron; found on iron-deficient alkaline soils",
+          "source": "Pfeiffer, Weeds and What They Tell",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates alkaline",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Deep taproot penetrates compacted layers",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates well-drained",
+          "detail": "Prefers well-drained soils",
+          "source": "Wikipedia",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 7,
+      "source_count": 5,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Cirsium arvense",
+      "common_names": [
+        "creeping thistle",
+        "Canada thistle",
+        "thistle"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates adequacy",
+          "detail": "Often abundant in high-potassium fertile soils",
+          "source": "University of Minnesota Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "accumulator",
+          "detail": "roots bring up iron from subsoil",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "low calcium",
+          "source": "SmilingGardener (comment response)",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates deficiency",
+          "detail": "possibly low magnesium",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates deficiency",
+          "detail": "low manganese, often because of high iron",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted, heavy",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Prefers compacted heavy clay soils with poor drainage",
+          "source": "University of Minnesota Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compaction in clay soils",
+          "source": "CAWR Bioindicators Field Guide (2021)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "organic matter decay",
+          "relationship": "responds to compost with calcium-adjusted pH",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates dry",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "soil_biology",
+          "relationship": "indicates poor",
+          "detail": "poor soil biology that isn't properly breaking down organic matter",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 14,
+      "source_count": 7,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Convolvulus arvensis",
+      "common_names": [
+        "field bindweed",
+        "morning glory",
+        "bindweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "low calcium; proper calcium level with other cations in balance",
+          "source": "Walters via SmilingGardener / Underwood Gardens",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "low phosphorus",
+          "source": "Walters via SmilingGardener / Underwood Gardens",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates deficiency",
+          "detail": "low potassium",
+          "source": "Walters via SmilingGardener",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates excess",
+          "detail": "excess accumulation of heavy soil metals such as magnesium",
+          "source": "Walters via Underwood Gardens",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates crusty, compacted",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted, crusty",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "compaction, sedimentation, and improper tillage timing",
+          "source": "Walters via SmilingGardener",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted clay",
+          "detail": "compacted clay soil",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "organic_matter",
+          "relationship": "indicates improper decay",
+          "detail": "reflector of improper decay of organic matter and excess accumulation of heavy soil metals",
+          "source": "Walters via SmilingGardener",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "imbalanced",
+          "detail": "pH issues; can be either excessively low or high",
+          "source": "Walters via Underwood Gardens",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poorly drained",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "soil_type",
+          "relationship": "prefers heavy clay",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 12,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Cynodon dactylon",
+      "common_names": [
+        "Bermuda grass",
+        "couch grass"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "responds strongly to N fertiliser",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates moderate-high fertility",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Cyperus esculentus",
+      "common_names": [
+        "yellow nutsedge",
+        "tiger nut",
+        "sedge"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates adequacy",
+          "detail": "Often abundant in high-calcium alkaline soils",
+          "source": "University of Florida IFAS Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates adequacy",
+          "detail": "Common in high-potassium organic soils",
+          "source": "University of Florida IFAS Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates",
+          "detail": "Primary indicator of poor drainage and waterlogged soils",
+          "source": "University of Florida IFAS Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor",
+          "detail": "poor drainage",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates wet soil/waterlogging",
+          "detail": "reflects wet soils and wet conditions",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 5,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Daucus carota",
+      "common_names": [
+        "Queen Anne's lace",
+        "wild carrot"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicator",
+          "detail": "Indicates calcium-rich alkaline soil",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "Considered potassium accumulator",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates poor but balanced",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates",
+          "detail": "Prefers well-drained soils; thrives in dry meadows",
+          "source": "Wikipedia",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Digitaria sanguinalis",
+      "common_names": [
+        "large crabgrass",
+        "crabgrass"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Thrives in low-calcium acidic soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "low calcium",
+          "source": "SmilingGardener (comment response)",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates calcium deficiency",
+          "detail": "common in calcium-poor compacted soils",
+          "source": "Extension knowledge",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates deficiency",
+          "detail": "Common in low-fertility nitrogen-deficient soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "low phosphorus",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Strong indicator of soil compaction and thin turf",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "compacted soil without much organic matter",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soil",
+          "source": "Extension knowledge",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "low nutrients",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "fertility",
+          "relationship": "low nutrients",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "low pH",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "organic_matter",
+          "relationship": "low humus",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 21,
+      "source_count": 8,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Echium plantagineum",
+      "common_names": [
+        "Paterson's curse",
+        "Salvation Jane"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "competes well in phosphorus-deficient pastures",
+          "source": "NSW DPI",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates declining fertility",
+          "detail": "colonises overgrazed, nutrient-depleted paddocks",
+          "source": "Victorian Landcare",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Eleusine indica",
+      "common_names": [
+        "goosegrass"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Elymus repens",
+      "common_names": [
+        "quack grass",
+        "couch grass",
+        "quackgrass",
+        "couchgrass"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates adequacy",
+          "detail": "Common in high-potassium soils",
+          "source": "University of Minnesota Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates adequacy",
+          "detail": "Thrives in nitrogen-rich fertile soils",
+          "source": "University of Minnesota Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "responds to calcium-adjusted pH",
+          "detail": "calcium-adjusted pH helps compost attack roots",
+          "source": "Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "silicon",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Strong indicator of compacted heavy clay soils",
+          "source": "University of Minnesota Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "soil_type",
+          "relationship": "indicates heavy clay or compacted",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "soil_type",
+          "relationship": "indicates heavy clay or crusty",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "organic matter decay",
+          "relationship": "indicates decay systems at fault",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 10,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Equisetum arvense",
+      "common_names": [
+        "field horsetail",
+        "horsetail"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Prefers low-calcium acidic soils",
+          "source": "Cornell University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates calcium deficiency",
+          "detail": "indicates calcium-poor soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "silica",
+          "relationship": "indicates adequacy",
+          "detail": "Accumulates silica; presence indicates high soil silica content",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "silicon",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates",
+          "detail": "Strong indicator of poor drainage and waterlogged soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor",
+          "detail": "wet and poorly draining soils",
+          "source": "SmilingGardener (comment)",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poorly drained",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "acidity",
+          "relationship": "indicates",
+          "detail": "Prefers acidic soil pH below 6.0",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "slightly acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "soil_type",
+          "relationship": "indicates light, sandy",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "moisture",
+          "relationship": "moist conditions",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "detail": "low fertility soils",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 18,
+      "source_count": 7,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Eragrostis curvula",
+      "common_names": [
+        "African lovegrass"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "invades low-P acidic soils; responds to P fertiliser",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "thrives on low-fertility acidic sandy soils",
+          "source": "Weeds Australia",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Euphorbia prostrata",
+      "common_names": [
+        "prostrate spurge"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sodium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 5,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Hordeum leporinum",
+      "common_names": [
+        "barley grass",
+        "wall barley"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "strongly associated with high-N fertile soils",
+          "source": "NSW DPI / AgResearch NZ",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequate phosphorus",
+          "detail": "responds to P fertiliser; common in improved pastures",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates high fertility",
+          "source": "NSW DPI",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soils",
+          "detail": "grows on hard-setting soils around gateways",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Hydrocotyle umbellata",
+      "common_names": [
+        "dollarweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates poor",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Hypericum perforatum",
+      "common_names": [
+        "St John's wort"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "invades low-P pastures",
+          "source": "Agriculture Victoria",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "thrives on low-fertility, often acidic soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Hypochaeris radicata",
+      "common_names": [
+        "false dandelion",
+        "cat's ear",
+        "flatweed",
+        "catsear"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "common in low-P pastures",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "abundant in infertile degraded pastures",
+          "source": "Agriculture Victoria / Landcare NZ",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "tolerates compacted soils",
+          "source": "Weeds Australia",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates dry, free draining",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Kummerowia striata",
+      "common_names": [
+        "common lespedeza",
+        "lespedeza"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Lamium amplexicaule",
+      "common_names": [
+        "henbit"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Lamium purpureum",
+      "common_names": [
+        "purple deadnettle"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates neutral",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates nutrient-rich",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Lepidium draba",
+      "common_names": [
+        "hoary cress",
+        "white top"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "can't stand prosperity; a proper calcium level with other cations in balance",
+          "source": "Walters, Weeds: Control Without Poisons (via SmilingGardener)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Leucanthemum vulgare",
+      "common_names": [
+        "ox-eye daisy"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates poor",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates soggy",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Nassella trichotoma",
+      "common_names": [
+        "serrated tussock"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "invades low-phosphorus soils; suppressed by P fertiliser and competitive pastures",
+          "source": "NSW DPI",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "dominant on low-fertility, degraded pastures",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Oxalis spp.",
+      "common_names": [
+        "wood sorrel",
+        "hop clover",
+        "oxalis"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates fertile",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 9,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Paspalum dilatatum",
+      "common_names": [
+        "dallisgrass"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Persicaria spp.",
+      "common_names": [
+        "lady's thumb",
+        "smartweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "general",
+          "relationship": "indicates nutritional stress",
+          "detail": "indicator of nutritional stress in crop/soil system",
+          "source": "Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "organic matter decay",
+          "relationship": "indicates wrong direction of decay",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Phyla canescens",
+      "common_names": [
+        "carpet weed",
+        "lippia"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "sodicity",
+          "relationship": "indicates sodic soils",
+          "detail": "strongly associated with sodic, saline or alkaline clay soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Plantago lanceolata",
+      "common_names": [
+        "buckhorn plantain",
+        "ribwort plantain",
+        "ribwort"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicator",
+          "detail": "Associated with calcium-rich soils; scarce on strongly acidic soils",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sodium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates deficiency",
+          "detail": "Common on iron-deficient compacted soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "molybdenum",
+          "relationship": "indicates deficiency",
+          "detail": "Cited as indicator of low molybdenum in neutral-alkaline soils",
+          "source": "Pfeiffer, Weeds and What They Tell",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates moderate fertility",
+          "detail": "Ellenberg N=5",
+          "source": "Ellenberg indicator system",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "organic_matter",
+          "relationship": "indicates low humus",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Common on compacted soils and trampled areas",
+          "source": "Wikipedia",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 11,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Plantago major",
+      "common_names": [
+        "white man's footprint",
+        "broadleaf plantain",
+        "common plantain",
+        "plantain"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "detail": "rich in calcium",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Tolerates low-calcium acidic soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicator",
+          "detail": "Associated with calcium-rich or well-limed soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "accumulator",
+          "detail": "accumulates magnesium",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "silicon",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sulfur",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted, clay-heavy",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Classic indicator of soil compaction and heavy foot traffic",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "strong indicator",
+          "detail": "Most reliable indicator of soil compaction",
+          "source": "Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soil",
+          "source": "Walters (1999); Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicator",
+          "detail": "Ellenberg R=6-7; prefers circumneutral to slightly alkaline",
+          "source": "Ellenberg indicator system",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "organic_matter",
+          "relationship": "indicates rich",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 19,
+      "source_count": 7,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Poa annua",
+      "common_names": [
+        "annual bluegrass"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "organic_matter",
+          "relationship": "indicates low humus",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Polygonum aviculare",
+      "common_names": [
+        "knotgrass",
+        "knotweed",
+        "wireweed"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "zinc",
+          "relationship": "indicates deficiency",
+          "detail": "Common on zinc-deficient compacted soils",
+          "source": "Pfeiffer, Weeds and What They Tell",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soils",
+          "detail": "strongly associated with compacted trampled hard ground",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Portulaca oleracea",
+      "common_names": [
+        "common purslane",
+        "purslane"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "contradiction_flag": true,
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Indicator of high phosphorus levels in soil",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "low phosphorus",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "contradiction_flag": true,
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates abundance",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequate-high phosphorus",
+          "detail": "thrives where phosphorus is available",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "contradiction_flag": true,
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates adequacy",
+          "detail": "Thrives in nitrogen-rich fertile soils",
+          "source": "University of Vermont Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "low calcium",
+          "source": "SmilingGardener (comment)",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates rich",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates",
+          "detail": "Prefers highly fertile rich garden soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "general fertility",
+          "relationship": "indicates fertile soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 10,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": true
+    },
+    {
+      "scientific_name": "Pteridium aquilinum",
+      "common_names": [
+        "bracken fern"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Ranunculus repens",
+      "common_names": [
+        "creeping buttercup"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "draws potassium from soil",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poorly drained",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Rhaponticum repens",
+      "common_names": [
+        "creeping knapweed",
+        "Russian knapweed",
+        "hardheads"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "sodicity",
+          "relationship": "indicates sodic/alkaline soils",
+          "detail": "common on heavy clay, sodic or alkaline soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soils",
+          "source": "Agriculture Victoria",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Rubus fruticosus",
+      "common_names": [
+        "European blackberry",
+        "blackberry"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "thrives in high-N soils; common on enriched riparian and disturbed areas",
+          "source": "Agriculture Victoria",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates high fertility",
+          "detail": "colonises fertile, moist, well-watered sites",
+          "source": "Weeds Australia",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates moist soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Rumex acetosella",
+      "common_names": [
+        "sheep sorrel",
+        "red sorrel",
+        "sorrel"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Strong indicator of calcium-deficient acidic soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicator",
+          "detail": "Avoids calcium-rich soils; strong indicator of calcium-poor conditions",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "Common in low-phosphorus low-fertility soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates deficiency",
+          "detail": "Thrives in nitrogen-poor infertile soils",
+          "source": "University of Maine Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates deficiency",
+          "detail": "Ellenberg N=2-3; nitrogen-poor soils",
+          "source": "Ellenberg indicator system",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicator",
+          "detail": "Often indicates high iron/manganese associated with acidic conditions",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates deficiency",
+          "detail": "Associated with low iron availability; thrives in acidic low-fertility soils",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates deficiency",
+          "detail": "Cited as manganese-deficiency indicator; prefers acidic soils",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "boron",
+          "relationship": "indicates deficiency",
+          "detail": "Associated with low boron in acidic sandy soils",
+          "source": "Pfeiffer, Weeds and What They Tell",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "low nutrients",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "Ellenberg N=2-3",
+          "source": "Ellenberg indicator system",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "acidity",
+          "relationship": "indicates",
+          "detail": "Primary indicator of very acidic soil pH 4.5-5.5",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "acidity",
+          "relationship": "strongest indicator",
+          "detail": "Strongest indicator of acidic soil pH 4.0-6.0 among common weeds",
+          "source": "Ellenberg system / Permaculture",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates dry, sandy",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 24,
+      "source_count": 11,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Rumex crispus",
+      "common_names": [
+        "yellow dock",
+        "curled dock",
+        "curly dock"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Tolerates low-calcium acidic soils",
+          "source": "Cornell University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Common in phosphorus-rich fertile soils",
+          "source": "Cornell University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates excess",
+          "detail": "high potassium; clay soils and anaerobic conditions",
+          "source": "Maughan & Amos (2024); Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Indicator of compacted heavy clay soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted clay",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted clay soils",
+          "source": "Maughan & Amos (2024)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates",
+          "detail": "Prefers poorly drained wet soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "Maughan & Amos (2024)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 8,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Rumex obtusifolius",
+      "common_names": [
+        "broad-leaved dock",
+        "bitter dock",
+        "butter dock",
+        "dock"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates excess",
+          "detail": "high potassium and excess nitrogen",
+          "source": "Walters (1999) via EcoFarming Daily; Maughan & Amos (2024)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates wet, poorly draining",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poorly drained, waterlogged",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates waterlogged/poorly drained soil",
+          "source": "Walters (1999); Maughan & Amos (2024)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soil",
+          "source": "Walters (1999); Maughan & Amos (2024)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "increasing acidity",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 10,
+      "source_count": 4,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Salvia reflexa",
+      "common_names": [
+        "lanceleaf sage",
+        "mintweed"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "associated with low-P soils",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "pH",
+          "relationship": "indicates alkaline soils",
+          "detail": "indicator of sodic or high-pH soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Senecio madagascariensis",
+      "common_names": [
+        "fireweed"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low-moderate phosphorus",
+          "detail": "invades low-fertility, often P-deficient pastures",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "colonises overgrazed, low-fertility coastal pastures",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "disturbance",
+          "relationship": "indicates overgrazing",
+          "source": "NSW DPI",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Senecio vulgaris",
+      "common_names": [
+        "common groundsel"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates fertile, nutrient-rich",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Setaria spp.",
+      "common_names": [
+        "yellow foxtail",
+        "green foxtail",
+        "foxtail"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "magnesium",
+          "relationship": "encouraged by high magnesium",
+          "detail": "high magnesium soils encourage summer annuals",
+          "source": "Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "soil structure",
+          "relationship": "indicates degenerated structure",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 1,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Sinapis arvensis",
+      "common_names": [
+        "wild mustard",
+        "charlock"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates need for nitrogen",
+          "detail": "apply good compost or nitrogen to get decay moving",
+          "source": "Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates abundance",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates poor drainage",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "soil structure",
+          "relationship": "indicates poor structure",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Solidago spp.",
+      "common_names": [
+        "goldenrod"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [],
+      "soil_claims": [
+        {
+          "property": "drainage",
+          "relationship": "indicates poor",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Spergula arvensis",
+      "common_names": [
+        "corn spurry"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Classic copper-deficiency indicator; thrives on copper-deficient sandy soils",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Stellaria media",
+      "common_names": [
+        "chickweed"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates adequacy",
+          "detail": "Luxuriant growth signals high nitrogen availability",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "thrives in highly fertile nitrogen-rich soils",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "Accumulates potassium; used as mineral-rich compost activator",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Abundant in phosphorus-rich fertile soils",
+          "source": "Cornell University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Rapid growth in fertile phosphate-rich soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates deficiency",
+          "detail": "Associated with low manganese in compacted waterlogged soils",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sodium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "copper",
+          "relationship": "indicates deficiency",
+          "detail": "Linked to copper-deficient soils in temperate regions",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates fertile, cultivated",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates",
+          "detail": "Common in rich fertile garden soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates high fertility",
+          "detail": "Ellenberg N=7; strong indicator of high nitrogen",
+          "source": "Ellenberg indicator system",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates",
+          "detail": "Prefers moist well-watered soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates alkaline",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates neutral",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "organic_matter",
+          "relationship": "thrives when",
+          "detail": "too much organic matter that isn't being broken down fast enough",
+          "source": "SmilingGardener (comment)",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "general fertility",
+          "relationship": "indicates high fertility",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 23,
+      "source_count": 9,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Symphytum officinale",
+      "common_names": [
+        "comfrey"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "detail": "Classic dynamic accumulator; leaves contain 2-3% potassium dry weight",
+          "source": "Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "accumulator",
+          "detail": "Leaves nitrogen-rich 3-4% dry weight",
+          "source": "Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "detail": "Deep roots access phosphorus from lower soil horizons",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "detail": "Leaves calcium-rich up to 1% dry weight",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates",
+          "detail": "Prefers moist fertile soils; thrives in nitrogen-rich conditions",
+          "source": "PFAF",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 5,
+      "source_count": 2,
+      "overall_confidence": "medium",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Taraxacum officinale",
+      "common_names": [
+        "dandelion"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "accumulator",
+          "detail": "long taproots bring up calcium from subsoil",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Deep taproot thrives in calcium-deficient, acidic, compacted soils",
+          "source": "University of Maine Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "often thrive in soils with low calcium/humus",
+          "source": "SmilingGardener",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates very low",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "mines calcium from subsoil",
+          "detail": "deep taproot mines calcium; indicates surface calcium depletion",
+          "source": "Walters (1999); Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates adequacy",
+          "detail": "Often abundant in high-potassium soils",
+          "source": "University of Vermont Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates high potassium",
+          "detail": "thrives in high-potassium soils",
+          "source": "Maughan & Amos (2024)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "Frequent in low-phosphorus soils",
+          "source": "University of Vermont Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "manganese",
+          "relationship": "indicates deficiency",
+          "detail": "Cited as manganese accumulator; deep taproot accesses subsoil Mn",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates deficiency",
+          "detail": "Associated with low iron in alkaline or compacted soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates heavy, compacted",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Thrives in compacted heavy clay soils",
+          "source": "University of Maine Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "compaction",
+          "relationship": "indicates compacted soil",
+          "source": "Walters (1999); Maughan & Amos (2024)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "acidity",
+          "relationship": "indicates",
+          "detail": "Prefers acidic soil pH below 6.0",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 25,
+      "source_count": 14,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Trifolium pratense",
+      "common_names": [
+        "red clover"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates excess",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "boron",
+          "relationship": "indicates deficiency",
+          "detail": "Red clover with distorted flowering may indicate boron deficiency",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates good fertility",
+          "source": "Ellenberg N=6",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Trifolium repens",
+      "common_names": [
+        "white clover",
+        "clover"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates deficiency",
+          "detail": "Thrives in low-nitrogen soils due to N-fixing ability",
+          "source": "University of Wisconsin Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "LSU AgCenter (2019)",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "detail": "low in nitrogen",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low nitrogen",
+          "detail": "clover fixes nitrogen; often colonises N-deficient soils",
+          "source": "Permaculture/Extension consensus",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates rich in",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicates deficiency",
+          "detail": "Increases when potassium is low",
+          "source": "University of Wisconsin Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "Often abundant in low-phosphorus soils",
+          "source": "University of Wisconsin Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "boron",
+          "relationship": "indicates deficiency",
+          "detail": "Known boron-deficiency accumulator; stunted growth and necrotic leaf margins",
+          "source": "Pfeiffer, Weeds and What They Tell",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "boron",
+          "relationship": "indicates possible boron deficiency",
+          "detail": "boron deficiency can reduce clover persistence",
+          "source": "Extension knowledge",
+          "confidence": "low",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "magnesium",
+          "relationship": "indicates high",
+          "detail": "high in magnesium",
+          "source": "Modern Farmer (2019), How to Read Your Weeds",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "chlorine",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "sodium",
+          "relationship": "indicates very high",
+          "source": "Homestead.org",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "molybdenum",
+          "relationship": "indicates deficiency",
+          "detail": "Legumes sensitive to molybdenum deficiency; impaired N fixation",
+          "source": "Stiles, Trace Elements in Plants",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "compaction",
+          "relationship": "indicates",
+          "detail": "Tolerates compacted high-traffic soils",
+          "source": "University of Wisconsin Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "general fertility",
+          "relationship": "indicates low-moderate fertility",
+          "source": "Extension consensus",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates moist",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates poor fertility",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 20,
+      "source_count": 12,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Trifolium subterraneum",
+      "common_names": [
+        "subterranean clover"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "molybdenum",
+          "relationship": "indicates deficiency",
+          "detail": "Very sensitive to Mo deficiency; test species in AU pastures",
+          "source": "Stiles, Trace Elements in Plants",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 1,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Ulex europaeus",
+      "common_names": [
+        "gorse",
+        "furze"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "thrives on low-P acidic soils",
+          "source": "Agriculture Victoria / AgResearch NZ",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "invades low-fertility, acidic, often eroded soils",
+          "source": "Weeds Australia / Landcare NZ",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Urtica dioica",
+      "common_names": [
+        "stinging nettle"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates adequacy",
+          "detail": "Strong indicator of nitrogen-rich highly fertile soils",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "widely recognized indicator of nitrogen-rich fertile soils",
+          "source": "Walters (1999); Permaculture tradition",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequacy",
+          "detail": "Common in phosphorus-rich soils with abundant organic matter",
+          "source": "University of Vermont Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates adequate phosphorus",
+          "detail": "requires good phosphate levels",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "iron",
+          "relationship": "indicates adequacy",
+          "detail": "Accumulates iron; presence suggests adequate iron",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "boron",
+          "relationship": "indicates deficiency",
+          "detail": "Sometimes associated with boron-deficient soils",
+          "source": "Permaculture consensus",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates rich",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates",
+          "detail": "Prefers rich fertile soils high in organic matter",
+          "source": "University of Vermont Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "general fertility",
+          "relationship": "indicates high fertility",
+          "source": "Walters (1999)",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates adequate moisture",
+          "source": "Permaculture tradition",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 11,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Verbascum thapsus",
+      "common_names": [
+        "common mullein",
+        "great mullein",
+        "mullein"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates deficiency",
+          "detail": "Indicator of very low phosphorus infertile soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates deficiency",
+          "detail": "Thrives in nitrogen-poor low-fertility soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "calcium",
+          "relationship": "indicates deficiency",
+          "detail": "Common in low-calcium acidic soils",
+          "source": "Cornell University Extension",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "indicator",
+          "detail": "Considered indicator of potassium-deficient soil by some sources",
+          "source": "Permaculture tradition",
+          "confidence": "low",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "fertility",
+          "relationship": "indicates low-moderate",
+          "detail": "Ellenberg N=4; thrives in poor sandy soils",
+          "source": "Ellenberg indicator system",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "acidity",
+          "relationship": "indicates",
+          "detail": "Prefers acidic infertile soils",
+          "source": "Cornell University Extension",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic",
+          "source": "Old Farmer's Almanac",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "moisture",
+          "relationship": "indicates excessively dry",
+          "source": "Modern Farmer (2019)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "property": "drainage",
+          "relationship": "indicates",
+          "detail": "Strongly prefers well-drained light soils",
+          "source": "Wikipedia",
+          "confidence": "high",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 11,
+      "source_count": 6,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Vicia sativa",
+      "common_names": [
+        "common vetch",
+        "vetch"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        },
+        {
+          "nutrient": "potassium",
+          "relationship": "accumulator",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low",
+          "source": "BC Farms & Food (2017)",
+          "confidence": "medium",
+          "aggregate_confidence": "low"
+        }
+      ],
+      "claim_count": 4,
+      "source_count": 1,
+      "overall_confidence": "low",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Vulpia bromoides",
+      "common_names": [
+        "silver grass"
+      ],
+      "region": [
+        "Australia",
+        "New Zealand"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates low phosphorus",
+          "detail": "dominant on low-P infertile soils",
+          "source": "NSW DPI / Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates low fertility",
+          "detail": "abundant on low-fertility acidic soils",
+          "source": "NSW DPI / AgResearch NZ",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        },
+        {
+          "property": "pH",
+          "relationship": "indicates acidic soils",
+          "source": "Agriculture Victoria",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Xanthium spinosum",
+      "common_names": [
+        "Bathurst burr"
+      ],
+      "region": [
+        "Australia"
+      ],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "nitrogen",
+          "relationship": "indicates high nitrogen",
+          "detail": "associated with high-N livestock camps",
+          "source": "NSW DPI",
+          "confidence": "medium",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "soil_claims": [
+        {
+          "property": "fertility",
+          "relationship": "indicates high fertility spots",
+          "detail": "common around sheep camps and disturbed fertile areas",
+          "source": "Agriculture Victoria",
+          "confidence": "high",
+          "aggregate_confidence": "high"
+        }
+      ],
+      "claim_count": 2,
+      "source_count": 2,
+      "overall_confidence": "high",
+      "contradictions": false
+    },
+    {
+      "scientific_name": "Xanthium strumarium",
+      "common_names": [
+        "common cocklebur",
+        "cocklebur"
+      ],
+      "region": [],
+      "ellenberg_values": {},
+      "nutrient_claims": [
+        {
+          "nutrient": "zinc",
+          "relationship": "indicates deficiency",
+          "detail": "Known zinc accumulator; found on zinc-deficient soils",
+          "source": "Walters, Weeds: Control Without Poisons",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "zinc",
+          "relationship": "indicates deficiency",
+          "detail": "high phosphate complexes zinc",
+          "source": "Walters (1999)",
+          "confidence": "medium",
+          "aggregate_confidence": "medium"
+        },
+        {
+          "nutrient": "phosphorus",
+          "relationship": "indicates high availability",
+          "detail": "soil has high level of available phosphate",
+          "source": "Walters (1999) via EcoFarming Daily",
+          "confidence": "high",
+          "aggregate_confidence": "medium"
+        }
+      ],
+      "soil_claims": [],
+      "claim_count": 3,
+      "source_count": 3,
+      "overall_confidence": "high",
+      "contradictions": false
+    }
+  ]
+}

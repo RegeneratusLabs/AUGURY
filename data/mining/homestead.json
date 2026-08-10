@@ -1,0 +1,436 @@
+[
+  {
+    "scientific_name": "Poa annua",
+    "common_names": [
+      "annual bluegrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "organic_matter",
+        "relationship": "indicates low humus",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Arctium minus",
+    "common_names": [
+      "burdock"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sulfur",
+        "relationship": "indicates very high sulfate",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Plantago lanceolata",
+    "common_names": [
+      "buckhorn plantain",
+      "ribwort"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sodium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "organic_matter",
+        "relationship": "indicates low humus",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sodium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "low pH",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "property": "organic_matter",
+        "relationship": "low humus",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Paspalum dilatatum",
+    "common_names": [
+      "dallisgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Oxalis spp.",
+    "common_names": [
+      "oxalis",
+      "hop clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Euphorbia prostrata",
+    "common_names": [
+      "prostrate spurge"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sodium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Portulaca oleracea",
+    "common_names": [
+      "purslane"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates abundance",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Sinapis arvensis",
+    "common_names": [
+      "wild mustard"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates abundance",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Trifolium pratense",
+    "common_names": [
+      "red clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates excess",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Amaranthus retroflexus",
+    "common_names": [
+      "redroot pigweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates abundance",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sodium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Allium vineale",
+    "common_names": [
+      "wild garlic"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates very low",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "chlorine",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sodium",
+        "relationship": "indicates very high",
+        "source": "Homestead.org",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  }
+]

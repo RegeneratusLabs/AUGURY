@@ -1,0 +1,531 @@
+[
+  {
+    "scientific_name": "Rumex obtusifolius",
+    "common_names": [
+      "broad-leaved dock",
+      "bitter dock",
+      "butter dock"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates excess",
+        "detail": "high potassium and excess nitrogen",
+        "source": "Walters (1999) via EcoFarming Daily; Maughan & Amos (2024)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soil",
+        "source": "Walters (1999); Maughan & Amos (2024)",
+        "confidence": "high"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates waterlogged/poorly drained soil",
+        "source": "Walters (1999); Maughan & Amos (2024)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex crispus",
+    "common_names": [
+      "curled dock",
+      "yellow dock",
+      "curly dock"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates excess",
+        "detail": "high potassium; clay soils and anaerobic conditions",
+        "source": "Maughan & Amos (2024); Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted clay soils",
+        "source": "Maughan & Amos (2024)",
+        "confidence": "high"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "Maughan & Amos (2024)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Amaranthus spp.",
+    "common_names": [
+      "pigweed",
+      "redroot pigweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequate availability",
+        "detail": "germinates when phosphate conversion is good",
+        "source": "Walters (1999) via EcoFarming Daily",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates good fertility",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Chenopodium album",
+    "common_names": [
+      "lambsquarters",
+      "fat hen"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequate availability",
+        "detail": "requires good quality available phosphate",
+        "source": "Walters (1999) via EcoFarming Daily",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates good fertility",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Xanthium strumarium",
+    "common_names": [
+      "common cocklebur"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates high availability",
+        "detail": "soil has high level of available phosphate",
+        "source": "Walters (1999) via EcoFarming Daily",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "zinc",
+        "relationship": "indicates deficiency",
+        "detail": "high phosphate complexes zinc",
+        "source": "Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Setaria spp.",
+    "common_names": [
+      "foxtail",
+      "green foxtail",
+      "yellow foxtail"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "magnesium",
+        "relationship": "encouraged by high magnesium",
+        "detail": "high magnesium soils encourage summer annuals",
+        "source": "Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "soil structure",
+        "relationship": "indicates degenerated structure",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Ambrosia artemisiifolia",
+    "common_names": [
+      "common ragweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates poor quality/wrong form",
+        "detail": "poor quality and wrong form of potassium during dry season",
+        "source": "Walters (1999) via EcoFarming Daily",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates dry conditions",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Persicaria spp.",
+    "common_names": [
+      "smartweed",
+      "lady's thumb"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "general",
+        "relationship": "indicates nutritional stress",
+        "detail": "indicator of nutritional stress in crop/soil system",
+        "source": "Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      },
+      {
+        "property": "organic matter decay",
+        "relationship": "indicates wrong direction of decay",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Sinapis arvensis",
+    "common_names": [
+      "wild mustard",
+      "charlock"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates need for nitrogen",
+        "detail": "apply good compost or nitrogen to get decay moving",
+        "source": "Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      },
+      {
+        "property": "soil structure",
+        "relationship": "indicates poor structure",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Elymus repens",
+    "common_names": [
+      "quackgrass",
+      "couchgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "responds to calcium-adjusted pH",
+        "detail": "calcium-adjusted pH helps compost attack roots",
+        "source": "Walters (1999)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "organic matter decay",
+        "relationship": "indicates decay systems at fault",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "mines calcium from subsoil",
+        "detail": "deep taproot mines calcium; indicates surface calcium depletion",
+        "source": "Walters (1999); Permaculture tradition",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high potassium",
+        "detail": "thrives in high-potassium soils",
+        "source": "Maughan & Amos (2024)",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soil",
+        "source": "Walters (1999); Maughan & Amos (2024)",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Urtica dioica",
+    "common_names": [
+      "stinging nettle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "widely recognized indicator of nitrogen-rich fertile soils",
+        "source": "Walters (1999); Permaculture tradition",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequate phosphorus",
+        "detail": "requires good phosphate levels",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates high fertility",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      },
+      {
+        "property": "moisture",
+        "relationship": "indicates adequate moisture",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high nitrogen",
+        "detail": "thrives in highly fertile nitrogen-rich soils",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates high fertility",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "broadleaf plantain",
+      "white man's footprint"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soil",
+        "source": "Walters (1999); Permaculture tradition",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Equisetum arvense",
+    "common_names": [
+      "horsetail",
+      "field horsetail"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates calcium deficiency",
+        "detail": "indicates calcium-poor soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "Permaculture tradition",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Portulaca oleracea",
+    "common_names": [
+      "purslane",
+      "common purslane"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequate-high phosphorus",
+        "detail": "thrives where phosphorus is available",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates fertile soils",
+        "source": "Permaculture tradition",
+        "confidence": "low"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low nitrogen",
+        "detail": "clover fixes nitrogen; often colonises N-deficient soils",
+        "source": "Permaculture/Extension consensus",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "boron",
+        "relationship": "indicates possible boron deficiency",
+        "detail": "boron deficiency can reduce clover persistence",
+        "source": "Extension knowledge",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "general fertility",
+        "relationship": "indicates low-moderate fertility",
+        "source": "Extension consensus",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass",
+      "large crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates calcium deficiency",
+        "detail": "common in calcium-poor compacted soils",
+        "source": "Extension knowledge",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted soil",
+        "source": "Extension knowledge",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cirsium arvense",
+    "common_names": [
+      "Canada thistle",
+      "creeping thistle"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "organic matter decay",
+        "relationship": "responds to compost with calcium-adjusted pH",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compaction in clay soils",
+        "source": "CAWR Bioindicators Field Guide (2021)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cyperus esculentus",
+    "common_names": [
+      "yellow nutsedge",
+      "tiger nut"
+    ],
+    "nutrient_claims": [],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates wet soil/waterlogging",
+        "detail": "reflects wet soils and wet conditions",
+        "source": "Walters (1999)",
+        "confidence": "high"
+      }
+    ]
+  }
+]

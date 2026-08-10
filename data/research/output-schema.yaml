@@ -1,0 +1,124 @@
+# AUGURY Research Output Schema
+# Two types of output: species-level (YAML frontmatter) and discovery reports (free-form markdown)
+
+# ──────────────────────────────────────────────────────
+# TYPE 1: Species-Level Verification (Tracks 1, 3, 7)
+# ──────────────────────────────────────────────────────
+# One .md file per species, YAML frontmatter followed by notes
+
+species: "Taraxacum officinale"
+common_names:
+  - "Dandelion"
+  - "Lion's tooth"
+regions:
+  - "Europe"
+  - "UK"
+  - "Australia"
+tracks:
+  - "2 (Core verification)"
+  - "7 (Nutrient mining)"
+
+moisture:
+  value: "Fresh to moist. Moderately moist soils, avoids extremes."
+  confidence: high          # high | medium | low
+  source: "Ellenberg Indicator Values (1991), Table 5"
+  notes: "Supports moderate moisture req; drought-intolerant in Australian trials"
+
+pH:
+  value: "Neutral to weakly acidic (optimal 5.0–7.5)"
+  confidence: high
+  source: "Grime et al. 2007; USDA Plants Database"
+  notes: ""
+
+fertility:
+  value: "High nitrogen. Fertile, humus-rich soils."
+  confidence: high
+  source: "Walters C. 1999. Weeds: Control Without Poisons. Acres USA. p.47"
+  notes: "Strong N indicator. Also accumulates K. Excess N => large, lush growth"
+
+structure:
+  value: "Compacted / colonises compacted soils, taproot loosens subsoil"
+  confidence: medium
+  source: "CAWR Bioindicators Field Guide (2021)"
+  notes: "Taproot physically breaks compaction — weed BOTH indicates and remediates"
+
+salinity:
+  value: "Not saline. No salinity association found."
+  confidence: low
+  source: "No specific source"
+  notes: ""
+
+nutrients:
+  - nutrient: "calcium"
+    relationship: "accumulator (tissues 1.5-2.5% Ca dry wt)"
+    confidence: high
+    source: "Baker et al. 2011, J. Plant Nutrition 34(3)"
+  - nutrient: "potassium"
+    relationship: "indicates excess / accumulator"
+    confidence: medium
+    source: "Pfeiffer E. Weeds and What They Tell (1950s); Walters C. (1999)"
+  - nutrient: "phosphorus"
+    relationship: "neutral — no strong accumulation evidence"
+    confidence: low
+    source: "Marschner 2012. Mineral Nutrition of Higher Plants. 3rd ed."
+    notes: "Some sources claim P accumulation; meta-analysis shows no consistent pattern"
+
+extra_dimensions:
+  mycorrhizal:
+    value: "Arbuscular mycorrhizal — forms AM associations"
+    confidence: high
+    source: "Wang & Qiu 2006. Mycorrhiza 16(5)"
+  biology:
+    value: "Indicates biologically-active soil with high microbial biomass"
+    confidence: medium
+    source: "Bardgett 2005. The Biology of Soil. Oxford Univ Press"
+
+regional_notes:
+  europe: "As described above. Ellenberg F=5, R=7, N=7"
+  uk: "Consistent with European data. CAWR field guide confirms"
+  australia: "Common in improved pastures; may indicate different conditions in AU
+    (less reliable indicator due to being naturalised). AU sources limited."
+  source: "NSW DPI Primefact 1023 (2020); Pigott 2018. Australian Weeds 42(2)"
+
+overall_confidence: high    # high | medium | low
+source_count: 6            # number of independent sources consulted
+
+---
+Additional notes and context go below the frontmatter, after the `---` separator.
+
+This is where you add qualitative observations, quotes from sources,
+cross-references to other species, and anything that doesn't fit in
+the structured fields above.
+
+
+# ──────────────────────────────────────────────────────
+# TYPE 2: Discovery Reports (Tracks 4, 5, 6, 7 expansion)
+# ──────────────────────────────────────────────────────
+# Free-form markdown with consistent entry structure
+
+Each discovery report (e.g. `04-regional-knowledge.md`) is a markdown
+file containing multiple entries. Each entry should use this structure:
+
+---
+## Entry: [short title]
+
+**Track:** 4 (Regional knowledge) | 5 (Adjacent connections) | 6 (Paradigm challenges)
+
+**Species involved:**
+- [Species 1] — common name
+- [Species 2] — common name
+
+**Finding:** [One sentence summary of what was found]
+
+**Detail:**
+[2-3 paragraphs explaining the finding, the context, the mechanism,
+and why it matters for AUGURY]
+
+**Source:** [Author (Year). Title. Publication. DOI/URL]
+**Confidence:** [high/medium/low]
+**Practical value to AUGURY:** [How this should be used — add to DB, note as hypothesis, correlate with other data, etc.]
+
+---
+
+The YAML schema above is for single-species files only. Discovery
+reports use the free-form entry structure shown here.

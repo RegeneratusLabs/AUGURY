@@ -1,0 +1,3036 @@
+{
+  "targets": [
+    {
+      "id": "taraxacum-officinale",
+      "scientific_name": "Taraxacum officinale",
+      "common_names": [
+        "Dandelion"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "potassium",
+        "potassium",
+        "potassium",
+        "potassium",
+        "potassium",
+        "phosphorus",
+        "manganese"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "rumex-crispus",
+      "scientific_name": "Rumex crispus",
+      "common_names": [
+        "Curled dock (Rumex crispus)",
+        "Curled dock"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "phosphorus",
+        "potassium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "rumex-obtusifolius",
+      "scientific_name": "Rumex obtusifolius",
+      "common_names": [
+        "Rumex obtusifolius",
+        "Broad-leaved dock (Rumex obtusifolius)",
+        "Broad-leaved dock"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "potassium",
+        "potassium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cirsium-arvense",
+      "scientific_name": "Cirsium arvense",
+      "common_names": [
+        "Creeping thistle",
+        "Cirsium arvense",
+        "Creeping thistle (Cirsium arvense)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": true
+      },
+      "current_nutrients": [
+        "potassium",
+        "iron",
+        "iron"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cirsium-vulgare",
+      "scientific_name": "Cirsium vulgare",
+      "common_names": [
+        "Spear thistle (Cirsium vulgare)",
+        "Spear thistle",
+        "Cirsium vulgare"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Australia",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "plantago-major",
+      "scientific_name": "plantago major",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "plantago-lanceolata",
+      "scientific_name": "Plantago lanceolata",
+      "common_names": [
+        "Ribwort plantain (Plantago lanceolata)",
+        "Ribwort plantain"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Australia"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "calcium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "urtica-dioica",
+      "scientific_name": "Urtica dioica",
+      "common_names": [
+        "Common nettle",
+        "Urtica dioica",
+        "Common nettle (Urtica dioica)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "nitrogen",
+        "nitrogen",
+        "phosphorus",
+        "phosphorus"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "galium-aparine",
+      "scientific_name": "Galium aparine",
+      "common_names": [
+        "Cleavers / Goosegrass",
+        "Cleavers / Goosegrass (Galium aparine)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "elymus-repens",
+      "scientific_name": "elymus repens",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "convolvulus-arvensis",
+      "scientific_name": "Convolvulus arvensis",
+      "common_names": [
+        "Field bindweed",
+        "Convolvulus arvensis"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "phosphorus",
+        "potassium",
+        "magnesium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "chenopodium-album",
+      "scientific_name": "Chenopodium album",
+      "common_names": [
+        "Fat hen / White goosefoot / Lambs quarter (Chenopodium album)",
+        "Fat hen / White goosefoot / Lambs quarter"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "zinc",
+        "nitrogen",
+        "nitrogen",
+        "phosphorus"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "amaranthus-retroflexus",
+      "scientific_name": "Amaranthus retroflexus",
+      "common_names": [
+        "Amaranthus retroflexus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "phosphorus",
+        "phosphorus"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "stellaria-media",
+      "scientific_name": "Stellaria media",
+      "common_names": [
+        "Common chickweed",
+        "Common chickweed (Stellaria media)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "potassium",
+        "potassium",
+        "phosphorus",
+        "phosphorus",
+        "phosphorus",
+        "manganese"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "capsella-bursa-pastoris",
+      "scientific_name": "capsella bursa-pastoris",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "sinapis-arvensis",
+      "scientific_name": "Sinapis arvensis",
+      "common_names": [
+        "Sinapis arvensis",
+        "Charlock (Sinapis arvensis)",
+        "Charlock"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "nitrogen"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "equisetum-arvense",
+      "scientific_name": "Equisetum arvense",
+      "common_names": [
+        "Field horsetail (Equisetum arvense)",
+        "Equisetum arvense",
+        "Field horsetail"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "calcium",
+        "calcium",
+        "silica"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "ranunculus-repens",
+      "scientific_name": "Ranunculus repens",
+      "common_names": [
+        "Creeping buttercup (Ranunculus repens)",
+        "Creeping buttercup",
+        "Ranunculus repens"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "trifolium-repens",
+      "scientific_name": "Trifolium repens",
+      "common_names": [
+        "White clover",
+        "White clover (Trifolium repens)",
+        "Trifolium repens"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": true
+      },
+      "current_nutrients": [
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "potassium",
+        "potassium",
+        "phosphorus",
+        "boron",
+        "magnesium",
+        "magnesium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "trifolium-pratense",
+      "scientific_name": "Trifolium pratense",
+      "common_names": [
+        "Trifolium pratense"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "portulaca-oleracea",
+      "scientific_name": "Portulaca oleracea",
+      "common_names": [
+        "Portulaca oleracea"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "phosphorus",
+        "phosphorus",
+        "phosphorus",
+        "nitrogen"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "senecio-vulgaris",
+      "scientific_name": "Senecio vulgaris",
+      "common_names": [
+        "Groundsel",
+        "Senecio vulgaris"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "sonchus-arvensis",
+      "scientific_name": "Sonchus arvensis",
+      "common_names": [
+        "Perennial sow-thistle",
+        "Sonchus arvensis",
+        "Perennial sow-thistle (Sonchus arvensis)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "achillea-millefolium",
+      "scientific_name": "Achillea millefolium",
+      "common_names": [
+        "Yarrow"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "potassium",
+        "potassium",
+        "potassium",
+        "copper"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "artemisia-vulgaris",
+      "scientific_name": "Artemisia vulgaris",
+      "common_names": [
+        "Artemisia vulgaris"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "lamium-album",
+      "scientific_name": "Lamium album",
+      "common_names": [
+        "Lamium album"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "lamium-purpureum",
+      "scientific_name": "Lamium purpureum",
+      "common_names": [
+        "Red dead-nettle",
+        "Red dead-nettle (Lamium purpureum)",
+        "Lamium purpureum"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "veronica-persica",
+      "scientific_name": "Veronica persica",
+      "common_names": [
+        "Common field speedwell",
+        "Common field speedwell (Veronica persica)",
+        "Veronica persica"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "poa-annua",
+      "scientific_name": "Poa annua",
+      "common_names": [
+        "Annual meadowgrass (Poa annua)",
+        "Poa annua"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": true,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "digitaria-sanguinalis",
+      "scientific_name": "Digitaria sanguinalis",
+      "common_names": [
+        "Digitaria sanguinalis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "nitrogen",
+        "phosphorus",
+        "potassium",
+        "potassium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "setaria-viridis",
+      "scientific_name": "Setaria viridis",
+      "common_names": [
+        "Setaria viridis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "sorghum-halepense",
+      "scientific_name": "Sorghum halepense",
+      "common_names": [
+        "Sorghum halepense"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cynodon-dactylon",
+      "scientific_name": "Cynodon dactylon",
+      "common_names": [],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "nitrogen"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "holcus-lanatus",
+      "scientific_name": "Holcus lanatus",
+      "common_names": [
+        "Yorkshire fog (Holcus lanatus)",
+        "Yorkshire Fog",
+        "Yorkshire fog",
+        "Holcus lanatus"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Australia",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "paspalum-dilatatum",
+      "scientific_name": "paspalum dilatatum",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "carex-hirta",
+      "scientific_name": "Carex hirta",
+      "common_names": [
+        "Carex hirta"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "juncus-effusus",
+      "scientific_name": "Juncus effusus",
+      "common_names": [
+        "Juncus effusus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "juncus-conglomeratus",
+      "scientific_name": "Juncus conglomeratus",
+      "common_names": [
+        "Juncus conglomeratus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "rumex-acetosella",
+      "scientific_name": "Rumex acetosella",
+      "common_names": [
+        "Sheeps sorrel sand /"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "calcium",
+        "phosphorus",
+        "phosphorus",
+        "nitrogen",
+        "nitrogen",
+        "nitrogen",
+        "iron",
+        "manganese"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "agrostis-capillaris",
+      "scientific_name": "Agrostis capillaris",
+      "common_names": [
+        "Bent grass"
+      ],
+      "in_database": true,
+      "regions": [
+        "Australia"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "anthoxanthum-odoratum",
+      "scientific_name": "Anthoxanthum odoratum",
+      "common_names": [
+        "Anthoxanthum odoratum",
+        "Sweet vernal grass"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "Australia"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": true,
+        "fertility": false,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "festuca-rubra",
+      "scientific_name": "festuca rubra",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "lolium-perenne",
+      "scientific_name": "Lolium perenne",
+      "common_names": [
+        "Perennial rye-grass",
+        "Perennial rye-grass (Lolium perenne)",
+        "Lolium perenne"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "poa-trivialis",
+      "scientific_name": "Poa trivialis",
+      "common_names": [
+        "Poa trivialis",
+        "Rough stalked meadowgrass",
+        "Rough stalked meadowgrass (Poa trivialis)"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "arrhenatherum-elatius",
+      "scientific_name": "Arrhenatherum elatius",
+      "common_names": [
+        "Arrhenatherum elatius"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "dactylis-glomerata",
+      "scientific_name": "Dactylis glomerata",
+      "common_names": [
+        "Cock's-foot",
+        "Cock's-foot (Dactylis glomerata)",
+        "Cocks-foot",
+        "Dactylis glomerata"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "phalaris-arundinacea",
+      "scientific_name": "Phalaris arundinacea",
+      "common_names": [
+        "Phalaris arundinacea"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "phragmites-australis",
+      "scientific_name": "Phragmites australis",
+      "common_names": [
+        "Phragmites australis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "plantago-media",
+      "scientific_name": "Plantago media",
+      "common_names": [
+        "Plantago media",
+        "Hoary plantain (Plantago media)",
+        "Hoary plantain"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "potentilla-anserina",
+      "scientific_name": "Potentilla anserina",
+      "common_names": [],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "potentilla-erecta",
+      "scientific_name": "potentilla erecta",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "prunella-vulgaris",
+      "scientific_name": "Prunella vulgaris",
+      "common_names": [
+        "Prunella vulgaris"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "ranunculus-acris",
+      "scientific_name": "ranunculus acris",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "ranunculus-ficaria",
+      "scientific_name": "ranunculus ficaria",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "rumex-acetosa",
+      "scientific_name": "Rumex acetosa",
+      "common_names": [
+        "Rumex acetosa"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "sagina-procumbens",
+      "scientific_name": "Sagina procumbens",
+      "common_names": [
+        "Sagina procumbens"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "saxifraga-granulata",
+      "scientific_name": "Saxifraga granulata",
+      "common_names": [],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "scrophularia-nodosa",
+      "scientific_name": "Scrophularia nodosa",
+      "common_names": [
+        "Scrophularia nodosa"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "senecio-jacobaea",
+      "scientific_name": "Senecio jacobaea",
+      "common_names": [
+        "Senecio jacobaea"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "silene-dioica",
+      "scientific_name": "silene dioica",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "silene-latifolia",
+      "scientific_name": "silene latifolia",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "sonchus-oleraceus",
+      "scientific_name": "Sonchus oleraceus",
+      "common_names": [
+        "Sonchus oleraceus"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "spergula-arvensis",
+      "scientific_name": "Spergula arvensis",
+      "common_names": [
+        "Spergula arvensis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "copper"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "stachys-sylvatica",
+      "scientific_name": "Stachys sylvatica",
+      "common_names": [
+        "Stachys sylvatica"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "tanacetum-vulgare",
+      "scientific_name": "Tanacetum vulgare",
+      "common_names": [
+        "Tanacetum vulgare"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "tussilago-farfara",
+      "scientific_name": "Tussilago farfara",
+      "common_names": [
+        "Coltsfoot",
+        "Tussilago farfara",
+        "Coltsfoot (Tussilago farfara)",
+        "Colts foot"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": false,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "verbascum-thapsus",
+      "scientific_name": "Verbascum thapsus",
+      "common_names": [
+        "Verbascum thapsus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "phosphorus",
+        "nitrogen",
+        "calcium"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "veronica-chamaedrys",
+      "scientific_name": "Veronica chamaedrys",
+      "common_names": [
+        "Veronica chamaedrys"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "veronica-officinalis",
+      "scientific_name": "Veronica officinalis",
+      "common_names": [
+        "Veronica officinalis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "vicia-cracca",
+      "scientific_name": "Vicia cracca",
+      "common_names": [
+        "Vicia cracca"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "vicia-sepium",
+      "scientific_name": "Vicia sepium",
+      "common_names": [
+        "Vicia sepium"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "viola-arvensis",
+      "scientific_name": "viola arvensis",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "viola-odorata",
+      "scientific_name": "Viola odorata",
+      "common_names": [
+        "Viola odorata"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "agrostis-stolonifera",
+      "scientific_name": "agrostis stolonifera",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "alopecurus-pratensis",
+      "scientific_name": "Alopecurus pratensis",
+      "common_names": [
+        "Alopecurus pratensis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "bellis-perennis",
+      "scientific_name": "Bellis perennis",
+      "common_names": [
+        "Bellis perennis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "bromus-hordeaceus",
+      "scientific_name": "Bromus hordeaceus",
+      "common_names": [
+        "Bromus hordeaceus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "calamagrostis-epigejos",
+      "scientific_name": "Calamagrostis epigejos",
+      "common_names": [
+        "Calamagrostis epigejos"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cardamine-hirsuta",
+      "scientific_name": "Cardamine hirsuta",
+      "common_names": [
+        "Cardamine hirsuta"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cerastium-fontanum",
+      "scientific_name": "Cerastium fontanum",
+      "common_names": [
+        "Common mouse-ear",
+        "Common mouse-ear (Cerastium fontanum)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "cirsium-palustre",
+      "scientific_name": "Cirsium palustre",
+      "common_names": [
+        "Cirsium palustre"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "crataegus-monogyna",
+      "scientific_name": "crataegus monogyna",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "crepis-capillaris",
+      "scientific_name": "Crepis capillaris",
+      "common_names": [
+        "Crepis capillaris"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "deschampsia-cespitosa",
+      "scientific_name": "Deschampsia cespitosa",
+      "common_names": [],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "epilobium-angustifolium",
+      "scientific_name": "Epilobium angustifolium",
+      "common_names": [
+        "Epilobium angustifolium"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "epilobium-hirsutum",
+      "scientific_name": "Epilobium hirsutum",
+      "common_names": [
+        "Epilobium hirsutum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "filipendula-ulmaria",
+      "scientific_name": "Filipendula ulmaria",
+      "common_names": [
+        "Filipendula ulmaria"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "geranium-robertianum",
+      "scientific_name": "Geranium robertianum",
+      "common_names": [
+        "Geranium robertianum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "geum-urbanum",
+      "scientific_name": "Geum urbanum",
+      "common_names": [
+        "Geum urbanum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "glechoma-hederacea",
+      "scientific_name": "Glechoma hederacea",
+      "common_names": [
+        "Glechoma hederacea"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "hedera-helix",
+      "scientific_name": "Hedera helix",
+      "common_names": [
+        "Hedera helix"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "hypericum-perforatum",
+      "scientific_name": "Hypericum perforatum",
+      "common_names": [
+        "Hypericum perforatum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "phosphorus"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "hypochaeris-radicata",
+      "scientific_name": "Hypochaeris radicata",
+      "common_names": [
+        "Cat's ear / Flat weed"
+      ],
+      "in_database": true,
+      "regions": [
+        "Australia"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "phosphorus"
+      ],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "lapsana-communis",
+      "scientific_name": "Lapsana communis",
+      "common_names": [
+        "Lapsana communis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "loxodon",
+      "scientific_name": "loxodon",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "lycopus-europaeus",
+      "scientific_name": "lycopus europaeus",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "malva-sylvestris",
+      "scientific_name": "Malva sylvestris",
+      "common_names": [
+        "Malva sylvestris"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "matricaria-discoidea",
+      "scientific_name": "Matricaria discoidea",
+      "common_names": [
+        "Pineapple weed",
+        "Pineapple weed (Matricaria discoidea)",
+        "Matricaria discoidea"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "matricaria-recutita",
+      "scientific_name": "Matricaria recutita",
+      "common_names": [
+        "Matricaria recutita"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "mentha-aquatica",
+      "scientific_name": "Mentha aquatica",
+      "common_names": [
+        "Mentha aquatica"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "myosotis-arvensis",
+      "scientific_name": "Myosotis arvensis",
+      "common_names": [
+        "Myosotis arvensis",
+        "Field forget-me-not (Myosotis arvensis)",
+        "Field forget-me-not"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "oenanthe-crocata",
+      "scientific_name": "oenanthe crocata",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "papaver-rhoeas",
+      "scientific_name": "Papaver rhoeas",
+      "common_names": [
+        "Papaver rhoeas",
+        "Common poppy (Papaver rhoeas)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK",
+        "Europe"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "persicaria-maculosa",
+      "scientific_name": "Persicaria maculosa",
+      "common_names": [
+        "Redshank / Lady's thumb (Persicaria maculosa)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Key agricultural/indicator weed"
+    },
+    {
+      "id": "persicaria-hydropiper",
+      "scientific_name": "persicaria hydropiper",
+      "common_names": [],
+      "in_database": false,
+      "task": "A",
+      "priority": 1,
+      "current_db_has": {},
+      "notes": "Key agricultural/indicator weed [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "amaranthus-albus",
+      "scientific_name": "Amaranthus albus",
+      "common_names": [
+        "Amaranthus albus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "brassica-nigra",
+      "scientific_name": "Brassica nigra",
+      "common_names": [
+        "Brassica nigra"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "centaurea-nemoralis",
+      "scientific_name": "Centaurea nemoralis",
+      "common_names": [
+        "Centaurea nemoralis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "digitaria-ischaemum",
+      "scientific_name": "Digitaria ischaemum",
+      "common_names": [
+        "Digitaria ischaemum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "kummerowia-striata",
+      "scientific_name": "kummerowia striata",
+      "common_names": [],
+      "in_database": false,
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {},
+      "current_claims": [
+        "nitrogen"
+      ],
+      "notes": "Low-confidence claims in enriched DB: nitrogen"
+    },
+    {
+      "id": "lamium-amplexicaule",
+      "scientific_name": "Lamium amplexicaule",
+      "common_names": [
+        "Henbit dead-nettle",
+        "Henbit dead-nettle (Lamium amplexicaule)"
+      ],
+      "in_database": true,
+      "regions": [
+        "UK"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": false,
+        "structure": true,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "lepidium-campestre",
+      "scientific_name": "Lepidium campestre",
+      "common_names": [
+        "Lepidium campestre"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "nassella-trichotoma",
+      "scientific_name": "nassella trichotoma",
+      "common_names": [],
+      "in_database": false,
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {},
+      "current_claims": [
+        "phosphorus"
+      ],
+      "notes": "Low-confidence claims in enriched DB: phosphorus"
+    },
+    {
+      "id": "oxalis-fontana",
+      "scientific_name": "Oxalis fontana",
+      "common_names": [
+        "Oxalis fontana"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "polygonum-persicaria",
+      "scientific_name": "Polygonum persicaria",
+      "common_names": [
+        "Polygonum persicaria",
+        "Redshank / Ladys thumb sand /"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe",
+        "UK"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "pteridium-aquilinum",
+      "scientific_name": "Pteridium aquilinum",
+      "common_names": [
+        "Pteridium aquilinum"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "ranunculus-sceleratus",
+      "scientific_name": "Ranunculus sceleratus",
+      "common_names": [
+        "Ranunculus sceleratus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": true
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "rubus-idaeus",
+      "scientific_name": "Rubus idaeus",
+      "common_names": [
+        "Rubus idaeus"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": false,
+        "ph": false,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "salvia-pratensis",
+      "scientific_name": "Salvia pratensis",
+      "common_names": [
+        "Salvia pratensis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "senecio-rupestris",
+      "scientific_name": "Senecio rupestris",
+      "common_names": [
+        "Senecio rupestris"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "spergularia-segetalis",
+      "scientific_name": "Spergularia segetalis",
+      "common_names": [
+        "Spergularia segetalis"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": false,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "trifolium-pallescens",
+      "scientific_name": "Trifolium pallescens",
+      "common_names": [
+        "Trifolium pallescens"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "vulpia-bromoides",
+      "scientific_name": "Vulpia bromoides",
+      "common_names": [
+        "Vulpia bromoides"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "C",
+      "priority": 3,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [
+        "phosphorus"
+      ],
+      "notes": "Low-confidence nutrient claim from enriched DB"
+    },
+    {
+      "id": "glycine-tabacina",
+      "scientific_name": "glycine tabacina",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "chloris-truncata",
+      "scientific_name": "chloris truncata",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "lolium-rigidum",
+      "scientific_name": "lolium rigidum",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "bromus-diandrus",
+      "scientific_name": "bromus diandrus",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "hordeum-hystrix",
+      "scientific_name": "hordeum hystrix",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "vulpia-myuros",
+      "scientific_name": "Vulpia myuros",
+      "common_names": [
+        "Vulpia myuros"
+      ],
+      "in_database": true,
+      "regions": [
+        "Europe"
+      ],
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {
+        "moisture": true,
+        "ph": true,
+        "fertility": true,
+        "structure": false,
+        "salinity": false
+      },
+      "current_nutrients": [],
+      "notes": "Australian priority weed — add to database"
+    },
+    {
+      "id": "sporobolus-spp-",
+      "scientific_name": "sporobolus spp.",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "phyllanthus-virgatus",
+      "scientific_name": "phyllanthus virgatus",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "swainsona-spp-",
+      "scientific_name": "swainsona spp.",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "wahlenbergia-spp-",
+      "scientific_name": "wahlenbergia spp.",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "cheilanthes-sieberi",
+      "scientific_name": "cheilanthes sieberi",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "cenchrus-spp-",
+      "scientific_name": "cenchrus spp.",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "urochloa-mosambicensis",
+      "scientific_name": "urochloa mosambicensis",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "bothriochloa-macra",
+      "scientific_name": "bothriochloa macra",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "rytidosperma-spp-",
+      "scientific_name": "rytidosperma spp.",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "microlaena-stipoides",
+      "scientific_name": "microlaena stipoides",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "eragrostis-curvula",
+      "scientific_name": "eragrostis curvula",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "sporobolus-africanus",
+      "scientific_name": "sporobolus africanus",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "cyperus-brevifolius",
+      "scientific_name": "cyperus brevifolius",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "alternanthera-philoxeroides",
+      "scientific_name": "alternanthera philoxeroides",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "salvinia-molesta",
+      "scientific_name": "salvinia molesta",
+      "common_names": [],
+      "in_database": false,
+      "task": "D",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Australian priority weed — add to database [NOT IN DATABASE — new addition needed]"
+    },
+    {
+      "id": "regional-traditional-knowledge",
+      "scientific_name": "GLOBAL",
+      "common_names": [
+        "Traditional ecological knowledge"
+      ],
+      "in_database": false,
+      "regions": [
+        "Australia",
+        "India",
+        "China",
+        "Africa",
+        "South America"
+      ],
+      "task": "4",
+      "priority": 3,
+      "current_db_has": {},
+      "notes": "Document indigenous/traditional weed-soil knowledge from Aboriginal, Indian, Chinese, African, and South American systems"
+    },
+    {
+      "id": "aboriginal-australian-indicators",
+      "scientific_name": "AU-INDIGENOUS",
+      "common_names": [
+        "Aboriginal Australian bioindicator plants"
+      ],
+      "in_database": false,
+      "regions": [
+        "Australia"
+      ],
+      "task": "4",
+      "priority": 3,
+      "current_db_has": {},
+      "notes": "Find documented Aboriginal ecological knowledge re: plant-soil relationships, fire stick farming indicators"
+    },
+    {
+      "id": "weed-insect-connections",
+      "scientific_name": "ECO-CONNECTIONS",
+      "common_names": [
+        "Weed-insect relationships"
+      ],
+      "in_database": false,
+      "regions": [
+        "Global"
+      ],
+      "task": "5",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Document which weeds host beneficial/pest insects, weed communities as insect pressure indicators"
+    },
+    {
+      "id": "weed-mycorrhizal-networks",
+      "scientific_name": "ECO-CONNECTIONS",
+      "common_names": [
+        "Weed-mycorrhizal relationships"
+      ],
+      "in_database": false,
+      "regions": [
+        "Global"
+      ],
+      "task": "5",
+      "priority": 4,
+      "current_db_has": {},
+      "notes": "Find mycorrhizal network research involving weed communities"
+    },
+    {
+      "id": "ellenberg-critiques",
+      "scientific_name": "PARADIGM-CHALLENGES",
+      "common_names": [
+        "Ellenberg indicator critiques"
+      ],
+      "in_database": false,
+      "regions": [
+        "Global"
+      ],
+      "task": "6",
+      "priority": 5,
+      "current_db_has": {},
+      "notes": "Find research questioning Ellenberg values outside Europe, studies on indicator reliability"
+    },
+    {
+      "id": "nutrient-mining-expansion",
+      "scientific_name": "GLOBAL",
+      "common_names": [
+        "Weed nutrient accumulator mining"
+      ],
+      "in_database": false,
+      "regions": [
+        "Global"
+      ],
+      "task": "7",
+      "priority": 2,
+      "current_db_has": {},
+      "notes": "Search broadly for weed-nutrient claims beyond current 74 species. Check Pfeiffer, Walters, Acres USA, extension PDFs, peer-reviewed papers on hyperaccumulators"
+    },
+    {
+      "id": "weed-tissue-analysis-papers",
+      "scientific_name": "GLOBAL",
+      "common_names": [
+        "Weed mineral composition studies"
+      ],
+      "in_database": false,
+      "regions": [
+        "Global"
+      ],
+      "task": "7",
+      "priority": 3,
+      "current_db_has": {},
+      "notes": "Find peer-reviewed papers with tissue mineral analysis of common weeds - gives direct evidence of accumulation"
+    }
+  ],
+  "meta": {
+    "total": 151,
+    "task_a": 105,
+    "task_c": 18,
+    "task_d": 21,
+    "task_e": 0,
+    "track_4": 2,
+    "track_5": 2,
+    "track_6": 1,
+    "track_7": 2
+  }
+}

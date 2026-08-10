@@ -1,0 +1,17 @@
+{
+  "version": "1.0",
+  "description": "AUGURY enriched species database - merged from multiple sources",
+  "sources": [
+    "Walters (1999) - Weeds: Control Without Poisons",
+    "University Extension factsheets",
+    "Permaculture practitioner knowledge",
+    "Academic Ellenberg enrichment",
+    "AU-NZ pastoral weed guides"
+  ],
+  "confidence_tiers": {
+    "high": "3+ independent sources agree, or peer-reviewed/government publication",
+    "medium": "2 sources agree, or published practitioner book",
+    "low": "Single source, forum claim, or traditional knowledge"
+  },
+  "species": []
+}

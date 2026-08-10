@@ -1,0 +1,544 @@
+[
+  {
+    "scientific_name": "Hypochaeris radicata",
+    "common_names": [
+      "cat's ear",
+      "false dandelion"
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates dry, free draining",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates heavy, compacted",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "detail": "long taproots bring up calcium from subsoil",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Bellis perennis",
+    "common_names": [
+      "daisy",
+      "English daisy"
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates dry",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "neutral or acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "plantain",
+      "common plantain"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "detail": "rich in calcium",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "accumulator",
+        "detail": "accumulates magnesium",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "silicon",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "sulfur",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "manganese",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Ranunculus repens",
+    "common_names": [
+      "creeping buttercup"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates poorly drained",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "detail": "draws potassium from soil",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Equisetum arvense",
+    "common_names": [
+      "horsetail",
+      "field horsetail"
+    ],
+    "soil_claims": [
+      {
+        "property": "soil_type",
+        "relationship": "indicates light, sandy",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "slightly acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "moisture",
+        "relationship": "moist conditions",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "silicon",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates neutral",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates fertile, cultivated",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Lamium purpureum",
+    "common_names": [
+      "purple deadnettle"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates neutral",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates nutrient-rich",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cirsium arvense",
+    "common_names": [
+      "Canada thistle",
+      "creeping thistle"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted, heavy",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "moisture",
+        "relationship": "indicates dry",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "accumulator",
+        "detail": "roots bring up iron from subsoil",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Convolvulus arvensis",
+    "common_names": [
+      "field bindweed",
+      "morning glory"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poorly drained",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted, crusty",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "soil_type",
+        "relationship": "prefers heavy clay",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Cardamine hirsuta",
+    "common_names": [
+      "hairy bittercress"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poorly drained, moist",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Rumex obtusifolius",
+    "common_names": [
+      "broad-leaved dock",
+      "dock"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poorly drained, waterlogged",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "pH",
+        "relationship": "increasing acidity",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Elymus repens",
+    "common_names": [
+      "quack grass",
+      "couch grass"
+    ],
+    "soil_claims": [
+      {
+        "property": "soil_type",
+        "relationship": "indicates heavy clay or crusty",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates poor drainage",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "silicon",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover",
+      "clover"
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates moist",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates poor fertility",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates rich in",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Vicia sativa",
+    "common_names": [
+      "common vetch",
+      "vetch"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "accumulator",
+        "source": "BC Farms & Food (2017)",
+        "confidence": "medium"
+      }
+    ]
+  }
+]

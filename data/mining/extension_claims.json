@@ -1,0 +1,511 @@
+[
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Deep taproot thrives in calcium-deficient, acidic, compacted soils",
+        "source": "University of Maine Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates adequacy",
+        "detail": "Often abundant in high-potassium soils",
+        "source": "University of Vermont Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "Frequent in low-phosphorus soils",
+        "source": "University of Vermont Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Thrives in compacted heavy clay soils",
+        "source": "University of Maine Extension",
+        "confidence": "high"
+      },
+      {
+        "property": "acidity",
+        "relationship": "indicates",
+        "detail": "Prefers acidic soil pH below 6.0",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates adequacy",
+        "detail": "Luxuriant growth signals high nitrogen availability",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Abundant in phosphorus-rich fertile soils",
+        "source": "Cornell University Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates",
+        "detail": "Prefers moist well-watered soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates",
+        "detail": "Common in rich fertile garden soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "broadleaf plantain"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Tolerates low-calcium acidic soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Classic indicator of soil compaction and heavy foot traffic",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Equisetum arvense",
+    "common_names": [
+      "horsetail"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "silica",
+        "relationship": "indicates adequacy",
+        "detail": "Accumulates silica; presence indicates high soil silica content",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Prefers low-calcium acidic soils",
+        "source": "Cornell University Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates",
+        "detail": "Strong indicator of poor drainage and waterlogged soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "property": "acidity",
+        "relationship": "indicates",
+        "detail": "Prefers acidic soil pH below 6.0",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates deficiency",
+        "detail": "Thrives in low-nitrogen soils due to N-fixing ability",
+        "source": "University of Wisconsin Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates deficiency",
+        "detail": "Increases when potassium is low",
+        "source": "University of Wisconsin Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "Often abundant in low-phosphorus soils",
+        "source": "University of Wisconsin Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Tolerates compacted high-traffic soils",
+        "source": "University of Wisconsin Extension",
+        "confidence": "medium"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel",
+      "red sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Strong indicator of calcium-deficient acidic soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "Common in low-phosphorus low-fertility soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates deficiency",
+        "detail": "Thrives in nitrogen-poor infertile soils",
+        "source": "University of Maine Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "acidity",
+        "relationship": "indicates",
+        "detail": "Primary indicator of very acidic soil pH 4.5-5.5",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Thrives in low-calcium acidic soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates deficiency",
+        "detail": "Common in low-fertility nitrogen-deficient soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Strong indicator of soil compaction and thin turf",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Portulaca oleracea",
+    "common_names": [
+      "purslane"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Indicator of high phosphorus levels in soil",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates adequacy",
+        "detail": "Thrives in nitrogen-rich fertile soils",
+        "source": "University of Vermont Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates",
+        "detail": "Prefers highly fertile rich garden soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Amaranthus retroflexus",
+    "common_names": [
+      "redroot pigweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates adequacy",
+        "detail": "Luxuriant growth signals high nitrogen availability",
+        "source": "University of Nebraska Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Thrives in phosphorus-rich fertile soils",
+        "source": "University of Nebraska Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates",
+        "detail": "Strong indicator of highly fertile agricultural soils",
+        "source": "University of Nebraska Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cyperus esculentus",
+    "common_names": [
+      "yellow nutsedge"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates adequacy",
+        "detail": "Often abundant in high-calcium alkaline soils",
+        "source": "University of Florida IFAS Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates adequacy",
+        "detail": "Common in high-potassium organic soils",
+        "source": "University of Florida IFAS Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates",
+        "detail": "Primary indicator of poor drainage and waterlogged soils",
+        "source": "University of Florida IFAS Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex crispus",
+    "common_names": [
+      "curly dock"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Tolerates low-calcium acidic soils",
+        "source": "Cornell University Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Common in phosphorus-rich fertile soils",
+        "source": "Cornell University Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Indicator of compacted heavy clay soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates",
+        "detail": "Prefers poorly drained wet soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Urtica dioica",
+    "common_names": [
+      "stinging nettle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates adequacy",
+        "detail": "Strong indicator of nitrogen-rich highly fertile soils",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates adequacy",
+        "detail": "Common in phosphorus-rich soils with abundant organic matter",
+        "source": "University of Vermont Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates",
+        "detail": "Prefers rich fertile soils high in organic matter",
+        "source": "University of Vermont Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Verbascum thapsus",
+    "common_names": [
+      "common mullein"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates deficiency",
+        "detail": "Indicator of very low phosphorus infertile soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates deficiency",
+        "detail": "Thrives in nitrogen-poor low-fertility soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates deficiency",
+        "detail": "Common in low-calcium acidic soils",
+        "source": "Cornell University Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "acidity",
+        "relationship": "indicates",
+        "detail": "Prefers acidic infertile soils",
+        "source": "Cornell University Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Elymus repens",
+    "common_names": [
+      "quackgrass",
+      "couch grass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates adequacy",
+        "detail": "Thrives in nitrogen-rich fertile soils",
+        "source": "University of Minnesota Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates adequacy",
+        "detail": "Common in high-potassium soils",
+        "source": "University of Minnesota Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Strong indicator of compacted heavy clay soils",
+        "source": "University of Minnesota Extension",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cirsium arvense",
+    "common_names": [
+      "Canada thistle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates adequacy",
+        "detail": "Often abundant in high-potassium fertile soils",
+        "source": "University of Minnesota Extension",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates",
+        "detail": "Prefers compacted heavy clay soils with poor drainage",
+        "source": "University of Minnesota Extension",
+        "confidence": "high"
+      }
+    ]
+  }
+]

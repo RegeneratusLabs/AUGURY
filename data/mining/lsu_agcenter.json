@@ -1,0 +1,194 @@
+[
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "low nutrients",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Oxalis spp.",
+    "common_names": [
+      "wood sorrel",
+      "oxalis"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "low nutrients",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "yarrow"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Kummerowia striata",
+    "common_names": [
+      "lespedeza",
+      "common lespedeza"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Hydrocotyle umbellata",
+    "common_names": [
+      "dollarweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Eleusine indica",
+    "common_names": [
+      "goosegrass"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Paspalum dilatatum",
+    "common_names": [
+      "dallisgrass"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "LSU AgCenter (2019)",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  }
+]

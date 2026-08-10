@@ -1,0 +1,20 @@
+# AUGURY MiniCPM-V 4.6 training environment — verified pins from the
+# MiniCPM-V-CookBook LLaMA-Factory recipe (llamafactory_minicpmv46.md).
+# transformers>=5.7.0 is required for MiniCPM-V 4.6 (guard rail 2).
+#
+# flash-attn is intentionally NOT listed: nvcc/CUDA-toolkit is absent on Victus
+# (verified 2026-08-04), so the from-source build would fail. transformers
+# SDPA/eager attention is the fallback (tweak 1) — set flash_attn: sdpa in train.yaml.
+torch==2.8.0
+torchvision==0.23.0
+transformers==5.7.0
+accelerate==1.13.0
+deepspeed==0.18.3
+peft==0.18.1
+trl==0.24.0
+wandb
+ninja
+einops
+safetensors
+tokenizers
+sentencepiece

@@ -1,0 +1,51 @@
+# AUGURY vision — MiniCPM-V 4.6 LoRA SFT config (LLaMA-Factory)
+# Keys per the official MiniCPM-V CookBook recipe (finetune/llamafactory/llamafactory_minicpmv46.md)
+# + guard rails: template minicpm_v_4_6, freeze vision tower, DOWNSAMPLE_MODE=4x (env), no packing.
+#
+# QLoRA (6GB VRAM fallback): uncomment `quantization_bit: 4` below.
+# DOWNSAMPLE_MODE must be exported at launch: export DOWNSAMPLE_MODE=4x  (see train_local.sh)
+
+model_name_or_path: models/MiniCPM-V-4.6
+trust_remote_code: true
+flash_attn: fa2                    # if flash-attn unavailable, set to auto/sdpa
+
+stage: sft
+do_train: true
+finetuning_type: lora
+freeze_vision_tower: true          # guard rail 8: LoRA on LLM projections only
+# quantization_bit: 4              # QLoRA fallback for 6GB VRAM if bf16 LoRA OOMs
+
+dataset: augury_vision_train
+eval_dataset: augury_vision_val
+dataset_dir: data/vision
+template: minicpm_v_4_6            # guard rail 9: must match serving template
+cutoff_len: 2048                   # guard rail 11: covers image tokens (16x downsample + max_slice_nums 2 -> sequences ~350-400 tok); lowered from 4096 for 6GB VRAM
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+overwrite_cache: true
+
+output_dir: data/vision/output/augury-v4_6-lora
+logging_steps: 5
+save_steps: 200
+save_total_limit: 3
+eval_strategy: steps
+eval_steps: 100
+plot_loss: true
+overwrite_output_dir: false
+
+per_device_train_batch_size: 1
+per_device_eval_batch_size: 1
+gradient_accumulation_steps: 16    # effective batch 16
+learning_rate: 2.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+bf16: true
+max_grad_norm: 1.0
+weight_decay: 0.01
+
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
+# lora_target omitted -> find_all_linear_modules (covers LLM q/k/v/o + gate/up/down;
+# vision tower excluded because freeze_vision_tower: true)

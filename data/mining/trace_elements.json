@@ -1,0 +1,316 @@
+[
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel",
+      "red sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "indicates deficiency",
+        "detail": "Associated with low iron availability; thrives in acidic low-fertility soils",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates deficiency",
+        "detail": "Cited as manganese-deficiency indicator; prefers acidic soils",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "boron",
+        "relationship": "indicates deficiency",
+        "detail": "Associated with low boron in acidic sandy soils",
+        "source": "Pfeiffer, Weeds and What They Tell",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "boron",
+        "relationship": "indicates deficiency",
+        "detail": "Known boron-deficiency accumulator; stunted growth and necrotic leaf margins",
+        "source": "Pfeiffer, Weeds and What They Tell",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "molybdenum",
+        "relationship": "indicates deficiency",
+        "detail": "Legumes sensitive to molybdenum deficiency; impaired N fixation",
+        "source": "Stiles, Trace Elements in Plants",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Xanthium strumarium",
+    "common_names": [
+      "cocklebur"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "zinc",
+        "relationship": "indicates deficiency",
+        "detail": "Known zinc accumulator; found on zinc-deficient soils",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "yarrow"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Long considered a copper-deficiency indicator in pastures",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Chenopodium album",
+    "common_names": [
+      "lambsquarters",
+      "fat hen"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "zinc",
+        "relationship": "indicates deficiency",
+        "detail": "Zinc accumulator; bioindicator of zinc-deficient soils",
+        "source": "Ohio State University Extension",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Grows well on low-copper soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Plantago lanceolata",
+    "common_names": [
+      "ribwort plantain"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "indicates deficiency",
+        "detail": "Common on iron-deficient compacted soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "molybdenum",
+        "relationship": "indicates deficiency",
+        "detail": "Cited as indicator of low molybdenum in neutral-alkaline soils",
+        "source": "Pfeiffer, Weeds and What They Tell",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates deficiency",
+        "detail": "Associated with low manganese in compacted waterlogged soils",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Linked to copper-deficient soils in temperate regions",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "manganese",
+        "relationship": "indicates deficiency",
+        "detail": "Cited as manganese accumulator; deep taproot accesses subsoil Mn",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "iron",
+        "relationship": "indicates deficiency",
+        "detail": "Associated with low iron in alkaline or compacted soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Polygonum aviculare",
+    "common_names": [
+      "knotweed",
+      "wireweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "zinc",
+        "relationship": "indicates deficiency",
+        "detail": "Common on zinc-deficient compacted soils",
+        "source": "Pfeiffer, Weeds and What They Tell",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Capsella bursa-pastoris",
+    "common_names": [
+      "shepherd's purse"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "zinc",
+        "relationship": "indicates deficiency",
+        "detail": "Known zinc accumulator",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Cited as copper indicator in agricultural soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Spergula arvensis",
+    "common_names": [
+      "corn spurry"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Classic copper-deficiency indicator; thrives on copper-deficient sandy soils",
+        "source": "Walters, Weeds: Control Without Poisons",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Cichorium intybus",
+    "common_names": [
+      "chicory"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "indicates deficiency",
+        "detail": "Deep taproot mines subsoil iron; found on iron-deficient alkaline soils",
+        "source": "Pfeiffer, Weeds and What They Tell",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Brassica rapa",
+    "common_names": [
+      "wild mustard",
+      "field mustard"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "molybdenum",
+        "relationship": "indicates deficiency",
+        "detail": "Brassicas highly sensitive to Mo deficiency; whiptail disease",
+        "source": "Stiles, Trace Elements in Plants",
+        "confidence": "medium"
+      },
+      {
+        "nutrient": "copper",
+        "relationship": "indicates deficiency",
+        "detail": "Grows vigorously on copper-deficient soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Trifolium subterraneum",
+    "common_names": [
+      "subterranean clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "molybdenum",
+        "relationship": "indicates deficiency",
+        "detail": "Very sensitive to Mo deficiency; test species in AU pastures",
+        "source": "Stiles, Trace Elements in Plants",
+        "confidence": "medium"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Urtica dioica",
+    "common_names": [
+      "stinging nettle"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "iron",
+        "relationship": "indicates adequacy",
+        "detail": "Accumulates iron; presence suggests adequate iron",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      },
+      {
+        "nutrient": "boron",
+        "relationship": "indicates deficiency",
+        "detail": "Sometimes associated with boron-deficient soils",
+        "source": "Permaculture consensus",
+        "confidence": "low"
+      }
+    ],
+    "soil_claims": []
+  }
+]

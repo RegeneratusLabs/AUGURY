@@ -1,0 +1,38 @@
+# AUGURY Data License
+
+## Code vs Data
+
+- **Code, scripts, documentation:** Apache-2.0 (`LICENSE`).
+- **Species database (`data/research/database-merged.json`, `data/vision/species_list.json`)
+  and generated training data (`data/training/`, `data/v3_function_calling/`,
+  `data/vision/train.jsonl`, `data/vision/val.jsonl`):** CC-BY-4.0.
+
+## Source provenance
+
+| Source | Region | Content | Original terms |
+|---|---|---|---|
+| Ellenberg Indicator Values (1991) | Europe | 2,793 species indicator values (L, T, K, F, R, N, S) | Research literature — cited as Ellenberg 1991 |
+| Maughan & Amos — *Bioindicators Field Guide* (2022, 2024) | UK | Species→indicator entries | Published books — permission/derivation pending formal confirmation |
+| CAWR Bioindicators Field Guide (2021) | UK | 51 species, manual transcriptions | Published field guide — transcription for research use |
+| AU Pasture Weeds (SA), VIC Soil Health Brown Book | Australia | Government extension publications (104 AU species) | Australian government publications — public dissemination |
+| Ducerf Vol 1-3 + Permaculturedesign.fr | Europe | Excluded from training data (OCR quality) — kept only as research reference | Ducerf books — do not redistribute derived text |
+
+## Vision image dataset — separate, non-commercial
+
+The **images** in `data/vision/images/` are NOT released under CC-BY-4.0. They carry
+**per-image licenses** recorded in per-species `sources.jsonl` sidecars:
+
+- **iNaturalist** research-grade photos: CC-BY / CC0 / CC-BY-NC / CC-BY-SA etc. per photo —
+  attribution to each photographer required; NC variants make the aggregate
+  **non-commercial**.
+- **DeepWeeds** (Chinee apple, Snake weed, Siam weed, negative class): CC BY 4.0.
+- **GBIF** gap-fill: licenses vary per record (see sidecars).
+
+The aggregated vision image dataset is published separately and is **non-commercial**
+(CC-BY-NC-4.0) with per-image attribution sidecars. Contact the project maintainers for
+commercial licensing questions.
+
+## No warranty
+
+All indicator claims are compiled from the cited literature. They have **not been verified
+on-farm**. AUGURY provides indicators only — never management or remediation advice.

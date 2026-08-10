@@ -1,0 +1,505 @@
+[
+  {
+    "scientific_name": "Convolvulus arvensis",
+    "common_names": [
+      "bindweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates crusty, compacted",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Stellaria media",
+    "common_names": [
+      "chickweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates alkaline",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Cichorium intybus",
+    "common_names": [
+      "chicory"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Senecio vulgaris",
+    "common_names": [
+      "common groundsel"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates fertile, nutrient-rich",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Digitaria sanguinalis",
+    "common_names": [
+      "crabgrass"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "low nutrients",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Taraxacum officinale",
+    "common_names": [
+      "dandelion"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Rumex obtusifolius",
+    "common_names": [
+      "dock"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates wet, poorly draining",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Solidago spp.",
+    "common_names": [
+      "goldenrod"
+    ],
+    "soil_claims": [
+      {
+        "property": "drainage",
+        "relationship": "indicates poor",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Lamium amplexicaule",
+    "common_names": [
+      "henbit"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Centaurea spp.",
+    "common_names": [
+      "knapweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates fertile",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Polygonum aviculare",
+    "common_names": [
+      "knotweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Chenopodium album",
+    "common_names": [
+      "lambsquarters"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Verbascum thapsus",
+    "common_names": [
+      "mullein"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Brassica spp.",
+    "common_names": [
+      "mustard"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates dry, sandy",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Oxalis spp.",
+    "common_names": [
+      "wood sorrel",
+      "oxalis"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "nutrient": "magnesium",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Leucanthemum vulgare",
+    "common_names": [
+      "ox-eye daisy"
+    ],
+    "soil_claims": [
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates poor",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "drainage",
+        "relationship": "indicates soggy",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Plantago major",
+    "common_names": [
+      "plantain"
+    ],
+    "soil_claims": [
+      {
+        "property": "compaction",
+        "relationship": "indicates compacted, clay-heavy",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Amaranthus retroflexus",
+    "common_names": [
+      "pigweed",
+      "redroot pigweed"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  },
+  {
+    "scientific_name": "Portulaca oleracea",
+    "common_names": [
+      "purslane"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "phosphorus",
+        "relationship": "indicates high",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates rich",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Elymus repens",
+    "common_names": [
+      "quackgrass"
+    ],
+    "soil_claims": [
+      {
+        "property": "soil_type",
+        "relationship": "indicates heavy clay or compacted",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Daucus carota",
+    "common_names": [
+      "Queen Anne's lace",
+      "wild carrot"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates poor but balanced",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Ambrosia artemisiifolia",
+    "common_names": [
+      "ragweed"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Urtica dioica",
+    "common_names": [
+      "stinging nettle"
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates rich",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "nutrient_claims": []
+  },
+  {
+    "scientific_name": "Rumex acetosella",
+    "common_names": [
+      "sheep sorrel"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "calcium",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "moisture",
+        "relationship": "indicates dry, sandy",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "pH",
+        "relationship": "indicates acidic",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Achillea millefolium",
+    "common_names": [
+      "yarrow"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "potassium",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": [
+      {
+        "property": "fertility",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      },
+      {
+        "property": "moisture",
+        "relationship": "indicates sandy, dry",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ]
+  },
+  {
+    "scientific_name": "Trifolium repens",
+    "common_names": [
+      "white clover"
+    ],
+    "nutrient_claims": [
+      {
+        "nutrient": "nitrogen",
+        "relationship": "indicates low",
+        "source": "Old Farmer's Almanac",
+        "confidence": "high"
+      }
+    ],
+    "soil_claims": []
+  }
+]

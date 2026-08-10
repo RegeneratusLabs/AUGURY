@@ -1,0 +1,1278 @@
+{
+  "coronilla vaginalis": {
+    "scientific_name": "Coronilla vaginalis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "crambe maritima": {
+    "scientific_name": "Crambe maritima",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly damp ground. Reliable indicator of soil moisture",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground",
+        "Salinity": "tolerates low to moderate salt. Coastal margins and salt-affected pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "saxifraga granulata": {
+    "scientific_name": "Saxifraga granulata",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "scorzonera parviflora": {
+    "scientific_name": "Scorzonera parviflora",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels",
+        "Salinity": "salt-tolerant. Moderate to high salt. Coastal grazing marsh"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "lilium bulbiferum": {
+    "scientific_name": "Lilium bulbiferum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "thesium linophyllon": {
+    "scientific_name": "Thesium linophyllon",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "anemone sylvestris": {
+    "scientific_name": "Anemone sylvestris",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "lycopodium annotinum": {
+    "scientific_name": "Lycopodium annotinum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "fumaria muralis": {
+    "scientific_name": "Fumaria muralis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "moderately fertile. Above-average nutrient availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "puccinellia capillaris": {
+    "scientific_name": "Puccinellia capillaris",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly wet soils. Reliable indicator of waterlogging",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels",
+        "Salinity": "very high salt tolerance. Coastal halophyte. Saltmarsh species"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "horminum pyrenaicum": {
+    "scientific_name": "Horminum pyrenaicum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "buddleja davidii": {
+    "scientific_name": "Buddleja davidii",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cerastium cerastoides": {
+    "scientific_name": "Cerastium cerastoides",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "wet soils. Regularly saturated, tolerates standing water",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "orchis morio": {
+    "scientific_name": "Orchis morio",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hyssopus officinalis": {
+    "scientific_name": "Hyssopus officinalis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "leontopodium alpinum": {
+    "scientific_name": "Leontopodium alpinum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cardaminopsis halleri": {
+    "scientific_name": "Cardaminopsis halleri",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "rorippa amphibia": {
+    "scientific_name": "Rorippa amphibia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "shallow standing water. Emergent aquatic, often in ponds or ditches",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "laser trilobum": {
+    "scientific_name": "Laser trilobum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "ceratocephalus falcatus": {
+    "scientific_name": "Ceratocephalus falcatus",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "aster amellus": {
+    "scientific_name": "Aster amellus",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "kalmia angustifolia": {
+    "scientific_name": "Kalmia angustifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "wet soils. Regularly saturated, tolerates standing water",
+        "Soil pH": "extremely acidic. pH 3.0–4.0. Very acid-tolerant species",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "rhododendron hirsutum": {
+    "scientific_name": "Rhododendron hirsutum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "lythrum hyssopifolia": {
+    "scientific_name": "Lythrum hyssopifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly damp to wet. Strong indicator of poor drainage",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland",
+        "Fertility": "moderately infertile. Below-average nutrient levels",
+        "Salinity": "low salt tolerance. Found on slightly brackish soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "soldanella pusilla": {
+    "scientific_name": "Soldanella pusilla",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "strongly acidic. pH 3.5–5.0. Heathland and peat soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "filago arvensis": {
+    "scientific_name": "Filago arvensis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "zostera marina": {
+    "scientific_name": "Zostera marina",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "submerged aquatic. Permanently or near-permanently underwater",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately fertile. Above-average nutrient availability",
+        "Salinity": "extreme salt tolerance. Obligate halophyte. Only on saline soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "quercus cerris": {
+    "scientific_name": "Quercus cerris",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral to slightly acidic. pH 5.5–7.0. Common on loams"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hieracium prenanthoides": {
+    "scientific_name": "Hieracium prenanthoides",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "heracleum sphondylium": {
+    "scientific_name": "Heracleum sphondylium",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Species": "Hogweed (Heracleum sphondylium)",
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "pyrola rotundifolia": {
+    "scientific_name": "Pyrola rotundifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cotinus coggygria": {
+    "scientific_name": "Cotinus coggygria",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "calamagrostis pseudophragmites": {
+    "scientific_name": "Calamagrostis pseudophragmites",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly damp to wet. Strong indicator of poor drainage",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "prunus fruticosa": {
+    "scientific_name": "Prunus fruticosa",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hieracium rothianum": {
+    "scientific_name": "Hieracium rothianum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "valeriana supina": {
+    "scientific_name": "Valeriana supina",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "campanula rapunculoides": {
+    "scientific_name": "Campanula rapunculoides",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "scilla bifolia": {
+    "scientific_name": "Scilla bifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately fertile. Above-average nutrient availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "elodea canadensis": {
+    "scientific_name": "Elodea canadensis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "submerged aquatic. Permanently or near-permanently underwater",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "luzula spicata": {
+    "scientific_name": "Luzula spicata",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "rosa stylosa": {
+    "scientific_name": "Rosa stylosa",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "melampyrum arvense": {
+    "scientific_name": "Melampyrum arvense",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "allium schoenoprasum": {
+    "scientific_name": "Allium schoenoprasum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "iris sambucina": {
+    "scientific_name": "Iris sambucina",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "jovibarba sobolifera": {
+    "scientific_name": "Jovibarba sobolifera",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "pilularia globulifera": {
+    "scientific_name": "Pilularia globulifera",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cuscuta epithymum": {
+    "scientific_name": "Cuscuta epithymum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "sedum villosum": {
+    "scientific_name": "Sedum villosum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "waterlogged ground. Marshy, boggy, or flood-prone soils",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "scutellaria galericulata": {
+    "scientific_name": "Scutellaria galericulata",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderately fertile. Above-average nutrient availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "aster tripolium": {
+    "scientific_name": "Aster tripolium",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture",
+        "Salinity": "extreme salt tolerance. Obligate halophyte. Only on saline soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "thlaspi montanum": {
+    "scientific_name": "Thlaspi montanum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "helianthus tuberosus": {
+    "scientific_name": "Helianthus tuberosus",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "briza media": {
+    "scientific_name": "Briza media",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Species": "Quaking Grass (Briza media)",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "scorzonera humilis": {
+    "scientific_name": "Scorzonera humilis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "heracleum austriacum": {
+    "scientific_name": "Heracleum austriacum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "saponaria ocymoides": {
+    "scientific_name": "Saponaria ocymoides",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "valeriana saxatilis": {
+    "scientific_name": "Valeriana saxatilis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "doronicum austriacum": {
+    "scientific_name": "Doronicum austriacum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "succisa pratensis": {
+    "scientific_name": "Succisa pratensis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "rapistrum perenne": {
+    "scientific_name": "Rapistrum perenne",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "anthemis cotula": {
+    "scientific_name": "Anthemis cotula",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cynoglossum officinale": {
+    "scientific_name": "Cynoglossum officinale",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "androsace septentrionalis": {
+    "scientific_name": "Androsace septentrionalis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "angelica archangelica": {
+    "scientific_name": "Angelica archangelica",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Fertility": "extremely fertile. Excess nitrogen. Over-fertilised, manure heaps, stock camps",
+        "Salinity": "slightly salt-tolerant. Mostly on non-saline soils, occasional brackish margins"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "phyteuma hemisphaericum": {
+    "scientific_name": "Phyteuma hemisphaericum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "polygala amarella": {
+    "scientific_name": "Polygala amarella",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "waterlogged ground. Marshy, boggy, or flood-prone soils",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "calamagrostis canescens": {
+    "scientific_name": "Calamagrostis canescens",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "neutral to slightly acidic. pH 5.5–7.0. Common on loams",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "asplenium adulterinum": {
+    "scientific_name": "Asplenium adulterinum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "neutral to slightly acidic. pH 5.5–7.0. Common on loams",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "poterium sanguisorba": {
+    "scientific_name": "Poterium sanguisorba",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "schoenus nigricans": {
+    "scientific_name": "Schoenus nigricans",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture",
+        "Salinity": "slightly salt-tolerant. Mostly on non-saline soils, occasional brackish margins"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "euonymus europaea": {
+    "scientific_name": "Euonymus europaea",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Species": "Spindle (Euonymus europaea)",
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hymenophyllum tunbrigense": {
+    "scientific_name": "Hymenophyllum tunbrigense",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "ammocalamagrosti baltica": {
+    "scientific_name": "Ammocalamagrosti baltica",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture",
+        "Salinity": "slightly salt-tolerant. Mostly on non-saline soils, occasional brackish margins"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "utricularia intermedia": {
+    "scientific_name": "Utricularia intermedia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "submerged aquatic. Permanently or near-permanently underwater",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "herniaria glabra": {
+    "scientific_name": "Herniaria glabra",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "viburnum lantana": {
+    "scientific_name": "Viburnum lantana",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "bryonia dioica": {
+    "scientific_name": "Bryonia dioica",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately fertile. Above-average nutrient availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "polycnemum majus": {
+    "scientific_name": "Polycnemum majus",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "saxifraga sponhemica": {
+    "scientific_name": "Saxifraga sponhemica",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "weakly acidic. pH 5.0–6.5. Most pasture and woodland soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "allium suaveolens": {
+    "scientific_name": "Allium suaveolens",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "wet soils. Regularly saturated, tolerates standing water",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "rhododendron x": {
+    "scientific_name": "Rhododendron x",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "neutral to slightly acidic. pH 5.5–7.0. Common on loams",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hieracium bifurcum": {
+    "scientific_name": "Hieracium bifurcum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "hieracium echioides": {
+    "scientific_name": "Hieracium echioides",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "neutral to slightly acidic. pH 5.5–7.0. Common on loams",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "epipactis muelleri": {
+    "scientific_name": "Epipactis muelleri",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "gypsophila repens": {
+    "scientific_name": "Gypsophila repens",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly fresh, moist soils. Strong indicator of balanced moisture",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "asplenium viride": {
+    "scientific_name": "Asplenium viride",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "lonicera caerulea": {
+    "scientific_name": "Lonicera caerulea",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "wet soils. Regularly saturated, tolerates standing water",
+        "Soil pH": "strongly acidic. pH 3.5–5.0. Heathland and peat soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "scabiosa ochroleuca": {
+    "scientific_name": "Scabiosa ochroleuca",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "linum leonii": {
+    "scientific_name": "Linum leonii",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "dactylorhiza traunsteineri": {
+    "scientific_name": "Dactylorhiza traunsteineri",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "chaerophyllum bulbosum": {
+    "scientific_name": "Chaerophyllum bulbosum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "damp ground. Constantly moist or poorly draining soils",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "petrocallis pyrenaica": {
+    "scientific_name": "Petrocallis pyrenaica",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "nymphaea alba": {
+    "scientific_name": "Nymphaea alba",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "rooted aquatic with floating leaves. Permanent water bodies",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "allium ursinum": {
+    "scientific_name": "Allium ursinum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Species": "Ramsons / Wild Garlic (Allium ursinum)",
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "knautia arvensis": {
+    "scientific_name": "Knautia arvensis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "saxifraga cuneifolia": {
+    "scientific_name": "Saxifraga cuneifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "acidic soils. pH 4.0–5.5. Common on moorland and conifer woodland",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "petrorhagia saxifraga": {
+    "scientific_name": "Petrorhagia saxifraga",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "very dry, well-drained soils. Drought-prone sites",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "extremely infertile. Very low nitrogen. Starved, leached soils"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "orchis tridentata": {
+    "scientific_name": "Orchis tridentata",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "strongly alkaline. pH 7.0–8.5+. Chalk downland and limestone",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "orobanche picridis": {
+    "scientific_name": "Orobanche picridis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "moderate fertility. Average nutrient levels. Typical pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "anthriscus nitida": {
+    "scientific_name": "Anthriscus nitida",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately moist, damp ground. Prefers some soil moisture",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very fertile. Nitrogen-rich. Improved pasture or manured ground"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "arenaria multicaulis": {
+    "scientific_name": "Arenaria multicaulis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "elatine triandra": {
+    "scientific_name": "Elatine triandra",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "strictly waterlogged. Confined to marshes and bogs",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "moderately infertile. Below-average nutrient levels"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "oenanthe peucedanifolia": {
+    "scientific_name": "Oenanthe peucedanifolia",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "waterlogged ground. Marshy, boggy, or flood-prone soils",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "orobanche gracilis": {
+    "scientific_name": "Orobanche gracilis",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "neutral. pH 6.0–7.5. Wide range of productive soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "cerastium brachypetalum": {
+    "scientific_name": "Cerastium brachypetalum",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "dry soils. More often found on dry ground than moist",
+        "Soil pH": "calcareous, alkaline. pH 6.5–8.0. Chalk and limestone soils",
+        "Fertility": "very low fertility. Nutrient-poor ground. Low-input pasture"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "anarrhinum bellidifolium": {
+    "scientific_name": "Anarrhinum bellidifolium",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "moderately dry. Avoids waterlogged areas",
+        "Soil pH": "moderately acidic. pH 4.5–6.0. Acid grassland and heath",
+        "Fertility": "low fertility. Infertile soils, low nitrogen availability"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  },
+  "lavatera thuringiaca": {
+    "scientific_name": "Lavatera thuringiaca",
+    "common_names": [],
+    "regions": {
+      "Europe": {
+        "Moisture": "fresh, moist soils of average dampness. Neither dry nor wet",
+        "Fertility": "fertile, nutrient-rich. High nitrogen. Productive pasture",
+        "Salinity": "slightly salt-tolerant. Mostly on non-saline soils, occasional brackish margins"
+      }
+    },
+    "reason_archived": "Obscure European endemic — no common name, no AU/UK data, not in agricultural genera"
+  }
+}
