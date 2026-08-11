@@ -21,7 +21,7 @@ Three generations of architecture:
 - Species database: 2,133 active species (107 obscure European endemics archived)
 - Australian species: ~104 with government/extension-sourced indicator data (NSW DPI, QLD DAF, Agriculture Vic, SA Landscape Board)
 - Nutrient enrichment: Claims for 16+ nutrients across 29+ species (to be expanded with research data)
-- Training data: 13,492 examples (ShareGPT format; verified on disk 2026-08-04 — the earlier 28,449 figure predates dedup/regeneration)
+- Training data: 13,627 train + 1,514 val (ShareGPT format; regenerated 2026-08-11 from database-merged.json with AU balance — 186/188 AU species covered)
 - V3 tool-calling training data: 1,369 train + 153 val (1,522 total) in MiniCPM5 XML format across 4 layers (tool use, direct answer, multi-species, refusal)
 - Server integration: Species lookup engine (`species_lookup.py`) with fuzzy matching and region-aware retrieval
 - Plant ID pipeline: iNaturalist and PlantNet API clients (`plant_id.py`) for photo-to-species
@@ -53,7 +53,7 @@ Photo-to-species front-end for the funnel. See `HANDOVER_VISION.md` + `data/visi
 | AU Pasture Weeds (SA) | Australia | 88 | High — government publication |
 | VIC Soil Health Brown Book | Australia | 48 | High — extension manual |
 | Refusal examples | — | 106 | Synthetic, 7 categories |
-| **Total** | | **13,492 train + 1,499 val** | |
+| **Total** | | **13,627 train + 1,514 val** (regenerated 2026-08-11 with AU balance) | |
 
 ### Removed from pass 2 (deliberately)
 
@@ -74,8 +74,8 @@ If clean translations of Ducerf become available, they can be re-added.
 
 ## Training Data
 
-- `data/training/weeds_indicators_merged_train.jsonl` — 13,492 examples (USE THIS; verified 2026-08-04)
-- `data/training/weeds_indicators_merged_val.jsonl` — 1,499 examples (USE THIS)
+- `data/training/weeds_indicators_merged_train.jsonl` — 13,627 examples (USE THIS; regenerated 2026-08-11 with AU balance)
+- `data/training/weeds_indicators_merged_val.jsonl` — 1,514 examples (USE THIS)
 - `data/training/standalone_train.jsonl` — 612 examples (Path B standalone)
 - `data/training/standalone_val.jsonl` — 69 examples (Path B standalone)
 - `data/training/ellenberg_indicators.jsonl` — Intermediate (original format)
