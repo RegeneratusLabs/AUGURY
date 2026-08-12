@@ -32,7 +32,6 @@ mkdir -p /mnt/workspace/archive/vision-v46-era
 for p in \
   data/vision/output \
   data/vision/train.jsonl \
-  data/vision/val.jsonl \
   data/vision/train_v4_6_lora_qlora.yaml \
   data/vision/train_v4_6_lora.yaml \
   train.log merge.log eval.log eval2.log \
