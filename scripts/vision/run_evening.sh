@@ -27,7 +27,38 @@ export DOWNSAMPLE_MODE=4x
 export DISABLE_VERSION_CHECK=1
 unset USE_V1 || true
 
-echo "=== [0/6] archive the old MiniCPM-V vision training era (keep, out of the way) ==="
+CLEAN="${1:-}"
+FT="${2:-}"
+if [ "$CLEAN" = "--clean" ]; then
+  echo "=== [0/7] CLEAN REBUILD: wiping old-era artifacts (keeping images/) ==="
+  rm -rf \
+    /mnt/workspace/archive \
+    /mnt/workspace/LLaMA-Factory \
+    /mnt/workspace/data/vision/output \
+    /mnt/workspace/data/training/output \
+    /mnt/workspace/models/MiniCPM-V-4.6 \
+    /mnt/workspace/models/MiniCPM-V-4_6-Q4_K_M.gguf \
+    /mnt/workspace/models/mmproj-model-f16.gguf \
+    /mnt/workspace/evening.log /mnt/workspace/formatter.log \
+    /mnt/workspace/train.log /mnt/workspace/merge.log \
+    /mnt/workspace/eval.log /mnt/workspace/eval2.log \
+    /mnt/workspace/eval_merged.py /mnt/workspace/eval_merged2.py \
+    /mnt/workspace/eval_fix_test.py \
+    /mnt/workspace/scripts/vision/train_local.sh \
+    /mnt/workspace/scripts/vision/export_gguf.sh \
+    /mnt/workspace/scripts/vision/eval_vision.py \
+    /mnt/workspace/scripts/vision/train_colab.ipynb \
+    /mnt/workspace/scripts/vision/build_llamafactory_dataset.py \
+    /mnt/workspace/data/vision/train_v4_6_lora_qlora.yaml \
+    /mnt/workspace/data/vision/train_v4_6_lora.yaml \
+    /mnt/workspace/evening-bundle.tar.gz
+  echo "  wiped. keeping data/vision/images/ + species_list.json + bundle files"
+  echo "=== re-cloning LLaMA-Factory ==="
+  git clone -q --depth 1 https://github.com/hiyouga/LlamaFactory.git /mnt/workspace/LLaMA-Factory
+  echo "  cloned."
+fi
+
+echo "=== [0/7] archive the old MiniCPM-V vision training era (keep, out of the way) ==="
 mkdir -p /mnt/workspace/archive/vision-v46-era
 for p in \
   data/vision/output \
@@ -46,14 +77,14 @@ for p in \
 done
 echo "archive contents:"; ls /mnt/workspace/archive/vision-v46-era/ 2>/dev/null | head -15
 
-echo "=== [1/6] env install (idempotent) ==="
+echo "=== [1/7] env install (idempotent) ==="
 (cd /mnt/workspace/LLaMA-Factory && pip install -q -e . 2>&1 | tail -1)
 pip install -q "transformers==5.7.0" 2>&1 | tail -1
 pip install -q -U mistral_common 2>&1 | tail -1
 pip install -q pytorch-metric-learning faiss-cpu 2>&1 | tail -1
 cd /mnt/workspace
 
-echo "=== [2/6] verify NAS data ==="
+echo "=== [2/7] verify NAS data ==="
 for p in \
   data/vision/images \
   data/vision/species_list.json \
@@ -68,19 +99,26 @@ for p in \
 done
 echo "NAS data OK"
 
-echo "=== [3/6] WS1b: DINOv2-base contrastive fine-tune (AU) ==="
-python scripts/vision/fine_tune_encoder.py \
-  --model dinov2-base --epochs 5 --batch-size 96 --lr 3e-4 \
-  --out data/vision/ft/dinov2-au 2>&1 | tail -10
+if [ "$FT" = "--ft" ]; then
+  echo "=== [3/7] WS1b: DINOv2-base contrastive fine-tune (AU) [--ft] ==="
+  python scripts/vision/fine_tune_encoder.py \
+    --model dinov2-base --epochs 5 --batch-size 96 --lr 3e-4 \
+    --out data/vision/ft/dinov2-au 2>&1 | tail -10
 
-echo "=== [4/6] re-eval: fine-tuned encoder vs baseline ==="
-python scripts/vision/bake_off.py --au-only --limit 30 --encoders dinov2-base \
-  --out data/vision/bake_off_ft_report.md 2>&1 | tail -4
-python scripts/vision/bake_off.py --au-only --limit 30 --encoders dinov2-base \
-  --checkpoint data/vision/ft/dinov2-au/checkpoint-5.pt \
-  --out data/vision/bake_off_ft_report.md 2>&1 | tail -4
+  echo "=== [4/7] re-eval: fine-tuned encoder vs baseline ==="
+  python scripts/vision/bake_off.py --au-only --limit 30 --encoders dinov2-base \
+    --out data/vision/bake_off_ft_report.md 2>&1 | tail -4
+  python scripts/vision/bake_off.py --au-only --limit 30 --encoders dinov2-base \
+    --checkpoint data/vision/ft/dinov2-au/checkpoint-5.pt \
+    --out data/vision/bake_off_ft_report.md 2>&1 | tail -4
+else
+  echo "=== [3/7] encoder fine-tune SKIPPED (recipe under repair; base DINOv2 passes gates). ==="
+  echo "=== [4/7] baseline bake-off (AU) ==="
+  python scripts/vision/bake_off.py --au-only --limit 30 --encoders dinov2-base \
+    --out data/vision/bake_off_ft_report.md 2>&1 | tail -4
+fi
 
-echo "=== [5/6] WS2: formatter LoRA (MiniCPM5-1B) ==="
+echo "=== [5/7] WS2: formatter LoRA (MiniCPM5-1B) ==="
 python - <<'PYEOF'
 import re, pathlib
 yaml = pathlib.Path("scripts/vision/train_formatter.yaml").read_text()
@@ -106,7 +144,7 @@ nohup llamafactory-cli train scripts/vision/train_formatter_dsw.yaml \
   > /mnt/workspace/formatter.log 2>&1 &
 echo "formatter training started (log: /mnt/workspace/formatter.log) — checkpoints in data/training/output/augury-formatter"
 
-echo "=== [6/6] done. artifacts: ==="
+echo "=== [6/7] done. artifacts: ==="
 ls -la data/vision/ft/dinov2-au/ 2>/dev/null | tail -3
 echo "evening log: /mnt/workspace/evening.log"
 
