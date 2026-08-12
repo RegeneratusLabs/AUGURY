@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# AUGURY — finish_evening.sh (set-and-forget post-training pipeline, DSW)
+#
+# Runs AFTER the formatter training: waits for it to finish (if still running),
+# merges the LoRA into the base, converts to GGUF Q4_K_M, and pushes every
+# artifact to HF Hub so the team can pull them without SSH access.
+#
+# Prereqs: HF_TOKEN exported; run_evening.sh --clean already ran (base model
+# at /mnt/workspace/models/MiniCPM5-1B, adapter in data/training/output/).
+#
+#   export HF_TOKEN=...
+#   nohup bash finish_evening.sh > finish.log 2>&1 &
+set -euo pipefail
+cd /mnt/workspace
+export DISABLE_VERSION_CHECK=1
+unset USE_V1 || true
+
+BASE="/mnt/workspace/models/MiniCPM5-1B"
+ADAPTER="/mnt/workspace/data/training/output/augury-formatter"
+MERGED="/mnt/workspace/data/training/output/augury-formatter-merged"
+GGUF_DIR="/mnt/workspace/gguf"
+FMT_REPO="RegeneratusLabs/augury-formatter"   # model repo (merged + GGUF)
+LOG_REPO="RegeneratusLabs/augury-evening-bundle"  # dataset repo (logs)
+
+log() { echo "[$(date +%H:%M:%S)] $*"; }
+
+if [ -z "${HF_TOKEN:-}" ]; then
+  log "ERROR: HF_TOKEN not set"; exit 1
+fi
+python - <<'PYEOF'
+import os
+from huggingface_hub import HfApi
+HfApi(token=os.environ["HF_TOKEN"])
+print("HF auth OK")
+PYEOF
+
+log "=== 1/6 wait for training to finish (if still running) ==="
+for i in $(seq 1 90); do
+  if ! pgrep -f llamafactory-cli > /dev/null 2>&1; then break; fi
+  log "  training still running ($i/90 min)"; sleep 60
+done
+if [ ! -d "$ADAPTER" ] || [ -z "$(ls "$ADAPTER"/*.safetensors 2>/dev/null)" ]; then
+  log "ERROR: no adapter found in $ADAPTER — training did not produce output"
+  echo "FAILURE: no adapter" > /tmp/evening-status.txt
+  python - <<'PYEOF' || true
+import os
+from huggingface_hub import HfApi
+HfApi(token=os.environ["HF_TOKEN"]).upload_file(
+    path_or_fileobj="/tmp/evening-status.txt", path_in_repo="run/status.txt",
+    repo_id=os.environ.get("LOG_REPO", "RegeneratusLabs/augury-evening-bundle"),
+    repo_type="dataset")
+PYEOF
+  exit 1
+fi
+log "  adapter OK: $(ls "$ADAPTER"/*.safetensors | wc -l) safetensors file(s)"
+
+log "=== 2/6 merge LoRA -> fp16 base ==="
+llamafactory-cli export \
+  --model_name_or_path "$BASE" \
+  --adapter_name_or_path "$ADAPTER" \
+  --template qwen --finetuning_type lora \
+  --export_dir "$MERGED" --export_size 2 2>&1 | tail -3
+[ -f "$MERGED/model.safetensors" ] || [ -f "$MERGED/model-00001-of-00002.safetensors" ] || \
+  { log "ERROR: merge produced no safetensors"; exit 1; }
+log "  merged OK"
+
+log "=== 3/6 clone llama.cpp + build quantizer ==="
+[ -d /mnt/workspace/llama.cpp ] || git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /mnt/workspace/llama.cpp
+cd /mnt/workspace/llama.cpp
+[ -x build/bin/llama-quantize ] || cmake -B build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF > /dev/null 2>&1
+[ -x build/bin/llama-quantize ] || cmake --build build --config Release -j"$(nproc)" --target llama-quantize convert_hf_to_gguf > /tmp/llamacpp-build.log 2>&1
+cd /mnt/workspace
+[ -x llama.cpp/build/bin/llama-quantize ] || { log "ERROR: llama.cpp build failed (see /tmp/llamacpp-build.log)"; exit 1; }
+log "  llama.cpp ready"
+
+log "=== 4/6 convert + quantize GGUF ==="
+mkdir -p "$GGUF_DIR"
+python llama.cpp/convert_hf_to_gguf.py "$MERGED" \
+  --outfile "$GGUF_DIR/MiniCPM5-1B-AUGURY-F16.gguf" --outtype f16 2>&1 | tail -2
+llama.cpp/build/bin/llama-quantize \
+  "$GGUF_DIR/MiniCPM5-1B-AUGURY-F16.gguf" \
+  "$GGUF_DIR/MiniCPM5-1B-AUGURY-Q4_K_M.gguf" Q4_K_M 2>&1 | tail -2
+ls -la "$GGUF_DIR"
+
+log "=== 5/6 push artifacts to HF (datacenter speed) ==="
+pip install -q -U huggingface_hub 2>/dev/null || true
+export HF_TOKEN="$HF_TOKEN"
+python - <<'PYEOF'
+import os
+from huggingface_hub import HfApi, create_repo
+api = HfApi(token=os.environ["HF_TOKEN"])
+repo = "RegeneratusLabs/augury-formatter"
+try:
+    create_repo(repo, repo_type="model", exist_ok=True, token=os.environ["HF_TOKEN"])
+except Exception:
+    pass
+for local, remote in [
+    ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-Q4_K_M.gguf", "MiniCPM5-1B-AUGURY-Q4_K_M.gguf"),
+    ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-F16.gguf", "MiniCPM5-1B-AUGURY-F16.gguf"),
+    ("/mnt/workspace/data/training/output/augury-formatter-merged", "merged-fp16"),
+    ("/mnt/workspace/data/training/output/augury-formatter", "lora-adapter"),
+    ("/mnt/workspace/formatter.log", "formatter.log"),
+]:
+    if os.path.isdir(local):
+        api.upload_folder(folder_path=local, repo_id=repo, repo_type="model",
+                          path_in_repo=remote)
+        print("pushed folder", remote)
+    elif os.path.exists(local):
+        api.upload_file(path_or_fileobj=local, path_in_repo=remote,
+                        repo_id=repo, repo_type="model")
+        print("pushed", remote)
+PYEOF
+
+log "=== 6/6 status marker ==="
+echo "DONE $(date -u +%Y-%m-%dT%H:%M:%SZ)" > /tmp/evening-status.txt
+python - <<'PYEOF' || true
+import os
+from huggingface_hub import HfApi
+api = HfApi(token=os.environ["HF_TOKEN"])
+api.upload_file(path_or_fileobj="/tmp/evening-status.txt", path_in_repo="run/status.txt",
+                repo_id="RegeneratusLabs/augury-evening-bundle", repo_type="dataset")
+print("status: DONE")
+PYEOF
+log "ALL DONE. Artifacts: https://huggingface.co/RegeneratusLabs/augury-formatter"
