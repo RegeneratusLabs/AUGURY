@@ -35,6 +35,7 @@ if [ "$CLEAN" = "--clean" ]; then
     /mnt/workspace/archive \
     /mnt/workspace/LLaMA-Factory \
     /mnt/workspace/data/vision/output \
+    /mnt/workspace/data/vision/ft \
     /mnt/workspace/data/training/output \
     /mnt/workspace/models/MiniCPM-V-4.6 \
     /mnt/workspace/models/MiniCPM-V-4_6-Q4_K_M.gguf \
