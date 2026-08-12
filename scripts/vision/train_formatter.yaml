@@ -1,0 +1,44 @@
+# AUGURY formatter — MiniCPM5-1B LoRA SFT (LLaMA-Factory)
+# Text-only formatter: receives species + structured indicator facts in the
+# user turn, produces the conversational farmer-facing soil story.
+# Template: qwen (MiniCPM5 uses <|im_start|> chatml — verified 2026-08-12)
+# Paths are DSW/NAS defaults — the run script seds them per host.
+
+model_name_or_path: models/MiniCPM5-1B
+trust_remote_code: true
+template: qwen
+
+stage: sft
+do_train: true
+finetuning_type: lora
+
+dataset: augury_text_train
+eval_dataset: augury_text_val
+dataset_dir: data/training
+cutoff_len: 2048
+preprocessing_num_workers: 8
+dataloader_num_workers: 4
+overwrite_cache: true
+
+output_dir: data/training/output/augury-formatter
+logging_steps: 10
+save_steps: 200
+save_total_limit: 3
+eval_strategy: steps
+eval_steps: 200
+overwrite_output_dir: false
+
+per_device_train_batch_size: 4
+per_device_eval_batch_size: 4
+gradient_accumulation_steps: 8     # effective batch 32
+learning_rate: 2.0e-4
+num_train_epochs: 3.0
+lr_scheduler_type: cosine
+warmup_ratio: 0.05
+bf16: true
+max_grad_norm: 1.0
+weight_decay: 0.01
+
+lora_rank: 16
+lora_alpha: 32
+lora_dropout: 0.05
