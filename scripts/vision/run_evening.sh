@@ -48,10 +48,11 @@ done
 echo "archive contents:"; ls /mnt/workspace/archive/vision-v46-era/ 2>/dev/null | head -15
 
 echo "=== [1/6] env install (idempotent) ==="
-cd /mnt/workspace/LLaMA-Factory && pip install -q -e . 2>&1 | tail -1
+(cd /mnt/workspace/LLaMA-Factory && pip install -q -e . 2>&1 | tail -1)
 pip install -q "transformers==5.7.0" 2>&1 | tail -1
 pip install -q -U mistral_common 2>&1 | tail -1
 pip install -q pytorch-metric-learning faiss-cpu 2>&1 | tail -1
+cd /mnt/workspace
 
 echo "=== [2/6] verify NAS data ==="
 for p in \
