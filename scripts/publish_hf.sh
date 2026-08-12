@@ -16,7 +16,9 @@ cd "$(dirname "$0")/.."
 
 ORG="RegeneratusLabs"
 CARDS="docs/dataset-cards"
-STAGE="/tmp/opencode/hf-stage"
+# Stage on real disk, NOT /tmp (tmpfs ~7.7GB — the 15GB gallery overflows it).
+# Also NOT inside the Syncthing-synced Hermes Shared tree.
+STAGE="/data/Documents/.hf-stage"
 
 stage() {  # stage <repo> <local_path> [path_in_repo]
   local repo="$1" src="$2" dst="${3:-}"
@@ -58,7 +60,11 @@ case "${1:-all}" in
     stage augury-vision-gallery data/vision/train.jsonl
     stage augury-vision-gallery data/vision/val.jsonl
     stage augury-vision-gallery data/vision/dataset_info.json
-    publish augury-vision-gallery augury-vision-gallery.md ;;
+    cp "$CARDS/augury-vision-gallery.md" "$STAGE/augury-vision-gallery/README.md"
+    echo ">> [augury-vision-gallery] uploading (parallel, resumable)"
+    hf upload-large-folder "$ORG/augury-vision-gallery" \
+        "$STAGE/augury-vision-gallery" --repo-type dataset --num-workers 8
+    echo ">> [augury-vision-gallery] done" ;;
   all) bash "$0" db; bash "$0" text; bash "$0" gallery ;;
   *) echo "usage: $0 {db|text|gallery|all}"; exit 1 ;;
 esac
