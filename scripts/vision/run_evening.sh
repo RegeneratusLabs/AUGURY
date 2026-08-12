@@ -109,3 +109,29 @@ echo "formatter training started (log: /mnt/workspace/formatter.log) — checkpo
 echo "=== [6/6] done. artifacts: ==="
 ls -la data/vision/ft/dinov2-au/ 2>/dev/null | tail -3
 echo "evening log: /mnt/workspace/evening.log"
+
+# Optional telemetry: if HF_TOKEN is exported, push the logs + reports to HF so
+# the team can monitor without SSH access.
+if [ -n "${HF_TOKEN:-}" ]; then
+  echo "=== pushing logs/reports to HF ==="
+  mkdir -p /tmp/evening-report
+  cp /mnt/workspace/evening.log /tmp/evening-report/ 2>/dev/null || true
+  cp /mnt/workspace/formatter.log /tmp/evening-report/ 2>/dev/null || true
+  cp /mnt/workspace/data/vision/bake_off_ft_report.md /tmp/evening-report/ 2>/dev/null || true
+  cp /mnt/workspace/data/vision/ft/dinov2-au/config.json /tmp/evening-report/encoder-config.json 2>/dev/null || true
+  ls -la /mnt/workspace/data/training/output/augury-formatter/ > /tmp/evening-report/checkpoints.txt 2>/dev/null || true
+  pip install -q -U huggingface_hub 2>/dev/null || true
+  HF_TOKEN="$HF_TOKEN" python - <<'PYEOF' 2>/dev/null || true
+from huggingface_hub import HfApi
+import os
+api = HfApi(token=os.environ["HF_TOKEN"])
+for f in ["evening.log", "formatter.log", "bake_off_ft_report.md", "encoder-config.json", "checkpoints.txt"]:
+    p = f"/tmp/evening-report/{f}"
+    if os.path.exists(p):
+        api.upload_file(path_or_fileobj=p, path_in_repo=f"run/{f}",
+                        repo_id="RegeneratusLabs/augury-evening-bundle",
+                        repo_type="dataset")
+        print("pushed", f)
+PYEOF
+fi
+echo "session complete."
