@@ -38,22 +38,38 @@ STATE = os.environ.get("AUGURY_STATE_FILE", "/mnt/workspace/embed_state.json")
 
 def main() -> int:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--images-dir", default="", help="local gallery dir (skips HF download)")
+    ap.add_argument("--species-list", default="data/vision/species_list.json")
+    ap.add_argument("--au-only", action="store_true", help="embed only is_au species (v1 scope)")
     ap.add_argument("--limit", type=int, default=0, help="cap images (smoke test)")
-    ap.add_argument("--device", default="cpu")
+    ap.add_argument("--device", default="cuda")
+    ap.add_argument("--no-push", action="store_true", help="skip the HF push")
     args = ap.parse_args()
 
     from huggingface_hub import snapshot_download
-    print(f"downloading gallery from {GALLERY_REPO} ...")
-    snapshot_download(GALLERY_REPO, local_dir=LOCAL, repo_type="dataset",
-                      allow_patterns=["images/*"])
-    images_dir = Path(LOCAL) / "images"
-    print(f"gallery at {images_dir}")
+    if args.images_dir:
+        images_dir = Path(args.images_dir)
+        print(f"using local gallery: {images_dir}")
+    else:
+        print(f"downloading gallery from {GALLERY_REPO} ...")
+        snapshot_download(GALLERY_REPO, local_dir=LOCAL, repo_type="dataset",
+                          allow_patterns=["images/*"])
+        images_dir = Path(LOCAL) / "images"
+        print(f"gallery at {images_dir}")
 
     print("loading DINOv2-base ...")
     model = AutoModel.from_pretrained("facebook/dinov2-base").to(args.device).eval()
     proc = AutoProcessor.from_pretrained("facebook/dinov2-base")
 
+    au_only_keys = set()
+    if args.au_only:
+        sp = json.loads(Path(args.species_list).read_text())
+        au_only_keys = {s["key"] for s in sp if s.get("is_au")}
+        print(f"AU-only: {len(au_only_keys)} species")
+
     species_dirs = sorted(d for d in images_dir.iterdir() if d.is_dir())
+    if au_only_keys:
+        species_dirs = [d for d in species_dirs if d.name in au_only_keys]
     print(f"species dirs: {len(species_dirs)}")
 
     vecs, keys, files = [], [], []
@@ -101,6 +117,9 @@ def main() -> int:
     faiss.write_index(index, str(Path(OUT) / "index.faiss"))
     print(f"index: {arr.shape[0]} vectors x {arr.shape[1]} dims -> {Path(OUT)}")
 
+    if args.no_push:
+        print(f"skip push — index at {OUT}")
+        return 0
     print(f"pushing to {INDEX_REPO} ...")
     from huggingface_hub import HfApi, create_repo
     api = HfApi()
