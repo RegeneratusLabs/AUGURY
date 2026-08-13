@@ -8,8 +8,9 @@ Architecture (Path A, guard rail 6):
                 → database-merged.json answers (deterministic — the model NEVER emits indicators)
                 → response composed conversationally (template or formatter model)
 
-The JSON contract is shared with the vision pipeline (MiniCPM-V 4.6 emits the same
-schema in Phase 3-5), so photo → species and text → species both feed this funnel.
+The JSON contract is shared with the photo path — photo → species and text →
+species both feed this funnel (photo via the retrieval index, text via
+extraction).
 
 JSON, never XML tool-calls (guard rail 5 — V3's lesson).
 

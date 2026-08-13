@@ -1,6 +1,5 @@
-# AUGURY MiniCPM-V 4.6 training environment — verified pins from the
-# MiniCPM-V-CookBook LLaMA-Factory recipe (llamafactory_minicpmv46.md).
-# transformers>=5.7.0 is required for MiniCPM-V 4.6 (guard rail 2).
+# AUGURY vision/retrieval environment — verified pins (Victus, .venv-mcpmv46).
+# transformers>=5.7.0 required for the MiniCPM family.
 #
 # flash-attn is intentionally NOT listed: nvcc/CUDA-toolkit is absent on Victus
 # (verified 2026-08-04), so the from-source build would fail. transformers

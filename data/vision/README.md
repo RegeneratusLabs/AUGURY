@@ -14,7 +14,7 @@ any pull script.
 | `images/<species>/sources.jsonl` | Sidecar: per-image `{photo_id, file, license, source}` |
 | `images_unknown/` | Refusal layer: `chinee_apple/`, `snake_weed/`, `siam_weed/`, `negative/` (DeepWeeds, CC BY 4.0) |
 | `train.jsonl` / `val.jsonl` | LLaMA-Factory sharegpt rows: `messages` (user `<image>` + prompt, DB-generated assistant answer), `images` (abs paths), `source_file`, `channel` |
-| `dataset_info.json` | Registration (`augury_vision_train` / `augury_vision_val`) — consumed by `train_v4_6_lora.yaml` (`dataset_dir: data/vision`) |
+| `dataset_info.json` | Registration (`augury_vision_train` / `augury_vision_val`) |
 | `dataset_stats.md` | Counts, split, license histogram |
 | `coverage_report.md` | Per-source coverage (preliminary — regenerate post-pull) |
 | `plantnet_species_map.json`, `species2plantnet.json`, `plantnet_verdict.md` | Pl@ntNet-300K coverage mapping + no-pull verdict |
@@ -36,13 +36,14 @@ any pull script.
 .venv-mcpmv46/bin/python scripts/vision/build_llamafactory_dataset.py --cap 30 --cap-deepweeds 60
 ```
 
-## Train / eval / export
+## Retrieval index (the photo path)
 
-See `scripts/vision/README.md`:
+The gallery is the FAISS retrieval library — embed with DINOv2-base, query
+photos against it. No model training involved:
+
 ```bash
-bash scripts/vision/train_local.sh            # or --qlora; or scripts/vision/train_colab.ipynb
-.venv-mcpmv46/bin/python scripts/vision/eval_vision.py --model data/vision/output/augury-v4_6-merged
-bash scripts/vision/export_gguf.sh
+.venv-mcpmv46/bin/python scripts/vision/embed_gallery.py --images-dir data/vision/images
+.venv-mcpmv46/bin/python scripts/vision/photo_id.py photo.jpg
 ```
 
 ## Notes

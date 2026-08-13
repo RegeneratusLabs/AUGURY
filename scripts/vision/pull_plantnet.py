@@ -43,7 +43,7 @@ def main() -> int:
     pn_path = Path("data/vision/plantnet_species_map.json")
     if not pn_path.exists():
         print("ERROR: plantnet_species_map.json missing — fetch from lab.plantnet.org seafile "
-              "(see HANDOVER_VISION.md)", file=sys.stderr)
+              "(see data/vision/README.md)", file=sys.stderr)
         return 1
     pn = json.loads(pn_path.read_text())
 

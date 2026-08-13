@@ -8,18 +8,12 @@ off-the-shelf Apache/MIT components and one small fine-tune.
 
 ---
 
-## The design bet: don't make one model do everything
+## The design bet: decompose, don't amalgamate
 
-Our first attempt asked a 1.3B vision model (MiniCPM-V 4.6) to do open-ended
-species ID + soil explanation in one shot: **8% top-1 across 2,174 classes**.
-That's a task-scaling wall, not a model failure — open-ended fine-grained
-organism ID at that label count is beyond any small VLM (even GPT-4o-class
-models sit ~17% on open-ended organism ID). Train loss hit 0.068 and looked
-great — it was measuring the easy 100-word soil text, not the 4-word species
-name. **Loss is a liar; per-species eval is the only truth.**
-
-So we decomposed the problem. Each layer does one thing it's genuinely good at,
-and **nothing in the critical path requires retraining as the data grows**:
+Open-ended fine-grained species identification is a retrieval problem, not a
+generation problem — so we decomposed the pipeline. Each layer does one thing
+it's genuinely good at, and **nothing in the critical path requires retraining
+as the data grows**:
 
 ```
 [photo]  → DINOv2-base embedding → FAISS kNN over 111k-photo library → top-k species
@@ -101,7 +95,6 @@ rebuild or extend it.
 
 ## What didn't work (learned in public)
 
-- **VLM open-ended species ID at 1.3B / 2,174 classes → 8%.** Archived.
 - **Contrastive fine-tune of the encoder (WS1b):** 5 epochs, MultiSimilarity
   loss stayed flat (~0.90), and the projection head made retrieval *worse*
   (8.6% vs 74.6% baseline). Recipe under repair — the off-the-shelf encoder

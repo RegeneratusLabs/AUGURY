@@ -54,8 +54,8 @@ Where the data is, what's broken, and how it grows. Companion to
 - Multi-species AU pairs: formatter synthesis for "docks + thistles" style
   queries currently EU-dominant — generate AU pairs from the DB.
 - Eval harness for the formatter: held-out fact-consistency (model states only
-  the given facts) + style + refusal accuracy — `scripts/vision/explain_test.py`
-  is the qualitative template.
+  the given facts) + style + refusal accuracy — sample review of generated
+  answers against the DB facts is the qualitative template.
 
 ### 3.4 Model/embedding artifacts (after GPU quota)
 - Fine-tune DINOv2-base on the AU set (WS1b, `fine_tune_encoder.py`) → target

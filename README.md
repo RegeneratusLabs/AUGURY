@@ -66,10 +66,11 @@ Three layers, one job each:
 
 ## Hard-won lessons (see `docs/technical-stack.md`)
 
-- Open-ended species ID of 2,174 classes is beyond a 1.3B VLM (8% top-1) — task
-  scaling, not model failure. Retrieval replaced it.
-- **Loss is a liar.** Train loss 0.068 masked an 8% eval. Per-species eval is the
-  only truth.
+- **Retrieval beats classification for open-ended fine-grained ID** — a
+  nearest-neighbour search over the gallery scales to new species without
+  retraining; a fixed classifier cannot.
+- **Loss is a liar.** Always evaluate per-species on held-out data; never trust
+  the train-loss curve alone.
 - The voice model formats given facts; the funnel never lets it do anything else.
 
 ## Docs

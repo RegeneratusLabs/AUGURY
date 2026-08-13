@@ -14,7 +14,7 @@ Outputs (all under data/vision/):
   dataset_info.json           registration for LLaMA-Factory (dataset_dir: data/vision)
   dataset_stats.md            counts, split, sources, license histogram
 
-Assistant answer format (eval_vision.py parses it):
+Assistant answer format:
   "This is {Common} ({Sci}). In {region} it indicates: {Indicators}. "
   Unknown: refusal text (no indicators).
 

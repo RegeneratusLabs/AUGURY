@@ -1,12 +1,11 @@
 # AUGURY Vision — script suite
 
-Turn the image dataset into a finished MiniCPM-V 4.6 model. Two paths: **local**
-(Victus, `.venv-mcpmv46`) and **cloud** (Colab, `train_colab.ipynb`).
+Turn the image gallery into the retrieval index + serve the photo path.
+Environment: `.venv-mcpmv46` (Victus) or any host with torch + transformers.
 
-Guard rails that this suite enforces (see `augury-vision.md` for all 13):
-LLaMA-Factory (not Unsloth) · transformers >= 5.7.0 · no packing ·
-`DOWNSAMPLE_MODE=4x` · template `minicpm_v_4_6` · freeze vision tower ·
-merge LoRA before GGUF · per-species eval.
+Guard rails this suite enforces: DB is the source of truth · per-species eval ·
+JSON contracts, never XML tool-calls · per-image license sidecars · no cloud API
+at runtime.
 
 ## 0. Dataset build (already executed — results in `data/vision/`)
 
@@ -18,47 +17,35 @@ scripts/vision/pull_gbif.py              -> gap-filler for species below the iNa
 scripts/vision/build_llamafactory_dataset.py -> train.jsonl / val.jsonl / dataset_info.json
 ```
 
-## 1. Train
-
-**Local (Victus, 6GB):**
-```bash
-bash scripts/vision/train_local.sh            # bf16 LoRA (try first)
-bash scripts/vision/train_local.sh --qlora    # QLoRA NF4 if bf16 OOMs
-```
-GPU prereq: `nvidia-smi` must show the RTX 3060 (Secure Boot: `sudo akmods --force`
-+ `sudo mokutil --import /etc/pki/akmods/certs/public_key.der` + reboot with MOK).
-
-**Cloud (Colab T4/A10G):** open `scripts/vision/train_colab.ipynb`, run cells in
-order. Upload `data/vision/` + `scripts/vision/train_v4_6_lora.yaml` first.
-
-Config knobs (`train_v4_6_lora.yaml`): `lora_rank/alpha`, `num_train_epochs`,
-`learning_rate`, `gradient_accumulation_steps` (effective batch = 1 × accum).
-
-## 2. Eval
+## 1. Build the retrieval index
 
 ```bash
-.venv-mcpmv46/bin/python scripts/vision/eval_vision.py \
-    --model data/vision/output/augury-v4_6-merged \
-    --val data/vision/val.jsonl --out data/vision/eval_report.md
+# AU-scoped (v1): DINOv2-base embeddings + FAISS, resumable
+.venv-mcpmv46/bin/python scripts/vision/embed_gallery.py \
+    --images-dir data/vision/images --au-only --device cuda
+# full gallery (all 2,174 species): omit --au-only
 ```
-Reports per-species top-1, macro/micro accuracy, confusion matrix, JSON
-adherence, latency. Success gates: >= 85% top-1 on the label list, >= 95% JSON
-adherence, < 2s/image on the target hardware.
 
-## 3. Export GGUF (deploy on llama.cpp / Ollama / phone)
+## 2. Identify a photo
 
 ```bash
-bash scripts/vision/export_gguf.sh
-# -> data/vision/output/gguf/MiniCPM-V-4.6-AUGURY-Q4_K_M.gguf + mmproj-AUGURY-F16.gguf
+.venv-mcpmv46/bin/python scripts/vision/photo_id.py photo.jpg
+# -> top-k species + confidence bands (auto-accept / top-3 confirm / unknown)
 ```
-Serve: `llama-server -m ...Q4_K_M.gguf --mmproj mmproj-AUGURY-F16.gguf`.
 
-## 4. Wire into the AUGURY funnel (Phase 5)
+## 3. Encoder evaluation (bake-off)
 
-`plant_id.py` rework: photo -> MiniCPM-V 4.6 GGUF -> `{"species": [...]}` JSON ->
-`scripts/species_lookup.py` (fuzzy, region-aware) -> `database-merged.json` ->
-conversational answer. Low confidence / `[]` -> top-3 suggestions + "confirm with
-an expert" — never a silent wrong answer.
+```bash
+# per-species top-1/top-3 + confusion matrix across candidate encoders
+.venv-mcpmv46/bin/python scripts/vision/bake_off.py --au-only --encoders dinov2-base
+```
+
+## 4. Wire into the AUGURY funnel
+
+`photo_id.py` output -> `scripts/species_lookup.py` (fuzzy, region-aware) ->
+`database-merged.json` -> trained formatter -> conversational answer.
+Low confidence / `[]` -> top-3 suggestions + "confirm with an expert" — never a
+silent wrong answer.
 
 ## Notes
 

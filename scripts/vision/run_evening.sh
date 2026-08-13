@@ -47,7 +47,6 @@ if [ "$CLEAN" = "--clean" ]; then
     /mnt/workspace/eval_fix_test.py \
     /mnt/workspace/scripts/vision/train_local.sh \
     /mnt/workspace/scripts/vision/export_gguf.sh \
-    /mnt/workspace/scripts/vision/eval_vision.py \
     /mnt/workspace/scripts/vision/train_colab.ipynb \
     /mnt/workspace/scripts/vision/build_llamafactory_dataset.py \
     /mnt/workspace/data/vision/train_v4_6_lora_qlora.yaml \
@@ -59,7 +58,7 @@ if [ "$CLEAN" = "--clean" ]; then
   echo "  cloned."
 fi
 
-echo "=== [0/7] archive the old MiniCPM-V vision training era (keep, out of the way) ==="
+echo "=== [0/7] archive the legacy training era (keep, out of the way) ==="
 mkdir -p /mnt/workspace/archive/vision-v46-era
 for p in \
   data/vision/output \

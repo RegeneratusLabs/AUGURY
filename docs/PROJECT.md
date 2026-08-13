@@ -8,13 +8,12 @@
 
 ## Status (2026-08-13): v1 architecture — retrieval + deterministic DB + trained formatter
 
-**Architecture locked 2026-08-11 after the vision-VLM failure (8% species ID at
-2,174 classes):** perception = DINOv2-base + FAISS retrieval over the photo
-gallery (grows without retraining); facts = database-merged.json (deterministic);
-voice = MiniCPM5-1B LoRA formatter (trained 2026-08-12, val loss 0.0398, GGUF
-Q4_K_M 660MB). **Text funnel live** (6-12s/answer, multi-species, refusal-safe).
-Photo path mid-build. See `README.md`, `docs/technical-stack.md`,
-`docs/openbmb-playbook.md`, `docs/data-roadmap.md`.
+**Architecture locked 2026-08-11:** perception = DINOv2-base + FAISS retrieval
+over the photo gallery (grows without retraining); facts = database-merged.json
+(deterministic); voice = MiniCPM5-1B LoRA formatter (trained 2026-08-12, val
+loss 0.0398, GGUF Q4_K_M 660MB). **Text funnel live** (6-12s/answer,
+multi-species, refusal-safe). Photo path mid-build. See `README.md`,
+`docs/technical-stack.md`, `docs/openbmb-playbook.md`, `docs/data-roadmap.md`.
 
 Historical architecture generations (archived reference):
 - **Pass 1 (done):** Model memorised weed→indicator mappings. Deployed as `augury.Q4_K_M.gguf`. Problem: hallucination risk.
@@ -34,18 +33,18 @@ Historical architecture generations (archived reference):
 - Server integration: Species lookup engine (`species_lookup.py`) with fuzzy matching and region-aware retrieval
 - Plant ID pipeline: iNaturalist and PlantNet API clients (`plant_id.py`) for photo-to-species
 
-## Vision Dataset (2026-08-05)
+## Vision Gallery (2026-08-05)
 
-Photo-to-species front-end for the funnel. See `HANDOVER_VISION.md` + `data/vision/README.md` for the full picture.
+The retrieval library for the photo path. See `data/vision/README.md` and
+`docs/dataset-cards/augury-vision-gallery.md` for the full picture.
 
 - **Species list**: `data/vision/species_list.json` — 2,230 species (188 AU) from `database-merged.json`
 - **Images**: iNaturalist (primary, research-grade, resumable background pull — in progress),
   DeepWeeds (5 in-DB AU species ~1,000 imgs each + 12,321 refusal-layer imgs), GBIF (gap-filler);
   Pl@ntNet-300K coverage-only (verdict: `data/vision/plantnet_verdict.md`)
-- **Dataset**: `data/vision/train.jsonl` / `val.jsonl` (LLaMA-Factory sharegpt, DB-generated answers,
+- **Splits**: `data/vision/train.jsonl` / `val.jsonl` (sharegpt, DB-generated answers,
   stratified 90/10, refusal rows) + `dataset_info.json`
-- **Training suite** (run by Josh): `scripts/vision/train_local.sh` / `train_colab.ipynb` →
-  MiniCPM-V 4.6 LoRA (bf16, QLoRA fallback) → `eval_vision.py` → `export_gguf.sh`
+- **Index**: DINOv2-base embeddings + FAISS (`scripts/vision/embed_gallery.py` → `photo_id.py`)
 - **Guards**: DB is source of truth; JSON never XML; per-species eval; no cloud at runtime
 
 ## Data Sources

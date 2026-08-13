@@ -1,21 +1,13 @@
 # AUGURY — OpenBMB Model Playbook
 
 Permanent knowledge base for fine-tuning and serving OpenBMB MiniCPM models for
-AUGURY. Written 2026-08-11 after the MiniCPM-V 4.6 vision run (8% species ID)
-and the pivot to retrieval + text formatter. **Read before any training run.**
+AUGURY. **Read before any training run.**
 
 ## 1 · Model catalog (verified 2026-08-11, all Apache-2.0)
 
 | Model | Params | Role in AUGURY | Q4 GGUF | Notes |
 |---|---|---|---|---|
 | **MiniCPM5-1B** | 1.1B | **Text formatter** (the v1 language model) | 657MB | Long-context, tool-calling capable; trains on 6GB VRAM |
-| MiniCPM-V 4.6 | ~1.3B | ~~Vision ID~~ **archived** | ~1.7GB | SigLIP2-400M + Qwen3.5-0.8B; phone-first; free API exists |
-| MiniCPM-V 4.5 | 8.7B | Retrain option only (never for v1) | ~5GB | Bigger sibling; needs ≥24GB VRAM to train |
-| MiniCPM-o 4.5 | 9.4B | Not for v1 | — | Omni-modal flagship |
-
-**Verdict from the vision run:** open-ended species ID of 2,174 classes is beyond
-any 1.3B VLM (8% species / 29% genus vs 85% gate). Do not retry ID with a VLM at
-this scale. The retrieval funnel (see §4) replaces it.
 
 ## 2 · Data formats (LLaMA-Factory)
 
@@ -32,12 +24,12 @@ must be **relative** to `dataset_dir` (the builder was patched 2026-08-08 to emi
 
 ## 3 · Training (LLaMA-Factory — Unsloth does NOT support MiniCPM)
 
-Working config pattern (`scripts/vision/train_v4_6_lora.yaml`):
+Working config pattern (`scripts/vision/train_formatter.yaml`):
 
 ```yaml
-finetuning_type: lora      # freeze_vision_tower: true for VLMs
-template: minicpm_v_4_6    # MUST match serving template (mismatch = garbage)
-cutoff_len: 2048           # covers image tokens at low max_slice_nums
+finetuning_type: lora
+template: qwen            # MiniCPM5 uses <|im_start|> chatml — MUST match serving
+cutoff_len: 2048
 per_device_train_batch_size: 1
 gradient_accumulation_steps: 16
 learning_rate: 2.0e-4      # lora_rank 16 / alpha 32
@@ -59,7 +51,7 @@ were identical anyway, but don't repeat the confusion).
 **Resume:** save_steps 50, checkpoints on persistent storage, re-run the same
 train command (auto-resumes from the highest checkpoint).
 
-## 4 · Retrieval funnel (the v1 ID path — no VLM training)
+## 4 · Retrieval funnel (the v1 ID path)
 
 ```
 photo → encoder (DINOv2-base, 86M) → 768-dim embedding
@@ -112,8 +104,6 @@ photo → encoder (DINOv2-base, 86M) → 768-dim embedding
 
 ## 8 · Sources
 
-- MiniCPM-V 4.6 card: https://huggingface.co/openbmb/MiniCPM-V-4.6
-- CookBook (fine-tune/deploy recipes): https://github.com/OpenSQZ/MiniCPM-V-CookBook
 - LLaMA-Factory: https://github.com/hiyouga/LlamaFactory
 - DINOv2: https://huggingface.co/facebook/dinov2-base
 - pytorch-metric-learning: https://github.com/KevinMusgrave/pytorch-metric-learning
