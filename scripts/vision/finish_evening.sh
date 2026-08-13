@@ -34,15 +34,19 @@ HfApi(token=os.environ["HF_TOKEN"])
 print("HF auth OK")
 PYEOF
 
-log "=== 1/6 wait for training to finish (if still running) ==="
+log "=== 1/6 check artifacts + env ==="
 for i in $(seq 1 90); do
   if ! pgrep -f llamafactory-cli > /dev/null 2>&1; then break; fi
   log "  training still running ($i/90 min)"; sleep 60
 done
-if [ ! -d "$ADAPTER" ] || [ -z "$(ls "$ADAPTER"/*.safetensors 2>/dev/null)" ]; then
-  log "ERROR: no adapter found in $ADAPTER — training did not produce output"
-  echo "FAILURE: no adapter" > /tmp/evening-status.txt
-  python - <<'PYEOF' || true
+
+if [ -f "$MERGED/model.safetensors" ] || [ -f "$MERGED/model-00001-of-00002.safetensors" ]; then
+  log "  merged model already exists on NAS — skipping merge"
+else
+  if [ ! -d "$ADAPTER" ] || [ -z "$(ls "$ADAPTER"/*.safetensors 2>/dev/null)" ]; then
+    log "ERROR: no adapter found in $ADAPTER — training did not produce output"
+    echo "FAILURE: no adapter" > /tmp/evening-status.txt
+    python - <<'PYEOF' || true
 import os
 from huggingface_hub import HfApi
 HfApi(token=os.environ["HF_TOKEN"]).upload_file(
@@ -50,19 +54,27 @@ HfApi(token=os.environ["HF_TOKEN"]).upload_file(
     repo_id=os.environ.get("LOG_REPO", "RegeneratusLabs/augury-evening-bundle"),
     repo_type="dataset")
 PYEOF
-  exit 1
-fi
-log "  adapter OK: $(ls "$ADAPTER"/*.safetensors | wc -l) safetensors file(s)"
+    exit 1
+  fi
+  log "  adapter OK: $(ls "$ADAPTER"/*.safetensors | wc -l) safetensors file(s)"
+  log "  installing env for merge (fresh reboot = fresh env)"
+  if [ ! -d /mnt/workspace/LLaMA-Factory ]; then
+    git clone -q --depth 1 https://github.com/hiyouga/LlamaFactory.git /mnt/workspace/LLaMA-Factory
+  fi
+  (cd /mnt/workspace/LLaMA-Factory && pip install -q -e . 2>&1 | tail -1)
+  pip install -q "transformers==5.7.0" 2>&1 | tail -1
+  pip install -q -U mistral_common 2>&1 | tail -1
 
-log "=== 2/6 merge LoRA -> fp16 base ==="
-llamafactory-cli export \
-  --model_name_or_path "$BASE" \
-  --adapter_name_or_path "$ADAPTER" \
-  --template qwen --finetuning_type lora \
-  --export_dir "$MERGED" --export_size 2 2>&1 | tail -3
-[ -f "$MERGED/model.safetensors" ] || [ -f "$MERGED/model-00001-of-00002.safetensors" ] || \
-  { log "ERROR: merge produced no safetensors"; exit 1; }
-log "  merged OK"
+  log "=== 2/6 merge LoRA -> fp16 base ==="
+  llamafactory-cli export \
+    --model_name_or_path "$BASE" \
+    --adapter_name_or_path "$ADAPTER" \
+    --template qwen --finetuning_type lora \
+    --export_dir "$MERGED" --export_size 2 2>&1 | tail -3
+  [ -f "$MERGED/model.safetensors" ] || [ -f "$MERGED/model-00001-of-00002.safetensors" ] || \
+    { log "ERROR: merge produced no safetensors"; exit 1; }
+  log "  merged OK"
+fi
 
 log "=== 3/6 clone llama.cpp + build quantizer (in /tmp — NAS builds look stalled) ==="
 rm -rf /mnt/workspace/llama.cpp /tmp/llama-build
