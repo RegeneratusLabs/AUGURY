@@ -1,50 +1,60 @@
 #!/usr/bin/env bash
-# AUGURY — push_remaining.sh (completes the HF push after the README validation hiccup)
+# AUGURY — push_remaining.sh (completes the HF push; idempotent)
 #
-# The finish script pushed the GGUFs + merged model, then died because a
-# LLaMA-Factory-written README.md carries a local-path base_model that HF Hub
-# rejects. This sanitizes the READMEs and pushes the remaining artifacts.
+# Drops LLaMA-Factory auto-generated READMEs (their YAML frontmatter fails
+# HF validation), then pushes whatever is missing from the model repo.
+# Safe to re-run any number of times.
 #
 #   export HF_TOKEN=... && bash push_remaining.sh
 set -euo pipefail
 cd /mnt/workspace
 export HF_TOKEN="${HF_TOKEN:?HF_TOKEN not set}"
 
-echo "=== sanitize READMEs (local base_model -> HF id) ==="
-for readme in \
+echo "=== drop LLaMA-Factory READMEs (invalid YAML frontmatter for HF) ==="
+rm -f \
   /mnt/workspace/data/training/output/augury-formatter/README.md \
-  /mnt/workspace/data/training/output/augury-formatter-merged/README.md; do
-  if [ -f "$readme" ]; then
-    sed -i 's|base_model:.*|base_model: openbmb/MiniCPM5-1B|' "$readme"
-    echo "  patched: $readme"
-  fi
-done
+  /mnt/workspace/data/training/output/augury-formatter-merged/README.md
+echo "  removed."
 
-echo "=== push remaining artifacts ==="
+echo "=== push missing artifacts ==="
 python - <<'PYEOF'
 import os
 from huggingface_hub import HfApi
 
 api = HfApi(token=os.environ["HF_TOKEN"])
 repo = "RegeneratusLabs/augury-formatter"
+existing = set(api.list_repo_files(repo, repo_type="model"))
 
-# adapter folder (README already sanitized above)
-api.upload_folder(folder_path="/mnt/workspace/data/training/output/augury-formatter",
-                  repo_id=repo, repo_type="model", path_in_repo="lora-adapter",
-                  ignore_patterns=["checkpoint-*", "optimizer.pt", "scheduler.pt",
-                                   "trainer_state.json", "training_args.bin"])
-print("pushed lora-adapter")
+def present(remote: str) -> bool:
+    return remote in existing or any(f.startswith(remote + "/") for f in existing)
 
-# training log
-if os.path.exists("/mnt/workspace/formatter.log"):
-    api.upload_file(path_or_fileobj="/mnt/workspace/formatter.log",
-                    path_in_repo="formatter.log", repo_id=repo, repo_type="model")
-    print("pushed formatter.log")
+items = [
+    ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-Q4_K_M.gguf", "MiniCPM5-1B-AUGURY-Q4_K_M.gguf"),
+    ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-F16.gguf", "MiniCPM5-1B-AUGURY-F16.gguf"),
+    ("/mnt/workspace/data/training/output/augury-formatter-merged", "merged-fp16"),
+    ("/mnt/workspace/data/training/output/augury-formatter", "lora-adapter"),
+    ("/mnt/workspace/formatter.log", "formatter.log"),
+]
+for local, remote in items:
+    if present(remote):
+        print("skip (already on hub):", remote)
+        continue
+    if os.path.isdir(local):
+        api.upload_folder(folder_path=local, repo_id=repo, repo_type="model",
+                          path_in_repo=remote,
+                          ignore_patterns=["checkpoint-*", "optimizer.pt",
+                                           "scheduler.pt", "trainer_state.json",
+                                           "training_args.bin"])
+        print("pushed folder:", remote)
+    elif os.path.exists(local):
+        api.upload_file(path_or_fileobj=local, path_in_repo=remote,
+                        repo_id=repo, repo_type="model")
+        print("pushed:", remote)
+    else:
+        print("WARNING missing locally:", local)
 
-# what's in the repo now?
-files = [s["rfilename"] for s in api.list_repo_files(repo, repo_type="model")]
-print("repo contents:")
-for f in sorted(files):
+print("\\nrepo contents now:")
+for f in sorted(api.list_repo_files(repo, repo_type="model")):
     print("  ", f)
 PYEOF
 
