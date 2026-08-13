@@ -149,6 +149,8 @@ def main() -> int:
     ap.add_argument("--limit", type=int, default=0, help="max images per species (0 = all)")
     ap.add_argument("--max-species", type=int, default=0)
     ap.add_argument("--k", type=int, default=5)
+    ap.add_argument("--alias-map", default="data/vision/alias_map.json",
+                    help="canonical-key resolution (same species under 2 keys)")
     ap.add_argument("--out", default="data/vision/bake_off_report.md")
     args = ap.parse_args()
 
@@ -156,6 +158,13 @@ def main() -> int:
     images_dir = Path(args.images)
     species_list = {s["key"]: s for s in json.loads(Path(args.species_list).read_text())}
     val_rows = [json.loads(l) for l in Path(args.val).read_text().splitlines() if l.strip()]
+    alias_map = {}
+    if Path(args.alias_map).exists():
+        alias_map = json.loads(Path(args.alias_map).read_text())
+        print(f"alias map loaded: {len(alias_map)} keys -> canonical")
+
+    def canon(k: str) -> str:
+        return alias_map.get(k, k)
 
     gallery, queries = build_splits(images_dir, species_list, val_rows,
                                     args.au_only, args.limit, args.max_species)
@@ -165,6 +174,8 @@ def main() -> int:
     print(f"gallery={len(gallery)} queries={len(queries)} "
           f"(species: {len({k for _, k in gallery})} gal / {len({k for _, k in queries})} qry)")
 
+    gallery = [(p, canon(k)) for p, k in gallery]
+    queries = [(p, canon(k)) for p, k in queries]
     gallery_keys = np.array([k for _, k in gallery])
     query_keys = np.array([k for _, k in queries])
     label_names = sorted(set(gallery_keys) | set(query_keys))

@@ -143,7 +143,7 @@ fi
 
 nohup llamafactory-cli train scripts/vision/train_formatter_dsw.yaml \
   > /mnt/workspace/formatter.log 2>&1 &
-echo "formatter training started (log: /mnt/workspace/formatter.log) — checkpoints in data/training/output/augury-formatter"
+echo "formatter training started (log: /mnt/workspace/formatter.log) — checkpoints in data/training/output/augury-1b"
 
 echo "=== [6/7] done. artifacts: ==="
 ls -la data/vision/ft/dinov2-au/ 2>/dev/null | tail -3
@@ -158,7 +158,7 @@ if [ -n "${HF_TOKEN:-}" ]; then
   cp /mnt/workspace/formatter.log /tmp/evening-report/ 2>/dev/null || true
   cp /mnt/workspace/data/vision/bake_off_ft_report.md /tmp/evening-report/ 2>/dev/null || true
   cp /mnt/workspace/data/vision/ft/dinov2-au/config.json /tmp/evening-report/encoder-config.json 2>/dev/null || true
-  ls -la /mnt/workspace/data/training/output/augury-formatter/ > /tmp/evening-report/checkpoints.txt 2>/dev/null || true
+  ls -la /mnt/workspace/data/training/output/augury-1b/ > /tmp/evening-report/checkpoints.txt 2>/dev/null || true
   pip install -q -U huggingface_hub 2>/dev/null || true
   HF_TOKEN="$HF_TOKEN" python - <<'PYEOF' 2>/dev/null || true
 from huggingface_hub import HfApi

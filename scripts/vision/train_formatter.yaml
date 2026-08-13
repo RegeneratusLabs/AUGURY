@@ -20,7 +20,7 @@ preprocessing_num_workers: 8
 dataloader_num_workers: 4
 overwrite_cache: true
 
-output_dir: data/training/output/augury-formatter
+output_dir: data/training/output/augury-1b
 logging_steps: 10
 save_steps: 200
 save_total_limit: 3

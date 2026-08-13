@@ -14,7 +14,7 @@ language:
 pipeline_tag: text-generation
 ---
 
-# AUGURY Formatter — weeds as soil indicators, in the farmer's voice
+# AUGURY 1B — weeds as soil indicators, in the farmer's voice
 
 A LoRA fine-tune of [MiniCPM5-1B](https://huggingface.co/openbmb/MiniCPM5-1B) that
 turns structured soil-indicator facts into a clear, conversational soil story.
@@ -42,7 +42,7 @@ species + indicators (from the AUGURY database)
 ### llama.cpp (GGUF — phone / edge)
 
 ```bash
-wget https://huggingface.co/RegeneratusLabs/augury-formatter/resolve/main/MiniCPM5-1B-AUGURY-Q4_K_M.gguf
+wget https://huggingface.co/RegeneratusLabs/augury-1b/resolve/main/MiniCPM5-1B-AUGURY-Q4_K_M.gguf
 llama-server -m MiniCPM5-1B-AUGURY-Q4_K_M.gguf --port 8080
 ```
 
@@ -56,7 +56,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 tok = AutoTokenizer.from_pretrained("openbmb/MiniCPM5-1B")
 model = AutoModelForCausalLM.from_pretrained(
-    "RegeneratusLabs/augury-formatter", subfolder="merged-fp16")
+    "RegeneratusLabs/augury-1b", subfolder="merged-fp16")
 ```
 
 ## Input contract (this is how the model was trained)

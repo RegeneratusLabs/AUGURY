@@ -16,10 +16,10 @@ export DISABLE_VERSION_CHECK=1
 unset USE_V1 || true
 
 BASE="/mnt/workspace/models/MiniCPM5-1B"
-ADAPTER="/mnt/workspace/data/training/output/augury-formatter"
-MERGED="/mnt/workspace/data/training/output/augury-formatter-merged"
+ADAPTER="/mnt/workspace/data/training/output/augury-1b"
+MERGED="/mnt/workspace/data/training/output/augury-1b-merged"
 GGUF_DIR="/mnt/workspace/gguf"
-FMT_REPO="RegeneratusLabs/augury-formatter"   # model repo (merged + GGUF)
+FMT_REPO="RegeneratusLabs/augury-1b"   # model repo (merged + GGUF)
 LOG_REPO="RegeneratusLabs/augury-evening-bundle"  # dataset repo (logs)
 
 log() { echo "[$(date +%H:%M:%S)] $*"; }
@@ -110,7 +110,7 @@ python - <<'PYEOF'
 import os
 from huggingface_hub import HfApi, create_repo
 api = HfApi(token=os.environ["HF_TOKEN"])
-repo = "RegeneratusLabs/augury-formatter"
+repo = "RegeneratusLabs/augury-1b"
 try:
     create_repo(repo, repo_type="model", exist_ok=True, token=os.environ["HF_TOKEN"])
 except Exception:
@@ -118,8 +118,8 @@ except Exception:
 for local, remote in [
     ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-Q4_K_M.gguf", "MiniCPM5-1B-AUGURY-Q4_K_M.gguf"),
     ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-F16.gguf", "MiniCPM5-1B-AUGURY-F16.gguf"),
-    ("/mnt/workspace/data/training/output/augury-formatter-merged", "merged-fp16"),
-    ("/mnt/workspace/data/training/output/augury-formatter", "lora-adapter"),
+    ("/mnt/workspace/data/training/output/augury-1b-merged", "merged-fp16"),
+    ("/mnt/workspace/data/training/output/augury-1b", "lora-adapter"),
     ("/mnt/workspace/formatter.log", "formatter.log"),
 ]:
     if os.path.isdir(local):
@@ -145,4 +145,4 @@ api.upload_file(path_or_fileobj="/tmp/evening-status.txt", path_in_repo="run/sta
                 repo_id="RegeneratusLabs/augury-evening-bundle", repo_type="dataset")
 print("status: DONE")
 PYEOF
-log "ALL DONE. Artifacts: https://huggingface.co/RegeneratusLabs/augury-formatter"
+log "ALL DONE. Artifacts: https://huggingface.co/RegeneratusLabs/augury-1b"

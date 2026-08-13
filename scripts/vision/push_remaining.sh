@@ -12,8 +12,8 @@ export HF_TOKEN="${HF_TOKEN:?HF_TOKEN not set}"
 
 echo "=== drop LLaMA-Factory READMEs (invalid YAML frontmatter for HF) ==="
 rm -f \
-  /mnt/workspace/data/training/output/augury-formatter/README.md \
-  /mnt/workspace/data/training/output/augury-formatter-merged/README.md
+  /mnt/workspace/data/training/output/augury-1b/README.md \
+  /mnt/workspace/data/training/output/augury-1b-merged/README.md
 echo "  removed."
 
 echo "=== push missing artifacts ==="
@@ -22,7 +22,7 @@ import os
 from huggingface_hub import HfApi
 
 api = HfApi(token=os.environ["HF_TOKEN"])
-repo = "RegeneratusLabs/augury-formatter"
+repo = "RegeneratusLabs/augury-1b"
 existing = set(api.list_repo_files(repo, repo_type="model"))
 
 def present(remote: str) -> bool:
@@ -31,8 +31,8 @@ def present(remote: str) -> bool:
 items = [
     ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-Q4_K_M.gguf", "MiniCPM5-1B-AUGURY-Q4_K_M.gguf"),
     ("/mnt/workspace/gguf/MiniCPM5-1B-AUGURY-F16.gguf", "MiniCPM5-1B-AUGURY-F16.gguf"),
-    ("/mnt/workspace/data/training/output/augury-formatter-merged", "merged-fp16"),
-    ("/mnt/workspace/data/training/output/augury-formatter", "lora-adapter"),
+    ("/mnt/workspace/data/training/output/augury-1b-merged", "merged-fp16"),
+    ("/mnt/workspace/data/training/output/augury-1b", "lora-adapter"),
     ("/mnt/workspace/formatter.log", "formatter.log"),
 ]
 for local, remote in items:

@@ -18,8 +18,8 @@ from huggingface_hub import snapshot_download
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-REPO = "RegeneratusLabs/augury-formatter"
-LOCAL = "/data/Documents/.hf-stage/augury-formatter"  # disk, not tmpfs
+REPO = "RegeneratusLabs/augury-1b"
+LOCAL = "/data/Documents/.hf-stage/augury-1b"  # disk, not tmpfs
 MODEL_DIR = f"{LOCAL}/merged-fp16"
 
 SYSTEM = ("You are AUGURY, a soil health assistant specializing in weeds and plants as "
