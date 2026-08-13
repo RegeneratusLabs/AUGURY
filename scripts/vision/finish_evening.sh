@@ -64,20 +64,23 @@ llamafactory-cli export \
   { log "ERROR: merge produced no safetensors"; exit 1; }
 log "  merged OK"
 
-log "=== 3/6 clone llama.cpp + build quantizer ==="
-[ -d /mnt/workspace/llama.cpp ] || git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /mnt/workspace/llama.cpp
-cd /mnt/workspace/llama.cpp
-[ -x build/bin/llama-quantize ] || cmake -B build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF > /dev/null 2>&1
-[ -x build/bin/llama-quantize ] || cmake --build build --config Release -j"$(nproc)" --target llama-quantize > /tmp/llamacpp-build.log 2>&1
+log "=== 3/6 clone llama.cpp + build quantizer (in /tmp — NAS builds look stalled) ==="
+rm -rf /mnt/workspace/llama.cpp /tmp/llama-build
+git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /mnt/workspace/llama.cpp
+cp -r /mnt/workspace/llama.cpp /tmp/llama-build
+cd /tmp/llama-build
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF > /dev/null 2>&1
+cmake --build build --config Release -j"$(nproc)" --target llama-quantize > /tmp/llamacpp-build.log 2>&1
 cd /mnt/workspace
-[ -x llama.cpp/build/bin/llama-quantize ] || { log "ERROR: llama.cpp build failed (see /tmp/llamacpp-build.log)"; exit 1; }
-log "  llama.cpp ready"
+QUANT=/tmp/llama-build/build/bin/llama-quantize
+[ -x "$QUANT" ] || { log "ERROR: llama.cpp build failed (see /tmp/llamacpp-build.log)"; exit 1; }
+log "  llama-quantize ready at $QUANT"
 
 log "=== 4/6 convert + quantize GGUF ==="
 mkdir -p "$GGUF_DIR"
-python llama.cpp/convert_hf_to_gguf.py "$MERGED" \
+python /mnt/workspace/llama.cpp/convert_hf_to_gguf.py "$MERGED" \
   --outfile "$GGUF_DIR/MiniCPM5-1B-AUGURY-F16.gguf" --outtype f16 2>&1 | tail -2
-llama.cpp/build/bin/llama-quantize \
+"$QUANT" \
   "$GGUF_DIR/MiniCPM5-1B-AUGURY-F16.gguf" \
   "$GGUF_DIR/MiniCPM5-1B-AUGURY-Q4_K_M.gguf" Q4_K_M 2>&1 | tail -2
 ls -la "$GGUF_DIR"
