@@ -68,7 +68,7 @@ log "=== 3/6 clone llama.cpp + build quantizer ==="
 [ -d /mnt/workspace/llama.cpp ] || git clone -q --depth 1 https://github.com/ggerganov/llama.cpp.git /mnt/workspace/llama.cpp
 cd /mnt/workspace/llama.cpp
 [ -x build/bin/llama-quantize ] || cmake -B build -DCMAKE_BUILD_TYPE=Release -DLLAMA_CURL=OFF > /dev/null 2>&1
-[ -x build/bin/llama-quantize ] || cmake --build build --config Release -j"$(nproc)" --target llama-quantize convert_hf_to_gguf > /tmp/llamacpp-build.log 2>&1
+[ -x build/bin/llama-quantize ] || cmake --build build --config Release -j"$(nproc)" --target llama-quantize > /tmp/llamacpp-build.log 2>&1
 cd /mnt/workspace
 [ -x llama.cpp/build/bin/llama-quantize ] || { log "ERROR: llama.cpp build failed (see /tmp/llamacpp-build.log)"; exit 1; }
 log "  llama.cpp ready"
