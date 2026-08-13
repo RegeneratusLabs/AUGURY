@@ -1,136 +1,89 @@
 # AUGURY
 
-**Weeds as soil-health indicators.** An open-source small language model that maps weed
-species to the soil conditions they indicate — compaction, waterlogging, nutrient
-imbalances, pH, salinity, organic-matter state. Indicators only. No management advice.
+**Weeds as soil-health indicators.** An open-source pipeline that maps weed species
+to the soil conditions they indicate — compaction, waterlogging, nutrient imbalances,
+pH, salinity, organic-matter state. Indicators only. No management advice.
 No cloud required. Designed to run on a phone.
 
 > "The plant is the mirror of the soil." — Gérard Ducerf
 
-## What it does
-
-Given a plant name (or a photo), AUGURY reports what that plant indicates about the soil:
+## How it works
 
 ```
-Q: What does dandelion indicate about soil conditions?
-A: Dandelion indicates: high fertility, nitrogen-rich soils, compaction,
-   poorly draining conditions (Europe / Ellenberg 1991).
+[photo]  → DINOv2-base embedding → FAISS kNN over 111k-photo gallery → top-k species
+[text]   → deterministic species extraction (regex + fuzzy DB match)
+                                        │
+                                        ▼
+                         species_lookup.py → database-merged.json (2,230 spp)
+                                        │   the model NEVER generates facts
+                                        ▼
+                MiniCPM5-1B + LoRA ("the voice") → conversational soil story
 ```
 
-The model **never answers from memory**. It proposes species; a deterministic database
-resolves; the database supplies the facts — the model cannot hallucinate a pH value.
+Three layers, one job each:
 
-```
-[photo] ──┐
-          ├─→ vision / text model → {"species": [...]} JSON → species_lookup.py
-[question]┘        (fuzzy, region-aware)              │
-                                                    ▼
-                                database-merged.json (2,230 spp — source of truth)
-                                                    │
-                                                    ▼
-                              formatter → conversational soil-indicator answer
-```
+1. **Perception — retrieval, not classification.** DINOv2-base embeddings + FAISS
+   over a 111,320-photo gallery. New species = new photos + a DB row; the encoder
+   never retrains. **AU-scoped: 80.9% top-1 / 88.3% top-3** on 188 Australian weeds
+   (alias-merged).
+2. **Facts — a deterministic database.** 2,230 species × region (Australia /
+   Europe / UK) × indicator dicts, from Ellenberg (1991), Maughan & Amos, CAWR,
+   AU government publications. The model formats these facts — it cannot
+   hallucinate a pH value because it never generates one.
+3. **Voice — one small fine-tune.** MiniCPM5-1B LoRA (r16/α32, 3 epochs, bf16,
+   one A10 session) on 13,627 DB-generated rows. **GGUF Q4_K_M = 660MB**, phone-ready
+   via llama.cpp. Eval: val loss 0.0398; 6/6 fact-keys echoed in local smoke.
 
-## Architecture
+## Status (2026-08-13)
 
-| Layer | Model | Status |
-|---|---|---|
-| Text formatter / species extraction | MiniCPM5-1B (V3 tool-calling) | Trained (LoRA), GGUF on device |
-| Vision (photo → species JSON) | MiniCPM-V 4.6 (1.3B), LoRA, vision tower frozen | Dataset built (58k images) — training on cloud GPU |
-| Lookup engine | `scripts/species_lookup.py` — deterministic, region-aware, fuzzy | Working |
-| Source of truth | `data/research/database-merged.json` — 2,230 species, 188 AU | Working |
-
-**Decisions that are locked** (see `docs/augury-vision.md`):
-LLaMA-Factory only (Unsloth has no MiniCPM support) · JSON output, never XML tool-calls ·
-DB is source of truth · region-constrained label space + explicit "unknown" path ·
-freeze vision tower · template `minicpm_v_4_6` consistent train→serve · merge LoRA before
-GGUF · per-species eval, not top-1 · no cloud API at runtime.
-
-## Repository layout
-
-```
-LICENSE              Apache-2.0 (code)
-LICENSE-DATA         CC-BY-4.0 (database + training data) + image license notes
-data/
-  research/          database-merged.json (source of truth), research briefs
-  training/          text training data (Ellenberg, Maughan & Amos, CAWR, AU)
-  v3_function_calling/  tool-calling examples (1,522 rows)
-  vision/            vision dataset: jsonl splits, species list, dataset_info.json
-                     (images NOT in git — published separately, non-commercial)
-  mining/            web-sourced indicator claims
-scripts/
-  species_lookup.py  fuzzy, region-aware lookup engine
-  augury_server.py   Flask serving entry point (+ feedback loop)
-  plant_id.py        iNaturalist / PlantNet API clients (label bootstrapping only)
-  vision/            dataset builders, iNat/DeepWeeds/GBIF pullers, eval, GGUF export
-docs/                project status, handovers, vision plan, audits
-```
+- ✅ **Text funnel live**: species extraction → DB → trained formatter story.
+  Multi-species ("docks and thistles"), region-aware, correct refusal boundary
+  (indicators only, never management advice). 6-12s/answer on a 16-core laptop.
+- 🔄 **Photo path building**: full-gallery FAISS index in progress; confidence
+  bands (auto-accept / top-3 confirm / honest unknown).
+- ✅ All artifacts published: model, species DB, training data, photo gallery.
 
 ## Quickstart
 
 ```bash
-# lookup only (no ML runtime needed)
-python3 scripts/species_lookup.py "prickly acacia"
+# text funnel (CLI)
+.venv-mcpmv46/bin/python scripts/augury_funnel.py \
+    --model models/MiniCPM5-1B-AUGURY-Q4_K_M.gguf --region Australia \
+    "What does dandelion indicate about my soil?"
 
-# serve the API
-python3 scripts/augury_server.py
+# chat server (Flask, feedback loop included)
+.venv-mcpmv46/bin/python scripts/augury_server.py
 ```
 
-### Rebuild the vision dataset
+## Artifacts
 
-```bash
-# 58,121 train / 6,519 val rows, per-species caps, seed 42, relative image paths
-python3 scripts/vision/build_llamafactory_dataset.py
-```
+| What | Where |
+|---|---|
+| Model (GGUF Q4_K_M / F16 / merged fp16 / LoRA adapter) | [RegeneratusLabs/augury-1b](https://huggingface.co/RegeneratusLabs/augury-1b) |
+| Species database (2,230 spp) | [RegeneratusLabs/augury-species-db](https://huggingface.co/datasets/RegeneratusLabs/augury-species-db) |
+| Training data (13,627 rows) | [RegeneratusLabs/augury-training-data](https://huggingface.co/datasets/RegeneratusLabs/augury-training-data) |
+| Vision gallery (111k imgs + license sidecars) | [RegeneratusLabs/augury-vision-gallery](https://huggingface.co/datasets/RegeneratusLabs/augury-vision-gallery) |
 
-### Train (vision, cloud GPU — 6GB local cards OOM)
+## Hard-won lessons (see `docs/technical-stack.md`)
 
-Package `data/vision/` + `scripts/vision/train_v4_6_lora.yaml` for the cloud host, then:
+- Open-ended species ID of 2,174 classes is beyond a 1.3B VLM (8% top-1) — task
+  scaling, not model failure. Retrieval replaced it.
+- **Loss is a liar.** Train loss 0.068 masked an 8% eval. Per-species eval is the
+  only truth.
+- The voice model formats given facts; the funnel never lets it do anything else.
 
-```bash
-sed -i "s|^model_name_or_path:.*|model_name_or_path: <base-model-path>|" train_v4_6_lora.yaml
-sed -i "s|^dataset_dir:.*|dataset_dir: <host-path>/data/vision|"            train_v4_6_lora.yaml
-export DOWNSAMPLE_MODE=4x
-llamafactory-cli train train_v4_6_lora.yaml
-```
+## Docs
 
-Steps for ModelScope/Colab are in `docs/HANDOVER_VISION.md`.
+- [Technical stack](docs/technical-stack.md) · [OpenBMB playbook](docs/openbmb-playbook.md) ·
+  [Data roadmap](docs/data-roadmap.md) · [Model card](docs/model-cards/augury-1b.md)
 
-### Eval + deploy
+## License
 
-```bash
-# eval (gates: ≥85% per-species top-1, ≥95% JSON adherence, <2s latency)
-.venv-mcpmv46/bin/python scripts/vision/eval_vision.py \
-  --model data/vision/output/augury-v4_6-merged --val data/vision/val.jsonl
-
-# merge LoRA → GGUF Q4_K_M + mmproj for llama.cpp
-bash scripts/vision/export_gguf.sh
-```
-
-## Data sources
-
-Ellenberg Indicator Values (1991, Europe) · Maughan & Amos bioindicators guides (UK) ·
-CAWR field guide (UK) · AU Pasture Weeds SA / VIC Soil Health Brown Book (Australia) ·
-Ducerf encyclopedias (research reference — excluded from training due to OCR quality) ·
-iNaturalist / DeepWeeds / GBIF images (vision).
-
-See `LICENSE-DATA` for per-source terms. The vision image aggregate is **non-commercial**
-(per-image CC-BY-NC constraints from iNaturalist).
-
-## Known limitations
-
-- European Ellenberg data dominates the text dataset — AU coverage is growing but thin.
-- Indicator claims are literature-based, **not verified on-farm**.
-- The vision label space is the trained species list — out-of-list plants route to the
-  "unknown" path.
+Apache-2.0 (code, weights) · CC-BY-4.0 (database, training data) · vision gallery
+is non-commercial aggregate with per-image license sidecars (iNat cc-by-nc photos).
 
 ## Roadmap
 
 AUGURY is the first model in a composable SLM ecosystem for regenerative agriculture:
 `AUGURY (weeds → indicators) → Soil Assessment SLM → Remediation SLM → Grazing SLM`.
 Each model does one thing. All open source. All phone-deployable.
-
-## Contact
-
-- Org: Regeneratus Labs · contact@regeneratus.app
-- Data collaboration: Sinong team, Nanjing Agricultural University (llm4cca@njau.edu.cn)

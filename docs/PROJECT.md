@@ -6,9 +6,17 @@
 
 **Why:** Ducerf's encyclopedia (800+ species of plant bioindicators, 3 French volumes) is locked in books. CAWR field guides, AU pasture weed manuals, and permaculture literature contain decades of knowledge scattered across PDFs. AUGURY compiles this into a farmer-accessible tool with data sovereignty — no cloud, no subscriptions, no data leaving the device.
 
-## Status (July 2026): Architecture locked — V3 tool-calling on Qwen3.5-4B
+## Status (2026-08-13): v1 architecture — retrieval + deterministic DB + trained formatter
 
-Three generations of architecture:
+**Architecture locked 2026-08-11 after the vision-VLM failure (8% species ID at
+2,174 classes):** perception = DINOv2-base + FAISS retrieval over the photo
+gallery (grows without retraining); facts = database-merged.json (deterministic);
+voice = MiniCPM5-1B LoRA formatter (trained 2026-08-12, val loss 0.0398, GGUF
+Q4_K_M 660MB). **Text funnel live** (6-12s/answer, multi-species, refusal-safe).
+Photo path mid-build. See `README.md`, `docs/technical-stack.md`,
+`docs/openbmb-playbook.md`, `docs/data-roadmap.md`.
+
+Historical architecture generations (archived reference):
 - **Pass 1 (done):** Model memorised weed→indicator mappings. Deployed as `augury.Q4_K_M.gguf`. Problem: hallucination risk.
 - **Pass 2 (superseded):** Model formats data from deterministic lookup → key-value responses. Never trained.
 - **V3 (current target):** Model calls `lookup_species()` as a tool, reads deterministic data from the database, then synthesises conversational responses. 100% indicator accuracy — the model cannot hallucinate a pH value because it reads facts from the tool response.
