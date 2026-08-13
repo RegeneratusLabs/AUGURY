@@ -330,7 +330,7 @@ class AuguryFunnel:
             sci = r["scientific_name"]
             ind_lines = [
                 f"- {k}: {v}" for k, v in r["indicators"].items()
-                if v and v.strip().lower() != "not specified"
+                if v and v.strip().lower() not in ("not specified", "none")
             ]
             payload.append(
                 "Species: " + (f"{common} ({sci})" if common else sci)
