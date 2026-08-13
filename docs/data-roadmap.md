@@ -27,6 +27,10 @@ Where the data is, what's broken, and how it grows. Companion to
 ### 3.1 DB hygiene (small, do anytime)
 - 14 entries with mojibake/soft-hyphen garbage in `database-merged.json` —
   identify + clean or archive.
+- **35 species exist without indicator data** (22 with no regions, 13 with empty
+  indicators) — e.g. **Nassella trichotoma (serrated tussock)**, a major AU weed.
+  Fill from AU research packs / mining data; the funnel correctly refuses them
+  today ("no indicator data"), which is honest but a coverage gap.
 - Common-name coverage: only ~110 species have real common names (H3). Priority:
   the 188 AU species — farmers use common names.
 - **Gallery alias merging**: species_list has alias keys (ribwort plantain /
