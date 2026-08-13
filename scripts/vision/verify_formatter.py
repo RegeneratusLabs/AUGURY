@@ -20,6 +20,7 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 REPO = "RegeneratusLabs/augury-formatter"
 LOCAL = "/data/Documents/.hf-stage/augury-formatter"  # disk, not tmpfs
+MODEL_DIR = f"{LOCAL}/merged-fp16"
 
 SYSTEM = ("You are AUGURY, a soil health assistant specializing in weeds and plants as "
           "soil indicators. You receive structured soil indicator data and present it in "
@@ -49,22 +50,26 @@ TESTS = [
 def main() -> int:
     if not Path(LOCAL).exists():
         print(f"downloading merged model from {REPO} ...")
-        snapshot_download(REPO, local_dir=LOCAL, repo_type="model")
+        snapshot_download(REPO, local_dir=LOCAL, repo_type="model",
+                          allow_patterns=["merged-fp16/*"])
     print("loading ...")
-    tok = AutoTokenizer.from_pretrained(LOCAL)
+    # LLaMA-Factory's export writes a minimal tokenizer_config.json that breaks
+    # transformers 5.7 pairing; the tokenizer files are byte-identical to the
+    # base model's, so load the tokenizer from the base snapshot instead.
+    tok = AutoTokenizer.from_pretrained("openbmb/MiniCPM5-1B")
     model = AutoModelForCausalLM.from_pretrained(
-        LOCAL, torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32)
+        MODEL_DIR, torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32)
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     model = model.to(dev).eval()
 
     ok = 0
     for name, user in TESTS:
         msgs = [{"role": "system", "content": SYSTEM}, {"role": "user", "content": user}]
-        ids = tok.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True,
-                                      return_tensors="pt").to(dev)
+        enc = tok.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True,
+                                      return_dict=True, return_tensors="pt").to(dev)
         with torch.no_grad():
-            out = model.generate(ids, max_new_tokens=200, do_sample=False)
-        text = tok.decode(out[0][ids.shape[1]:], skip_special_tokens=True).strip()
+            out = model.generate(**enc, max_new_tokens=200, do_sample=False)
+        text = tok.decode(out[0][enc["input_ids"].shape[1]:], skip_special_tokens=True).strip()
         print(f"\n===== {name} =====")
         print(text)
         if name != "Refusal":
