@@ -100,6 +100,12 @@ ls -la "$GGUF_DIR"
 log "=== 5/6 push artifacts to HF (datacenter speed) ==="
 pip install -q -U huggingface_hub 2>/dev/null || true
 export HF_TOKEN="$HF_TOKEN"
+# LLaMA-Factory writes local-path base_model into READMEs — HF Hub rejects it.
+for readme in "$MERGED/README.md" "$ADAPTER/README.md"; do
+  if [ -f "$readme" ]; then
+    sed -i 's|base_model:.*|base_model: openbmb/MiniCPM5-1B|' "$readme"
+  fi
+done
 python - <<'PYEOF'
 import os
 from huggingface_hub import HfApi, create_repo
@@ -118,7 +124,10 @@ for local, remote in [
 ]:
     if os.path.isdir(local):
         api.upload_folder(folder_path=local, repo_id=repo, repo_type="model",
-                          path_in_repo=remote)
+                          path_in_repo=remote,
+                          ignore_patterns=["checkpoint-*", "optimizer.pt",
+                                           "scheduler.pt", "trainer_state.json",
+                                           "training_args.bin"])
         print("pushed folder", remote)
     elif os.path.exists(local):
         api.upload_file(path_or_fileobj=local, path_in_repo=remote,
