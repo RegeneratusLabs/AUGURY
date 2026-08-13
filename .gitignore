@@ -6,7 +6,7 @@ augury_minicpm5_v3_lora_merged_fp16/
 *.safetensors
 *.bin
 
-# ---- vision image data (15GB; published separately, see docs/HANDOVER_VISION.md) ----
+# ---- vision image data (15GB; published separately via HF Hub) ----
 data/vision/images/
 data/vision/images_unknown/
 data/vision/raw/
