@@ -73,14 +73,14 @@ class AuguryFunnel:
         "indicates", "indicating", "asking", "ask", "wonder", "wondering", "lot", "lots",
     }
 
-    def __init__(self, model_path=None, db=None, n_ctx=2048):
+    def __init__(self, model_path=None, db=None, n_ctx=2048, n_threads=12):
         self.db = db if db is not None else SpeciesDB()
         self.model = None
         self.model_path = model_path
         if model_path and os.path.exists(model_path):
             from llama_cpp import Llama
             print(f"[funnel] loading formatter model: {model_path}")
-            self.model = Llama(model_path=model_path, n_ctx=n_ctx, n_threads=os.cpu_count() or 4, verbose=False)
+            self.model = Llama(model_path=model_path, n_ctx=n_ctx, n_threads=n_threads, verbose=False)
         else:
             print("[funnel] no formatter model — using deterministic template mode")
 
@@ -90,21 +90,16 @@ class AuguryFunnel:
         """
         Extract plant species from free text.
 
-        Returns a list of dicts: {"name": str, "source": "model"|"regex", "score": float}.
-        Model extraction first (JSON, temperature 0, one retry), then a regex
-        fallback over the raw string so the funnel degrades gracefully without a GPU.
+        Deterministic regex extraction (segments + fuzzy DB match). The model
+        extractor paths are retained for future work but NOT used by default:
+        the trained formatter is persona-locked (refuses the extractor role)
+        and the base model's thinking mode swallows the JSON budget.
+
+        Returns a list of dicts: {"name": str, "source": "regex", "score": float}.
         """
         text = (text or "").strip()
         if not text:
             return []
-
-        if self.model is not None:
-            for attempt in (1, 2):
-                names = self._extract_with_model(text, region)
-                if names:
-                    return [{"name": n, "source": "model", "score": 1.0} for n in names]
-            print("[funnel] model JSON extraction failed twice — falling back to regex")
-
         return self._extract_regex(text, max_species)
 
     def _extract_with_model(self, text, region):
@@ -185,11 +180,23 @@ class AuguryFunnel:
                 r"^(what does|what do|what is|what are|what's|tell me about|i have|i'm seeing|i am seeing|seeing|about)\s*",
                 "", seg, flags=re.I,
             )
-            # ... and trailing verb phrases ("thistles indicate?" → "thistles")
+            # ... quantity phrases ("a lot of docks" -> "docks") ...
             core = re.sub(
-                r"\s+(indicates?|indicating|telling|tells?|say[s]?|asking|ask|wonder(ing)?|mean[s]?|means).*$",
+                r"^(a lot of|lots of|plenty of|heaps of|loads of|a bunch of|masses of|tons of|some|many|seeing lots of|got lots of|saw lots of)\s+",
+                "", core, flags=re.I,
+            )
+            # ... location phrases ("thistles in my paddock" -> "thistles") ...
+            core = re.sub(
+                r"\s+(in|on|around|about)\s+(my|the|our|their)?\s*(paddock|field|pasture|yard|garden|place|land|property|block|country|ground).*$",
+                "", core, flags=re.I,
+            )
+            # ... and trailing verb phrases ("thistles indicate?" -> "thistles")
+            core = re.sub(
+                r"\s+(indicates?|indicating|telling|tells?|say[s]?|asking|ask|wonder(ing)?|mean[s]?|means|point[s]? to|pointing to).*$",
                 "", core, flags=re.I,
             ).strip()
+            # ... and anything after a dash ("thistles — what's going on?")
+            core = re.sub(r"\s*[—–]\s*.*$", "", core).strip()
             if len(core) < 2 or core.lower().strip() in self.STOPWORDS:
                 continue
             m = self._best_plant_match(core)

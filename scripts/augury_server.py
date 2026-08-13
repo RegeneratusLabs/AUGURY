@@ -9,20 +9,29 @@ Run locally or deploy on VPS:
 
 import json
 import os
+import sys
 import uuid
 from datetime import datetime
+from pathlib import Path
 from flask import Flask, request, jsonify, session, render_template_string
-from llama_cpp import Llama
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from augury_funnel import AuguryFunnel
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
-MODEL_PATH = os.environ.get("AUGURY_MODEL", "augury.Q4_K_M.gguf")
+# The trained formatter (AUGURY voice) — species extraction is deterministic
+# regex + DB lookup inside the funnel; the model only composes the story.
+MODEL_PATH = os.environ.get(
+    "AUGURY_MODEL",
+    os.path.join(os.path.dirname(__file__), "..", "models", "MiniCPM5-1B-AUGURY-Q4_K_M.gguf"),
+)
 FEEDBACK_FILE = os.environ.get("AUGURY_FEEDBACK", "feedback.jsonl")
 
-print(f"Loading model: {MODEL_PATH}")
-model = Llama(model_path=MODEL_PATH, n_ctx=1024, n_threads=4, verbose=False)
-print("Model loaded.")
+print(f"Loading formatter model: {MODEL_PATH}")
+funnel = AuguryFunnel(model_path=MODEL_PATH if os.path.exists(MODEL_PATH) else None)
+print("Funnel ready (model loaded)" if funnel.model else "Funnel ready (template mode — no model found)")
 
 SYSTEM_PROMPT = (
     "You are AUGURY, a soil health assistant specializing in weeds and plants as soil indicators. "
@@ -235,17 +244,15 @@ def chat():
 
     question = f"[Region: {region}] {message}"
 
-    # Build full conversation
-    prompt = (
-        f"<|im_start|>system\n{SYSTEM_PROMPT}<|im_end|>\n"
-        f"<|im_start|>user\n{question}<|im_end|>\n"
-        f"<|im_start|>assistant\n"
-    )
+    result = funnel.answer(message, region=region)
+    response = result["response"]
 
-    output = model(prompt, max_tokens=512, temperature=0.1, top_p=0.9, stop=["<|im_end|>"])
-    response = output["choices"][0]["text"].strip()
-
-    return jsonify({"response": response})
+    return jsonify({
+        "response": response,
+        "species": result["species"],
+        "refused": result["refused"],
+        "matches": result["matches"],
+    })
 
 
 @app.route("/feedback", methods=["POST"])
@@ -259,4 +266,6 @@ def feedback():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8080))
-    app.run(host="0.0.0.0", port=port, debug=False)
+    # threaded=False: one model, one generation at a time (concurrency would
+    # thrash CPU and inflate latency — the funnel is the bottleneck, not Flask)
+    app.run(host="0.0.0.0", port=port, debug=False, threaded=False)
