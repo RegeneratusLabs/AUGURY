@@ -177,7 +177,7 @@ class AuguryFunnel:
         for seg in segments:
             # Strip boilerplate prefix (only at the start) ...
             core = re.sub(
-                r"^(what does|what do|what is|what are|what's|tell me about|i have|i'm seeing|i am seeing|seeing|about)\s*",
+                r"^(what soil conditions (does|do|is|are)|what soil condition (does|do|is)|what does|what do|what is|what are|what's|tell me about|i have|i'm seeing|i am seeing|seeing|about)\s*",
                 "", seg, flags=re.I,
             )
             # ... quantity phrases ("a lot of docks" -> "docks") ...
