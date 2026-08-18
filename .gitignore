@@ -12,6 +12,9 @@ data/vision/images_unknown/
 data/vision/raw/
 data/vision/output/
 
+# ---- regenerable retrieval index (rebuild via scripts/vision/embed_gallery.py) ----
+data/vision/index/
+
 # ---- packaging artifacts ----
 data/vision_cap15/
 zipstage/

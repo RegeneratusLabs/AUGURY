@@ -73,6 +73,7 @@ def main() -> int:
     print(f"species dirs: {len(species_dirs)}")
 
     vecs, keys, files = [], [], []
+    Path(OUT).mkdir(parents=True, exist_ok=True)
     state_path = Path(STATE)
     done = set()
     if state_path.exists():
