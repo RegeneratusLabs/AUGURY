@@ -1,19 +1,22 @@
 #!/usr/bin/env python3
 """AUGURY — embed_gallery.py (Phase 2a: build the retrieval index, CPU-friendly)
 
-Runs on the free 8-core CPU instance (or anywhere with Python + torch CPU).
-Downloads the public vision gallery from HF, embeds every image with
-DINOv2-base (the AU bake-off winner), builds a FAISS index, and pushes the
-index + embeddings + species keys to a new public dataset repo
-`RegeneratusLabs/augury-vision-index` — so the index never needs rebuilding
-and any device can download it.
+Runs on any machine with Python + torch CPU/GPU. Embeds every image of the
+LOCAL gallery with DINOv2-base (the AU bake-off winner), builds a FAISS
+index, and pushes the index + embeddings + species keys to a public dataset
+repo `RegeneratusLabs/augury-vision-index` — so the index never needs
+rebuilding and any device can download it.
+
+NOTE (2026-08-18): the raw image gallery is LOCAL-ONLY now (removed from HF —
+it is a build-time source, never read at runtime). Pass --images-dir pointing
+at the local gallery, e.g. data/vision/images.
 
 Timing (8 cores, CPU): ~0.2-0.4s/image -> 111k images ~ 7-9h. Resumable:
-embeddings are appended per-species and checkpoints saved to /tmp/embed_state/.
+embeddings are appended per-species and checkpoints saved per species.
 
 Usage:
   pip install transformers torch faiss-cpu huggingface_hub pillow numpy
-  python embed_gallery.py [--limit 20000]   # --limit for smoke tests
+  python embed_gallery.py --images-dir data/vision/images [--au-only] [--limit 20000]
 """
 from __future__ import annotations
 
@@ -29,16 +32,15 @@ import torch
 from PIL import Image
 from transformers import AutoModel, AutoProcessor
 
-GALLERY_REPO = "RegeneratusLabs/augury-vision-gallery"
 INDEX_REPO = "RegeneratusLabs/augury-vision-index"
-LOCAL = os.environ.get("AUGURY_GALLERY_DIR", "/mnt/workspace/gallery")
 OUT = os.environ.get("AUGURY_INDEX_DIR", "/mnt/workspace/index")
 STATE = os.environ.get("AUGURY_STATE_FILE", "/mnt/workspace/embed_state.json")
 
 
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--images-dir", default="", help="local gallery dir (skips HF download)")
+    ap.add_argument("--images-dir", default="data/vision/images",
+                    help="local gallery dir (required — gallery is local-only)")
     ap.add_argument("--species-list", default="data/vision/species_list.json")
     ap.add_argument("--au-only", action="store_true", help="embed only is_au species (v1 scope)")
     ap.add_argument("--limit", type=int, default=0, help="cap images (smoke test)")
@@ -46,16 +48,12 @@ def main() -> int:
     ap.add_argument("--no-push", action="store_true", help="skip the HF push")
     args = ap.parse_args()
 
-    from huggingface_hub import snapshot_download
-    if args.images_dir:
-        images_dir = Path(args.images_dir)
-        print(f"using local gallery: {images_dir}")
-    else:
-        print(f"downloading gallery from {GALLERY_REPO} ...")
-        snapshot_download(GALLERY_REPO, local_dir=LOCAL, repo_type="dataset",
-                          allow_patterns=["images/*"])
-        images_dir = Path(LOCAL) / "images"
-        print(f"gallery at {images_dir}")
+    images_dir = Path(args.images_dir)
+    if not images_dir.is_dir():
+        print(f"local gallery not found: {images_dir} — the gallery is local-only "
+              f"(removed from HF 2026-08-18); pass --images-dir")
+        return 2
+    print(f"using local gallery: {images_dir}")
 
     print("loading DINOv2-base ...")
     model = AutoModel.from_pretrained("facebook/dinov2-base").to(args.device).eval()

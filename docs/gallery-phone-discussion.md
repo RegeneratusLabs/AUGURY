@@ -11,16 +11,16 @@ for right-sizing the download. A decision is needed before the photo path ships.
 The raw gallery is **not an operational dependency** — the model never reads it
 at runtime (verified: `photo_id.py` loads only `index.faiss` + `keys.json` +
 the DINOv2 encoder). The 15GB transfer to HF was therefore **stopped at 77%**
-(86,015/111,320; 185/188 AU species complete). The full gallery stays **local**
-as the index-build source; the AU subset remains mirrored on HF for
-reproducibility. The actual artifact to publish for the photo path is the
-compact FAISS index (`augury-vision-index`, pending build).
+and the gallery repo was **deleted from HF entirely** (2026-08-18) — no point
+hosting a half-uploaded non-operational artifact. The full gallery stays
+**local** (`data/vision/images/`) as the index-build source. The actual
+artifact to publish for the photo path is the compact FAISS index
+(`augury-vision-index`, pending build).
 
 ## 1 · The key architectural fact
 
 **A phone never downloads the 15GB raw gallery.** The gallery
-(`data/vision/images/` locally; AU subset mirrored on
-`RegeneratusLabs/augury-vision-gallery`) is the *source of truth* — the thing
+(`data/vision/images/` locally) is the *source of truth* — the thing
 you use to build/extend the retrieval index. The on-device artifact is the
 **FAISS index + embeddings**:
 

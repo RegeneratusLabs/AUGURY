@@ -109,7 +109,7 @@ rebuild or extend it.
 | Model (GGUF Q4_K_M + F16 + merged fp16 + LoRA) | `RegeneratusLabs/augury-1b` (HF) |
 | Species DB (2,230 spp) | `RegeneratusLabs/augury-species-db` (HF) |
 | Training data (13,627 rows) | `RegeneratusLabs/augury-training-data` (HF) |
-| Vision gallery (111k imgs + license sidecars; local build source — 185/188 AU spp mirrored on HF) | `RegeneratusLabs/augury-vision-gallery` (HF) |
+| Vision gallery (111k imgs + license sidecars) | **local only** — `data/vision/images/` (build-time source; never read at runtime) |
 | Vision retrieval index (runtime artifact — **to be built**) | `RegeneratusLabs/augury-vision-index` (pending) |
 | Code, scripts, docs, playbook | `github.com/RegeneratusLabs/AUGURY` |
 

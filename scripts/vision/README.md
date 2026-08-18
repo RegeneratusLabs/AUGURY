@@ -19,11 +19,15 @@ scripts/vision/build_llamafactory_dataset.py -> train.jsonl / val.jsonl / datase
 
 ## 1. Build the retrieval index
 
+The gallery is **local-only** (removed from HF 2026-08-18 — raw images are a
+build-time source, never read at runtime). `--images-dir` defaults to
+`data/vision/images`.
+
 ```bash
 # AU-scoped (v1): DINOv2-base embeddings + FAISS, resumable
 .venv-mcpmv46/bin/python scripts/vision/embed_gallery.py \
-    --images-dir data/vision/images --au-only --device cuda
-# full gallery (all 2,174 species): omit --au-only
+    --au-only --device cuda
+# full gallery (all 2,231 species): omit --au-only
 ```
 
 ## 2. Identify a photo

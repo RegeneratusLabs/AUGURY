@@ -42,8 +42,8 @@ Three layers, one job each:
 - 🔄 **Photo path building**: full-gallery FAISS index in progress; confidence
   bands (auto-accept / top-3 confirm / honest unknown).
 - ✅ All artifacts published: model, species DB, training data. The vision
-  gallery is the local index-build source (185/188 AU species mirrored on HF;
-  the runtime artifact is the compact FAISS index, not the raw images).
+  gallery stays **local** as the index-build source (the runtime artifact is
+  the compact FAISS index, not the raw images).
 
 ## Quickstart
 
@@ -64,7 +64,7 @@ Three layers, one job each:
 | Model (GGUF Q4_K_M / F16 / merged fp16 / LoRA adapter) | [RegeneratusLabs/augury-1b](https://huggingface.co/RegeneratusLabs/augury-1b) |
 | Species database (2,230 spp) | [RegeneratusLabs/augury-species-db](https://huggingface.co/datasets/RegeneratusLabs/augury-species-db) |
 | Training data (13,627 rows) | [RegeneratusLabs/augury-training-data](https://huggingface.co/datasets/RegeneratusLabs/augury-training-data) |
-| Vision gallery (111k imgs; build source — 185/188 AU spp mirrored on HF) | [RegeneratusLabs/augury-vision-gallery](https://huggingface.co/datasets/RegeneratusLabs/augury-vision-gallery) |
+| Vision gallery (111k imgs + license sidecars) | **local only** — `data/vision/images/` (build-time source; never read at runtime) |
 | Vision retrieval index (the runtime artifact — **to be built**) | `RegeneratusLabs/augury-vision-index` (pending) |
 
 ## Hard-won lessons (see `docs/technical-stack.md`)

@@ -7,10 +7,11 @@
 #   bash scripts/publish_hf.sh all         # everything
 #   bash scripts/publish_hf.sh db          # species DB (small, quick)
 #   bash scripts/publish_hf.sh text        # text training data (small)
-#   bash scripts/publish_hf.sh gallery     # 15GB image gallery (slow, resumable)
 #
-# Gallery upload is resumable: re-run to continue. Run in background:
-#   nohup bash scripts/publish_hf.sh gallery > /tmp/hf-gallery.log 2>&1 &
+# NOTE (2026-08-18): the 15GB image gallery is LOCAL-ONLY by design — the raw
+# images are a build-time source, never read at runtime, so they are not
+# published to HF. The runtime artifact for the photo path is the compact FAISS
+# index (build via scripts/vision/embed_gallery.py -> RegeneratusLabs/augury-vision-index).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -54,17 +55,6 @@ case "${1:-all}" in
     stage augury-training-data data/training
     stage augury-training-data data/v3_function_calling
     publish augury-training-data augury-training-data.md ;;
-  gallery)
-    stage augury-vision-gallery data/vision/images
-    stage augury-vision-gallery data/vision/species_list.json
-    stage augury-vision-gallery data/vision/train.jsonl
-    stage augury-vision-gallery data/vision/val.jsonl
-    stage augury-vision-gallery data/vision/dataset_info.json
-    cp "$CARDS/augury-vision-gallery.md" "$STAGE/augury-vision-gallery/README.md"
-    echo ">> [augury-vision-gallery] uploading (parallel, resumable)"
-    hf upload-large-folder "$ORG/augury-vision-gallery" \
-        "$STAGE/augury-vision-gallery" --repo-type dataset --num-workers 8
-    echo ">> [augury-vision-gallery] done" ;;
-  all) bash "$0" db; bash "$0" text; bash "$0" gallery ;;
-  *) echo "usage: $0 {db|text|gallery|all}"; exit 1 ;;
+  all) bash "$0" db; bash "$0" text ;;
+  *) echo "usage: $0 {db|text|all}"; exit 1 ;;
 esac
