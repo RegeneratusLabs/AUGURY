@@ -76,7 +76,8 @@ Three layers, one job each:
 ## Docs
 
 - [Technical stack](docs/technical-stack.md) · [OpenBMB playbook](docs/openbmb-playbook.md) ·
-  [Data roadmap](docs/data-roadmap.md) · [Model card](docs/model-cards/augury-1b.md)
+  [Data roadmap](docs/data-roadmap.md) · [Model card](docs/model-cards/augury-1b.md) ·
+  [Model understanding & blind spots](docs/model-understanding-and-blindspots.md)
 
 ## License
 
