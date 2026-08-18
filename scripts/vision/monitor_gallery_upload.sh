@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
-# AUGURY — monitor_gallery_upload.sh (watch + resume the 15GB gallery upload)
+# AUGURY — monitor_gallery_upload.sh (watch + resume the gallery upload)
 #
-# The gallery upload to RegeneratusLabs/augury-vision-gallery runs over a very
-# limited connection (~200KB/s) and is resumable: `hf upload-large-folder`
+# STATUS 2026-08-18: the full 15GB gallery upload was STOPPED by decision —
+# the raw images are not an operational dependency (the model reads the FAISS
+# index, not the JPEGs). 86,015/111,320 images (185/188 AU spp) remain on HF.
+# This script is retained for future use IF the decision is reversed (e.g. to
+# mirror the full gallery for open-source reproducibility) or for pushing the
+# remaining AU tail. The uploader is resumable: `hf upload-large-folder`
 # dedupes already-sent xorbs, so re-running it after a crash is cheap and safe.
 #
 # This script:

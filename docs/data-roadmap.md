@@ -11,7 +11,7 @@ Where the data is, what's broken, and how it grows. Companion to
 | Vision species list (2,230) | `data/vision/species_list.json` | ✅ `is_au` tags, common names |
 | Text formatting data | `data/training/weeds_indicators_merged_{train,val}.jsonl` | ✅ regenerated 2026-08-11, AU-balanced (186/188 AU) |
 | Vision splits | `data/vision/{train,val}.jsonl` | ✅ 58,121 / 6,519, relative paths |
-| Image gallery | `data/vision/images/` (15GB, 111,320 imgs) | ✅ sidecars per species; on HF Hub |
+| Image gallery | `data/vision/images/` (15GB, 111,320 imgs) | ✅ sidecars per species; local build source — 185/188 AU spp mirrored on HF Hub |
 | Legacy text data | `data/training/standalone_*`, `data/v3_function_calling/` | reference only |
 
 ## 2 · Closed gaps (done 2026-08-11)
@@ -20,7 +20,9 @@ Where the data is, what's broken, and how it grows. Companion to
   with all AU species region-tagged (was: 95% European, zero AU examples).
 - **Portable image paths**: builder emits relative paths (was: absolute, broke
   any non-local run).
-- **Gallery published** to HF Hub under RegeneratusLabs (dataset repo).
+- **Gallery mirrored to HF** (185/188 AU species; full raw gallery kept locally
+  as the index-build source — the runtime artifact is the compact FAISS index,
+  not the raw images; see `docs/gallery-phone-discussion.md`).
 
 ## 3 · Open items
 
