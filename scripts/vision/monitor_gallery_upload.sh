@@ -23,7 +23,8 @@ REPO="RegeneratusLabs/augury-vision-gallery"
 STAGE="/data/Documents/.hf-stage/augury-vision-gallery"
 TARGET="${TARGET:-111320}"
 POLL="${POLL:-300}"                 # seconds between checks
-LOG=/tmp/hf-gallery.log             # where the uploader writes
+LOG="${AUGURY_UPLOAD_LOG:-/home/jthomson/AUGURY/data/vision/upload_monitor.log}"
+UPLOADER_OUT="${UPLOADER_OUT:-/home/jthomson/AUGURY/data/vision/upload_large_folder.log}"
 
 count_hub() {
     python3 - "$REPO" <<'PY'
@@ -57,7 +58,7 @@ while :; do
         echo "[$(date -u +%FT%TZ)] upload process NOT running — resuming"
         # Uploader is idempotent; already-sent xorbs are skipped.
         nohup hf upload-large-folder "$REPO" "$STAGE" \
-            --repo-type dataset --num-workers 2 >> "$LOG" 2>&1 &
+            --repo-type dataset --num-workers 2 >> "$UPLOADER_OUT" 2>&1 &
         echo "[$(date -u +%FT%TZ)] resumed (pid $!)"
     fi
     sleep "$POLL"
