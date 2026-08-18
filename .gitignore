@@ -15,6 +15,10 @@ data/vision/output/
 # ---- regenerable retrieval index (rebuild via scripts/vision/embed_gallery.py) ----
 data/vision/index/
 
+# ---- gallery upload monitor logs (operational, not source) ----
+data/vision/upload_monitor.log
+data/vision/upload_large_folder.log
+
 # ---- packaging artifacts ----
 data/vision_cap15/
 zipstage/
