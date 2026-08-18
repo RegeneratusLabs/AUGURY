@@ -41,25 +41,26 @@ is_uploading() {
     pgrep -f "upload-large-folder.*$REPO" > /dev/null 2>&1
 }
 
-echo "=== gallery upload monitor ==="
-echo "repo:   $REPO"
-echo "target: $TARGET images"
-echo "poll:   ${POLL}s"
-date -u
+echo "=== gallery upload monitor ===" | tee -a "$LOG"
+echo "repo:   $REPO" | tee -a "$LOG"
+echo "target: $TARGET images" | tee -a "$LOG"
+echo "poll:   ${POLL}s" | tee -a "$LOG"
+date -u | tee -a "$LOG"
 
 while :; do
     cur="$(count_hub 2>/dev/null || echo 0)"
-    echo "[$(date -u +%FT%TZ)] hub images: ${cur:-0} / $TARGET ($(awk "BEGIN{if(${cur:-0}>0) printf \"%.1f\", 100*${cur:-0}/$TARGET; else print 0}")%)"
+    line="[$(date -u +%FT%TZ)] hub images: ${cur:-0} / $TARGET ($(awk "BEGIN{if(${cur:-0}>0) printf \"%.1f\", 100*${cur:-0}/$TARGET; else print 0}")%)"
+    echo "$line" | tee -a "$LOG"
     if [ "${cur:-0}" -ge "$TARGET" ]; then
-        echo "=== DONE: target reached ==="
+        echo "=== DONE: target reached ===" | tee -a "$LOG"
         exit 0
     fi
     if ! is_uploading; then
-        echo "[$(date -u +%FT%TZ)] upload process NOT running — resuming"
+        echo "[$(date -u +%FT%TZ)] upload process NOT running — resuming" | tee -a "$LOG"
         # Uploader is idempotent; already-sent xorbs are skipped.
         nohup hf upload-large-folder "$REPO" "$STAGE" \
             --repo-type dataset --num-workers 2 >> "$UPLOADER_OUT" 2>&1 &
-        echo "[$(date -u +%FT%TZ)] resumed (pid $!)"
+        echo "[$(date -u +%FT%TZ)] resumed (pid $!)" | tee -a "$LOG"
     fi
     sleep "$POLL"
 done
