@@ -1,0 +1,21 @@
+ground_truth,predicted,correct_top1,correct_top3,score,verdict
+Lantana camara,lantana camara,True,True,0.799,confirm
+Parthenium hysterophorus,parthenium hysterophorus,True,True,0.708,confirm
+Parkinsonia aculeata,parkinsonia aculeata,True,True,0.754,confirm
+Acacia nilotica,dianella spp,False,True,0.704,confirm
+Cryptostegia grandiflora,cryptostegia grandiflora,True,True,0.738,confirm
+Xanthium occidentale,xanthium occidentale,True,True,0.656,confirm
+Conyza bonariensis,conyza bonariensis,True,True,0.670,confirm
+Arctotheca calendula,arctotheca calendula,True,True,0.590,unknown
+Raphanus raphanistrum,capsella bursa-pastoris,False,True,0.598,unknown
+Emex australis,emex australis,True,True,0.465,unknown
+Carthamus lanatus,carthamus lanatus,True,True,0.883,auto
+Onopordum acanthium,cirsium vulgare,False,True,0.793,confirm
+Cirsium vulgare,cirsium spp,False,True,0.817,auto
+Hypericum perforatum,senecio madagascariensis,False,False,0.784,confirm
+Hyparrhenia hirta,poa labillardierei,False,False,0.842,auto
+Andropogon gayanus,andropogon gayanus,True,True,0.795,confirm
+Nassella neesiana,poa labillardierei,False,False,0.586,unknown
+Echinochloa crus-galli,echinochloa colona,False,True,0.770,confirm
+Eichhornia crassipes,eichhornia crassipes,True,True,0.836,auto
+Asphodelus fistulosus,asphodelus fistulosus,True,True,0.823,auto

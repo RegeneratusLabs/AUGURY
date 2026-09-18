@@ -1,0 +1,7 @@
+{
+ "device": "cpu",
+ "load_s": 9.264979124069214,
+ "gallery_probe_top1": "spear thistle",
+ "determinism_cosine": 1.0,
+ "failures": []
+}

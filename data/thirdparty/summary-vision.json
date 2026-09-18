@@ -1,0 +1,64 @@
+{
+ "n_weeds": 20,
+ "n_controls": 10,
+ "top1_raw": 0.6,
+ "top1_canon": 0.6,
+ "top3_canon": 0.85,
+ "top1_canon_ci": [
+  0.38657794231520604,
+  0.7811960325858073
+ ],
+ "top3_canon_ci": [
+  0.6395767041130426,
+  0.9476322080405041
+ ],
+ "top1_within_margin": 0.7,
+ "near_miss": 2,
+ "macro_top1": 0.6,
+ "bands": {
+  "confirm": {
+   "n": 11,
+   "correct": 7,
+   "acc": 0.6363636363636364
+  },
+  "unknown": {
+   "n": 4,
+   "correct": 2,
+   "acc": 0.5
+  },
+  "auto": {
+   "n": 5,
+   "correct": 3,
+   "acc": 0.6
+  }
+ },
+ "controls_unknown": 8,
+ "controls_false_accept": 2,
+ "load_s": 8.805139064788818,
+ "device": "cpu",
+ "t_image_ms_p50": 167.13762283325195,
+ "t_image_ms_p95": 218.93644332885742,
+ "peak_rss_mb": 2643.6015625,
+ "provenance": {
+  "live_model_repo": "RegeneratusLabs/augury-1b",
+  "live_model_revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
+  "live_db_repo": "RegeneratusLabs/augury-species-db",
+  "files": {
+   "MiniCPM5-1B-AUGURY-Q4_K_M.gguf": {
+    "path": "models/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+    "bytes": 688065824,
+    "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+    "pinned_sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+    "match": true
+   },
+   "database-merged.json": {
+    "path": "data/research/database-merged.json",
+    "bytes": 1155275,
+    "sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+    "pinned_sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+    "match": true
+   }
+  },
+  "ok": true
+ }
+}

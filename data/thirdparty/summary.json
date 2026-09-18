@@ -1,0 +1,158 @@
+{
+ "generated": "2026-09-18T10:38:36+00:00",
+ "provenance": {
+  "live_model_repo": "RegeneratusLabs/augury-1b",
+  "live_model_revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
+  "live_db_repo": "RegeneratusLabs/augury-species-db",
+  "files": {
+   "MiniCPM5-1B-AUGURY-Q4_K_M.gguf": {
+    "path": "models/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+    "bytes": 688065824,
+    "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+    "pinned_sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+    "match": true
+   },
+   "database-merged.json": {
+    "path": "data/research/database-merged.json",
+    "bytes": 1155275,
+    "sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+    "pinned_sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+    "match": true
+   }
+  },
+  "ok": true
+ },
+ "vision": {
+  "n_weeds": 20,
+  "n_controls": 10,
+  "top1_raw": 0.6,
+  "top1_canon": 0.6,
+  "top3_canon": 0.85,
+  "top1_canon_ci": [
+   0.38657794231520604,
+   0.7811960325858073
+  ],
+  "top3_canon_ci": [
+   0.6395767041130426,
+   0.9476322080405041
+  ],
+  "top1_within_margin": 0.7,
+  "near_miss": 2,
+  "macro_top1": 0.6,
+  "bands": {
+   "confirm": {
+    "n": 11,
+    "correct": 7,
+    "acc": 0.6363636363636364
+   },
+   "unknown": {
+    "n": 4,
+    "correct": 2,
+    "acc": 0.5
+   },
+   "auto": {
+    "n": 5,
+    "correct": 3,
+    "acc": 0.6
+   }
+  },
+  "controls_unknown": 8,
+  "controls_false_accept": 2,
+  "load_s": 8.805139064788818,
+  "device": "cpu",
+  "t_image_ms_p50": 167.13762283325195,
+  "t_image_ms_p95": 218.93644332885742,
+  "peak_rss_mb": 2643.6015625,
+  "provenance": {
+   "live_model_repo": "RegeneratusLabs/augury-1b",
+   "live_model_revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
+   "live_db_repo": "RegeneratusLabs/augury-species-db",
+   "files": {
+    "MiniCPM5-1B-AUGURY-Q4_K_M.gguf": {
+     "path": "models/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+     "bytes": 688065824,
+     "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+     "pinned_sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+     "match": true
+    },
+    "database-merged.json": {
+     "path": "data/research/database-merged.json",
+     "bytes": 1155275,
+     "sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+     "pinned_sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+     "match": true
+    }
+   },
+   "ok": true
+  }
+ },
+ "text": {
+  "model_load_s": 0.41286778450012207,
+  "peak_rss_mb": 2268.6171875,
+  "aggregate": {
+   "A": {
+    "n": 40,
+    "p50_ms": 4084.489345550537,
+    "p95_ms": 5756.717920303345,
+    "total_tokens": 13565,
+    "completion_tokens": 4727,
+    "mean_tok_s": 29.399224259274767
+   },
+   "B": {
+    "n": 20,
+    "p50_ms": 3974.0259647369385,
+    "p95_ms": 6833.925008773804,
+    "total_tokens": 0,
+    "completion_tokens": 0,
+    "mean_tok_s": null
+   },
+   "C": {
+    "n": 10,
+    "p50_ms": 0,
+    "p95_ms": 0,
+    "total_tokens": 0,
+    "completion_tokens": 0,
+    "mean_tok_s": null
+   }
+  },
+  "refusals_passed": 8,
+  "refusals_total": 10,
+  "advice_leaks": 0,
+  "unsupported_numbers": 14,
+  "n_fidelity": 40,
+  "provenance": {
+   "live_model_repo": "RegeneratusLabs/augury-1b",
+   "live_model_revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
+   "live_db_repo": "RegeneratusLabs/augury-species-db",
+   "files": {
+    "MiniCPM5-1B-AUGURY-Q4_K_M.gguf": {
+     "path": "models/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+     "bytes": 688065824,
+     "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+     "pinned_sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+     "match": true
+    },
+    "database-merged.json": {
+     "path": "data/research/database-merged.json",
+     "bytes": 1155275,
+     "sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+     "pinned_sha256": "c6d2505b4b80cc830f5a5d4a09f53898417fe377098663ad7c0b45c74936818c",
+     "match": true
+    }
+   },
+   "ok": true
+  },
+  "think_blocks": 0
+ },
+ "corpus_size": 30,
+ "versions": {
+  "python": "3.11.15",
+  "platform": "Linux-6.19.11-200.fc43.x86_64-x86_64-with-glibc2.42",
+  "torch": "2.8.0+cu128",
+  "transformers": "5.7.0",
+  "faiss": "1.15.0",
+  "llama_cpp": "0.3.34",
+  "numpy": "2.4.6",
+  "PIL": "11.3.0"
+ }
+}
