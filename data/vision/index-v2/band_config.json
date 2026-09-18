@@ -1,0 +1,20 @@
+{
+ "auto_conf": 0.65,
+ "confirm_conf": 0.44,
+ "calibrated": true,
+ "method": "calibrate_bands.py on 916 benchmark queries (index-v2 whitened scores)",
+ "measured": {
+  "top1": 0.824235807860262,
+  "auto": {
+   "precision": 0.921146953405018,
+   "coverage": 0.6091703056768559,
+   "n": 558
+  },
+  "confirm": {
+   "precision": 0.8524970963995354,
+   "coverage": 0.9399563318777293,
+   "n": 861
+  }
+ },
+ "note": "precision on the whitened scale peaks near 0.65 and falls above 0.75; the legacy 0.80/0.60 constants are wrong for this index."
+}

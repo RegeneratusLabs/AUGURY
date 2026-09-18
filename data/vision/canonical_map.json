@@ -1,0 +1,24 @@
+{
+ "note": "Canonical key map: duplicate gallery keys that are the same plant collapse to one bucket at index-build and eval time. Sources/targets validated against gallery dirs.",
+ "canonical": {
+  "barley grass": "hordeum leporinum",
+  "spear thistle": "cirsium vulgare",
+  "cirsium spp": "cirsium vulgare",
+  "echinochloa crus galli": "echinochloa crus-galli",
+  "guildford grass": "romulea rosea",
+  "spiny rush": "juncus acutus",
+  "toad rush": "juncus bufonius",
+  "ribwort plantain": "plantago lanceolata",
+  "salix spp.": "salix spp",
+  "prosopis spp.": "prosopis spp",
+  "onion weed": "asphodelus fistulosus",
+  "colts foot": "tussilago farfara",
+  "creeping buttercup": "ranunculus repens",
+  "creeping thistle": "cirsium arvense",
+  "curled dock": "rumex crispus",
+  "potentilla erecta": "tormentilla erecta",
+  "ranunculus ficaria": "ficaria verna",
+  "silene dioica": "melandrium rubrum",
+  "stinging nettle": "urtica urens"
+ }
+}
