@@ -12,8 +12,26 @@ data/vision/images_unknown/
 data/vision/raw/
 data/vision/output/
 
-# ---- regenerable retrieval index (rebuild via scripts/vision/embed_gallery.py) ----
+# ---- regenerable retrieval index + embedding cache ----
+# index/  : rebuild via scripts/vision/build_index_v2.py
+# emb/    : one .npy per image, rebuild via scripts/vision/cache_embeddings.py
+#           (resumable; ~40 min on 16 CPU cores). Regenerable, so never committed.
 data/vision/index/
+data/vision/emb/
+
+# index-v2/v3: the two large binaries stay local (regenerable, and no Git LFS on
+# this host — committing them would add ~41MB per version to .git permanently).
+# The small provenance files (keys.json, files.json, meta.json, band_config.json,
+# README.md) ARE tracked, so the exact index composition stays auditable in git.
+data/vision/index-v2/*.faiss
+data/vision/index-v2/embeddings.npy
+data/vision/index-v2/pca_whiten.npz
+data/vision/index-v3/*.faiss
+data/vision/index-v3/embeddings.npy
+data/vision/index-v3/pca_whiten.npz
+
+# ---- logs from interrupted acquisition/embedding runs (kept for diagnosis) ----
+data/vision/logs-archive/
 
 # ---- packaging artifacts ----
 data/vision_cap15/
@@ -40,6 +58,9 @@ archive/
 
 # ---- copyrighted source PDFs (do not redistribute; cite instead) ----
 data/sources/*.pdf
+# Scraped source pages kept for quote verification (scripts in data/research/_tools/).
+# Regenerable and third-party copyrighted: cite the URL, do not redistribute.
+data/research/_tools/cache/
 
 # ---- misc ----
 .DS_Store
