@@ -68,3 +68,4 @@ data/research/_tools/cache/
 
 # ---- superseded local backups (git history is the record now) ----
 *.pre-cleanup
+*.pre-mojibake
