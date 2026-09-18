@@ -89,7 +89,15 @@ def main() -> int:
         "per_species_queries": dict(sorted(
             collections.Counter(len(v["queries"]) for v in species.values()).items())),
     }
-    doc = {"seed": args.seed, "scoring": "au_baseline_v1", "images_dir": str(images),
+    # Record the gallery location RELATIVE to the repo root. An absolute path here
+    # leaked the author's home directory into a tracked artifact and made the split
+    # non-portable, while adding no information — every per-image entry below is
+    # already repo-relative.
+    try:
+        images_rel = images.resolve().relative_to(ROOT)
+    except ValueError:
+        images_rel = images
+    doc = {"seed": args.seed, "scoring": "au_baseline_v1", "images_dir": str(images_rel),
            "species": species, "counts": counts}
     out.mkdir(parents=True, exist_ok=True)
     (out / args.name).write_text(json.dumps(doc, indent=1))

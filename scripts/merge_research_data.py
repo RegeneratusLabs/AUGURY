@@ -10,12 +10,16 @@ import re
 import sys
 from pathlib import Path
 
-PROJECT = Path("/home/jthomson/AUGURY")
-ACTIVE_DB = PROJECT / "augury-research-pack" / "database-active.json"
-PHASE1_DIR = PROJECT / "augury-research-output" / "output" / "03-species-verification"
-PHASE2_DIR = PROJECT / "augury-research-output" / "au-phase-2"
-OUTPUT_DB = PROJECT / "augury-research-pack" / "database-merged.json"
-REPORT = PROJECT / "augury-research-pack" / "merge-report.md"
+# SUPERSEDED — see scripts/merge_research_indicators.py and
+# scripts/merge_enriched_species.py. Paths corrected to the current tree so the
+# script is at least runnable for provenance purposes, but it is not maintained.
+PROJECT = Path(__file__).resolve().parent.parent
+RESEARCH = PROJECT / "data" / "research"
+ACTIVE_DB = RESEARCH / "database-active.json"
+PHASE1_DIR = RESEARCH / "augury-research-output" / "output" / "03-species-verification"
+PHASE2_DIR = RESEARCH / "augury-research-output" / "au-phase-2"
+OUTPUT_DB = RESEARCH / "database-merged.json"
+REPORT = RESEARCH / "merge-report.md"
 
 try:
     import yaml

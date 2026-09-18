@@ -1,8 +1,17 @@
-# AUGURY — Project Summary
+# AUGURY — Project Summary (HISTORICAL — pass-1 / V3 era)
+
+> **⚠️ Historical document.** This describes the **pass-1 → V3 tool-calling**
+> architecture, which was **superseded** by the current three-layer design
+> (DINOv2 retrieval + deterministic DB + MiniCPM5 formatter). The file tree and
+> "Current Priorities" below are a snapshot of that era and many entries no longer
+> exist at those paths (`augury.Q4_K_M.gguf`, `Weeds V1/`, `augury-research-pack/`
+> are now under `archive/`). Kept for provenance of that architecture generation.
+>
+> For the current picture read `docs/model-understanding-and-blindspots.md`,
+> `docs/technical-stack.md`, and `docs/HANDOVER-2026-09-18.md`.
 
 **What:** An open-source small language model that maps weed species to soil health indicators. Given a plant name, it outputs what soil conditions that plant indicates — compaction, waterlogging, nutrient imbalances, pH, salinity. Indicators only. No management advice. Open source. Deployable on a laptop or affordable cloud VM.
 
-**Why:** Ducerf's encyclopedia (800+ species of plant bioindicators, 3 French volumes) is locked in books. CAWR field guides, AU pasture weed manuals, and permaculture literature contain decades of knowledge scattered across PDFs. AUGURY compiles this into a farmer-accessible tool with data sovereignty — no cloud required, no data leaving the device.
 
 **Why:** Ducerf's encyclopedia (800+ species of plant bioindicators, 3 French volumes) is locked in books. CAWR field guides, AU pasture weed manuals, and permaculture literature contain decades of knowledge scattered across PDFs. AUGURY compiles this into a farmer-accessible tool with data sovereignty — no cloud, no subscriptions, no data leaving the device.
 
@@ -102,10 +111,10 @@ Fertility: moderately infertile. Below-average nutrient levels
 Source: Ellenberg Indicator Values (Europe)
 ```
 
-## Files
+## Files (AS OF THE PASS-1 ERA — see the banner above)
 
 ```
-/home/jthomson/AUGURY/
+<repo-root>/
 ├── PROJECT.md                                      ← This file
 ├── HANDOVER.md                                     ← Detailed handover with Colab training steps
 ├── augury.Q4_K_M.gguf                              ← Pass 1 deployable GGUF (379MB)

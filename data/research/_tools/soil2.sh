@@ -2,7 +2,9 @@
 # Tighter soil-evidence extractor. Usage: soil2.sh <url> [label]
 UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 URL="$1"; LABEL="${2:-$1}"
-TMP=$(mktemp /home/jthomson/AUGURY/data/research/_tools/cache/tmp.XXXXXX)
+CACHE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/cache"
+mkdir -p "$CACHE_DIR"
+TMP=$(mktemp "$CACHE_DIR/tmp.XXXXXX")
 code=$(curl -sS -L --max-time 45 -A "$UA" -o "$TMP" -w "%{http_code}" "$URL" 2>/dev/null)
 echo "=== $LABEL | HTTP $code"
 [ "$code" != "200" ] && { echo "FETCH FAILED"; exit 0; }

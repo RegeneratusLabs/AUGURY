@@ -1,7 +1,7 @@
 {
  "seed": 20260818,
  "scoring": "au_baseline_v1",
- "images_dir": "/home/jthomson/AUGURY/data/vision/images",
+ "images_dir": "data/vision/images",
  "species": {
   "acacia nilotica": {
    "gallery": [

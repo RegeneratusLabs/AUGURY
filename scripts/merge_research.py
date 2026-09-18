@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
-"""Merge Phase 1 + Phase 2 research into the active database (clean version)."""
-import json, os, re, sys, yaml
+"""Merge Phase 1 + Phase 2 research into the active database (clean version).
+
+SUPERSEDED — do not use. Kept for provenance of the original Phase 1/2 merge.
+
+The paths below predate the move of the research tree under `data/research/`, so
+`augury-research-pack/` no longer exists at the repo root and this script cannot
+run. Use instead:
+  * scripts/merge_research_indicators.py  — researched indicator files -> DB
+  * scripts/merge_enriched_species.py     — mining-layer species -> DB
+Both take --db/--research-file arguments and resolve paths relative to the repo.
+"""
+import json, os, re, sys
 from pathlib import Path
 
-P = Path("/home/jthomson/AUGURY")
-ACTIVE_DB = P / "augury-research-pack" / "database-active.json"
-P1 = P / "augury-research-output" / "output" / "03-species-verification"
-P2 = P / "augury-research-output" / "au-phase-2"
-OUT = P / "augury-research-pack" / "database-merged.json"
-RPT = P / "augury-research-pack" / "merge-report.md"
+P = Path(__file__).resolve().parent.parent
+ACTIVE_DB = P / "data" / "research" / "augury-research-pack" / "database-active.json"
+P1 = P / "data" / "research" / "augury-research-output" / "output" / "03-species-verification"
+P2 = P / "data" / "research" / "augury-research-output" / "au-phase-2"
+OUT = P / "data" / "research" / "augury-research-pack" / "database-merged.json"
+RPT = P / "data" / "research" / "augury-research-pack" / "merge-report.md"
 
 with open(ACTIVE_DB) as f: db = json.load(f)
 

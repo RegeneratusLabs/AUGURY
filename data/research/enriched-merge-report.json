@@ -1,5 +1,5 @@
 {
- "target": "/home/jthomson/AUGURY/data/research/database-merged.json",
+ "target": "data/research/database-merged.json",
  "added": [
   {
    "key": "amaranthus spp.",
