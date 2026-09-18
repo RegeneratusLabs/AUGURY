@@ -1,0 +1,175 @@
+{
+ "backend": "dinov2-base",
+ "canonical": false,
+ "cap": 0,
+ "dim": 768,
+ "gallery": 13358,
+ "queries": 916,
+ "missing_gallery": 0,
+ "missing_query": 0,
+ "top1": 0.7183406113537117,
+ "top3": 0.8646288209606987,
+ "macro_top1": 0.717741935483871,
+ "macro_top3": 0.8618279569892473,
+ "top1_ci": [
+  0.6883456563521895,
+  0.7465118234573777
+ ],
+ "top3_ci": [
+  0.8409441860325172,
+  0.8852678052494601
+ ],
+ "index_build_s": 0.01839470863342285,
+ "search_ms_per_query": 0.3798325509483637,
+ "worst_species": [
+  {
+   "key": "banksia spp",
+   "top1": 0.0,
+   "top3": 0.6,
+   "n": 5
+  },
+  {
+   "key": "barley grass",
+   "top1": 0.0,
+   "top3": 1.0,
+   "n": 5
+  },
+  {
+   "key": "cirsium vulgare",
+   "top1": 0.0,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "echinochloa crus galli",
+   "top1": 0.0,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "echinochloa crus-galli",
+   "top1": 0.0,
+   "top3": 0.8,
+   "n": 5
+  },
+  {
+   "key": "guildford grass",
+   "top1": 0.0,
+   "top3": 1.0,
+   "n": 5
+  },
+  {
+   "key": "holcus lanatus",
+   "top1": 0.0,
+   "top3": 0.0,
+   "n": 5
+  },
+  {
+   "key": "hordeum leporinum",
+   "top1": 0.0,
+   "top3": 1.0,
+   "n": 5
+  },
+  {
+   "key": "juncus acutus",
+   "top1": 0.0,
+   "top3": 1.0,
+   "n": 5
+  },
+  {
+   "key": "juncus bufonius",
+   "top1": 0.0,
+   "top3": 1.0,
+   "n": 5
+  },
+  {
+   "key": "plantago lanceolata",
+   "top1": 0.0,
+   "top3": 0.8,
+   "n": 5
+  },
+  {
+   "key": "prosopis spp",
+   "top1": 0.0,
+   "top3": 0.4,
+   "n": 5
+  }
+ ],
+ "top_confusions": [
+  {
+   "gt": "barley grass",
+   "pred": "hordeum leporinum",
+   "n": 5
+  },
+  {
+   "gt": "cirsium vulgare",
+   "pred": "spear thistle",
+   "n": 5
+  },
+  {
+   "gt": "echinochloa crus galli",
+   "pred": "echinochloa crus-galli",
+   "n": 5
+  },
+  {
+   "gt": "echinochloa crus-galli",
+   "pred": "echinochloa crus galli",
+   "n": 5
+  },
+  {
+   "gt": "guildford grass",
+   "pred": "romulea rosea",
+   "n": 5
+  },
+  {
+   "gt": "hordeum leporinum",
+   "pred": "barley grass",
+   "n": 5
+  },
+  {
+   "gt": "juncus acutus",
+   "pred": "spiny rush",
+   "n": 5
+  },
+  {
+   "gt": "juncus bufonius",
+   "pred": "toad rush",
+   "n": 5
+  },
+  {
+   "gt": "plantago lanceolata",
+   "pred": "ribwort plantain",
+   "n": 5
+  },
+  {
+   "gt": "raphanus raphanistrum",
+   "pred": "sinapis arvensis",
+   "n": 5
+  },
+  {
+   "gt": "salix spp",
+   "pred": "salix spp.",
+   "n": 5
+  },
+  {
+   "gt": "salix spp.",
+   "pred": "salix spp",
+   "n": 5
+  },
+  {
+   "gt": "sinapis arvensis",
+   "pred": "raphanus raphanistrum",
+   "n": 5
+  },
+  {
+   "gt": "toad rush",
+   "pred": "juncus bufonius",
+   "n": 5
+  },
+  {
+   "gt": "holcus lanatus",
+   "pred": "prosopis spp.",
+   "n": 4
+  }
+ ]
+}

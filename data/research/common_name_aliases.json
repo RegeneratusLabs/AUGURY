@@ -1,0 +1,4 @@
+{
+ "note": "Common-name aliases for species that ARE in database-merged.json but whose DB row lacks the vernacular. Maps common name(s) -> scientific name; species_lookup resolves the scientific name to a key when no DB key matches directly.",
+ "aliases": {}
+}

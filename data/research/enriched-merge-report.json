@@ -1,0 +1,222 @@
+{
+ "target": "/home/jthomson/AUGURY/data/research/database-merged.json",
+ "added": [
+  {
+   "key": "amaranthus spp.",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "Walters (1999)",
+    "Walters (1999) via EcoFarming Daily"
+   ]
+  },
+  {
+   "key": "brassica spp.",
+   "region": "Australia",
+   "indicators": [
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "Old Farmer's Almanac"
+   ]
+  },
+  {
+   "key": "centaurea spp.",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "General indicators"
+   ],
+   "nutrients": 3,
+   "sources": [
+    "Modern Farmer (2019)",
+    "Old Farmer's Almanac"
+   ]
+  },
+  {
+   "key": "cyperus esculentus",
+   "region": "Australia",
+   "indicators": [
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 2,
+   "sources": [
+    "Modern Farmer (2019)",
+    "University of Florida IFAS Extension",
+    "Walters (1999)"
+   ]
+  },
+  {
+   "key": "echium plantagineum",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "NSW DPI",
+    "Victorian Landcare"
+   ]
+  },
+  {
+   "key": "eleusine indica",
+   "region": "Australia",
+   "indicators": [
+    "Structure",
+    "General indicators"
+   ],
+   "nutrients": 0,
+   "sources": [
+    "LSU AgCenter (2019)"
+   ]
+  },
+  {
+   "key": "hydrocotyle umbellata",
+   "region": "Australia",
+   "indicators": [
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 0,
+   "sources": [
+    "LSU AgCenter (2019)"
+   ]
+  },
+  {
+   "key": "oxalis spp.",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "Soil pH",
+    "General indicators"
+   ],
+   "nutrients": 7,
+   "sources": [
+    "Homestead.org",
+    "LSU AgCenter (2019)",
+    "Modern Farmer (2019)",
+    "Old Farmer's Almanac"
+   ]
+  },
+  {
+   "key": "persicaria spp.",
+   "region": "Australia",
+   "indicators": [
+    "Moisture",
+    "Organic matter",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "Walters (1999)"
+   ]
+  },
+  {
+   "key": "phyla canescens",
+   "region": "Australia",
+   "indicators": [
+    "Salinity",
+    "General indicators"
+   ],
+   "nutrients": 0,
+   "sources": [
+    "NSW DPI / Agriculture Victoria"
+   ]
+  },
+  {
+   "key": "rhaponticum repens",
+   "region": "Australia",
+   "indicators": [
+    "Salinity",
+    "Structure",
+    "General indicators"
+   ],
+   "nutrients": 0,
+   "sources": [
+    "Agriculture Victoria",
+    "NSW DPI / Agriculture Victoria"
+   ]
+  },
+  {
+   "key": "rubus fruticosus",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "Agriculture Victoria",
+    "Weeds Australia"
+   ]
+  },
+  {
+   "key": "salvia reflexa",
+   "region": "Australia",
+   "indicators": [
+    "Soil pH",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "NSW DPI",
+    "NSW DPI / Agriculture Victoria"
+   ]
+  },
+  {
+   "key": "setaria spp.",
+   "region": "Australia",
+   "indicators": [
+    "Structure",
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 1,
+   "sources": [
+    "Walters (1999)"
+   ]
+  },
+  {
+   "key": "solidago spp.",
+   "region": "Australia",
+   "indicators": [
+    "Moisture",
+    "General indicators"
+   ],
+   "nutrients": 0,
+   "sources": [
+    "Old Farmer's Almanac"
+   ]
+  },
+  {
+   "key": "symphytum officinale",
+   "region": "Australia",
+   "indicators": [
+    "Fertility",
+    "General indicators"
+   ],
+   "nutrients": 4,
+   "sources": [
+    "PFAF",
+    "Permaculture tradition"
+   ]
+  }
+ ],
+ "added_count": 16,
+ "skipped_already_present": 54,
+ "skipped_no_usable_claims": [
+  "brassica rapa",
+  "euphorbia prostrata",
+  "lepidium draba",
+  "trifolium subterraneum"
+ ]
+}

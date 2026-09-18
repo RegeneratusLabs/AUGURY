@@ -1,0 +1,597 @@
+{
+  "species": [
+    {
+      "scientific_name": "Tribulus terrestris",
+      "common_names": [
+        "caltrop",
+        "cat's head",
+        "cathead",
+        "bullhead",
+        "puncture vine",
+        "yellow vine"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "AWRI's soil-indicator entry states caltrop 'occurs on a wide range of soils but is more abundant on sandy soils'. Weeds Australia (quoting Parsons & Cuthbertson 1992) places it 'mostly in open waste places ... particularly in districts with high summer temperatures and dry sandy soils where there is little competition'. HerbiGuide: 'Occurs on a wide range of soils. More abundant on sandy soils.' [Sources: AWRI (Australian Wine Research Institute), Caltrop weed profile https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/ - confidence: high; Weeds Australia (CISS) - Caltrop profile https://weeds.org.au/profiles/caltrop/ - confidence: high; HerbiGuide (AU) - Caltrop https://www.herbiguide.com.au/descriptions/hg_caltrop.htm - confidence: medium]",
+        "Moisture": "AWRI: caltrop 'is drought tolerant but is intolerant to waterlogging'. The Victorian Weed Risk Assessment (VRO, archived) records 'its extensive root system allows it to survive droughts' and that 'seeds germinate after late spring and summer rains'. Net reading: dry, well-drained, summer-moist sites; not waterlogged ground. [Sources: AWRI - Caltrop https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/ - confidence: high; Victorian Weed Risk Assessment, Caltrop (VRO archive hosted by CeRDI, Federation University) https://soilhealth.ccmaknowledgebase.vic.gov.au/vro_archive/statewide/pages/invasive_caltrop.html - confidence: medium]",
+        "Fertility": "AWRI lists caltrop as 'an indicator of low calcium, very low potassium and organic matter, high phosphorus, magnesium, iron, and aluminium' - i.e. an indicator of nutrient imbalance rather than of generally high fertility. The page gives no primary citation for this indicator list (its linked resource is HerbiGuide), so treat as medium confidence. [Sources: AWRI - Caltrop https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/ - confidence: medium]",
+        "Organic matter": "AWRI lists caltrop as an indicator of 'very low ... organic matter' in the soil. [Sources: AWRI - Caltrop https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/ - confidence: medium]",
+        "Disturbance": "SA PIRSA: 'Caltrop is favoured by bare ground, and does not compete effectively with other plants. Management to maintain a dense ground cover significantly reduces germination.' AWRI quotes a Henschke Wines case study: caltrop 'hates competition', found isolated to 'bare patches of soil on headlands' and spread on vehicle tyres. [Sources: PIRSA (SA Dept of Primary Industries and Regions) - Caltrop https://pir.sa.gov.au/crops-and-plants/weeds-and-plant-pests/declared-weeds/caltrop - confidence: high; AWRI - Caltrop https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/ - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Phosphorus",
+          "relationship": "indicates high phosphorus",
+          "detail": "AWRI's soil-indicator entry lists caltrop as an indicator of 'high phosphorus'. No primary citation is given on the page.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Potassium",
+          "relationship": "indicates very low potassium",
+          "detail": "AWRI soil-indicator entry: caltrop is 'an indicator of ... very low potassium'.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Calcium",
+          "relationship": "indicates low calcium",
+          "detail": "AWRI soil-indicator entry: caltrop is 'an indicator of low calcium ...'.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Magnesium",
+          "relationship": "indicates high magnesium",
+          "detail": "AWRI soil-indicator entry: caltrop is an indicator of 'high ... magnesium'.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Iron",
+          "relationship": "indicates high iron",
+          "detail": "AWRI soil-indicator entry: caltrop is an indicator of 'high ... iron'.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Aluminium",
+          "relationship": "indicates high aluminium",
+          "detail": "AWRI soil-indicator entry: caltrop is an indicator of 'high ... aluminium'.",
+          "source": "AWRI (Australian Wine Research Institute)",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Open waste places, roadsides, overgrazed pastures, stock yards and neglected areas; also crops and orchards/vineyards; districts with high summer temperatures and little competition (Weeds Australia, quoting Parsons & Cuthbertson 1992). PIRSA lists habitat simply as 'gardens, pastures'. HerbiGuide lists 'pastures, crops, vineyards, orchards, cotton, horticulture, roadsides, stockyards, bushland, parks, stock routes and disturbed areas'.",
+      "sources": [
+        {
+          "name": "AWRI (Australian Wine Research Institute) - Caltrop",
+          "url": "https://www.awri.com.au/industry_support/viticulture/weed-management/weeds/caltrop/",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Fertility",
+            "Organic matter",
+            "Disturbance",
+            "nutrients"
+          ]
+        },
+        {
+          "name": "PIRSA - Caltrop",
+          "url": "https://pir.sa.gov.au/crops-and-plants/weeds-and-plant-pests/declared-weeds/caltrop",
+          "used_for": [
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - Caltrop",
+          "url": "https://weeds.org.au/profiles/caltrop/",
+          "used_for": [
+            "Soil type",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Caltrop",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_caltrop.htm",
+          "used_for": [
+            "Soil type",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Victorian Weed Risk Assessment (VRO archive) - Caltrop",
+          "url": "https://soilhealth.ccmaknowledgebase.vic.gov.au/vro_archive/statewide/pages/invasive_caltrop.html",
+          "used_for": [
+            "Moisture"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Alternanthera pungens",
+      "common_names": [
+        "khaki weed",
+        "khakiweed",
+        "creeping chaffweed"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "NSW DPIRD: 'Plants prefer light soil with high soil moisture in spring and summer', and it has been 'found growing in ... native pastures with sandy soils'. Landscape SA (Kangaroo Island): 'prefers light soil'. Weeds Australia: grows 'mainly on light soils'. HerbiGuide: 'Light soils or loams mainly.' [Sources: NSW WeedWise (NSW DPIRD) - Khaki weed https://weeds.dpi.nsw.gov.au/Weed/75 - confidence: high; Landscape South Australia (Kangaroo Island Landscape Board) - Khaki weed factsheet https://www.landscape.sa.gov.au/ki/land-and-farming/pest-management/controlling-weeds/khaki-weed-alternanthera-pungens - confidence: high; Weeds Australia (CISS) - Khaki weed https://weeds.org.au/profiles/khaki-weed/ - confidence: high; HerbiGuide (AU) - Khaki weed https://www.herbiguide.com.au/descriptions/hg_khaki_weed.htm - confidence: medium]",
+        "Moisture": "Landscape SA: 'a summer growing perennial plant that prefers light soil, warm conditions and high soil moisture over spring and summer. It grows rapidly in irrigated pastures and crops.' NSW DPIRD: 'Plants prefer light soil with high soil moisture in spring and summer.' Indicates summer-moist / irrigated ground, not dryland. [Sources: Landscape South Australia (Kangaroo Island Landscape Board) - Khaki weed factsheet https://www.landscape.sa.gov.au/ki/land-and-farming/pest-management/controlling-weeds/khaki-weed-alternanthera-pungens - confidence: high; NSW WeedWise (NSW DPIRD) - Khaki weed https://weeds.dpi.nsw.gov.au/Weed/75 - confidence: high]",
+        "Disturbance": "Landscape SA: 'Infestations mostly occur where vehicles traverse and stock compound soil' (i.e. bare, compacted, stock-camped ground). NSW DPIRD lists 'stock routes and sale yards' and 'disturbed areas such as roadsides'. Weeds Australia: khaki weed 'does particularly well colonising bare or disturbed areas'. [Sources: Landscape South Australia (Kangaroo Island Landscape Board) - Khaki weed factsheet https://www.landscape.sa.gov.au/ki/land-and-farming/pest-management/controlling-weeds/khaki-weed-alternanthera-pungens - confidence: high; NSW WeedWise (NSW DPIRD) - Khaki weed https://weeds.dpi.nsw.gov.au/Weed/75 - confidence: high; Weeds Australia (CISS) - Khaki weed https://weeds.org.au/profiles/khaki-weed/ - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "Tropical, subtropical, semi-arid and warm temperate climates of NSW (all regions of NSW and all Australian states). Recorded in stock routes and sale yards, native pastures with sandy soils, grasslands, orchards, disturbed areas such as roadsides, urban gardens/lawns/parks/recreation areas, caravan parks and camping grounds (NSW DPIRD). Also irrigated pastures and crops, and around towns on nature strips, playing fields and saleyards (Landscape SA; Weeds Australia).",
+      "sources": [
+        {
+          "name": "NSW WeedWise (NSW DPIRD) - Khaki weed",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/75",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Landscape South Australia (Kangaroo Island Landscape Board) - Khaki weed factsheet",
+          "url": "https://www.landscape.sa.gov.au/ki/land-and-farming/pest-management/controlling-weeds/khaki-weed-alternanthera-pungens",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - Khaki weed",
+          "url": "https://weeds.org.au/profiles/khaki-weed/",
+          "used_for": [
+            "Soil type",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Khaki weed",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_khaki_weed.htm",
+          "used_for": [
+            "Soil type"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Silybum marianum",
+      "common_names": [
+        "variegated thistle",
+        "St Mary's thistle",
+        "milk thistle",
+        "bull thistle"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Fertility": "Landscape SA: variegated thistle 'prefers heavy, fertile soils with high nitrogen, needs bare or disturbed ground to germinate'. Weeds Australia: found on 'fertile soils of alluvial or volcanic origin'. Tasmanian Department of Agriculture research found S. marianum nitrate levels can exceed the 9200 ppm ruminant toxicity threshold 'in medium to high fertility soils' and in shade. [Sources: Landscape South Australia (Murraylands and Riverland Landscape Board) - Pest plant: Variegated thistle https://www.landscape.sa.gov.au/mr/publications/pest-plant-variegated-thistle - confidence: high; Weeds Australia (CISS) - Variegated thistle https://weeds.org.au/profiles/variegated-thistle/ - confidence: high; Harradine AR (1985), 'Accumulation of nitrate in Silybum marianum', Dept of Agriculture Tasmania, Agronomy Australia Proceedings https://www.agronomyaustraliaproceedings.org/images/sampledata/1985/concurrent/weeds/p-04.pdf - confidence: medium]",
+        "Soil type": "HerbiGuide: 'More abundant on granite derived soils, loams, black earths, volcanic, alluvial and fertile soils.' Weeds Australia: 'fertile soils of alluvial or volcanic origin, and on some sandy or sandy loam soils'. [Sources: HerbiGuide (AU) - Variegated thistle https://www.herbiguide.com.au/descriptions/hg_variegated_thistle.htm - confidence: medium; Weeds Australia (CISS) - Variegated thistle https://weeds.org.au/profiles/variegated-thistle/ - confidence: high]",
+        "Moisture": "Weeds Australia: 'found in well-watered temperate regions of southern Australia'. HerbiGuide: 'More abundant in wetter areas'; climate described as temperate/Mediterranean/sub-humid warm temperate. Landscape SA: germination follows autumn rain and the plant 'grows rapidly in spring'. [Sources: Weeds Australia (CISS) - Variegated thistle https://weeds.org.au/profiles/variegated-thistle/ - confidence: high; HerbiGuide (AU) - Variegated thistle https://www.herbiguide.com.au/descriptions/hg_variegated_thistle.htm - confidence: medium; Landscape South Australia (Murraylands and Riverland Landscape Board) - Pest plant: Variegated thistle https://www.landscape.sa.gov.au/mr/publications/pest-plant-variegated-thistle - confidence: high]",
+        "Disturbance": "Landscape SA: variegated thistle 'needs bare or disturbed ground to germinate'. Weeds Australia: 'common on sheep and cattle camps in pastures'; also 'cultivated land, roadsides, stockyards, and disturbed neglected areas and disturbed areas in woodlands and open forests'. Stock camps imply nutrient-enriched, bare, pugged ground. [Sources: Landscape South Australia (Murraylands and Riverland Landscape Board) - Pest plant: Variegated thistle https://www.landscape.sa.gov.au/mr/publications/pest-plant-variegated-thistle - confidence: high; Weeds Australia (CISS) - Variegated thistle https://weeds.org.au/profiles/variegated-thistle/ - confidence: high]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Nitrogen",
+          "relationship": "indicates high soil nitrogen / high fertility",
+          "detail": "Landscape SA states variegated thistle 'prefers heavy, fertile soils with high nitrogen'. Supporting Tasmanian Dept of Agriculture glasshouse work (Harradine 1985): leaf nitrate increased with applied nitrate and with shading, and concentrations toxic to ruminants (>9200 ppm NO3 dry weight) 'can be readily exceeded by S. marianum plants growing in shade and/or in medium to high fertility soils'. Note: the high-N relationship is a preference/habitat statement, not a calibrated soil test threshold.",
+          "source": "Landscape South Australia (Murraylands and Riverland Landscape Board)",
+          "url": "https://www.landscape.sa.gov.au/mr/publications/pest-plant-variegated-thistle",
+          "confidence": "high"
+        },
+        {
+          "nutrient": "Nitrogen",
+          "relationship": "nitrate accumulation in plant tissue increases with soil N and shade",
+          "detail": "Harradine (1985), Dept of Agriculture Tasmania: nitrate concentrations in S. marianum increased with increasing applied NO3 and under 50% light; toxicity threshold for ruminants (9200 ppm NO3 dry weight) 'can be readily exceeded ... in medium to high fertility soils'.",
+          "source": "Harradine AR (1985), Agronomy Australia Proceedings (Tasmanian Dept of Agriculture)",
+          "url": "https://www.agronomyaustraliaproceedings.org/images/sampledata/1985/concurrent/weeds/p-04.pdf",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Well-watered temperate regions of southern Australia; pasture (especially sheep and cattle camps), cultivated land, roadsides, stockyards, disturbed neglected areas, and disturbed areas in woodlands and open forests (Weeds Australia, quoting Parsons & Cuthbertson 1992). In SA it is a competitive pasture weed, worst in higher-rainfall agricultural districts (Landscape SA).",
+      "sources": [
+        {
+          "name": "Landscape South Australia (Murraylands and Riverland Landscape Board) - Variegated thistle",
+          "url": "https://www.landscape.sa.gov.au/mr/publications/pest-plant-variegated-thistle",
+          "used_for": [
+            "Fertility",
+            "Moisture",
+            "Disturbance",
+            "nutrients",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - Variegated thistle",
+          "url": "https://weeds.org.au/profiles/variegated-thistle/",
+          "used_for": [
+            "Fertility",
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Variegated thistle",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_variegated_thistle.htm",
+          "used_for": [
+            "Soil type",
+            "Moisture"
+          ]
+        },
+        {
+          "name": "Harradine AR (1985) - Accumulation of nitrate in Silybum marianum (Tasmanian Dept of Agriculture)",
+          "url": "https://www.agronomyaustraliaproceedings.org/images/sampledata/1985/concurrent/weeds/p-04.pdf",
+          "used_for": [
+            "Fertility",
+            "nutrients"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Asparagus asparagoides",
+      "common_names": [
+        "bridal creeper",
+        "bridal veil creeper",
+        "smilax",
+        "florist's smilax",
+        "smilax asparagus"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil pH": "Landscape SA (Northern and Yorke): bridal creeper 'can grow in most soils ... It is particularly vigorous in alkaline sandy soils and also thrives in areas high in nutrients such as creeks and drainage lines.' This is the only Australian pH statement found for this species; no numeric pH range was given. [Sources: Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf - confidence: high]",
+        "Soil type": "NSW DPIRD: 'Bridal creeper tolerates a wide range of soil types though it prefers light sand or loams.' HerbiGuide: 'Found on sand, sandy loam, sandy limestone, sandy clay soils, limestone formations, sandy coastal dunes and most other soils. Rare on heavy grey clay and laterite soils.' Landscape SA: 'can grow in most soils'. [Sources: NSW WeedWise (NSW DPIRD) - Bridal creeper https://weeds.dpi.nsw.gov.au/Weed/22 - confidence: high; HerbiGuide (AU) - Bridal creeper https://www.herbiguide.com.au/descriptions/hg_bridal_creeper.htm - confidence: medium; Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf - confidence: high]",
+        "Moisture": "NSW DPIRD: 'It thrives in well drained, moist, fertile soils'; it 'requires at least 350 mm of rain per year' and 'once the tubers develop it can tolerate droughts'. Landscape SA: 'thrives in areas high in nutrients such as creeks and drainage lines'; 'foliage dies off in summer due to lack of water, but tuber reserves enable bridal creeper to survive summer drought'. Weeds Australia: 'well-drained' soils. [Sources: NSW WeedWise (NSW DPIRD) - Bridal creeper https://weeds.dpi.nsw.gov.au/Weed/22 - confidence: high; Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf - confidence: high; Weeds Australia (CISS) - Bridal creeper https://weeds.org.au/profiles/bridal-creeper-veil/ - confidence: high]",
+        "Fertility": "NSW DPIRD: 'It thrives in well drained, moist, fertile soils.' Landscape SA: 'thrives in areas high in nutrients such as creeks and drainage lines'. Weeds Australia: 'preferring fertile, well-drained soils of light texture'. [Sources: NSW WeedWise (NSW DPIRD) - Bridal creeper https://weeds.dpi.nsw.gov.au/Weed/22 - confidence: high; Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf - confidence: high; Weeds Australia (CISS) - Bridal creeper https://weeds.org.au/profiles/bridal-creeper-veil/ - confidence: high]",
+        "Disturbance": "Mixed signal - do not treat as a reliable disturbance indicator. NSW DPIRD records it in 'a wide range of disturbed sites including roadsides and drains', but Landscape SA states 'unlike many other weeds, bridal creeper is capable of colonising undisturbed ecosystems'. NSW DPIRD also notes 'Plants mostly grow in part or full shade'. [Sources: NSW WeedWise (NSW DPIRD) - Bridal creeper https://weeds.dpi.nsw.gov.au/Weed/22 - confidence: high; Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "Subtropical to cool/warm temperate southern Australia; a Weed of National Significance in woodlands and along roadsides. NSW DPIRD: orchards but not usually cropping or grazing land; also roadsides and drains, sand dunes and coastal heath, mallee shrubland, eucalypt and banksia woodlands and forests, edges of waterways and swamps, littoral rainforest. Landscape SA: most common closer to the coast, invading woodlands and open coastal vegetation; creeks and drainage lines. HerbiGuide adds: found along creeks, Eucalyptus/Banksia woodlands, coastal heath, wet and dry sclerophyll forest, riparian vegetation.",
+      "sources": [
+        {
+          "name": "NSW WeedWise (NSW DPIRD) - Bridal creeper",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/22",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Fertility",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Landscape South Australia (Northern and Yorke Landscape Board) - Bridal creeper fact sheet",
+          "url": "https://www.landscape.sa.gov.au/files/sharedassets/northern_and_yorke/plants_and_animals/bridal-creeper-fact.pdf",
+          "used_for": [
+            "Soil pH",
+            "Soil type",
+            "Moisture",
+            "Fertility",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - Bridal creeper",
+          "url": "https://weeds.org.au/profiles/bridal-creeper-veil/",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Fertility"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Bridal creeper",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_bridal_creeper.htm",
+          "used_for": [
+            "Soil type",
+            "habitat"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Lycium ferocissimum",
+      "common_names": [
+        "African boxthorn",
+        "boxthorn"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "NSW DPIRD: 'Trees can grow on all soil types, though they grow best on well-drained, sandier soils along dry creek beds.' HerbiGuide: 'On many well drained soils. More abundant on red brown earths, loamy and clay soils. Establishes rapidly on dry creek beds.' Weeds Australia: grows in 'a huge variety of climates, habitats, soil types'. Practical reading: not a soil-type indicator, but strongest on well-drained, often sandy/alluvial creek-line soils. [Sources: NSW WeedWise (NSW DPIRD) - African boxthorn https://weeds.dpi.nsw.gov.au/Weed/1 - confidence: high; HerbiGuide (AU) - African boxthorn https://www.herbiguide.com.au/descriptions/hg_african_boxthorn.htm - confidence: medium; Weeds Australia (CISS) - African boxthorn https://weeds.org.au/profiles/african-boxthorn/ - confidence: high]",
+        "Moisture": "NSW DPIRD: 'African boxthorn is drought tolerant' and grows best on well-drained soils 'along dry creek beds'. HerbiGuide: 'Establishes rapidly on dry creek beds'; occurs in temperate, Mediterranean, sub-humid and semi-arid subtropical regions. Indicates dry, well-drained, drought-prone sites (creek lines, rangelands) rather than moist or waterlogged ground. [Sources: NSW WeedWise (NSW DPIRD) - African boxthorn https://weeds.dpi.nsw.gov.au/Weed/1 - confidence: high; HerbiGuide (AU) - African boxthorn https://www.herbiguide.com.au/descriptions/hg_african_boxthorn.htm - confidence: medium]",
+        "Disturbance": "Weeds Australia: 'It grows on waste-land, creek-beds, along waterways, fence-lines, roadsides, sandy and coastal areas, in woodlands, in rangelands and uncultivated pastures.' NSW DPIRD lists woodlands, rangelands and uncultivated pastures, open coastal areas, roadsides and waterways. Suggests heavily grazed/broken country and waste areas rather than a strict disturbance indicator. [Sources: Weeds Australia (CISS) - African boxthorn https://weeds.org.au/profiles/african-boxthorn/ - confidence: high; NSW WeedWise (NSW DPIRD) - African boxthorn https://weeds.dpi.nsw.gov.au/Weed/1 - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "Temperate, subtropical and semi-arid Australia; agricultural and native vegetation, waste-land, creek-beds, along waterways, fence-lines, roadsides, sandy and coastal areas, woodlands, rangelands and uncultivated pastures (Weeds Australia; NSW DPIRD). Common near the sea in SA (HerbiGuide). A Weed of National Significance. Note: Weeds Australia states the NATIVE Lycium australe - not L. ferocissimum - is the Lycium found on subsaline soils.",
+      "sources": [
+        {
+          "name": "NSW WeedWise (NSW DPIRD) - African boxthorn",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/1",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - African boxthorn",
+          "url": "https://weeds.org.au/profiles/african-boxthorn/",
+          "used_for": [
+            "Soil type",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - African boxthorn",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_african_boxthorn.htm",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "habitat"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Carduus pycnocephalus",
+      "common_names": [
+        "slender thistle",
+        "winged slender thistle",
+        "shore thistle",
+        "winged thistle",
+        "Italian thistle"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Fertility": "Weeds Australia (quoting Parsons & Cuthbertson 1992): slender thistle 'is found on moderately to highly fertile soils'; it invades 'pasture, crops and neglected areas with fertile soils and high rainfall'. [Sources: Weeds Australia (CISS) - Slender thistle https://weeds.org.au/profiles/slender-thistle-winged-2/ - confidence: high]",
+        "Moisture": "Weeds Australia: occurs 'in areas with predominantly winter rainfall, with annual rainfall in excess of 500 mm'. HerbiGuide: 'Sub humid warm temperate regions with a winter dominant rainfall of more than 500 mm.' Indicates the >500 mm winter-rainfall zone, not dry country. [Sources: Weeds Australia (CISS) - Slender thistle https://weeds.org.au/profiles/slender-thistle-winged-2/ - confidence: high; HerbiGuide (AU) - Slender thistle https://www.herbiguide.com.au/descriptions/hg_slender_thistle.htm - confidence: medium]",
+        "Soil type": "HerbiGuide: 'Prefers loams, gravels and sandy soils. Occurs on a wide range of soil types.' No Australian source found specifying pH, salinity or structural preference. [Sources: HerbiGuide (AU) - Slender thistle https://www.herbiguide.com.au/descriptions/hg_slender_thistle.htm - confidence: medium]",
+        "Disturbance": "Weeds Australia: 'It prefers improved pasture, neglected areas and areas of animal or mechanical disturbance within this climatic zone.' It also invades dry coastal vegetation, mallee shrubland, lowland grassland, grassy woodland, dry sclerophyll forest and rock outcrop vegetation 'following disturbance'. [Sources: Weeds Australia (CISS) - Slender thistle https://weeds.org.au/profiles/slender-thistle-winged-2/ - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "Cool temperate annual of southern Australia; mainly a weed of pastures (also competes with annual crops), improved pasture, neglected areas, and areas of animal or mechanical disturbance; invades native vegetation following disturbance (Weeds Australia, quoting Parsons & Cuthbertson 1992).",
+      "sources": [
+        {
+          "name": "Weeds Australia (CISS) - Slender thistle",
+          "url": "https://weeds.org.au/profiles/slender-thistle-winged-2/",
+          "used_for": [
+            "Fertility",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Slender thistle",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_slender_thistle.htm",
+          "used_for": [
+            "Moisture",
+            "Soil type"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Carduus nutans",
+      "common_names": [
+        "nodding thistle",
+        "musk thistle"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Fertility": "NSW DPI Primefact 923 (repeated on NSW WeedWise): 'It is usually found on soils of moderate to high fertility in areas with an annual rainfall of 500-900 mm.' [Sources: NSW DPI Primefact 923 - Nodding thistle https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0012/320016/Nodding-thistle.pdf - confidence: high; NSW WeedWise (NSW DPIRD) - Nodding thistle https://weeds.dpi.nsw.gov.au/Weed/95 - confidence: high]",
+        "Moisture": "NSW DPI: annual rainfall 500-900 mm, and seed 'can germinate at any time of the year provided there is moisture available'. Weeds Australia (citing DPI NSW 2019): found 'on well-drained sites'. HerbiGuide: 'Prefers moist, highly fertile, well drained sites.' Indicates moist but well-drained, cooler high-rainfall country (it requires vernalisation/chilling). [Sources: NSW DPI Primefact 923 - Nodding thistle https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0012/320016/Nodding-thistle.pdf - confidence: high; Weeds Australia (CISS) - Nodding thistle https://weeds.org.au/profiles/nodding-thistle/ - confidence: high; HerbiGuide (AU) - Nodding thistle https://www.herbiguide.com.au/descriptions/hg_nodding_thistle.htm - confidence: medium]",
+        "Soil type": "HerbiGuide: nodding thistle 'grows on a wide range of soil types'; Weeds Australia places it in open situations such as pasture, road edges and grasslands in temperate Australia. [Sources: HerbiGuide (AU) - Nodding thistle https://www.herbiguide.com.au/descriptions/hg_nodding_thistle.htm - confidence: medium; Weeds Australia (CISS) - Nodding thistle https://weeds.org.au/profiles/nodding-thistle/ - confidence: high]",
+        "Disturbance": "NSW DPI: 'the development of bare patches, particularly during peak germination time, provides an ideal habitat for nodding thistle establishment'; it 'is intolerant of competition for light, particularly during the germination stage'. Weeds Australia: 'The presence of disturbed sites in pastures and native grasslands at the end of summer favours its establishment.' [Sources: NSW DPI Primefact 923 - Nodding thistle https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0012/320016/Nodding-thistle.pdf - confidence: high; Weeds Australia (CISS) - Nodding thistle https://weeds.org.au/profiles/nodding-thistle/ - confidence: high]",
+        "Soil pH": "HerbiGuide states nodding thistle 'prefers dry alkaline soils in its native range'. This is explicitly about its native (European) range and is NOT evidence that it indicates alkaline soils in Australia - flagged as low confidence for AU use, and no Australian source stating a pH preference was found. [Sources: HerbiGuide (AU) - Nodding thistle https://www.herbiguide.com.au/descriptions/hg_nodding_thistle.htm - confidence: low]"
+      },
+      "nutrients": [],
+      "habitat": "Cool temperate Australia only, because it requires vernalisation (chilling) to flower - about one million hectares of the NSW tablelands plus small areas in the ACT, Victoria and Tasmania. An aggressive competitor of pastures; occurs in dense patches, not readily grazed; open situations such as pasture, road edges and grasslands, in areas of 500-900 mm annual rainfall (NSW DPI; Weeds Australia).",
+      "sources": [
+        {
+          "name": "NSW DPI Primefact 923 - Nodding thistle",
+          "url": "https://www.dpi.nsw.gov.au/__data/assets/pdf_file/0012/320016/Nodding-thistle.pdf",
+          "used_for": [
+            "Fertility",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "NSW WeedWise (NSW DPIRD) - Nodding thistle",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/95",
+          "used_for": [
+            "Fertility"
+          ]
+        },
+        {
+          "name": "Weeds Australia (CISS) - Nodding thistle",
+          "url": "https://weeds.org.au/profiles/nodding-thistle/",
+          "used_for": [
+            "Moisture",
+            "Soil type",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Nodding thistle",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_nodding_thistle.htm",
+          "used_for": [
+            "Moisture",
+            "Soil type",
+            "Soil pH"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Cucumis myriocarpus",
+      "common_names": [
+        "paddy melon",
+        "prickly paddy melon",
+        "prickly paddymelon",
+        "gooseberry cucumber"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "Flora SA (Board of Botanic Gardens and State Herbarium, SA): 'Grows in disturbed sites in various soils, often as a weed of cultivation or pasture.' HerbiGuide: 'Common on sandy, alluvial, clay and loam soils and gilgai depressions or flats that are occasionally flooded.' [Sources: Flora SA (SA Herbarium) - Cucumis myriocarpus https://flora.sa.gov.au/taxon/71304-cucumis-myriocarpus - confidence: high; HerbiGuide (AU) - Prickly Paddymelon https://www.herbiguide.com.au/descriptions/hg_prickly_paddymelon.htm - confidence: medium]",
+        "Moisture": "HerbiGuide: associated with 'gilgai depressions or flats that are occasionally flooded' and 'Prefers bare disturbed areas with summer moisture'; 'often abundant after summer rains'. WeedScan lists habitat as 'Grassy areas, open woodlands, roadsides, streams'. [Sources: HerbiGuide (AU) - Prickly Paddymelon https://www.herbiguide.com.au/descriptions/hg_prickly_paddymelon.htm - confidence: medium; WeedScan (Centre for Invasive Species Solutions) - Prickly paddy melon https://weedscan.org.au/Weed?Id=144 - confidence: medium]",
+        "Disturbance": "Flora SA: 'Grows in disturbed sites'. HerbiGuide: 'Prefers bare disturbed areas with summer moisture'; a weed of 'fallows, stubbles, pastures, roadsides, summer moist areas, firebreaks, water courses, stock yards and summer crops'. [Sources: Flora SA (SA Herbarium) - Cucumis myriocarpus https://flora.sa.gov.au/taxon/71304-cucumis-myriocarpus - confidence: high; HerbiGuide (AU) - Prickly Paddymelon https://www.herbiguide.com.au/descriptions/hg_prickly_paddymelon.htm - confidence: medium]"
+      },
+      "nutrients": [],
+      "habitat": "Disturbed sites, cultivation and pasture across WA, NT, Qld, NSW, Vic, Tas and SA; grassy areas, open woodlands, roadsides and streams (WeedScan); fallows, stubbles, pastures, roadsides, summer-moist areas, firebreaks, water courses, stock yards and summer crops (HerbiGuide). NOTE ON NAMING: 'camel melon' is used in Australia for the related Citrullus lanatus (Afghan melon), a different species from Cucumis myriocarpus; the indicator data recorded here is for Cucumis myriocarpus (paddy melon / prickly paddy melon) only.",
+      "sources": [
+        {
+          "name": "Flora SA (Board of Botanic Gardens and State Herbarium) - Cucumis myriocarpus",
+          "url": "https://flora.sa.gov.au/taxon/71304-cucumis-myriocarpus",
+          "used_for": [
+            "Soil type",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Prickly Paddymelon",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_prickly_paddymelon.htm",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "WeedScan (CISS) - Prickly paddy melon",
+          "url": "https://weedscan.org.au/Weed?Id=144",
+          "used_for": [
+            "Moisture",
+            "habitat"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Dittrichia graveolens",
+      "common_names": [
+        "stinkwort",
+        "stinkweed",
+        "stink-weed",
+        "camphor inula",
+        "khaki weed (WA)"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "Weeds Australia (citing State of Queensland 2016): stinkwort grows 'mainly on sandy or otherwise light-textured soils'. HerbiGuide: 'Prefers light textured soils'. WA DWER: 'It occurs on a variety of soils'. [Sources: Weeds Australia (CISS) - Stinkwort https://weeds.org.au/profiles/stinkwort-stinkweed-stink/ - confidence: high; HerbiGuide (AU) - Stinkwort https://www.herbiguide.com.au/descriptions/hg_stinkwort.htm - confidence: medium; WA Department of Water and Environmental Regulation (DWER) - Red Dam project supporting information (Dittrichia graveolens) https://ftp.dwer.wa.gov.au/permit/5676/Supporting%20Information%20(1).pdf - confidence: medium]",
+        "Moisture": "Weeds Australia: found on 'railway reserves, river flats, grazing land, with a preference for depressions'; climate described as temperate Mediterranean-type with 300-800 mm annual rainfall falling predominantly in winter. HerbiGuide: 'Prefers light textured soils, depressions or winter flooded areas.' [Sources: Weeds Australia (CISS) - Stinkwort https://weeds.org.au/profiles/stinkwort-stinkweed-stink/ - confidence: high; HerbiGuide (AU) - Stinkwort https://www.herbiguide.com.au/descriptions/hg_stinkwort.htm - confidence: medium]",
+        "Disturbance": "Weeds Australia (citing State of Queensland 2016): 'It grows in virtually any open, disturbed sites, such as overgrazed pastures, roadsides and vacant lots ... It typically colonises bare sites where there is poor competition from other plants.' WA DWER: 'commonly a weed of waste grounds, along rivers and roadsides'. [Sources: Weeds Australia (CISS) - Stinkwort https://weeds.org.au/profiles/stinkwort-stinkweed-stink/ - confidence: high; WA Department of Water and Environmental Regulation (DWER) - Red Dam project supporting information https://ftp.dwer.wa.gov.au/permit/5676/Supporting%20Information%20(1).pdf - confidence: medium]"
+      },
+      "nutrients": [],
+      "habitat": "Cool to warm temperate southern Australia (Mediterranean-type climate, 300-800 mm winter-dominant rainfall). Open disturbed sites: overgrazed pastures, roadsides, vacant lots, railway reserves, river flats, grazing land, with a preference for depressions; also spread as a contaminant of sand and gravel (Weeds Australia, citing State of Queensland 2016 / Jeanes 1999 / Parsons & Cuthbertson 2001).",
+      "sources": [
+        {
+          "name": "Weeds Australia (CISS) - Stinkwort",
+          "url": "https://weeds.org.au/profiles/stinkwort-stinkweed-stink/",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "HerbiGuide (AU) - Stinkwort",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_stinkwort.htm",
+          "used_for": [
+            "Soil type",
+            "Moisture"
+          ]
+        },
+        {
+          "name": "WA DWER - Red Dam supporting information (Dittrichia graveolens)",
+          "url": "https://ftp.dwer.wa.gov.au/permit/5676/Supporting%20Information%20(1).pdf",
+          "used_for": [
+            "Soil type",
+            "Disturbance"
+          ]
+        },
+        {
+          "name": "Queensland DAF - Dittrichia graveolens risk assessment (cited via Weeds Australia; PDF not directly retrievable)",
+          "url": "https://www.daf.qld.gov.au/__data/assets/pdf_file/0018/58005/IPA-Dittricha-Graveolens-Risk-Assessment.pdf",
+          "used_for": [
+            "Soil type",
+            "Disturbance",
+            "habitat (as quoted by Weeds Australia)"
+          ]
+        }
+      ]
+    },
+    {
+      "scientific_name": "Moraea flaccida",
+      "common_names": [
+        "cape tulip",
+        "one-leaf cape tulip",
+        "one leaf cape tulip"
+      ],
+      "region": "Australia",
+      "indicators": {
+        "Soil type": "SA PIRSA Declared Plant Policy: 'Cape tulips invade cleared land on soils ranging from sands to heavy waterlogged clays'; 'The main sites open to infestation are pasture paddocks on heavy soils.' NSW DPIRD: 'They can grow in a wide range of soil types.' [Sources: PIRSA (SA Dept of Primary Industries and Regions) - Declared Plant Policy: one-leaf Cape tulip (Moraea flaccida) https://www.pir.sa.gov.au/__data/assets/pdf_file/0017/223208/oneleaf_cape_tulip_policy.pdf - confidence: high; NSW WeedWise (NSW DPIRD) - Cape tulip, one leaf https://weeds.dpi.nsw.gov.au/Weed/31 - confidence: high]",
+        "Moisture": "PIRSA: soils 'ranging from sands to heavy waterlogged clays'; 'It requires winter rainfall, and is poorly adapted to lower rainfall areas.' NSW DPIRD: 'They prefer full sun and areas with less than 600 mm of annual rainfall' and shoots appear 'following autumn rain when soil temperatures are still high'. Indicates winter-wet, heavy soils in the <600 mm winter-rainfall zone. [Sources: PIRSA (SA Dept of Primary Industries and Regions) - Declared Plant Policy: one-leaf Cape tulip https://www.pir.sa.gov.au/__data/assets/pdf_file/0017/223208/oneleaf_cape_tulip_policy.pdf - confidence: high; NSW WeedWise (NSW DPIRD) - Cape tulip, one leaf https://weeds.dpi.nsw.gov.au/Weed/31 - confidence: high]",
+        "Disturbance": "PIRSA: cape tulips 'invade cleared land on soils ranging from sands to heavy waterlogged clays but cannot compete under dense tree or shrub cover'. NSW DPIRD lists 'pastures and native grasslands, cropping land, open bushlands, heathlands, dry coastal areas, disturbed sites such as roadsides, tracks, stock routes and fire trails'. PIRSA: main sites are 'pasture paddocks on heavy soils'; it is 'locally important as a toxic pasture weed' and increases under grazing because it is unpalatable. [Sources: PIRSA (SA Dept of Primary Industries and Regions) - Declared Plant Policy: one-leaf Cape tulip https://www.pir.sa.gov.au/__data/assets/pdf_file/0017/223208/oneleaf_cape_tulip_policy.pdf - confidence: high; NSW WeedWise (NSW DPIRD) - Cape tulip, one leaf https://weeds.dpi.nsw.gov.au/Weed/31 - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "Cleared grazing land in the higher-rainfall (>~600 mm winter-rainfall) agricultural zones of southern Australia: SA (Hills and Fleurieu, Kangaroo Island, Limestone Coast, Yorke Peninsula, Murray Mallee) and NSW (Greater Sydney, North West, Murray, Riverina, South East regions). Pastures and native grasslands, cropping land, open bushlands, heathlands, dry coastal areas, roadsides, tracks, stock routes and fire trails. Increases under grazing because it is unpalatable and toxic (PIRSA; NSW DPIRD).",
+      "sources": [
+        {
+          "name": "PIRSA (SA Dept of Primary Industries and Regions) - Declared Plant Policy: one-leaf Cape tulip",
+          "url": "https://www.pir.sa.gov.au/__data/assets/pdf_file/0017/223208/oneleaf_cape_tulip_policy.pdf",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        },
+        {
+          "name": "NSW WeedWise (NSW DPIRD) - Cape tulip, one leaf",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/31",
+          "used_for": [
+            "Soil type",
+            "Moisture",
+            "Disturbance",
+            "habitat"
+          ]
+        }
+      ]
+    }
+  ],
+  "not_found": [
+    "Soil pH - no Australian source found stating a pH preference for Tribulus terrestris, Alternanthera pungens, Silybum marianum, Lycium ferocissimum, Carduus pycnocephalus, Cucumis myriocarpus, Dittrichia graveolens or Moraea flaccida. Only Asparagus asparagoides has an AU pH statement ('particularly vigorous in alkaline sandy soils', Landscape SA - Northern and Yorke), and Carduus nutans has only a native-range statement ('prefers dry alkaline soils in its native range', HerbiGuide) which is not evidence for Australia. No numeric pH ranges were stated by any Australian source.",
+    "Salinity / sodicity - no Australian source found linking any of the 10 species to soil salinity or sodicity as an indicator. (Weeds Australia notes the NATIVE Lycium australe, not L. ferox, is the Lycium species found on subsaline soils.) No numeric EC/ESP data found.",
+    "Structure / compaction - no Australian source found linking any of the 10 species to compaction or structural decline. Related statements are about soil texture (e.g. 'light sandy soils', 'heavy clay') and are recorded under 'Soil type'. The only compaction-adjacent Australian wording found is Landscape SA's khaki weed note that infestations occur 'where vehicles traverse and stock compound soil' - recorded under 'Disturbance'.",
+    "Nutrients - nutrient-specific relationship claims were found only for Tribulus terrestris (AWRI soil-indicator list: low calcium, very low potassium and organic matter, high phosphorus, magnesium, iron, aluminium) and Silybum marianum (Landscape SA: high nitrogen; Harradine 1985: nitrate accumulation in medium-high fertility soils). For the other eight species no Australian source specified a nutrient relationship.",
+    "Source-access limitations - dpi.nsw.gov.au, pir.sa.gov.au, agriculture.vic.gov.au, daf.qld.gov.au and flora.sa.gov.au block direct automated retrieval (HTTP 403 / bot challenge); where a source is cited from those domains it was retrieved via a text-extraction proxy or is quoted verbatim by Weeds Australia. The Queensland DAF Dittrichia graveolens risk assessment could not be retrieved directly at all and is cited only as quoted by Weeds Australia.",
+    "Confidence caveat - AWRI's caltrop 'soil indicator' list is published without a primary citation (the page's linked resource is HerbiGuide), so all caltrop nutrient claims are recorded as medium confidence. HerbiGuide is an Australian commercial weed-identification service compiled from Parsons & Cuthbertson, Auld & Medd and state herbarium records; its claims are recorded as medium confidence unless corroborated by a government source.",
+    "All 10 requested species had at least some sourced Australian indicator data - no species was left without indicators."
+  ]
+}

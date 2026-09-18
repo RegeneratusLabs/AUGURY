@@ -1,0 +1,312 @@
+{
+  "species": [
+    {
+      "scientific_name": "Nassella trichotoma",
+      "common_names": ["serrated tussock", "Yass River tussock", "serrated tussock grass"],
+      "region": "Australia",
+      "indicators": {
+        "Soil pH": "Weeds Australia states serrated tussock 'will grow in acid soils', so its presence is compatible with acidic soils; no alkaline limit is given. NSW WeedWise gives no pH figure and no Australian source consulted stated a numeric pH range. [Sources: Weeds Australia (CISS) - Serrated Tussock profile https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high]",
+        "Moisture": "Occupies both dry and moist ground - Weeds Australia places it 'on low-fertility and dry soils' as well as on 'fertile moist flats' - and it is drought tolerant, with drought-caused bare ground favouring it. Its distribution is 'limited by salinity and / or water-logging', so its presence indicates ground that is not waterlogged. [Sources: Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high; NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high]",
+        "Fertility": "Indicates low soil fertility / nutrient-poor soil. NSW WeedWise states 'Sandy, nutrient poor soils are at most risk' of invasion, and Weeds Australia lists 'low-fertility and dry soils' among the situations it grows on (while noting it also grows on 'rich to poor degraded soils'). [Sources: NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high; Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high]",
+        "Salinity": "Indicates non-saline soil. NSW WeedWise lists 'saline soils or salty areas' among the situations serrated tussock 'does not grow well in', and Weeds Australia states its distribution 'is limited by salinity'. [Sources: NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high; Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high]",
+        "Soil type": "Tolerates 'shallow soil if it is not in competition with other plants' and grows on 'soils derived from basalt, granite, shale, slate and sandstone' (NSW WeedWise). Weeds Australia describes it as 'adapted to a wide range of climates and soil types', growing 'from steep, rocky and timbered areas, on low-fertility and dry soils, to fertile moist flats'. No single texture preference is stated by either source. [Sources: NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high; Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high]",
+        "Disturbance": "A strong bare-ground/disturbance indicator. NSW WeedWise: 'Serrated tussock colonises bare areas. Drought causing bare ground favours serrated tussock.' Weeds Australia: it 'quickly colonises bare ground and disturbed areas such as roadsides, overgrazed pastures or cultivated situations', and its seedlings are 'usually out-competed by other plants, but become competitive under conditions of drought or overstocking when more favourable pasture species are consumed by stock'. [Sources: NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high; Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "General fertility / nutrient status",
+          "relationship": "indicates low soil fertility (nutrient-poor soils most at risk)",
+          "detail": "NSW WeedWise: 'Sandy, nutrient poor soils are at most risk.' Weeds Australia lists low-fertility soils among its habitats. NSW WeedWise also cites Badgery et al. (2005), 'Competition for nitrogen between Australian native grasses and the introduced weed Nassella trichotoma' (Annals of Botany 96, 799-809), indicating nitrogen competition is a researched interaction, but the page text itself makes no nitrogen-status indicator claim.",
+          "source": "NSW WeedWise - Serrated tussock",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/123",
+          "confidence": "high"
+        }
+      ],
+      "habitat": "Temperate south-eastern Australia (far north-eastern NSW south to Victoria and eastern Tasmania), on pastures, native grasslands, open scrub and woodland, roadsides, overgrazed pastures and cultivated situations; cool temperate areas with 450-1000 mm annual rainfall, on all terrain and aspects, from steep rocky timbered country to fertile moist flats; also invades urban roadsides, railways, power-line easements and reserves. [Sources: Weeds Australia (CISS) - Serrated Tussock https://weeds.org.au/profiles/serrated-tussock-yass/ - confidence: high; NSW WeedWise - Serrated tussock https://weeds.dpi.nsw.gov.au/Weed/123 - confidence: high]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD)", "url": "https://weeds.dpi.nsw.gov.au/Weed/123", "used_for": ["Moisture", "Fertility", "Salinity", "Soil type", "Disturbance", "habitat"]},
+        {"name": "Weeds Australia (CISS) - Serrated Tussock profile", "url": "https://weeds.org.au/profiles/serrated-tussock-yass/", "used_for": ["Soil pH", "Moisture", "Fertility", "Salinity", "Soil type", "Disturbance", "habitat"]},
+        {"name": "HerbiGuide - Serrated Tussock", "url": "https://www.herbiguide.com.au/descriptions/hg_serrated_tussock.htm", "used_for": ["habitat (weed of pasture, lightly timbered areas, open grazing country, roadsides and waste places; deep fibrous root system)"]}
+      ]
+    },
+    {
+      "scientific_name": "Lolium rigidum",
+      "common_names": ["annual ryegrass", "rigid ryegrass", "Wimmera ryegrass", "stiff darnel"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "A winter-growing annual of temperate southern Australia that 'prefers hot dry summers and mild wet winters' (HerbiGuide). The GRDC integrated weed management manual describes it as 'a winter fallow and crop weed due to its soil moisture preference and effect on crop yield loss', well adapted to 'the winter rainfall regions of southern Australia, which are characterised by hot, dry summers and mild, wet winters', with 'the majority of shallowly buried seed will germinate in autumn and early winter, when undisturbed conditions favour seedling survival' and peak germination (80% of seeds) 'at the break of season after the first two falls of rain that exceed 20 mm'. [Sources: HerbiGuide - Annual Ryegrass https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm - confidence: medium; GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019), PDF hosted by WeedSmart https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf - confidence: high]",
+        "Soil type": "HerbiGuide: 'Prefers heavy soils. Common on sandy, loamy red and heavy grey clays.' Also notes emergence behaviour differs by texture - 'On heavy soils the maximum emergence occurs on undisturbed areas whereas in light soils a shallow cultivation increases emergence substantially.' The GRDC integrated weed management manual adds that it 'is well adapted to most soil types in the winter rainfall regions of southern Australia'. [Sources: HerbiGuide - Annual Ryegrass https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm - confidence: medium]",
+        "Disturbance": "An indicator of cultivated, disturbed and fallow land rather than intact vegetation. HerbiGuide lists it as a 'Weed of rotation crops, perennial crops, fallows, gardens, lawns and disturbed areas', and notes that on non-wetting soils germination conditions may not occur, causing seed carry-over, and that 'there may be greater Annual Ryegrass seed carry over into the following season in undisturbed (zero tillage) areas'. Lucid/Weeds of Australia records it as a widespread weed of crops that 'also invades natural vegetation' and is an environmental weed in Victoria and Western Australia. [Sources: HerbiGuide - Annual Ryegrass https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm - confidence: medium; Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Lolium rigidum https://keyserver.lucidcentral.org/weeds/data/media/Html/lolium_rigidum.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Nitrogen",
+          "relationship": "strong early competitor for soil nitrogen (competition effect, not a soil-status indicator)",
+          "detail": "HerbiGuide: 'It can start competing with cereals for nitrogen by the 2 leaf stage of the crop.' This describes the weed's competitive uptake of nitrogen rather than nitrogen status as an indicator of its presence; no Australian source found states that annual ryegrass indicates a particular soil nitrogen level.",
+          "source": "HerbiGuide - Annual Ryegrass",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Widely naturalised in southern, central and eastern Australia and most widespread in NSW, the ACT, Victoria, Tasmania, South Australia and south-western WA; a major weed of winter crops, pastures, fallows, gardens, lawns and disturbed areas, and also an environmental weed invading natural vegetation in Victoria and Western Australia. [Sources: Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Lolium rigidum https://keyserver.lucidcentral.org/weeds/data/media/Html/lolium_rigidum.htm - confidence: medium; HerbiGuide - Annual Ryegrass https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm - confidence: medium]",
+      "sources": [
+        {"name": "HerbiGuide - Annual Ryegrass", "url": "https://www.herbiguide.com.au/descriptions/hg_annual_ryegrass.htm", "used_for": ["Moisture", "Soil type", "Disturbance", "habitat"]},
+        {"name": "GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019)", "url": "https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf", "used_for": ["Moisture", "habitat (winter cropping systems of southern Australia)"]},
+        {"name": "Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server", "url": "https://keyserver.lucidcentral.org/weeds/data/media/Html/lolium_rigidum.htm", "used_for": ["Disturbance", "habitat"]}
+      ]
+    },
+    {
+      "scientific_name": "Avena fatua",
+      "common_names": ["wild oat", "wild oats", "black oat", "spring wild oat", "oat grass"],
+      "region": "Australia",
+      "indicators": {
+        "Soil pH": "HerbiGuide states wild oat 'grows on a wide range of soil acidities from pH 4.5-9' - i.e. it is not a useful pH indicator, spanning strongly acidic to alkaline soils. [Sources: HerbiGuide - Wild Oats https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm - confidence: medium]",
+        "Moisture": "Germination is moisture-driven: HerbiGuide records that it 'germinates from autumn to spring with a flush in autumn and is dependent on moisture, soil disturbance, temperature and short term dormancy', with little germination above 27 degrees C. Lucid/Weeds of Australia notes it 'is a common weed of wetlands in the southern parts of Western Australia'. [Sources: HerbiGuide - Wild Oats https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm - confidence: medium; Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Avena fatua https://keyserver.lucidcentral.org/weeds/data/media/Html/avena_fatua.htm - confidence: medium]",
+        "Soil type": "HerbiGuide: 'Found on most soil types, but prefers the heavy grey clays and in particular the self mulching soils.' The GRDC integrated weed management manual states that 'soil type doesn't greatly influence the weed's distribution although wild oats can emerge from a greater depth in lighter textured soils' - i.e. heavy clays are preferred but lighter textured soils allow deeper emergence. [Sources: HerbiGuide - Wild Oats https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm - confidence: medium; GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019), PDF hosted by WeedSmart https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf - confidence: high]",
+        "Disturbance": "Indicates cultivation and disturbed ground. HerbiGuide lists its habitat as 'Roadsides, cultivated crops and disturbed areas' and notes seed is returned to the surface by tillage; Lucid/Weeds of Australia describes it as 'a common weed of roadsides, railway lines, disturbed sites, waste areas, parks, gardens and disturbed and undisturbed natural habitats (e.g. grasslands, shrublands, open woodlands and along waterways)'. [Sources: HerbiGuide - Wild Oats https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm - confidence: medium; Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Avena fatua https://keyserver.lucidcentral.org/weeds/data/media/Html/avena_fatua.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "General fertility / fertiliser response",
+          "relationship": "no consistent nutrient-status relationship established",
+          "detail": "HerbiGuide: 'Fertilisers and their placement have had variable results on the effects of Wild Oats on crops. Banding fertiliser generally benefits the crop.' Recorded here as a negative finding - no Australian source was found stating that wild oat indicates a particular soil nutrient level.",
+          "source": "HerbiGuide - Wild Oats",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Very widely naturalised in southern and eastern Australia (throughout NSW, Victoria, Tasmania, the ACT, southern South Australia and south-western/western WA, plus semi-arid and sub-tropical regions); a major weed of cereal crops and a common weed of roadsides, railway lines, disturbed sites, waste areas, parks, gardens, grasslands, shrublands, open woodlands and waterways, and an environmental weed in NSW, Victoria, South Australia and Western Australia. [Sources: Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Avena fatua https://keyserver.lucidcentral.org/weeds/data/media/Html/avena_fatua.htm - confidence: medium]",
+      "sources": [
+        {"name": "HerbiGuide - Wild Oats", "url": "https://www.herbiguide.com.au/descriptions/hg_wild_oat.htm", "used_for": ["Soil pH", "Moisture", "Soil type", "Disturbance", "nutrients"]},
+        {"name": "GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019)", "url": "https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf", "used_for": ["Soil type"]},
+        {"name": "Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server", "url": "https://keyserver.lucidcentral.org/weeds/data/media/Html/avena_fatua.htm", "used_for": ["Moisture", "Disturbance", "habitat"]}
+      ]
+    },
+    {
+      "scientific_name": "Ulex europaeus",
+      "common_names": ["gorse", "furze", "whin"],
+      "region": "Australia",
+      "indicators": {
+        "Soil pH": "HerbiGuide: gorse is 'Most abundant on fertile acidic soils and tends to avoid the calcareous soils' - i.e. it indicates acidic, non-calcareous ground. No numeric pH range was stated by any Australian source consulted. [Sources: HerbiGuide - Gorse https://www.herbiguide.com.au/descriptions/hg_gorse.htm - confidence: medium]",
+        "Moisture": "NSW WeedWise: 'Gorse grows across a wide range of rainfall and soil conditions' and 'grows in full sun to moderate shade'. Weeds Australia places it in 'higher rainfall areas' with rainfall from 450-2400 mm, and HerbiGuide notes it 'tolerates drought and salt laden winds' (a wind-exposure statement, not a soil-salinity statement). [Sources: NSW WeedWise - Gorse https://weeds.dpi.nsw.gov.au/Weed/gorse - confidence: high; Weeds Australia (CISS) - Gorse profile https://weeds.org.au/profiles/gorse-furze/ - confidence: high; HerbiGuide - Gorse https://www.herbiguide.com.au/descriptions/hg_gorse.htm - confidence: medium]",
+        "Fertility": "Associated with fertile soils: HerbiGuide states gorse is most abundant on 'fertile acidic soils'. It is also a nitrogen-fixing legume, so it can colonise and then enrich low-nitrogen sites rather than indicating high soil nitrogen. [Sources: HerbiGuide - Gorse https://www.herbiguide.com.au/descriptions/hg_gorse.htm - confidence: medium]",
+        "Soil type": "HerbiGuide: 'Grows well on most soils from light sands to heavy clays' - i.e. a wide soil-texture tolerance rather than a texture indicator. [Sources: HerbiGuide - Gorse https://www.herbiguide.com.au/descriptions/hg_gorse.htm - confidence: medium]",
+        "Disturbance": "Indicates disturbed, neglected and unimproved land. NSW WeedWise lists 'disturbed sites such as roadsides, along railway lines, in quarries and mine sites', and notes 'significant germination and survival events also occur after fire or soil disturbance'. Weeds Australia describes it as 'an invasive weed of unimproved grazing land, neglected sites, roadsides and forest margins'. HerbiGuide describes gorse as 'a primary coloniser'. [Sources: NSW WeedWise - Gorse https://weeds.dpi.nsw.gov.au/Weed/gorse - confidence: high; Weeds Australia (CISS) - Gorse profile https://weeds.org.au/profiles/gorse-furze/ - confidence: high; HerbiGuide - Gorse https://www.herbiguide.com.au/descriptions/hg_gorse.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Nitrogen",
+          "relationship": "nitrogen-fixing; grows across both low- and high-nitrogen soils",
+          "detail": "HerbiGuide: 'Fixes atmospheric nitrogen.' Also: 'In low N conditions most of the N in the plant comes from fixed N whereas in high N conditions most of the N comes from root uptake from the soil', and 'Grows more rapidly when fertiliser N supplied'. So gorse does not indicate a particular soil nitrogen status - it adds nitrogen to the site.",
+          "source": "HerbiGuide - Gorse",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_gorse.htm",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Phosphorus",
+          "relationship": "responds to phosphorus fertilisation (growth and nodulation increase)",
+          "detail": "HerbiGuide: 'P fertilisation gives increase shoot and root growth and increased nodulation and N and K have little effect.' This is a growth-response finding, not a claim that gorse indicates soil phosphorus status.",
+          "source": "HerbiGuide - Gorse",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_gorse.htm",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "Potassium",
+          "relationship": "little growth response to potassium",
+          "detail": "HerbiGuide records that N and K 'have little effect' on gorse shoot and root growth and nodulation, in contrast to phosphorus. No indication of soil potassium status.",
+          "source": "HerbiGuide - Gorse",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_gorse.htm",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Cool to warm temperate southern Australia with 450-2400 mm rainfall; a major agricultural weed in Tasmania and parts of Victoria, invading unimproved, semi-improved and improved pastures, neglected cropping land, roadsides, railway lines, quarries, mine sites, forest margins, riparian zones, heathland, lowland grassland, grassy woodland and dry and damp sclerophyll forest. In NSW the largest infestations are on the Southern and Central Tablelands. [Sources: NSW WeedWise - Gorse https://weeds.dpi.nsw.gov.au/Weed/gorse - confidence: high; Weeds Australia (CISS) - Gorse profile https://weeds.org.au/profiles/gorse-furze/ - confidence: high]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - Gorse", "url": "https://weeds.dpi.nsw.gov.au/Weed/gorse", "used_for": ["Moisture", "Disturbance", "habitat"]},
+        {"name": "Weeds Australia (CISS) - Gorse profile", "url": "https://weeds.org.au/profiles/gorse-furze/", "used_for": ["Moisture", "Disturbance", "habitat"]},
+        {"name": "HerbiGuide - Gorse", "url": "https://www.herbiguide.com.au/descriptions/hg_gorse.htm", "used_for": ["Soil pH", "Moisture", "Fertility", "Soil type", "Disturbance", "nutrients"]}
+      ]
+    },
+    {
+      "scientific_name": "Salvinia molesta",
+      "common_names": ["salvinia", "giant salvinia", "kariba weed", "water fern", "giant aquarium plant"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "A free-floating aquatic fern - an indicator of standing or slow-moving fresh water, not of soil. NSW WeedWise: 'It grows best in warm fresh water that is still or slow-flowing and has high nutrient levels.' Weeds Australia: 'usually found in still or slow-moving water bodies with high nutrient levels normally favouring warmer climates, but is found growing in cooler temperate southern Australia', with growth limited or absent under 10 degrees C. [Sources: NSW WeedWise - Salvinia https://weeds.dpi.nsw.gov.au/Weed/salvinia - confidence: high; Weeds Australia (CISS) - Salvinia profile https://weeds.org.au/profiles/salvinia-giant-aquarium/ - confidence: high]",
+        "Fertility": "Indicates high nutrient (eutrophic) water. NSW WeedWise: it grows best in water with 'high nutrient levels', and fronds are 'yellowish in low nutrient water'; recommended control includes reducing nutrient levels by managing erosion on cultivated land, controlling stock access to banks and waterways and diverting effluent. Weeds Australia: 'Salvinia grows faster and produces more growth the higher the nutrient levels in a water body. Reducing the growth and biomass of Salvina [sic] involves reducing nutrient levels in waterways.' [Sources: NSW WeedWise - Salvinia https://weeds.dpi.nsw.gov.au/Weed/salvinia - confidence: high; Weeds Australia (CISS) - Salvinia profile https://weeds.org.au/profiles/salvinia-giant-aquarium/ - confidence: high]",
+        "Disturbance": "HerbiGuide describes it as a 'Very serious weed of waterways, reservoirs, streams and rice fields', and NSW WeedWise notes plants spread by water flows especially floods and wind and that rain 'can also stimulate growth by washing nutrients into the water' - i.e. it responds to nutrient inputs from disturbed/cultivated catchments rather than to soil disturbance. [Sources: HerbiGuide - Salvinia https://www.herbiguide.com.au/descriptions/hg_salvinia.htm - confidence: medium; NSW WeedWise - Salvinia https://weeds.dpi.nsw.gov.au/Weed/salvinia - confidence: high]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "General fertility / nutrient status (water)",
+          "relationship": "indicates high nutrient levels in the water body",
+          "detail": "NSW WeedWise: grows best in water with 'high nutrient levels'; fronds turn 'yellowish in low nutrient water'. Weeds Australia: growth increases with higher nutrient levels, and control involves reducing nutrient levels in waterways (managing erosion on cultivated land, controlling stock access to banks, diverting effluent). No individual nutrient element (N or P) is named by these Australian sources.",
+          "source": "NSW WeedWise - Salvinia",
+          "url": "https://weeds.dpi.nsw.gov.au/Weed/salvinia",
+          "confidence": "high"
+        }
+      ],
+      "habitat": "Still or slow-moving fresh water bodies - waterways, reservoirs, streams, dams, drains and rice fields - in tropical and subtropical climates, with growth best between 20 and 30 degrees C and limited or absent under 10 degrees C, but able to persist in cooler temperate southern Australia; a Weed of National Significance and one of Australia's worst aquatic weeds. [Sources: Weeds Australia (CISS) - Salvinia profile https://weeds.org.au/profiles/salvinia-giant-aquarium/ - confidence: high; HerbiGuide - Salvinia https://www.herbiguide.com.au/descriptions/hg_salvinia.htm - confidence: medium]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - Salvinia", "url": "https://weeds.dpi.nsw.gov.au/Weed/salvinia", "used_for": ["Moisture", "Fertility", "Disturbance", "nutrients"]},
+        {"name": "Weeds Australia (CISS) - Salvinia profile", "url": "https://weeds.org.au/profiles/salvinia-giant-aquarium/", "used_for": ["Moisture", "Fertility", "nutrients", "habitat"]},
+        {"name": "HerbiGuide - Salvinia", "url": "https://www.herbiguide.com.au/descriptions/hg_salvinia.htm", "used_for": ["Disturbance", "habitat"]}
+      ]
+    },
+    {
+      "scientific_name": "Alternanthera philoxeroides",
+      "common_names": ["alligator weed", "alligatorweed", "pigweed"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "Indicates wet, poorly drained and periodically inundated ground as well as open water. NSW WeedWise: 'Alligator weed will grow in ponded and flowing waterways, on the banks of waterways, on floodplains and poorly drained land, and less commonly in drier situations above flood level', and it 'can easily tolerate dry periods'. Weeds Australia: 'Ideal terrestrial habitats include places that are regularly inundated or that have high rainfall or irrigation.' HerbiGuide adds it 'is rooted in the bottom mud and cannot survive in water exceeding 2500 mm in depth'. [Sources: NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high; Weeds Australia (CISS) - Alligator Weed profile https://weeds.org.au/profiles/alligator-weed/ - confidence: high; HerbiGuide - Alligator Weed https://www.herbiguide.com.au/descriptions/hg_alligator_weed.htm - confidence: medium]",
+        "Fertility": "Indicates nutrient-rich (eutrophic) fresh water and enriched wet soils. Weeds Australia: it 'grows in creeks, rivers, ponds and drainage channels and thrives in nutrient-rich fresh water'. NSW WeedWise's control guidance for the aquatic situation recommends reducing nutrient levels in waterways by managing erosion on cultivated land, controlling stock access and diverting effluent. [Sources: Weeds Australia (CISS) - Alligator Weed profile https://weeds.org.au/profiles/alligator-weed/ - confidence: high; NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high]",
+        "Salinity": "Tolerant of brackish conditions, so its presence does NOT indicate fresh water only. NSW WeedWise: 'Infestations have been found growing in saline conditions (flowing water with 30% of the salinity of seawater), and on beaches above the high tide zone.' Weeds Australia: 'It can also tolerate 10% sea-strength salinity or up to 30% salinity in flowing brackish water, e.g. adjacent to or in mangrove and beach areas in coastal regions.' HerbiGuide gives the same 10%/30% figures. [Sources: NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high; Weeds Australia (CISS) - Alligator Weed profile https://weeds.org.au/profiles/alligator-weed/ - confidence: high; HerbiGuide - Alligator Weed https://www.herbiguide.com.au/descriptions/hg_alligator_weed.htm - confidence: medium]",
+        "Soil type": "Not texture-specific. NSW WeedWise: 'Alligator weed will grow in a range of soils and substrates from sand to heavy clay, and can easily tolerate dry periods.' Roots are 'relatively fine and short in water but become thicker, starchy and rhizome-like in soil, able to penetrate to depths of over 50 cm' with roots and stems found more than 1 m below the surface. [Sources: NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high]",
+        "Disturbance": "Indicates disturbed, nutrient-enriched and modified waterways and floodplains rather than intact vegetation. NSW WeedWise: it 'disrupts the aquatic environment by blanketing the surface', 'competes with and displaces native flora along river and creek banks and in wetlands', and 'the most significant spread between catchments in NSW has been through the commercial and recreational activities of people'. HerbiGuide notes 'The main nuisance results from the restriction of water flow and the acceleration of siltation', i.e. it is associated with silted, slow-flowing systems. [Sources: NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high; HerbiGuide - Alligator Weed https://www.herbiguide.com.au/descriptions/hg_alligator_weed.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "General fertility / nutrient status (water)",
+          "relationship": "indicates nutrient-rich (eutrophic) fresh water",
+          "detail": "Weeds Australia: alligator weed 'thrives in nutrient-rich fresh water'. NSW WeedWise recommends reducing nutrient levels in waterways (managing erosion on cultivated land, controlling stock access to banks and waterways, diverting effluent) as part of control. No individual nutrient element is named by these Australian sources.",
+          "source": "Weeds Australia (CISS) - Alligator Weed profile",
+          "url": "https://weeds.org.au/profiles/alligator-weed/",
+          "confidence": "high"
+        }
+      ],
+      "habitat": "Aquatic and terrestrial in cool to warm temperate, subtropical and tropical Australia: creeks, rivers, ponds, dams, drainage channels, wetlands, floodplains, seasonally flooded agricultural and grazing land and irrigation systems, plus beaches above the high tide zone in coastal regions. In NSW the main infestations are in the Lower Hunter, the Sydney basin, the Hawkesbury-Nepean and Barren Box Swamp near Griffith. [Sources: NSW WeedWise - Alligator weed https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed - confidence: high; Weeds Australia (CISS) - Alligator Weed profile https://weeds.org.au/profiles/alligator-weed/ - confidence: high]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - Alligator weed", "url": "https://weeds.dpi.nsw.gov.au/Weed/Alligatorweed", "used_for": ["Moisture", "Fertility", "Salinity", "Soil type", "Disturbance", "habitat"]},
+        {"name": "Weeds Australia (CISS) - Alligator Weed profile", "url": "https://weeds.org.au/profiles/alligator-weed/", "used_for": ["Moisture", "Fertility", "Salinity", "nutrients", "habitat"]},
+        {"name": "HerbiGuide - Alligator Weed", "url": "https://www.herbiguide.com.au/descriptions/hg_alligator_weed.htm", "used_for": ["Moisture", "Salinity", "Disturbance"]}
+      ]
+    },
+    {
+      "scientific_name": "Bromus diandrus",
+      "common_names": ["great brome", "ripgut brome", "brome grass", "giant brome", "ripgut grass", "jabbers", "Kingston grass"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "Germination is moisture-limited. GRDC integrated weed management manual: 'Moisture is the main requirement for brome grass germination, as seed will germinate over a wide range of temperatures', with the first flush after the opening autumn rains being the most prominent. HerbiGuide records it as 'Relatively drought tolerant'; Lucid/Weeds of Australia notes it grows 'in damp sites near creeks and wetlands' as well as drier sites. [Sources: GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019), PDF hosted by WeedSmart https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf - confidence: high; HerbiGuide - Great Brome https://www.herbiguide.com.au/descriptions/hg_great_brome.htm - confidence: medium; Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Bromus diandrus https://keyserver.lucidcentral.org/weeds/data/media/Html/bromus_diandrus.htm - confidence: medium]",
+        "Soil type": "HerbiGuide: 'It is a common pasture plant on sandier soil types', and its roots 'occur mainly in the top 10 cm of soil'. The GRDC manual notes persistence 'could be prolonged on non-wetting soils, with high levels of seedbank carryover (30%) from one season to the next'. [Sources: HerbiGuide - Great Brome https://www.herbiguide.com.au/descriptions/hg_great_brome.htm - confidence: medium; GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019), PDF hosted by WeedSmart https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf - confidence: high]",
+        "Disturbance": "Indicates cultivated and disturbed ground, and its germination is stimulated by tillage. HerbiGuide: 'Germination is often stimulated by cultivation that buries the seed'; 'After ripening period is less under stubble than on bare soil'. The GRDC manual: 'Seeds do not germinate until shallow burial by the sowing operation, prompting a larger in-crop flush of brome grasses', and 'seed germination resumes upon release from innate dormancy and placement in complete darkness caused by tillage or sowing operations'; establishment 'is more rapid and uniform when emerging from under wheat stubble than on bare soil and higher if seed is mixed with the soil by shallow cultivation'. Lucid/Weeds of Australia calls it 'a common weed of pastures, crops and disturbed sites'. [Sources: GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019), PDF hosted by WeedSmart https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf - confidence: high; HerbiGuide - Great Brome https://www.herbiguide.com.au/descriptions/hg_great_brome.htm - confidence: medium; Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Bromus diandrus https://keyserver.lucidcentral.org/weeds/data/media/Html/bromus_diandrus.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Sulphur",
+          "relationship": "sulphur application favours brome in legume pastures",
+          "detail": "HerbiGuide: 'Sulphur favours brome in clover and medic pastures, has no effect in grass or cereal swards and reduces brome in lucerne.' Recorded as a growth/nutrition response rather than a claim that brome indicates soil sulphur status. HerbiGuide also notes brome 'reduced N and P concentrations in wheat seedlings' and that applying nitrogen to alleviate brome competition in cereals had little effect - these describe the weed's effect on the crop, not soil nutrient status.",
+          "source": "HerbiGuide - Great Brome",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_great_brome.htm",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Widely naturalised in southern Australia (south-eastern Queensland, throughout NSW and Victoria, the ACT and Tasmania, larger parts of South Australia, southern Northern Territory and southern and western WA); a common weed of pastures, crops and disturbed sites, and also growing in native grasslands, woodlands, coastal sites, offshore islands and damp sites near creeks and wetlands; an environmental weed in Victoria, South Australia and Western Australia and one of the top ten environmental weeds of coastal environs in the Gascoyne region of WA. [Sources: Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server - Bromus diandrus https://keyserver.lucidcentral.org/weeds/data/media/Html/bromus_diandrus.htm - confidence: medium]",
+      "sources": [
+        {"name": "HerbiGuide - Great Brome", "url": "https://www.herbiguide.com.au/descriptions/hg_great_brome.htm", "used_for": ["Moisture", "Soil type", "Disturbance", "nutrients"]},
+        {"name": "GRDC, Integrated weed management in Australian cropping systems (Preston AL ed. 2019)", "url": "https://www.weedsmart.org.au/app/uploads/2022/04/9-Dec-Final-web-optimised.pdf", "used_for": ["Moisture", "Soil type", "Disturbance"]},
+        {"name": "Weeds of Australia (Biosecurity Queensland Edition), Lucid Key Server", "url": "https://keyserver.lucidcentral.org/weeds/data/media/Html/bromus_diandrus.htm", "used_for": ["Moisture", "Disturbance", "habitat"]}
+      ]
+    },
+    {
+      "scientific_name": "Carthamus lanatus",
+      "common_names": ["saffron thistle", "distaff thistle", "woolly saffron thistle", "saffron star thistle"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "Indicates dry to semi-arid country. NSW WeedWise: 'Saffron thistle grows in subtropical semi-arid and warm temperate climates. It is most common in areas that have 300 - 600 mm of annual rainfall', and 'It is more abundant after wet springs.' Weeds Australia similarly places it 'in areas receiving 300 to 600 mm of annual rainfall'. HerbiGuide records it 'is one of the most sensitive species to moisture stress for the initiation of germination but was the most tolerant of stress once germination had commenced'. [Sources: NSW WeedWise - Saffron thistle https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle - confidence: high; Weeds Australia (CISS) - Saffron Thistle profile https://weeds.org.au/profiles/saffron-thistle-distaff/ - confidence: high; HerbiGuide - Saffron Thistle https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm - confidence: medium]",
+        "Fertility": "A strong low-fertility indicator. NSW WeedWise: it 'competes with pasture, especially on soils with low fertility' and 'is more commonly found on poor soils because there is less competition from other ground covers'. Weeds Australia: it 'often grows on disturbed sites of low fertility' and 'tolerates low nutrient concentrations better than any other thistle'. HerbiGuide: 'Under high fertility conditions other plants tend to displace Saffron Thistle, so it is more abundant on the less fertile soils', and it 'Restricts pasture growth in low fertility soils'. [Sources: NSW WeedWise - Saffron thistle https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle - confidence: high; Weeds Australia (CISS) - Saffron Thistle profile https://weeds.org.au/profiles/saffron-thistle-distaff/ - confidence: high; HerbiGuide - Saffron Thistle https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm - confidence: medium]",
+        "Soil type": "Not strongly texture-specific. HerbiGuide: 'It has no particular affinity for soil types, but tends to be less common on the sands and in WA is most abundant on the red clays. It is most common on disturbed loamy and clayey soils in NSW, and generally prefers cultivated or disturbed soils elsewhere.' NSW WeedWise: 'Saffron thistle can tolerate a wide variety of soil types.' [Sources: HerbiGuide - Saffron Thistle https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm - confidence: medium; NSW WeedWise - Saffron thistle https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle - confidence: high]",
+        "Disturbance": "Indicates overgrazing, cultivation and degraded ground. NSW WeedWise: 'Saffron thistle grows well on disturbed sites' including 'disturbed areas such as along roadsides, abandoned and degraded areas', and it 'invades degraded open native vegetation and disturbed sites'. Weeds Australia: 'Establishment is most likely in areas that have been over grazed or affected by drought'; it 'does not normally invade healthy dense vegetation'. HerbiGuide: 'It tends to be a weed of cultivation and disturbed sites although it does occur in pastoral areas especially where it is overgrazed or suffering drought', and 'Heavy grazing, generally results in increased infestations' while 'It doesn't invade perennial pastures.' [Sources: NSW WeedWise - Saffron thistle https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle - confidence: high; Weeds Australia (CISS) - Saffron Thistle profile https://weeds.org.au/profiles/saffron-thistle-distaff/ - confidence: high; HerbiGuide - Saffron Thistle https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm - confidence: medium]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "Phosphorus",
+          "relationship": "indicates low phosphorus / low legume content; phosphate fertilisation reduces infestations in legume-based pastures",
+          "detail": "HerbiGuide: 'In legume based pastures increasing phosphate fertilisation usually decreases the level of infestation. Where the legume content is low, increasing phosphate applications usually results in greater infestations.' HerbiGuide also records that in one NSW experiment saffron thistle 'was reduced by 90% by applying super to improved pasture species', and recommends 'planting and encouraging pasture legumes then fertilising with superphosphate'.",
+          "source": "HerbiGuide - Saffron Thistle",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm",
+          "confidence": "medium"
+        },
+        {
+          "nutrient": "General fertility / nutrient status",
+          "relationship": "indicates low soil fertility; tolerates low nutrient concentrations",
+          "detail": "Weeds Australia: saffron thistle 'often grows on disturbed sites of low fertility' and 'tolerates low nutrient concentrations better than any other thistle' (Parsons & Cuthbertson 2001). HerbiGuide: 'Under high fertility conditions other plants tend to displace Saffron Thistle, so it is more abundant on the less fertile soils.'",
+          "source": "Weeds Australia (CISS) - Saffron Thistle profile",
+          "url": "https://weeds.org.au/profiles/saffron-thistle-distaff/",
+          "confidence": "high"
+        }
+      ],
+      "habitat": "Subtropical semi-arid and warm temperate Australia with 300-600 mm annual rainfall; a weed of cultivated paddocks, poor pastures, neglected areas, roadsides, abandoned and degraded areas and open woodlands and grasslands; regarded as an environmental weed Australia-wide, invading degraded open native vegetation and disturbed sites within intact vegetation, but rarely found in better-rainfall areas where pasture competition restricts it. [Sources: NSW WeedWise - Saffron thistle https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle - confidence: high; Weeds Australia (CISS) - Saffron Thistle profile https://weeds.org.au/profiles/saffron-thistle-distaff/ - confidence: high]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - Saffron thistle", "url": "https://weeds.dpi.nsw.gov.au/Weed/Saffronthistle", "used_for": ["Moisture", "Fertility", "Soil type", "Disturbance", "habitat"]},
+        {"name": "Weeds Australia (CISS) - Saffron Thistle profile", "url": "https://weeds.org.au/profiles/saffron-thistle-distaff/", "used_for": ["Moisture", "Fertility", "Disturbance", "nutrients", "habitat"]},
+        {"name": "HerbiGuide - Saffron Thistle", "url": "https://www.herbiguide.com.au/descriptions/hg_saffron_thistle.htm", "used_for": ["Moisture", "Fertility", "Soil type", "Disturbance", "nutrients"]}
+      ]
+    },
+    {
+      "scientific_name": "Echium plantagineum",
+      "common_names": ["Paterson's curse", "Salvation Jane", "Paterson curse", "riverina bluebell"],
+      "region": "Australia",
+      "indicators": {
+        "Soil pH": "Weeds Australia states Paterson's curse 'prefers sandy, acid soils, although it may be found on a wide range of soil types' (citing Piggin & Sheppard 1995), so its presence is consistent with acidic soils. No numeric pH range was stated by any Australian source consulted. [Sources: Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high]",
+        "Moisture": "Indicates winter-rainfall, autumn-break country. NSW WeedWise: 'Paterson's curse is more common in winter-rainfall areas, however its wide tolerance of different climates and soils allows it to grow almost anywhere in Australia... The plant is likely to be abundant during years when the autumn break is early.' Weeds Australia: it 'is well suited to the Mediterranean-type climatic conditions that are found across large areas of southern Australia', and many seedlings 'die due to lack of moisture' where moisture is insufficient. HerbiGuide notes it 'is favoured by an early break to the season and is tolerant of false breaks'. [Sources: NSW WeedWise - Paterson's curse https://weeds.dpi.nsw.gov.au/Weed/Patersonscurse - confidence: high; Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high; HerbiGuide - Paterson's Curse https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm - confidence: medium]",
+        "Fertility": "Indicates high soil fertility where grazing pressure is low. Weeds Australia: Paterson's curse 'can be a very competitive and dominant species in a range of habitats, especially in areas where grazing pressure is low and soil fertility is high.' NSW WeedWise adds that it is 'likely to be abundant in paddocks that have not been cropped or grazed, or have only been lightly grazed, for several years'. [Sources: Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high; NSW WeedWise - Paterson's curse https://weeds.dpi.nsw.gov.au/Weed/Patersonscurse - confidence: high]",
+        "Soil type": "HerbiGuide: 'On a wide range of soils. More common on sands and sandy loams.' Weeds Australia: 'It prefers sandy, acid soils, although it may be found on a wide range of soil types.' [Sources: HerbiGuide - Paterson's Curse https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm - confidence: medium; Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high]",
+        "Disturbance": "Indicates bare ground, overgrazing and disturbed sites. HerbiGuide: 'It establishes most frequently on areas that are bare and tends to decline on areas with good ground cover'; 'Paterson's Curse often establishes after overgrazing, cultivation or other disturbance and then prevents other more desirable species establishing'; 'It quickly expands to dense infestations on disturbed areas but is not usually a problem in healthy bushland'; it 'Tends to build up where cattle or horses rather than sheep are grazed'. Weeds Australia lists it as 'a weed of roadsides, waste places and pastures'. [Sources: HerbiGuide - Paterson's Curse https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm - confidence: medium; Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high]"
+      },
+      "nutrients": [
+        {
+          "nutrient": "General fertility / nutrient status",
+          "relationship": "indicates high soil fertility (with low grazing pressure)",
+          "detail": "Weeds Australia: Paterson's curse 'can be a very competitive and dominant species in a range of habitats, especially in areas where grazing pressure is low and soil fertility is high.' NSW WeedWise notes abundance in paddocks not cropped or grazed, or only lightly grazed, for several years.",
+          "source": "Weeds Australia (CISS) - Paterson's Curse profile",
+          "url": "https://weeds.org.au/profiles/patersons-curse-salvation/",
+          "confidence": "high"
+        },
+        {
+          "nutrient": "Molybdenum",
+          "relationship": "molybdenum supply reduces Paterson's curse toxicity (animal nutrition effect, not a soil-status indicator)",
+          "detail": "HerbiGuide: 'Supply of molybdenum as fertiliser or in stock licks reduces the occurrence of Paterson's Curse toxicity in infested areas.' This concerns pyrrolizidine-alkaloid toxicity in livestock and molybdenum supply, not a claim that Paterson's curse indicates soil molybdenum status.",
+          "source": "HerbiGuide - Paterson's Curse",
+          "url": "https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm",
+          "confidence": "medium"
+        }
+      ],
+      "habitat": "Widely naturalised across southern Australia (south-western WA, central and southern South Australia, south-eastern Queensland, central and southern NSW, Victoria and Tasmania), in winter-rainfall and Mediterranean-type climates; a weed of crops, pastures, orchards, fallows, roadsides, waste places and disturbed areas, and in the NT confined mainly to roadsides along the Stuart Highway. [Sources: Weeds Australia (CISS) - Paterson's Curse profile https://weeds.org.au/profiles/patersons-curse-salvation/ - confidence: high; HerbiGuide - Paterson's Curse https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm - confidence: medium]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - Paterson's curse", "url": "https://weeds.dpi.nsw.gov.au/Weed/Patersonscurse", "used_for": ["Moisture", "Fertility", "Disturbance"]},
+        {"name": "Weeds Australia (CISS) - Paterson's Curse profile", "url": "https://weeds.org.au/profiles/patersons-curse-salvation/", "used_for": ["Soil pH", "Moisture", "Fertility", "Soil type", "Disturbance", "nutrients", "habitat"]},
+        {"name": "HerbiGuide - Paterson's Curse", "url": "https://www.herbiguide.com.au/descriptions/hg_patersons_curse.htm", "used_for": ["Moisture", "Soil type", "Disturbance", "nutrients"]}
+      ]
+    },
+    {
+      "scientific_name": "Hypericum perforatum",
+      "common_names": ["St John's wort", "St Johns wort", "Klamath weed", "goatweed", "perforate St John's-wort"],
+      "region": "Australia",
+      "indicators": {
+        "Moisture": "NSW WeedWise lists its preferences as 'rainfall over 600 mm per year' and 'locations above 500 m altitude', i.e. it indicates higher-rainfall, cooler tableland country in the Australian context. The heaviest NSW infestations are in the central and southern tablelands and slopes. [Sources: NSW WeedWise - St John's wort https://weeds.dpi.nsw.gov.au/Weed/StJohnswort - confidence: high]",
+        "Structure": "HerbiGuide: 'Prefers untilled but loose soils', indicating untilled, well-aerated/loose ground rather than compacted or heavily cultivated soil. HerbiGuide also notes that 'Low levels of disturbance favour it whereas high levels of cultivation virtually eliminate it.' No Australian source found linking St John's wort to compaction or structural decline as such. [Sources: HerbiGuide - St John's Wort https://www.herbiguide.com.au/descriptions/hg_st_johns_wort.htm - confidence: medium]",
+        "Soil type": "NSW WeedWise lists 'deep soils' among its preferences (alongside rainfall over 600 mm per year and altitudes above 500 m). Weeds Australia notes most Tasmanian populations 'are confined to roadsides and poorer pastures' (a personal communication cited by Weeds Australia - treat as weak evidence). [Sources: NSW WeedWise - St John's wort https://weeds.dpi.nsw.gov.au/Weed/StJohnswort - confidence: high; Weeds Australia (CISS) - St John's Wort profile https://weeds.org.au/profiles/st-johns-wort/ - confidence: low]",
+        "Disturbance": "An early coloniser of disturbed sites that is favoured by light disturbance but eliminated by cultivation. HerbiGuide: 'It is an early coloniser of disturbed sites (Groves, 1997)', and separately that 'Low levels of disturbance favour it whereas high levels of cultivation virtually eliminate it.' Weeds Australia: 'In Australia St John's Wort invades poorly managed grazing land, open bushland, roadsides and neglected areas', and 'Overstocking encourages the weed as livestock tend to prefer other species, reducing competition.' NSW WeedWise lists it as growing in 'pastures, riparian areas, and bushland'. [Sources: HerbiGuide - St John's Wort https://www.herbiguide.com.au/descriptions/hg_st_johns_wort.htm - confidence: medium; Weeds Australia (CISS) - St John's Wort profile https://weeds.org.au/profiles/st-johns-wort/ - confidence: high; NSW WeedWise - St John's wort https://weeds.dpi.nsw.gov.au/Weed/StJohnswort - confidence: high]"
+      },
+      "nutrients": [],
+      "habitat": "In Australia it invades poorly managed grazing land, open bushland, roadsides, neglected areas, woodlands, national parks and water catchment areas, and is invasive in pasture; in NSW the heaviest infestations are on the central and southern tablelands and slopes, and in Tasmania most populations are small and confined to roadsides and poorer pastures. NSW WeedWise states a preference for rainfall over 600 mm per year, altitudes above 500 m and deep soils. [Sources: Weeds Australia (CISS) - St John's Wort profile https://weeds.org.au/profiles/st-johns-wort/ - confidence: high; NSW WeedWise - St John's wort https://weeds.dpi.nsw.gov.au/Weed/StJohnswort - confidence: high; HerbiGuide - St John's Wort https://www.herbiguide.com.au/descriptions/hg_st_johns_wort.htm - confidence: medium]",
+      "sources": [
+        {"name": "NSW WeedWise (NSW DPIRD) - St John's wort", "url": "https://weeds.dpi.nsw.gov.au/Weed/StJohnswort", "used_for": ["Moisture", "Soil type", "Disturbance", "habitat"]},
+        {"name": "HerbiGuide - St John's Wort", "url": "https://www.herbiguide.com.au/descriptions/hg_st_johns_wort.htm", "used_for": ["Structure", "Disturbance"]},
+        {"name": "Weeds Australia (CISS) - St John's Wort profile", "url": "https://weeds.org.au/profiles/st-johns-wort/", "used_for": ["Disturbance", "Soil type (weak)", "habitat"]}
+      ]
+    }
+  ],
+  "not_found": [
+    "Soil pH - only 4 of the 10 species have a sourced Australian pH statement: Avena fatua ('a wide range of soil acidities from pH 4.5-9', HerbiGuide - the only numeric range found), Nassella trichotoma ('will grow in acid soils', Weeds Australia), Ulex europaeus ('most abundant on fertile acidic soils and tends to avoid the calcareous soils', HerbiGuide) and Echium plantagineum ('prefers sandy, acid soils', Weeds Australia citing Piggin & Sheppard 1995). No Australian source found stating any pH preference or numeric range for Lolium rigidum, Bromus diandrus, Carthamus lanatus, Salvinia molesta, Alternanthera philoxeroides or Hypericum perforatum.",
+    "Organic matter - no Australian source found linking any of the 10 species to soil organic matter content. AWRI's weed pages, which do carry soil-indicator statements including organic matter, cover none of these 10 species (checked against the AWRI weeds index).",
+    "Structure / compaction - only Hypericum perforatum has a sourced structural/tilth statement ('prefers untilled but loose soils', HerbiGuide). No Australian source found linking any of the 10 species to soil compaction, hardpan or structural decline.",
+    "Sodicity (ESP) - no Australian source found linking any of the 10 species to soil sodicity. Salinity is recorded only for Nassella trichotoma (negative - does not grow in saline soils) and Alternanthera philoxeroides (tolerant of 10-30% sea-strength salinity); no salinity data found for the other 8 species.",
+    "Nutrients - element-specific relationships were found only for Ulex europaeus (nitrogen fixation, phosphorus response, little N/K effect - all HerbiGuide growth-response findings), Carthamus lanatus (phosphate fertilisation in legume pastures - HerbiGuide), Bromus diandrus (sulphur - HerbiGuide) and Echium plantagineum (molybdenum, toxicity-related - HerbiGuide). No element-specific nutrient relationship found for Nassella trichotoma, Lolium rigidum, Avena fatua, Salvinia molesta, Alternanthera philoxeroides or Hypericum perforatum beyond general fertility / nutrient-level statements.",
+    "Soil type for Salvinia molesta - not applicable/not found: it is a free-floating aquatic fern, and no Australian source consulted describes a soil-type association for it.",
+    "No NSW WeedWise profile exists for Lolium rigidum, Avena fatua or Bromus diandrus: slug probes and the site search returned HTTP 500/404 for these species. Their Australian sourcing therefore rests on HerbiGuide, the Lucid 'Weeds of Australia' (Biosecurity Queensland Edition) key and the GRDC integrated weed management manual.",
+    "Weeds Australia (weeds.org.au) publishes no profile for Lolium rigidum, Avena fatua or Bromus diandrus - confirmed against weeds.org.au/profiles-sitemap.xml (201 profiles), which contains no entry for these three species.",
+    "GRDC (grdc.com.au), NSW DPI / DPIRD (dpi.nsw.gov.au, dpird.nsw.gov.au), PIRSA (pir.sa.gov.au) and agriculture.vic.gov.au returned HTTP 403 to automated fetching, so no claim was taken from them directly. GRDC content was reachable only via the WeedSmart-hosted PDF of the GRDC Integrated Weed Management manual (Preston AL ed. 2019), which is cited here under that URL.",
+    "WeedScan (weedscan.org.au) - the site returned HTTP 200 but its weed listing and search pages render results client-side with no parseable /Weed?Id= links, so no WeedScan claim could be extracted and none is cited.",
+    "No Life-stage or seasonal qualification was added to any indicator: several sources tie germination and abundance to season (autumn break, wet springs) rather than to a static soil property, and those statements are recorded inside the Moisture or Disturbance fields rather than as separate indicators."
+  ]
+}
