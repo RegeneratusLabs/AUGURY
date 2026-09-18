@@ -16,7 +16,7 @@ import json
 import re
 import os
 from pathlib import Path
-from difflib import get_close_matches
+from difflib import get_close_matches, SequenceMatcher
 
 
 class SpeciesDB:
@@ -43,6 +43,61 @@ class SpeciesDB:
         # Extended common names must load AFTER the merged DB adds its species,
         # otherwise map entries for merged-DB-only species are silently skipped.
         self._load_common_name_map()
+        # Curated vernacular synonyms load last so they always win.
+        self.synonym_count = 0
+        self._load_synonyms()
+        # Drop artefacts produced by legacy extraction bugs (see _extract_scientific_name)
+        self._sanitize()
+
+    # Keys/names that are not species. "Dense infestations" entered the DB when
+    # the old extractor mis-read a parenthetical common name in the training
+    # template; "… clay" entries are UK soil associations, not plants.
+    JUNK_KEY_RE = re.compile(
+        r"\b(infestation|infestations|dense|clay|heavy|areas?|pasture|soil|"
+        r"conditions?|grassy|widespread|severe)\b", re.I)
+
+    def _sanitize(self):
+        """Remove non-species artefacts and de-duplicate the common-name index.
+
+        The training JSONL is the primary source of `self._species`, and it
+        contains rows whose "Species:" field is not a plant (UK soil
+        associations, mid-word truncations, genus misspellings). Those come from
+        published data we must not rewrite, so they are filtered here. See
+        scripts/junk_keys.py for the list and the reasoning.
+        """
+        from junk_keys import JUNK_KEYS
+
+        dropped_keys, dropped_names = [], []
+
+        for key in list(self._species):
+            words = key.split()
+            junk = (len(words) > 3 or len(words) < 2
+                    or bool(self.JUNK_KEY_RE.search(key))
+                    or key.strip().lower() in JUNK_KEYS)
+            if junk:
+                self._species.pop(key, None)
+                dropped_keys.append(key)
+
+        valid = set(self._species)
+        for cn in list(self._common_index):
+            key = self._common_index[cn]
+            name = cn.strip()
+            bad = (key not in valid
+                   or len(name.split()) > 6
+                   or bool(self.JUNK_KEY_RE.search(name))
+                   or name.endswith("/")
+                   or cn.strip().lower() in JUNK_KEYS)
+            if bad:
+                self._common_index.pop(cn, None)
+                dropped_names.append(cn)
+
+        self._scientific_names = [n for n in self._scientific_names
+                                  if n.lower() in valid]
+        self._common_names_list = [n for n in self._common_names_list
+                                   if n.lower() in self._common_index]
+        self.sanitize_report = {"dropped_keys": dropped_keys,
+                                "dropped_names": len(dropped_names)}
+        return self.sanitize_report
 
     # ── internal ──────────────────────────────────────────────
 
@@ -189,19 +244,89 @@ class SpeciesDB:
         except Exception:
             pass  # non-critical
 
+    # ── vernacular synonyms (fixes "sow thistle", "khaki weed", …) ──────────
+
+    # Tokens too generic to establish a species match on their own. A query
+    # matching only on one of these ("khaki weed" vs "onion weed") is a false
+    # friend, not a hit.
+    GENERIC_TOKENS = {
+        "weed", "weeds", "grass", "grasses", "thistle", "thistles", "dock",
+        "docks", "sedge", "rush", "rushes", "clover", "plant", "plants",
+        "common", "wild", "native", "annual", "perennial", "black", "red",
+        "white", "yellow", "blue", "purple", "giant", "creeping", "spiny",
+        "prickly", "slender", "small", "large", "water", "marsh", "swamp",
+        "couch", "brome", "fescue", "sorrel", "burr", "bur", "cress",
+    }
+
+    @classmethod
+    def _content_tokens(cls, text):
+        """Alphanumeric tokens minus generic filler — the informative part."""
+        toks = re.findall(r"[a-z0-9]+", (text or "").lower())
+        return {t for t in toks if t not in cls.GENERIC_TOKENS and len(t) > 2}
+
+    @classmethod
+    def _token_overlap(cls, a, b):
+        ta, tb = cls._content_tokens(a), cls._content_tokens(b)
+        if not ta or not tb:
+            return 0.0
+        return len(ta & tb) / max(len(ta), len(tb))
+
+    def _load_synonyms(self):
+        """Load curated vernacular synonyms (data/research/common_name_synonyms.json).
+
+        Shape: {"<common name>": "<species key>", ...}
+        Applied AFTER every other source so curated names always win, and a
+        synonym never overwrites an existing exact common-name mapping.
+        """
+        path = self.data_dir.parent / "research" / "common_name_synonyms.json"
+        if not path.exists():
+            return
+        try:
+            data = json.loads(path.read_text())
+        except (json.JSONDecodeError, OSError):
+            return
+        added = 0
+        for common, key in (data.get("synonyms") or {}).items():
+            key = key.lower()
+            cn = common.lower().strip()
+            if not cn or key not in self._species:
+                continue
+            if cn not in self._common_index:
+                self._common_index[cn] = key
+                if common not in self._species[key]["common_names"]:
+                    self._species[key]["common_names"].append(common)
+                self._common_names_list.append(common)
+                added += 1
+        self.synonym_count = added
+
     @staticmethod
     def _extract_scientific_name(text):
-        """Extract scientific name from user message."""
+        """Extract the scientific name from a training/user message.
+
+        Order matters. The training template is:
+            Species: <Common> (<scientific name>)
+        but `<Common>` itself sometimes contains parentheses, e.g.
+            Species: Prickly Pear (Cane Cactus / Eve's Pin Cactus) (austrocylindropuntia spp)
+        The old "first (Xxx yyy)" pattern therefore captured "Cane Cactus" and
+        invented a bogus species ("dense infestations" arose the same way).
+        Anchor on unambiguous shapes first and require a clean binomial.
+        """
+        binomial = r"([A-Z][a-z]+ [a-z][a-z\-]+)"
         for pat in [
-            r"\(([A-Z][a-z]+ [a-z]+)\)",
-            r"of ([A-Z][a-z]+ [a-z]+) in",
-            r"does ([A-Z][a-z]+ [a-z]+) \(",
-            r"about ([A-Z][a-z]+ [a-z]+) as",
-            r"([A-Z][a-z]+ [a-z]+) indicate",
+            r"Species:\s*.*?\(([a-z][a-z\-]+ [a-z][a-z\-]+)\)\s*$",   # trailing lowercase sci
+            rf"Species:\s*{binomial}\s*\(",                            # sci first
+            rf"\({binomial}\)",                                        # sole binomial in parens
+            r"of ([A-Z][a-z]+ [a-z][a-z\-]+) in",
+            r"does ([A-Z][a-z]+ [a-z][a-z\-]+) \(",
+            r"about ([A-Z][a-z]+ [a-z][a-z\-]+) as",
+            rf"{binomial} indicate",
         ]:
-            m = re.search(pat, text)
-            if m:
-                return m.group(1)
+            for line in (text or "").splitlines():
+                m = re.search(pat, line.strip())
+                if m:
+                    name = m.group(1)
+                    if re.fullmatch(r"[A-Za-z][a-z\-]+ [a-z][a-z\-]+", name):
+                        return name
         return None
 
     @staticmethod
@@ -337,10 +462,15 @@ class SpeciesDB:
                         })
 
         # 4. Partial common name match (name appears in query OR query in name)
+        #    Guard: a match resting only on a generic token ("khaki weed" vs
+        #    "onion weed") is a false friend and is rejected.
         if len(results) < top_n:
             for v in variants:
                 for cn_lower, key in self._common_index.items():
                     if (cn_lower in v or v in cn_lower) and key not in {r.get("key", "") for r in results}:
+                        # reject generic-only overlaps
+                        if not self._content_tokens(v) & self._content_tokens(cn_lower):
+                            continue
                         info = self._species[key]
                         match_len = len(cn_lower)
                         score = min(0.85, 0.55 + (match_len / max(len(v), 1)) * 0.3)
@@ -353,23 +483,53 @@ class SpeciesDB:
                         })
 
         # 5. Fuzzy scientific name match (only for short queries — fuzzy matching
-        # on long sentences produces unreliable false positives)
+        # on long sentences produces unreliable false positives). Scored by
+        # token overlap so "sow thistle" cannot beat "sonchus" on edit distance
+        # alone.
         if len(results) < top_n and len(query_lower) <= 40:
             fuzzy = get_close_matches(
                 query_lower, [n.lower() for n in self._scientific_names],
-                n=top_n - len(results), cutoff=0.6
+                n=max(top_n - len(results), 3), cutoff=0.6
             )
             for match in fuzzy:
                 if match not in {r.get("key", "") for r in results}:
                     info = self._species[match]
-                    # Calculate rough score based on similarity
-                    score = 0.7 * (len(set(query_lower) & set(match)) / max(len(query_lower), len(match)))
+                    seq = SequenceMatcher(None, query_lower, match).ratio()
+                    tok = self._token_overlap(query_lower, match)
+                    score = round(0.5 * seq + 0.5 * tok, 2)
                     results.append({
                         "scientific_name": info["scientific_name"],
                         "common_names": info["common_names"],
                         "match_type": "fuzzy_scientific",
-                        "score": round(score, 2),
+                        "score": score,
                         "key": match,
+                    })
+
+        # 6. Fuzzy common-name match — catches vernacular names the DB never
+        #    learned ("sow thistle" → a species already called sow-thistle).
+        #    Guarded by content-token overlap so generic filler cannot match.
+        if len(results) < top_n and len(query_lower) <= 40:
+            q_tokens = self._content_tokens(query_lower)
+            if q_tokens:
+                best = []
+                for cn_lower, key in self._common_index.items():
+                    if key in {r.get("key", "") for r in results}:
+                        continue
+                    cn_tokens = self._content_tokens(cn_lower)
+                    if not cn_tokens or not (q_tokens & cn_tokens):
+                        continue
+                    seq = SequenceMatcher(None, query_lower, cn_lower).ratio()
+                    tok = len(q_tokens & cn_tokens) / max(len(q_tokens), len(cn_tokens))
+                    if seq >= 0.6 or tok >= 0.5:
+                        best.append((0.5 * seq + 0.5 * tok, key, cn_lower))
+                for score, key, cn_lower in sorted(best, reverse=True)[:top_n - len(results)]:
+                    info = self._species[key]
+                    results.append({
+                        "scientific_name": info["scientific_name"],
+                        "common_names": info["common_names"],
+                        "match_type": "fuzzy_common",
+                        "score": round(min(score, 0.85), 2),
+                        "key": key,
                     })
 
         return results[:top_n]
@@ -384,8 +544,14 @@ class SpeciesDB:
                     If None, returns first available region.
 
         Returns:
-            dict with keys: scientific_name, common_names, region, indicators, source
-            OR None if species not found.
+            dict with keys: scientific_name, common_names, region, indicators,
+            source, region_fallback (bool), requested_region
+            OR None if the species is unknown or carries no usable indicators.
+
+        Region policy: if the requested region has no indicator data, the first
+        populated region is used and `region_fallback` is set True with
+        `requested_region` preserved, so callers can disclose that the answer is
+        not region-specific rather than passing foreign data off as local.
         """
         key = species_name.strip().lower()
         if key not in self._species:
@@ -394,34 +560,61 @@ class SpeciesDB:
         info = self._species[key]
         regions = info["regions"]
 
-        if not regions:
-            return None  # no indicator data for this species
+        def populated(r):
+            reg = regions.get(r) or {}
+            inds = {k: v for k, v in (reg.get("indicators") or {}).items()
+                    if v and str(v).strip()}
+            return reg, inds
 
-        # Try preferred region first, then UK, then Europe, then first available
-        for r in [region, "UK", "Europe"]:
-            if r and r in regions:
-                reg = regions[r]
-                result = {
+        # preferred region first, then the other curated regions
+        order = [r for r in [region, "Australia", "UK", "Europe"] if r]
+        for r in order:
+            if r in regions:
+                reg, inds = populated(r)
+                if inds:
+                    result = {
+                        "scientific_name": info["scientific_name"],
+                        "common_names": info["common_names"],
+                        "region": r,
+                        "requested_region": region,
+                        "region_fallback": bool(region and r != region),
+                        "indicators": inds,
+                        "source": reg.get("source", ""),
+                    }
+                    if key in self._nutrients and self._nutrients[key].get("claims"):
+                        result["nutrients"] = self._nutrients[key]
+                    return result
+
+        # any remaining region with actual data
+        for r in regions:
+            reg, inds = populated(r)
+            if inds:
+                return {
                     "scientific_name": info["scientific_name"],
                     "common_names": info["common_names"],
                     "region": r,
-                    "indicators": reg.get("indicators", {}),
+                    "requested_region": region,
+                    "region_fallback": bool(region and r != region),
+                    "indicators": inds,
                     "source": reg.get("source", ""),
                 }
-                if key in self._nutrients:
-                    result["nutrients"] = self._nutrients[key]
-                return result
 
-        # Fallback to first available region
-        first_region = next(iter(regions))
-        reg = regions[first_region]
-        return {
-            "scientific_name": info["scientific_name"],
-            "common_names": info["common_names"],
-            "region": first_region,
-            "indicators": reg.get("indicators", {}),
-            "source": reg.get("source", ""),
-        }
+        # species known, but no indicator rows anywhere — honest no-data path
+        return None
+
+    def indicator_coverage(self, region="Australia"):
+        """Coverage stats: how many species carry usable indicators per region."""
+        total = len(self._species)
+        with_region = with_any = 0
+        for info in self._species.values():
+            regs = info.get("regions") or {}
+            if (regs.get(region) or {}).get("indicators"):
+                with_region += 1
+            if any((r or {}).get("indicators") for r in regs.values()):
+                with_any += 1
+        return {"species": total, f"with_{region.lower()}": with_region,
+                "with_any_region": with_any,
+                "no_indicators": total - with_any}
 
     def get_common_name(self, species_name):
         """Get common name for a scientific name, or None."""

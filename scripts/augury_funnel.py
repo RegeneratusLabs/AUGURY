@@ -78,6 +78,8 @@ class AuguryFunnel:
         self.db = db if db is not None else SpeciesDB()
         self.model = None
         self.model_path = model_path
+        # grounding repairs applied to the most recent model-composed answer
+        self.last_repairs = []
         if model_path and os.path.exists(model_path):
             from llama_cpp import Llama
             print(f"[funnel] loading formatter model: {model_path}")
@@ -291,8 +293,31 @@ class AuguryFunnel:
                 "dandelions as a soil indicator.\""
             )
         if self.model is not None:
-            return self._compose_with_model(results, question, region)
-        return self._compose_template(results)
+            text = self._compose_with_model(results, question, region)
+        else:
+            text = self._compose_template(results)
+        return text + self._region_fallback_notice(results, region)
+
+    @staticmethod
+    def _region_fallback_notice(results, region):
+        """Disclose when the DB served a region other than the one requested.
+
+        `get_indicators()` sets `region_fallback` when it falls back to a
+        different region's data. The flag existed but was never surfaced, so UK
+        or European data could be presented to an Australian user as if it were
+        local. Silence here is the failure mode; say it in the answer.
+        """
+        fell_back = [r for r in results if r.get("region_fallback")]
+        if not fell_back:
+            return ""
+        served = sorted({r.get("region", "?") for r in fell_back})
+        wanted = fell_back[0].get("requested_region") or region or "your region"
+        return (
+            f"\n\n---\n*Note: no {wanted} indicator data for "
+            f"{', '.join(r['scientific_name'] for r in fell_back)} — "
+            f"showing {', '.join(served)} data instead. Treat it as indicative "
+            f"only; it was not recorded for {wanted}.*"
+        )
 
     @staticmethod
     def _compose_template(results):
@@ -331,8 +356,15 @@ class AuguryFunnel:
         return "\n\n".join(blocks)
 
     def _compose_with_model(self, results, question, region):
-        """Conversational composition — model only formats injected DB facts."""
+        """Conversational composition — model only formats injected DB facts.
+
+        Guard rail 7 (structural grounding): every numeric claim the model emits
+        is checked against the injected DB text, and any unsupported value is
+        neutralised before the answer is returned. A prompt instruction does not
+        bind a 1B model — see scripts/grounding.py and the third-party field test.
+        """
         payload = []
+        fact_lines = []
         for r in results:
             common = r["common_names"][0] if r["common_names"] else None
             sci = r["scientific_name"]
@@ -340,6 +372,7 @@ class AuguryFunnel:
                 f"- {k}: {v}" for k, v in r["indicators"].items()
                 if v and v.strip().lower() not in ("not specified", "none")
             ]
+            fact_lines.extend(ind_lines)
             payload.append(
                 "Species: " + (f"{common} ({sci})" if common else sci)
                 + f"\nRegion: {r.get('region', region)}\nIndicators:\n" + "\n".join(ind_lines)
@@ -359,32 +392,79 @@ class AuguryFunnel:
                 temperature=0.3,
                 max_tokens=500,
             )
-            return self._strip_think(out["choices"][0]["message"]["content"]).strip()
+            text = self._strip_think(out["choices"][0]["message"]["content"]).strip()
         except Exception as e:  # noqa: BLE001
             print(f"[funnel] formatter model failed: {e} — using template")
+            self.last_repairs = []
             return self._compose_template(results)
+
+        # ── structural grounding pass (guard rail 7) ──────────────
+        try:
+            from grounding import repair as _repair
+            clean, events = _repair(text, fact_lines)
+        except Exception as e:  # noqa: BLE001
+            print(f"[funnel] grounding pass unavailable: {e}")
+            clean, events = text, []
+        for ev in events:
+            print(f"[funnel] grounding repair ({ev['action']}): removed {ev['removed']}")
+        self.last_repairs = events
+        return clean
 
     # ── top-level ─────────────────────────────────────────────
 
     def answer(self, message, region=None):
         """
         Full text pipeline. Returns dict:
-            {response, species: [str], matches: [...], refused: bool}
+            {response, species: [str], matches: [...], refused: bool,
+             refused_reason: "management" | "no_species" | "empty" | None,
+             intent: "management" | "indicator" | "other",
+             grounding_repairs: [ {action, removed, before, after}, ... ]}
+
+        Guard rail ordering
+        -------------------
+        Intent is classified BEFORE species extraction. A management/advice
+        request ("what herbicide for lantana?") must be declined even though
+        lantana resolves perfectly well — previously it returned a soil story,
+        which is off-topic and reads as the system ignoring the question.
+        `intent.classify` deliberately lets an explicit indicator question win
+        ("what does lime-loving capeweed indicate?" still answers).
         """
         message = (message or "").strip()
         if not message:
+            self.last_repairs = []
             return {
                 "response": "Please ask about a weed or plant — e.g. \"What does Yorkshire fog indicate?\"",
                 "species": [], "matches": [], "refused": True,
+                "refused_reason": "empty", "intent": "other",
+                "grounding_repairs": [],
+            }
+
+        # ── guard rail: management / advice intent ────────────────
+        try:
+            from intent import classify as _classify, decline_response as _decline
+            kind = _classify(message)
+        except Exception as e:  # noqa: BLE001
+            print(f"[funnel] intent classifier unavailable: {e}")
+            kind = "other"
+        if kind == "management":
+            self.last_repairs = []
+            return {
+                "response": _decline("management"),
+                "species": [], "matches": [], "refused": True,
+                "refused_reason": "management", "intent": kind,
+                "grounding_repairs": [],
             }
 
         extracted = self.extract_species(message, region=region)
         results = self.resolve(extracted, region=region)
 
         if not results:
+            self.last_repairs = []
             return {
                 "response": self.compose([], message, region),
                 "species": [], "matches": [], "refused": True,
+                "refused_reason": "no_species", "intent": kind,
+                "grounding_repairs": [],
             }
 
         response = self.compose(results, message, region)
@@ -393,6 +473,8 @@ class AuguryFunnel:
             "species": [r["scientific_name"] for r in results],
             "matches": [r.get("match") for r in results],
             "refused": False,
+            "refused_reason": None, "intent": kind,
+            "grounding_repairs": list(getattr(self, "last_repairs", [])),
         }
 
 
