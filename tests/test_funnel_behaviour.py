@@ -139,6 +139,85 @@ def test_answer_contract_keys_present():
         assert key in r, f"answer() is missing the {key!r} key"
 
 
+# ── specificity: genus buckets must be labelled, never disguised ──────────
+
+GENUS_QUERIES = [
+    ("thistles", "Cirsium spp"),
+    ("soursob", "Oxalis spp."),
+    ("rushes", "Juncus spp"),
+]
+
+SPECIES_QUERIES = [
+    ("serrated tussock", "Nassella trichotoma"),
+    ("paterson's curse", "Echium plantagineum"),
+    ("lantana", "Lantana camara"),
+    ("caltrop", "Tribulus terrestris"),
+]
+
+
+def test_genus_matches_are_disclosed():
+    """A genus-level answer must say so — it is not a species identification."""
+    f = funnel()
+    for q, want in GENUS_QUERIES:
+        r = f.answer(q, region="Australia")
+        assert want in r["species"], f"{q!r} resolved {r['species']}, expected {want}"
+        assert "genus-level" in r["response"], (
+            f"{q!r} returned a genus bucket without disclosing it"
+        )
+
+
+def test_species_matches_carry_no_genus_note():
+    """The disclosure must not leak onto species-level answers."""
+    f = funnel()
+    for q, want in SPECIES_QUERIES:
+        r = f.answer(q, region="Australia")
+        assert want in r["species"], f"{q!r} resolved {r['species']}, expected {want}"
+        assert "genus-level" not in r["response"], (
+            f"{q!r} is species-level but was labelled genus-level"
+        )
+
+
+def test_genus_bucket_is_not_promoted_to_a_species():
+    """Guard against inventing precision.
+
+    An earlier revision promoted a genus bucket to the next-best species by
+    score. That next candidate only shares the genus, so it produced:
+
+        "soursob" -> Oxalis acetosella  (a European wood-sorrel)
+        "rushes"  -> Juncus tenuis      (a different, mostly-European rush)
+
+    Both are wrong for an Australian paddock, and worse than the honest genus
+    answer. This test pins the honest behaviour.
+    """
+    f = funnel()
+    for q, genus in GENUS_QUERIES:
+        r = f.answer(q, region="Australia")
+        for m in r["matches"]:
+            if m and m["query"].lower() == q:
+                assert m["specificity"] == "genus_bucket", (
+                    f"{q!r} was promoted to {r['species']} — genus answers must "
+                    f"stay genus-level"
+                )
+
+
+def test_match_specificity_is_present_for_every_match():
+    """The specificity tag is part of the match contract."""
+    r = funnel().answer("What does thistles indicate?", region="Australia")
+    assert r["matches"], "expected at least one match"
+    for m in r["matches"]:
+        if m:
+            assert m.get("specificity") in ("exact_species", "genus_bucket", "junk")
+
+
+def test_classify_specificity_tags():
+    from augury_funnel import classify_specificity
+    assert classify_specificity("cirsium spp") == "genus_bucket"
+    assert classify_specificity("Oxalis spp.") == "genus_bucket"
+    assert classify_specificity("lantana camara") == "exact_species"
+    assert classify_specificity("rushes excess") == "junk"
+    assert classify_specificity("") == "exact_species"
+
+
 def main() -> int:
     tests = [(n, f) for n, f in sorted(globals().items())
              if n.startswith("test_") and callable(f)]

@@ -32,6 +32,36 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from species_lookup import SpeciesDB
 
+try:
+    from junk_keys import JUNK_KEYS
+except ImportError:  # pragma: no cover - defensive; junk_keys ships with the repo
+    JUNK_KEYS = frozenset()
+
+
+# A genus-level bucket: a taxon key ending in "spp" / "spp." (`cirsium spp`).
+# These are honest answers at genus resolution and must be labelled as such —
+# never presented as if a species had been identified.
+GENUS_BUCKET_RE = re.compile(r"\bspp\.?$", re.I)
+
+
+def classify_specificity(key: str) -> str:
+    """Tag how specific a resolved DB key is.
+
+    Returns one of:
+      * ``"exact_species"`` — a binomial, or a common name resolving to one
+      * ``"genus_bucket"``  — genus-level aggregate (``cirsium spp``)
+      * ``"junk"``          — non-species artefact (see scripts/junk_keys.py)
+
+    Used to stop a genus bucket outranking an available species match, and to let
+    the composed answer disclose that a match is genus-level.
+    """
+    k = (key or "").strip()
+    if k.lower() in JUNK_KEYS:
+        return "junk"
+    if GENUS_BUCKET_RE.search(k):
+        return "genus_bucket"
+    return "exact_species"
+
 
 EXTRACT_SYSTEM = (
     "You are AUGURY's species extractor. A farmer asks about weeds or plants in "
@@ -54,7 +84,6 @@ FORMAT_SYSTEM = (
 
 class AuguryFunnel:
     """Text → species JSON → deterministic DB → conversational answer."""
-
     # UK soil-association entries ("Dandelion clay" = dandelion indicates clay
     # soils) are NOT plant species — skip them when they collide with a plant
     # query unless the user literally asks for that association.
@@ -261,12 +290,27 @@ class AuguryFunnel:
                 "query": name,
                 "match_type": match["match_type"],
                 "score": match["score"],
+                "specificity": classify_specificity(key),
             }
             results.append(info)
         return results
 
     def _best_plant_match(self, query):
-        """Top DB match, preferring real species over clay-association pseudo-species."""
+        """Top DB match, preferring real species over pseudo-species and junk.
+
+        Deliberately does NOT promote a genus bucket to a species. An earlier
+        attempt did, on the theory that a species beats a genus — but the next
+        candidate by score only shares the genus, not the identity:
+
+            "soursob" -> Oxalis spp. (correct, AU-relevant)
+                      -> Oxalis acetosella (a European wood-sorrel)   [promoted]
+            "rushes"  -> Juncus spp  (correct)
+                      -> Juncus tenuis (a different, mostly-European rush) [promoted]
+
+        That is inventing precision, which is worse than the genus-level answer.
+        Instead the match is tagged (see `classify_specificity`) and the response
+        discloses that it is genus-level.
+        """
         if not query.strip():
             return None
         query_lower = query.strip().lower()
@@ -277,7 +321,8 @@ class AuguryFunnel:
         if query_lower in self.CLAY_PSEUDO_SPECIES:
             return matches[0]
         for m in matches:
-            if m["key"] not in self.CLAY_PSEUDO_SPECIES:
+            if (m["key"] not in self.CLAY_PSEUDO_SPECIES
+                    and classify_specificity(m["key"]) != "junk"):
                 return m
         return None
 
@@ -296,7 +341,29 @@ class AuguryFunnel:
             text = self._compose_with_model(results, question, region)
         else:
             text = self._compose_template(results)
-        return text + self._region_fallback_notice(results, region)
+        return (text + self._genus_level_notice(results)
+                + self._region_fallback_notice(results, region))
+
+    @staticmethod
+    def _genus_level_notice(results):
+        """Disclose when a match is genus-level rather than a species.
+
+        "thistles" and "soursob" legitimately resolve to genus buckets
+        (`cirsium spp`, `oxalis spp.`) because no single species is implied. The
+        answer must not read as if a species had been pinned down — that would be
+        false precision, which matters here because the indicator values for a
+        genus are not necessarily those of any one species in it.
+        """
+        genus = [r for r in results
+                 if (r.get("match") or {}).get("specificity") == "genus_bucket"]
+        if not genus:
+            return ""
+        names = ", ".join(r["scientific_name"] for r in genus)
+        return (
+            f"\n\n---\n*Note: {names} is a genus-level match — your description "
+            f"matches the group rather than one species. Indicators are given for "
+            f"the genus, so treat them as indicative of the group.*"
+        )
 
     @staticmethod
     def _region_fallback_notice(results, region):
