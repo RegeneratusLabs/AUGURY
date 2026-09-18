@@ -65,3 +65,6 @@ data/research/_tools/cache/
 # ---- misc ----
 .DS_Store
 *.log
+
+# ---- superseded local backups (git history is the record now) ----
+*.pre-cleanup
