@@ -12,9 +12,12 @@ rediscovering each one.
 Two properties are pinned here:
 
 1. **Portability.** Tracked files must not embed the author's home directory.
-   `au_split.json` carried `"images_dir": "/home/jthomson/AUGURY/..."` while every
-   per-image entry beside it was already repo-relative, so the absolute path added
-   no information and broke the artifact on any other machine.
+   `au_split.json` carried an absolute `"images_dir"` (a `/home/<user>/...` path)
+   while every per-image entry beside it was already repo-relative, so the
+   absolute path added no information and broke the artifact on any other machine.
+
+   This file is subject to its own rule: it must not spell out the directory it
+   forbids, or it becomes the offender and fails itself.
 
 2. **Honesty of documentation.** Any doc that describes a superseded layout or
    architecture must say so, so a reader does not act on it.
@@ -171,6 +174,22 @@ def test_no_duplicate_title_lines_in_docs():
                 break
             seen.add(l)
     assert offenders == [], f"docs contain verbatim duplicated long lines: {offenders}"
+
+
+def test_this_test_file_obeys_its_own_rule():
+    """The checker must not be the offender.
+
+    This file is tracked like any other, so if it spells out the forbidden
+    directory it fails its own portability check. An earlier revision did exactly
+    that, which meant `test_no_tracked_file_embeds_a_home_directory` could never
+    pass — a broken check that looked like a passing one.
+    """
+    offenders = [rel for rel in _tracked_files()
+                 if rel.endswith("test_workspace_hygiene.py")
+                 and HOME_PATH_RE.search((ROOT / rel).read_text())]
+    assert offenders == [], (
+        f"{offenders} contains a literal home path and would fail the portability check"
+    )
 
 
 def main() -> int:
