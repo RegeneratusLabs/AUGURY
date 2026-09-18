@@ -36,6 +36,7 @@ class SpeciesDB:
         self._scientific_names = []  # for fuzzy matching
         self._common_names_list = []  # for fuzzy matching
         self._nutrients = {}      # scientific_name_lower → nutrient claims (from mining)
+        self._canonical = None    # lazily-loaded canonical_map.json (shared with vision)
 
         self._load()
         self._load_nutrients()
@@ -545,62 +546,139 @@ class SpeciesDB:
 
         Returns:
             dict with keys: scientific_name, common_names, region, indicators,
-            source, region_fallback (bool), requested_region
+            source, region_fallback (bool), requested_region, canonical_key (str),
+            merged_from (list[str])
             OR None if the species is unknown or carries no usable indicators.
 
         Region policy: if the requested region has no indicator data, the first
         populated region is used and `region_fallback` is set True with
         `requested_region` preserved, so callers can disclose that the answer is
         not region-specific rather than passing foreign data off as local.
+
+        Canonical policy: the text DB carries duplicate keys for the same plant
+        (`barley grass` / `hordeum leporinum`, `curled dock` / `rumex crispus`, …),
+        the same fragmentation the vision path fixed with canonical_map.json. Twelve
+        of those pairs hold *different* indicator data, so a farmer asking about
+        "curled dock" and one asking about *Rumex crispus* got different soil
+        stories for the same weed. Both keys now resolve to one canonical answer
+        with their indicators **merged** (union of labels, canonical wins
+        collisions), because picking one side would discard real rows — the alias
+        is richer for 2 of 20 pairs and the canonical for 6.
         """
         key = species_name.strip().lower()
-        if key not in self._species:
+        # Deterministic order: the canonical entry leads, then the remaining
+        # siblings sorted. Without this, `keys` began with whatever the caller
+        # typed, so a label defined differently on both sides
+        # (cirsium spp "High nitrogen soils" vs cirsium vulgare "High fertility,
+        # overgrazing, soil disturbance") resolved differently depending on which
+        # name the farmer happened to use — still the bug, just harder to see.
+        group = self._canonical_group(key)
+        lead = group[0] if group and group[0] in self._species else key
+        keys = [lead] + sorted(k for k in group if k != lead and k in self._species)
+
+        infos = [(k, self._species[k]) for k in keys if k in self._species]
+        if not infos:
             return None
+        key, info = infos[0]
+        merged_from = [k for k, _ in infos]
 
-        info = self._species[key]
-        regions = info["regions"]
+        # Identity follows the QUERIED key, not the canonical lead. Data is merged
+        # (below), but a genus bucket must not be relabelled as a species: asking
+        # "thistles" has to stay an honest genus-level answer, otherwise the
+        # response claims a precision the farmer never supplied. Conversely a
+        # specific query keeps its binomial.
+        queried = species_name.strip().lower()
+        identity = queried if queried in self._species else key
+        id_info = self._species[identity]
 
-        def populated(r):
-            reg = regions.get(r) or {}
-            inds = {k: v for k, v in (reg.get("indicators") or {}).items()
-                    if v and str(v).strip()}
-            return reg, inds
+        def region_order(inf):
+            regions = inf["regions"]
+            order = [r for r in [region, "Australia", "UK", "Europe"] if r]
+            return regions, order
 
-        # preferred region first, then the other curated regions
-        order = [r for r in [region, "Australia", "UK", "Europe"] if r]
-        for r in order:
-            if r in regions:
-                reg, inds = populated(r)
+        # Pick the region from the primary entry, but let a sibling supply the
+        # indicators when the primary has none for that region.
+        def merged_indicators(r):
+            out, sources = {}, []
+            for k, inf in infos:
+                reg = (inf["regions"].get(r) or {})
+                inds = {ik: iv for ik, iv in (reg.get("indicators") or {}).items()
+                        if iv and str(iv).strip()}
                 if inds:
-                    result = {
-                        "scientific_name": info["scientific_name"],
-                        "common_names": info["common_names"],
-                        "region": r,
-                        "requested_region": region,
-                        "region_fallback": bool(region and r != region),
-                        "indicators": inds,
-                        "source": reg.get("source", ""),
-                    }
-                    if key in self._nutrients and self._nutrients[key].get("claims"):
-                        result["nutrients"] = self._nutrients[key]
-                    return result
+                    sources.append(k)
+                    for ik, iv in inds.items():
+                        out.setdefault(ik, iv)   # primary (canonical first) wins
+            return out, sources
+
+        regions, order = region_order(info)
+        for r in order:
+            if any(r in inf["regions"] for _, inf in infos):
+                inds, sources = merged_indicators(r)
+                if inds:
+                    return self._result(key, id_info, r, region, inds,
+                                        merged_from, sources)
 
         # any remaining region with actual data
-        for r in regions:
-            reg, inds = populated(r)
+        seen = []
+        for _, inf in infos:
+            for r in inf["regions"]:
+                if r not in seen:
+                    seen.append(r)
+        for r in seen:
+            inds, sources = merged_indicators(r)
             if inds:
-                return {
-                    "scientific_name": info["scientific_name"],
-                    "common_names": info["common_names"],
-                    "region": r,
-                    "requested_region": region,
-                    "region_fallback": bool(region and r != region),
-                    "indicators": inds,
-                    "source": reg.get("source", ""),
-                }
+                return self._result(key, id_info, r, region, inds, merged_from, sources)
 
         # species known, but no indicator rows anywhere — honest no-data path
         return None
+
+    def _result(self, key, id_info, r, region, inds, merged_from, sources):
+        result = {
+            "scientific_name": id_info["scientific_name"],
+            "common_names": self._merged_common_names(merged_from),
+            "region": r,
+            "requested_region": region,
+            "region_fallback": bool(region and r != region),
+            "indicators": inds,
+            "source": (id_info["regions"].get(r) or {}).get("source", ""),
+            "canonical_key": key,
+            "merged_from": merged_from,
+        }
+        # nutrients from every sibling, so a merge does not lose claims
+        claims = []
+        for k in merged_from:
+            claims += ((self._nutrients.get(k) or {}).get("claims") or [])
+        if claims:
+            result["nutrients"] = {"claims": claims}
+        return result
+
+    def _merged_common_names(self, keys):
+        out, seen = [], set()
+        for k in keys:
+            for cn in (self._species.get(k, {}).get("common_names") or []):
+                if cn.lower() not in seen:
+                    seen.add(cn.lower())
+                    out.append(cn)
+        return out
+
+    def _canonical_group(self, key):
+        """All DB keys that denote the same plant as `key` (including itself).
+
+        Uses data/vision/canonical_map.json, the same registry the vision path
+        uses, so text and photo answers agree on identity.
+        """
+        if self._canonical is None:
+            self._canonical = {}
+            p = self.data_dir.parent.parent / "data" / "vision" / "canonical_map.json"
+            if p.exists():
+                try:
+                    self._canonical = json.loads(p.read_text()).get("canonical", {})
+                except (json.JSONDecodeError, OSError):
+                    self._canonical = {}
+        canon = self._canonical
+        if key in canon:
+            return [canon[key]] + [k for k, v in canon.items() if v == canon[key]]
+        return [key] + [k for k, v in canon.items() if v == key]
 
     def indicator_coverage(self, region="Australia"):
         """Coverage stats: how many species carry usable indicators per region."""
