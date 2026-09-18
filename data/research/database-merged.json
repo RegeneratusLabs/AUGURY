@@ -1142,7 +1142,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "chalky / high lime / rich in bases nutrient rich / excess C \uf052 good water availability high K"
+     "General indicators": "chalky / high lime / rich in bases nutrient rich / excess C / good water availability high K"
     }
    }
   },
@@ -1226,7 +1226,7 @@
    },
    "UK": {
     "indicators": {
-     "General indicators": "light acid or low lime, pH 5-7, acidic soil \uf052\uf052 high fertility / humus well aerated / excess C / gley formation / cultivated or trampled when wet / anaerobic \uf0b2 wet / water\u00ad logged / poorly drained, humid soil poorly drained \uf052\uf052"
+     "General indicators": "light acid or low lime, pH 5-7, acidic soil / high fertility / humus well aerated / excess C / gley formation / cultivated or trampled when wet / anaerobic / wet / waterlogged / poorly drained, humid soil poorly drained /"
     }
    }
   },
@@ -1385,7 +1385,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "Common/ smooth/ annual sow-thistle clay / heavy, loams / sandy / stony \uf052 nutrient rich / excess C not too dry / waterlogging / anaerobic \uf052 N rich / excess N \uf052 excess K"
+     "General indicators": "Common / smooth / annual sow-thistle clay / heavy, loams / sandy / stony / nutrient rich / excess C not too dry / waterlogging / anaerobic / N rich / excess N / excess K"
     }
    },
    "Europe": {
@@ -4027,7 +4027,7 @@
      "Fertility": "strong indicator of fertile, nutrient-rich soils; high N, P, K response",
      "Structure": "prefers well-aerated soils; heavy/clay soils; indicates compacted soil in some contexts",
      "Salinity": "tolerates moderately saline soils; ECe 2.78-2.80 mS/cm (~1.4 dS/m)",
-     "General indicators": "clay / heavy \uf052\uf052 acid or low lime \uf052 high fertility / humus rich, blockage of P and trace-el\u00ad ements (due to anaerobic conditions) excess C / hydric soils / anaerobic wet / water\u00ad logged / poorly drained high N, surplus nitrates in deeper soil layers \uf052 blockage of P (due to anaerobic conditions)"
+     "General indicators": "clay / heavy / acid or low lime / high fertility / humus rich, blockage of P and trace-elements (due to anaerobic conditions) excess C / hydric soils / anaerobic wet / waterlogged / poorly drained high N, surplus nitrates in deeper soil layers / blockage of P (due to anaerobic conditions)"
     }
    },
    "Australia": {
@@ -6938,7 +6938,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "heavy \uf052 acid or low lime, pH>7, lime deficiency \uf052\uf052 high fertility/ humus surplus N on the surface and in deeper soil layers"
+     "General indicators": "heavy / acid or low lime, pH>7, lime deficiency / high fertility / humus surplus N on the surface and in deeper soil layers"
     }
    }
   },
@@ -8575,7 +8575,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "clay / heavy acid or low lime / rich in bases instability (rich in bases and clay) / moving soils wet / water\u00ad logged / poorly drained, humid soil / pockets of water \uf052\uf052"
+     "General indicators": "clay / heavy acid or low lime / rich in bases instability (rich in bases and clay) / moving soils wet / waterlogged / poorly drained, humid soil / pockets of water /"
     }
    }
   },
@@ -10996,7 +10996,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "heavy acid or low lime compac\u00ad tion \uf052 wet/water\u00ad logged/poorly drained, anaerobiosis / hydric soils \uf052"
+     "General indicators": "heavy acid or low lime compaction / wet/waterlogged/poorly drained, anaerobiosis / hydric soils /"
     }
    }
   },
@@ -13365,7 +13365,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "sandy loam / light nutrient rich / ex\u00ad cess C (base rich soils) \uf052 erosion and leaching dry excess N (base rich soils)"
+     "General indicators": "sandy loam / light nutrient rich / excess C (base rich soils) / erosion and leaching dry excess N (base rich soils)"
     }
    }
   },
@@ -17245,7 +17245,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "light, clay-lime\u00ad stone soils \uf0b2 acid or low lime \uf052 low fertility, absence, loss of humus due to a lack of manure (N and P) \uf052 low retention power humid soil"
+     "General indicators": "light, clay-limestone soils / acid or low lime / low fertility, absence, loss of humus due to a lack of manure (N and P) / low retention power humid soil"
     }
    },
    "Australia": {
@@ -18849,7 +18849,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "balance of bases C/N and OM balance damp / mois\u00ad ture balance \uf0b2"
+     "General indicators": "balance of bases C/N and OM balance damp / moisture balance /"
     }
    }
   },
@@ -21567,7 +21567,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "Common/ garden sorrel acid or low lime, slightly acidic \uf052 water and OM balance wet / water\u00ad logged / poorly drained, good moisture \uf0b2"
+     "General indicators": "Common / garden sorrel acid or low lime, slightly acidic / water and OM balance wet / waterlogged / poorly drained, good moisture /"
     }
    },
    "Europe": {
@@ -24058,7 +24058,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "loam high fertility / humus rich \uf052 compac\u00ad tion, smear layer \uf052 well watered surplus N at surface 11 Bioindicators Species"
+     "General indicators": "loam high fertility / humus rich / compaction, smear layer / well watered surplus N at surface 11 Bioindicators Species"
     }
    }
   },
@@ -24088,7 +24088,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "sandy or rocky soil, low in clay acid or low lime / rich in bases \uf052 lack of N and P low ability to retain nutrients and water \uf052 low N low P"
+     "General indicators": "sandy or rocky soil, low in clay acid or low lime / rich in bases / lack of N and P low ability to retain nutrients and water / low N low P"
     }
    }
   },
@@ -25887,7 +25887,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "light / sandy / silicon / granite \uf052 rich in bases excess C, low N and P well-drained low N low P"
+     "General indicators": "light / sandy / silicon / granite / rich in bases excess C, low N and P well-drained low N low P"
     }
    }
   },
@@ -29932,7 +29932,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "loams acidic soil, alkaline soils \uf0b2 nutrient rich, block\u00ad age of P and trace-ele\u00ad ments (due to anaerobio\u00ad sis) \uf0b2 compacted, excess C / hydric soils / anaerobic damp soils high P / blockage of P (due to anaerobic conditions) high K"
+     "General indicators": "loams acidic soil, alkaline soils / nutrient rich, blockage of P and trace-elements (due to anaerobiosis) / compacted, excess C / hydric soils / anaerobic damp soils high P / blockage of P (due to anaerobic conditions) high K"
     }
    }
   },
@@ -32959,7 +32959,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "heavy \uf052 rich in bases / high pH excess spreading of fertiliser or OM / saturation of CHCs smear layer wet soil / slightly damp \uf052 surplus N at depth blockage of P (excess fertiliser) thin crops"
+     "General indicators": "heavy / rich in bases / high pH excess spreading of fertiliser or OM / saturation of CHCs smear layer wet soil / slightly damp / surplus N at depth blockage of P (excess fertiliser) thin crops"
     }
    }
   },
@@ -33774,7 +33774,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "C wet / water\u00ad logged / poorly drained / gley \uf052"
+     "General indicators": "C wet / waterlogged / poorly drained / gley /"
     }
    }
   },
@@ -34625,7 +34625,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "moderate compacted well-drained high N / rich in N / excess nitrates \uf052"
+     "General indicators": "moderate compacted well-drained high N / rich in N / excess nitrates /"
     }
    }
   },
@@ -35101,7 +35101,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "heavy \uf052 lime deficiency excess C/ compaction / cultivation of the soil when wet humid soil, wet / water\u00ad logged / poorly drained \uf052\uf052 surplus of N (nitrates) on the surface"
+     "General indicators": "heavy / lime deficiency excess C / compaction / cultivation of the soil when wet humid soil, wet / waterlogged / poorly drained / surplus of N (nitrates) on the surface"
     }
    }
   },
@@ -35147,7 +35147,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "and clays high lime, base-rich \uf052 excess C / asphyxiation / compac\u00ad tion in wet weather wet / water\u00ad logged / poorly drained, damp to wet, (esp. in base-rich soils) \uf052\uf052 high in nitrates"
+     "General indicators": "and clays high lime, base-rich / excess C / asphyxiation / compaction in wet weather wet / waterlogged / poorly drained, damp to wet, (esp. in base-rich soils) / high in nitrates"
     }
    }
   },
@@ -36104,7 +36104,7 @@
   "regions": {
    "UK": {
     "indicators": {
-     "General indicators": "soils compac\u00ad tion, erosion and leaching of soils with low retention capacity \uf052 humid soil"
+     "General indicators": "soils compaction, erosion and leaching of soils with low retention capacity / humid soil"
     }
    }
   },
