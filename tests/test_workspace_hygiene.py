@@ -71,16 +71,40 @@ def test_no_tracked_file_embeds_a_home_directory():
     )
 
 
-def test_au_split_is_portable_and_unchanged_in_substance():
-    """The benchmark split must be repo-relative and still complete."""
+def test_au_split_is_portable_and_structurally_sound():
+    """The benchmark split must be repo-relative and internally consistent.
+
+    Deliberately does NOT pin the species/query counts. Those change legitimately
+    whenever the gallery or the label registry is repaired (they moved 186/916 ->
+    184/910 when cross-species contamination was fixed), and a magic number here
+    would fail on every honest rebuild while catching nothing. What must hold is
+    the *relationship*: the declared counts match the actual content, and no
+    query image is also a gallery image (which would make it match itself).
+    """
     doc = json.loads((ROOT / "data" / "vision" / "au_split.json").read_text())
     assert not doc["images_dir"].startswith("/"), (
         f"images_dir must be repo-relative, got {doc['images_dir']!r}"
     )
     assert doc["images_dir"] == "data/vision/images", doc["images_dir"]
-    assert doc["counts"]["species"] == 186, doc["counts"]["species"]
-    assert doc["counts"]["queries"] == 916, doc["counts"]["queries"]
-    assert doc["counts"]["gallery"] == 13358, doc["counts"]["gallery"]
+
+    species = doc["species"]
+    assert species, "split has no species"
+    declared = doc.get("counts", {})
+    actual_q = sum(len(v["queries"]) for v in species.values())
+    actual_g = sum(len(v["gallery"]) for v in species.values())
+    assert declared.get("species") == len(species), (
+        f"counts.species={declared.get('species')} but {len(species)} present"
+    )
+    assert declared.get("queries") == actual_q, (
+        f"counts.queries={declared.get('queries')} but {actual_q} present"
+    )
+    assert declared.get("gallery") == actual_g, (
+        f"counts.gallery={declared.get('gallery')} but {actual_g} present"
+    )
+
+    leaks = [(sp, q) for sp, v in species.items()
+             for q in set(v["queries"]) & set(v["gallery"])]
+    assert leaks == [], f"queries also present in their own gallery: {leaks[:5]}"
 
 
 def test_merge_report_target_is_relative():
