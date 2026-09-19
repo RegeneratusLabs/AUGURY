@@ -1,0 +1,27 @@
+{
+ "species": [
+  "crepis capillaris",
+  "digitaria sanguinalis",
+  "holcus lanatus",
+  "raphanus raphanistrum"
+ ],
+ "results": {
+  "baseline": {
+   "cap": 50,
+   "gallery": 9070,
+   "pilot_gallery": 200,
+   "top1": 0.4,
+   "top3": 0.5,
+   "n": 20
+  },
+  "densified": {
+   "cap": 300,
+   "gallery": 11373,
+   "pilot_gallery": 1186,
+   "top1": 0.75,
+   "top3": 0.85,
+   "n": 20
+  }
+ },
+ "gain_points": 35.0
+}
