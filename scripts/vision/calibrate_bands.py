@@ -165,6 +165,37 @@ def main() -> int:
     }
     Path(args.out).write_text(json.dumps(out, indent=1))
     print(f"[calibrate] wrote {args.out}")
+
+    # Write the thresholds where PhotoID actually reads them.
+    #
+    # Without this the calibrated values existed ONLY in the audit file, so
+    # `PhotoID` kept loading whatever band_config.json happened to sit in the index
+    # directory and recalibration never reached production. index-v3 was found
+    # serving 0.68/0.43 while its own audit trail said 0.64/0.30 — the thresholds
+    # were wrong on the shipped path and right only in the record.
+    # Round before writing: the sweep walks np.arange(0.30, 0.99, 0.01), so values
+    # arrive as 0.6400000000000003. A confidence threshold has no meaningful
+    # precision beyond a few decimals, and the artefacts are meant to be read and
+    # diffed by people.
+    runtime = {
+        "auto_conf": round(float(auto_t), 4),
+        "confirm_conf": round(float(confirm_t), 4),
+        "calibrated": auto is not None and confirm is not None,
+        "method": f"calibrate_bands.py on {n} queries ({idx_dir.name} scores)",
+        "measured": {
+            "top1": float(correct.mean()),
+            "auto": {"precision": out["bands"]["auto"]["precision"],
+                     "coverage": out["bands"]["auto"]["share"],
+                     "n": out["bands"]["auto"]["n"]},
+            "confirm": {"precision": out["bands"]["confirm"]["precision"],
+                        "coverage": out["bands"]["confirm"]["share"],
+                        "n": out["bands"]["confirm"]["n"]},
+        },
+        "audit_trail": Path(args.out).name,
+    }
+    target = idx_dir / "band_config.json"
+    target.write_text(json.dumps(runtime, indent=1))
+    print(f"[calibrate] wrote {target} (this is what PhotoID loads)")
     return 0
 
 

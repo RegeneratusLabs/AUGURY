@@ -93,3 +93,6 @@ augury-android/app/build/
 augury-android/app/.cxx/
 augury-android/.gradle-home/
 .gradle-home/
+
+# ---- Android local SDK path (machine-specific) ----
+augury-android/local.properties

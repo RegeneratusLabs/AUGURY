@@ -14,7 +14,21 @@
 #   emulator -avd <name> ... -verbose 2>&1 | grep 'Concatenated QEMU options:'
 set -euo pipefail
 
-EMU_DIR=/home/jthomson/Android/Sdk/emulator
+# Resolve the SDK without hardcoding a home directory (a tracked absolute home
+# path is a portability trap — see tests/test_workspace_hygiene.py). Prefer
+# ANDROID_HOME, then local.properties, then the usual install locations.
+if [ -z "${ANDROID_HOME:-}" ] && [ -f "$(dirname "$0")/../local.properties" ]; then
+  ANDROID_HOME="$(sed -n 's/^sdk\.dir=//p' "$(dirname "$0")/../local.properties" | head -1)"
+fi
+if [ -z "${ANDROID_HOME:-}" ]; then
+  _rh="$(getent passwd "$(id -u)" 2>/dev/null | cut -d: -f6)"
+  for _c in "${_rh:-$HOME}/Android/Sdk" /opt/android-sdk /usr/lib/android-sdk; do
+    [ -d "$_c" ] && ANDROID_HOME="$_c" && break
+  done
+fi
+: "${ANDROID_HOME:?set ANDROID_HOME or write sdk.dir=... into augury-android/local.properties}"
+
+EMU_DIR="$ANDROID_HOME/emulator"
 QEMU_CMD_FILE="${1:?usage: run-qemu-direct.sh <qemu-cmd-file>}"
 
 export LD_LIBRARY_PATH="$EMU_DIR/lib64:$EMU_DIR/lib64/gles_swiftshader:$EMU_DIR/lib64/gles_angle:$EMU_DIR/lib64/gles_llvmpipe:${LD_LIBRARY_PATH:-}"

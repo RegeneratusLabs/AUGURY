@@ -44,9 +44,16 @@ LEGACY_CONFIRM = 0.60
 # Thresholds measured for each shipped index. These are regression pins: if a
 # rebuild legitimately changes them, update this table *and* say why in the
 # commit message. Never widen it just to make a test pass.
+#
+# index-v3 updated 2026-09-19: the gallery was re-pulled so that the ten AU
+# species whose images were 100% unvalidated full-text hits now resolve through
+# validated taxon ids. That lifted top-1 from 81.8% to 85.9% and moved the
+# calibrated bands from 0.68/0.43 to 0.64/0.30 (auto: 95.4% precision at 63.7%
+# coverage). Update the pin, never the artifact, when the index legitimately
+# changes.
 EXPECTED = {
     "index-v2": {"auto_conf": 0.65, "confirm_conf": 0.44},
-    "index-v3": {"auto_conf": 0.68, "confirm_conf": 0.43},
+    "index-v3": {"auto_conf": 0.64, "confirm_conf": 0.30},
 }
 
 

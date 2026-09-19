@@ -1,21 +1,20 @@
 {
- "auto_conf": 0.6800000000000004,
- "confirm_conf": 0.4300000000000001,
+ "auto_conf": 0.64,
+ "confirm_conf": 0.3,
  "calibrated": true,
- "source": "band_config.json",
- "method": "calibrate_bands.py on 910 benchmark queries (index-v3 whitened scores)",
+ "method": "calibrate_bands.py on 920 queries (index-v3 scores)",
  "measured": {
-  "top1": 0.8175824175824176,
+  "top1": 0.8586956521739131,
   "auto": {
-   "precision": 0.951063829787234,
-   "coverage": 0.5164835164835165,
-   "n": 470
+   "precision": 0.9539249146757679,
+   "coverage": 0.6369565217391304,
+   "n": 586
   },
   "confirm": {
-   "precision": 0.8504672897196262,
-   "coverage": 0.9406593406593406,
-   "n": 856
+   "precision": 0.6957831325301205,
+   "coverage": 0.36086956521739133,
+   "n": 332
   }
  },
- "note": "precision on the whitened scale peaks near 0.68 and falls above 0.75; the legacy 0.80/0.60 constants are wrong for this index."
+ "audit_trail": "band_calibration.json"
 }
