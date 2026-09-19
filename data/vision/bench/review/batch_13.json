@@ -1,0 +1,149 @@
+[
+ {
+  "path": "lantana camara/dw_20170715-164851-1.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170715-165120-1.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170715-165431-1.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170715-170353-1.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170715-170425-1.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lepidosperma spp/q08ca2247_385804696.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lolium perenne/52801_698892691.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "matricaria recutita/77965_709765961.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "myosotis arvensis/51726_698859500.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "nassella neesiana/165658_584563640.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "onion weed/55505_709477307.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "onion weed/55505_709834456.jpg",
+  "reasons": [
+   "soft",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-175240-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-181106-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-183557-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-184209-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-184235-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-184353-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-185917-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "parkinsonia aculeata/dw_20170920-185943-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ }
+]

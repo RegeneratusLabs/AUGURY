@@ -175,6 +175,17 @@ def match_taxon(species, session, cache):
             if is_genus:
                 if tname == n or (bare and tname == bare):
                     return t["id"], t.get("name"), t.get("rank"), "genus-exact"
+                # Genus reorganisation: iNaturalist resolves the queried genus name
+                # to a different accepted genus (*Austrodanthonia* -> *Rytidosperma*,
+                # *Callistemon* -> *Melaleuca*) and echoes the query in
+                # `matched_term`. That echo is the evidence the match is the same
+                # clade under a new name, rather than an unrelated genus.
+                #
+                # Safe here specifically because the query is a bare genus token with
+                # no epithet, so a synonym relation is the only way it resolves. The
+                # species path cannot use this rule — see below.
+                if _norm(t.get("matched_term")) == n:
+                    return t["id"], t.get("name"), t.get("rank"), "genus-synonym"
                 continue
             # identity: the taxon must be this species
             if tname == sci:
@@ -353,8 +364,19 @@ def main() -> int:
         key = s["key"]
         st = state.get(key, {})
         if st.get("status") == "done":
-            summary["ok"] += 1
-            continue
+            # `done` means "reached the target of the run that set it", not "has
+            # every image we will ever want". Skipping unconditionally is why
+            # raising --target silently did nothing: 169 of 188 AU species stayed
+            # at ~50 images while a 300-target run reported success.
+            #
+            # Measure progress by the recorded iNaturalist photo ids, NOT by files
+            # on disk: `lantana camara` holds 1,114 files but only 50 from iNat
+            # (the rest are DeepWeeds), so a file count would wrongly look complete.
+            have = len(st.get("done") or [])
+            if have >= args.target:
+                summary["ok"] += 1
+                continue
+            logf.write(f"[{key}] reopening: {have} iNat images < target {args.target}\n")
         sp_dir = out_dir / key
         sp_dir.mkdir(parents=True, exist_ok=True)
 

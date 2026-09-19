@@ -1,0 +1,147 @@
+[
+ {
+  "path": "stellaria media/53298_704244114.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "tamarix aphylla/56017_637080247.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "tanacetum vulgare/55971_710583502.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "themeda triandra/208571_705011190.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "themeda triandra/208571_705011196.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "trifolium repens/55745_709613933.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "urochloa panicoides/170077_474156847.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "urochloa panicoides/170077_474156887.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "urochloa panicoides/170077_474156914.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "verbascum thapsus/59029_709523958.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "veronica chamaedrys/51610_703864923.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "veronica chamaedrys/51610_703864938.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "veronica chamaedrys/51610_703864944.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "veronica officinalis/129020_703865670.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "veronica officinalis/129020_706772789.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "veronica persica/55666_704824135.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "vicia sepium/127345_700825378.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "vicia sepium/127345_700825457.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "viola arvensis/55760_691431371.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "viola arvensis/55760_691956119.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

@@ -1,0 +1,144 @@
+[
+ {
+  "path": "acacia nilotica/dw_20170727-112924-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "acacia nilotica/dw_20170727-113546-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "acacia nilotica/dw_20170727-113842-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "acacia nilotica/dw_20170727-124229-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "acacia nilotica/dw_20170727-143545-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "agrostis capillaris/75312_698021008.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "agrostis stolonifera/69931_709765442.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "allocasuarina verticillata/122323_709370999.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "alopecurus pratensis/71141_689543530.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "alopecurus pratensis/71141_695289634.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "amaranthus retroflexus/58776_708332936.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "andropogon gayanus/208518_706532339.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "andropogon gayanus/208518_706532698.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "anthoxanthum odoratum/75475_702200700.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "argemone mexicana/128533_664154992.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "arrhenatherum elatius/75583_700819254.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "arrhenatherum elatius/75583_709763604.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "atriplex nummularia/75711_676510640.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "atriplex vesicaria/159093_74006331.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "atriplex vesicaria/159093_74006337.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ }
+]

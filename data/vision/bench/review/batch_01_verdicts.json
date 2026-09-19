@@ -1,0 +1,122 @@
+[
+ {
+  "path": "atriplex vesicaria/159093_74006342.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Saltbush with distinctive bladdery fruits and silvery leaves, close-up in situ; sharp and diagnostic."
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_368317979.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Single dried grass head laid out on white cloth; pressed/harvested material, no field context."
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_385760456.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Large yellow 4-petalled flower in a natural setting; clearly not a wallaby grass, likely misfiled."
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_386218415.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Yellow bilabiate flowers with hairy calyx in situ; not a grass, label likely wrong."
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_112844511.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Single floret held in a hand for scale; detached detail shot, not the plant in situ."
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_112844517.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Macro of a detached floret and awn base on a hand; dissection-style detail, no whole plant."
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_385760456.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Identical file (same md5) to the yellow-flower image under 'austrodanthonia spp'; not a Stipa, duplicate entry."
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_75702437.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Butterfly perched on grass stems dominates the frame; plant is incidental, misleading as a species reference."
+ },
+ {
+  "path": "banksia spp/q10da951a_362191986.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Dried grass head on white cloth; collected/pressed material, and the wrong genus for a Banksia folder."
+ },
+ {
+  "path": "banksia spp/q10da951a_362192000.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Four dried grass culms laid out on white cloth; pressed material, not a Banksia and no field context."
+ },
+ {
+  "path": "barley grass/52796_704717974.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Grass leaf blade and sheath in situ against soil; sharp detail of the plant as it grows."
+ },
+ {
+  "path": "barley grass/52796_709792094.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Pale detached floret and awns held between fingers; lab-style detail of cut, dried material."
+ },
+ {
+  "path": "baumea juncea/323898_557191448.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Blurred macro of a single inflorescence against a plain background; detail shot with no plant or habitat."
+ },
+ {
+  "path": "baumea juncea/323898_632540520.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Whole tussock with several slender culms and seed heads growing in dense sedgeland."
+ },
+ {
+  "path": "baumea juncea/323898_674578987.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Single culm tip with inflorescence against plain grey sky; cut detail shot with context stripped."
+ },
+ {
+  "path": "baumea juncea/323898_674579031.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Stand of slender culms with dark seed heads in situ, if soft; teaches the species' growth form."
+ },
+ {
+  "path": "baumea juncea/323898_687691438.jpg",
+  "verdict": "specimen",
+  "keep": false,
+  "note": "Detached stem and inflorescence on a plain pale background, heavily blurred; not identifiable and not in situ."
+ },
+ {
+  "path": "bent grass/288066_615940992.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Whole grass plant in flower growing from a pavement crack; clear habit and inflorescence."
+ },
+ {
+  "path": "bromus hordeaceus/52703_687630460.jpg",
+  "verdict": "damaged_specimen",
+  "keep": false,
+  "note": "Dried broken-off brome spikelets lying on gravel; dead detached fragments, poor teaching example."
+ },
+ {
+  "path": "bromus hordeaceus/52703_692174147.jpg",
+  "verdict": "field_photo",
+  "keep": true,
+  "note": "Soft-focused close-up of brome spikelets on the standing plant in a dry pasture."
+ }
+]

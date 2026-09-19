@@ -1,0 +1,146 @@
+[
+ {
+  "path": "bromus hordeaceus/52703_710310581.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "capsella bursa-pastoris/56121_708224948.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cardamine hirsuta/55829_697730042.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carex hirta/159973_692777216.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carrichtera annua/76132_626792738.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carrichtera annua/76132_626792754.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carrichtera annua/76132_626792769.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carrichtera annua/76132_626792779.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "carthamus lanatus/64232_697706873.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "cirsium arvense/60132_710152092.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cirsium palustre/160623_707681016.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "convolvulus arvensis/53021_709795404.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "conyza bonariensis/76904_710494528.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "conyza canadensis/76907_710971810.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "crataegus monogyna/51147_707685275.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "crataegus monogyna/51147_710232771.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/84815_671948183.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20170913-120559-2.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20170913-123002-1.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20170913-123404-2.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ }
+]

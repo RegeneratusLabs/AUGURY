@@ -1,0 +1,31 @@
+[
+ {
+  "path": "viola arvensis/55760_692173923.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "viola arvensis/55760_694480880.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "viola arvensis/55760_702674319.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "viola arvensis/55760_706809437.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

@@ -1,0 +1,151 @@
+[
+ {
+  "path": "paspalum dilatatum/60295_705802378.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_703857137.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_703857152.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_703857174.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_703857193.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "persicaria hydropiper/78452_711642201.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_711642208.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria hydropiper/78452_711642213.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria maculosa/56166_709792344.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria maculosa/56166_709792360.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria maculosa/56166_711659224.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "persicaria maculosa/56166_711659231.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "phalaris arundinacea/63337_708503258.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "phalaris arundinacea/63337_709793019.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "plantago lanceolata/53178_709480372.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "plantago lanceolata/53178_709764639.jpg",
+  "reasons": [
+   "soft",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "poa annua/52808_696295149.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "poa labillardierei/323470_448085226.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "potentilla erecta/132622_704803977.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "ranunculus acris/56064_706258240.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

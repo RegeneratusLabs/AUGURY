@@ -1,0 +1,145 @@
+[
+ {
+  "path": "atriplex vesicaria/159093_74006342.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_368317979.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_385760456.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrodanthonia spp/qff252ee4_386218415.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_112844511.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_112844517.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_385760456.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "austrostipa spp/q21504bc0_75702437.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "banksia spp/q10da951a_362191986.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "banksia spp/q10da951a_362192000.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "barley grass/52796_704717974.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "barley grass/52796_709792094.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "baumea juncea/323898_557191448.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "baumea juncea/323898_632540520.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "baumea juncea/323898_674578987.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "baumea juncea/323898_674579031.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "baumea juncea/323898_687691438.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "bent grass/288066_615940992.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "bromus hordeaceus/52703_687630460.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "bromus hordeaceus/52703_692174147.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

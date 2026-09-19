@@ -35,15 +35,28 @@ as the data grows**:
 - **Index:** FAISS `IndexFlatIP` over the photo gallery.
 - **Gallery:** 111,320 images, 2,174 species, pulled from iNaturalist
   (research-grade, per-photo license sidecars), DeepWeeds (CC BY 4.0), GBIF.
-- **Numbers (AU-scoped, all 188 AU species, full gallery, val queries):**
-  - SigLIP2-400M: 63.1% top-1 / 79.1% top-3
-  - DINOv2-base: 72.6% top-1 / 86.4% top-3
-  - **DINOv2-base + alias merge: 80.9% top-1 / 88.3% top-3** (both gates passed)
-- **Alias merge:** 18 species keys were the same plant under two keys
-  (ribwort plantain = plantago lanceolata). Canonical-key resolution at eval
-  time lifted top-1 by +8.3 points for free.
-- **Confidence bands:** top-1 ≥ 0.80 auto-accept · ≥ 0.60 show top-3 + confirm ·
-  below → honest "not in my library" path.
+- **Numbers — the shipped retrieval index (`index-v3`, 2026-09-19), AU-scoped,
+  910 held-out queries / 184 species:**
+  - **top-1 81.8% / top-3 89.7%** (`data/vision/bench/cleaned_v3.json`)
+  - Superseded: **80.9%** was a bake-off figure on the *contaminated* v2 gallery.
+    A naive before/after reported 97.9% until it was caught: rebuilding the split
+    reshuffled the held-out set, and 803 query files had become gallery members,
+    so queries were matching themselves. The honest v2→v3 delta on a fixed query
+    set is **+1.1 pt** (n=93), and the real repair was elsewhere — four
+    contaminated species went from unlearnable to working (`holcus lanatus` 0/5 →
+    4/5, `raphanus raphanistrum` 0/5 → 4/5, `sinapis arvensis` 0/5 → 5/5).
+    See `data/vision/bench/README-measurements.md`.
+- **Canonical alias merge:** 21 duplicate species keys collapse at index build
+  (ribwort plantain = plantago lanceolata; curled dock = rumex crispus). The text
+  DB merges the same groups' indicators rather than picking a side — 12 of the 20
+  pairs held *different* data, so a farmer asking "curled dock" and one asking
+  *Rumex crispus* used to get different soil stories for the same weed.
+- **Confidence bands are calibrated per index and read from the artifact — never
+  hard-coded.** `index-v3`: **auto ≥ 0.68** (51.6% coverage, **95.1% precision**),
+  **confirm ≥ 0.43** (94.1% coverage), below → honest "not in my library".
+  Precision on the whitened scale **peaks near 0.68 and falls above 0.75**, so the
+  legacy `0.80/0.60` constants select the worst decile. They must not be
+  reintroduced — `tests/test_band_config.py` now enforces this.
 
 **Why retrieval over fine-tuning:** new species = new gallery photos + one DB
 row. The encoder never retrains. The index is a public artifact — anyone can
@@ -51,10 +64,16 @@ rebuild or extend it.
 
 ### 2. Facts — deterministic database
 
-- **`database-merged.json`:** 2,230 species × region (Australia/Europe/UK) ×
-  indicator dicts (Moisture, Soil pH, Fertility, Salinity, Structure, …),
-  sourced from Ellenberg (1991), Maughan & Amos, CAWR, AU government
-  publications, plus mined nutrient claims.
+- **`database-merged.json`:** 2,256 species entries (`SpeciesDB` loads **2,319**
+  after the mining/research merges; `species_list.json` carries 2,230) × region
+  (Australia/Europe/UK) × indicator dicts (Moisture, Soil pH, Fertility,
+  Salinity, Structure, …), sourced from Ellenberg (1991), Maughan & Amos, CAWR,
+  AU government publications, plus mined nutrient claims.
+  **220 species carry an Australian region; 2,264 have at least one real
+  vernacular name.** Indicator keys are free-form data, not a schema — nine exist
+  today (`Moisture`, `Fertility`, `Soil pH`, `Salinity`, `Structure`, `Ph`,
+  `Species`, `General indicators`, `Other indicators`) and consumers must render
+  whatever is present rather than hard-coding a list.
 - The formatter is *given* the facts; it cannot hallucinate a pH value because
   it never generates one. Guard rail: DB is the source of truth.
 
@@ -106,12 +125,20 @@ rebuild or extend it.
 
 | What | Where |
 |---|---|
-| Model (GGUF Q4_K_M + F16 + merged fp16 + LoRA) | `RegeneratusLabs/augury-1b` (HF) |
-| Species DB (2,230 spp) | `RegeneratusLabs/augury-species-db` (HF) |
+| Model (GGUF Q4_K_M 688 MB / F16 / merged fp16 / LoRA) | `RegeneratusLabs/augury-1b` (HF) |
+| Species DB | `RegeneratusLabs/augury-species-db` (HF) — **stale at 2026-08-11**; see below |
 | Training data (13,627 rows) | `RegeneratusLabs/augury-training-data` (HF) |
 | Vision gallery (111k imgs + license sidecars) | **local only** — `data/vision/images/` (build-time source; never read at runtime) |
-| Vision retrieval index (runtime artifact — **to be built**) | `RegeneratusLabs/augury-vision-index` (pending) |
+| Vision retrieval index (**built**: `index-v3`, 13,448 vectors / 173 canonical species / 42 MB) | `RegeneratusLabs/augury-vision-index` (**not yet published**) |
+| Android app (shell + manifest contract) | `docs/mobile-app-decision.md`; app source `augury-android/` |
 | Code, scripts, docs, playbook | `github.com/RegeneratusLabs/AUGURY` |
+
+> **⚠️ The published species DB is behind the working tree.** HF serves
+> `database-merged.json` at revision `85e57fb` (2026-08-11, 1,155,275 bytes) while
+> the working copy is 1,125,629 bytes and carries later work — the AU species
+> merge, the mojibake repair and the canonical-group indicator merge. Anything
+> that pulls facts from HF today gets **pre-fix data**. Republish before pointing
+> the app at it; a model rebuild is in progress, so this is expected to move.
 
 ## Roadmap
 

@@ -1,0 +1,146 @@
+[
+ {
+  "path": "heliotropium europaeum/77365_699657671.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "holcus lanatus/52793_708175248.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "holcus lanatus/52793_709791625.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "holcus lanatus/52793_713330897.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "holcus lanatus/52793_720922157.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "holcus lanatus/52793_734148087.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hordeum leporinum/52796_704717974.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hordeum leporinum/52796_709792094.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hyparrhenia hirta/77479_667010763.jpg",
+  "reasons": [
+   "soft",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hyparrhenia hirta/77479_667010764.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hyparrhenia hirta/77479_673547775.jpg",
+  "reasons": [
+   "extreme"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hypochaeris radicata/53104_704664152.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "hypochaeris radicata/53104_709765524.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "juncus acutus/77550_709309778.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "juncus effusus/56153_705926630.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "lactuca serriola/53107_709791830.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lagurus ovatus/61068_696293363.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170126-095106-0.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170130-102100-0.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "lantana camara/dw_20170130-102108-0.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ }
+]

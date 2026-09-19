@@ -1,0 +1,11 @@
+{
+ "mislabelled": [
+  "austrodanthonia spp/qff252ee4_385760456.jpg",
+  "austrodanthonia spp/qff252ee4_386218415.jpg",
+  "austrostipa spp/q21504bc0_385760456.jpg",
+  "dianella spp/q138693dc_367450185.jpg",
+  "dianella spp/q138693dc_369157854.jpg",
+  "lepidosperma spp/q08ca2247_385804696.jpg"
+ ],
+ "note": "Visually confirmed by parallel subagent review 2026-09-19. Every one of these lives in a species whose gallery is 100% full-text-fallback hits."
+}

@@ -1,0 +1,152 @@
+[
+ {
+  "path": "dianella spp/q138693dc_367450185.jpg",
+  "reasons": [
+   "soft",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "dianella spp/q138693dc_369157854.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_586276041.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_586276044.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_635890268.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_635890319.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_683805752.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_683805865.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria ciliaris/76657_683805868.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "digitaria sanguinalis/51633_690798573.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "digitaria sanguinalis/51633_690798580.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "echinochloa colona/76755_667482030.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "echinochloa colona/76755_710277692.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "eichhornia crassipes/962637_710874570.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "elymus repens/60284_699535418.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "elymus repens/60284_704664400.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "elymus repens/60284_709760933.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "elymus repens/60284_709760949.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "epilobium hirsutum/84517_709878672.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "equisetum arvense/52724_710152288.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

@@ -1,0 +1,151 @@
+[
+ {
+  "path": "cryptostegia grandiflora/dw_20171109-194700-1.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-091623-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-091705-3.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-091817-3.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-091929-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-092056-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-092303-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-092712-3.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-092826-3.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-093244-3.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-093349-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171113-093538-3.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171122-102741-1.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "cryptostegia grandiflora/dw_20171122-104304-1.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "dactylis glomerata/52720_709701790.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "dactylis glomerata/52720_711034358.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "deschampsia cespitosa/76639_693728852.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "deschampsia cespitosa/76639_699729730.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "dianella spp/q138693dc_367011955.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "dianella spp/q138693dc_367020217.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ }
+]

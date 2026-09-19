@@ -69,3 +69,12 @@ data/research/_tools/cache/
 # ---- superseded local backups (git history is the record now) ----
 *.pre-cleanup
 *.pre-mojibake
+
+# ---- agent scratch dirs (transient) ----
+.*_scratch/
+.dsh-runtime/
+
+# ---- regenerable scan output (48MB; rerun scan_image_quality.py) ----
+data/vision/bench/image_quality.jsonl
+# ---- quarantined galleries pending re-pull ----
+data/vision/quarantine_fallback/

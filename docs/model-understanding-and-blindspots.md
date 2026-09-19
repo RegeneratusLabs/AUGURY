@@ -42,30 +42,43 @@ a pH value because it never generates one); and the LLM is reduced to a
 | Encoder | `facebook/dinov2-base` (86M params, ~350MB), embeddings L2-normalised |
 | Index | FAISS `IndexFlatIP` (inner product ≈ cosine on normalised vectors) |
 | Gallery | 111,320 photos, 2,231 species keys (iNat research-grade + DeepWeeds + GBIF), per-image license sidecars |
-| Scope metric | AU-scoped (188 Australian weeds, alias-merged): **80.9% top-1 / 88.3% top-3** |
-| Confidence bands | top-1 ≥ 0.80 auto-accept · ≥ 0.60 top-3 + confirm · below → honest "not in my library" |
-| Alias merge | 18 keys collapsed (e.g. ribwort plantain = *Plantago lanceolata*) — worth +8.3 top-1 points |
+| Scope metric | AU-scoped **retrieval**: top-1 **81.8%** / top-3 **89.7%** (`index-v3`, 910 held-out queries / 184 species, 2026-09-19) |
+| Confidence bands | **calibrated per index, read from the artifact** — `index-v3`: ≥ 0.68 auto (51.6% coverage, **95.1% precision**) · ≥ 0.43 top-3 + confirm · below → honest "not in my library" |
+| Canonical merge | 21 duplicate keys collapsed (e.g. ribwort plantain = *Plantago lanceolata*) — worth **+8.3 top-1 points** |
 
-**Critical status caveat:** the full-gallery FAISS index has **not yet been
-built**. The local `data/vision/index/` holds only 100 species / 14,274 vectors
-(checkpoint from an interrupted run). The 80.9% figure is from a **bake-off
-evaluation** (held-out AU queries against the gallery), not from a live
-end-to-end photo→answer test. The photo path is *architecturally designed* but
-*not yet field-proven as a product*.
+**The earlier 80.9% / 88.3% figure is superseded.** It came from a bake-off on a
+**contaminated** gallery (four species had leaked query images into the gallery).
+The honest fixed-query-set delta is **+1.1 pt** (n=93); the value of the repair was
+that those species became learnable at all and that a **95% precision band became
+reachable**. A naive before/after reported 97.9% until a leakage check caught it —
+rebuilding the split reshuffled the held-out set and 803 query files had become
+gallery members, so queries were matching themselves. Full log:
+`data/vision/bench/README-measurements.md`.
+
+**The full-gallery index is now built** (`index-v3`, 13,448 vectors, 173 canonical
+AU species, 42 MB) — this supersedes the "100 species / 14,274 vectors checkpoint,
+not yet built" caveat this document previously carried. What is still true: the
+photo path has **not been field-proven as a product** and no on-device app existed
+until now. **90% top-1 was not reached** — the gap is thin galleries plus genuinely
+hard look-alike genera (`banksia`/`hakea`/`callistemon`/`lepidosperma`,
+`austrostipa`/`austrodanthonia`), and the measured encoder ceiling is 92.3%.
 
 ### 2.2 Facts — deterministic database
 
-- `data/research/database-merged.json`: 2,230 species × region (Australia /
+- `data/research/database-merged.json`: 2,256 species entries (`SpeciesDB` loads
+  2,319 after the mining/research merges) × region (Australia /
   Europe / UK) × indicator dicts (Moisture, Soil pH, Fertility, Salinity,
   Structure, nutrients…).
 - Sources: Ellenberg (1991), Maughan & Amos, CAWR (UK), AU government
   publications, plus mined nutrient claims. (This is literature, not
   field-verified soil science.)
-- `scripts/species_lookup.py` does fuzzy, region-aware matching. Common-name
-  coverage is thin (~110 species have real common names) — scientific names
-  dominate the DB.
+- `scripts/species_lookup.py` does fuzzy, region-aware matching. **2,264**
+  species carry at least one real vernacular name (the old "~110" figure was a
+  stale pass-2 count, now corrected below).
 - Published to HF as `RegeneratusLabs/augury-species-db` (with
-  `species_list.json` + `unified_species_database.json`).
+  `species_list.json` + `unified_species_database.json`) — **but that copy is
+  stale at 2026-08-11 and predates the AU merge, the mojibake repair and the
+  canonical-group indicator merge.**
 
 ### 2.3 Voice — the one fine-tune
 
@@ -103,39 +116,48 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
 ### 🔴 High — will bite in real use
 
 1. **Photo path is not production-proven.** No full-gallery index exists yet
-   (100/2,231 species local checkpoint). The headline 80.9% is a bake-off
-   number, not a shipped product number. Anything that promises "point your
-   phone at a weed" is currently aspirational until the index is built and
-   end-to-end tested on real field photos.
+   (the index is now built — see §2.1). The headline retrieval number
+   (81.8% top-1) is a benchmark measurement, not a shipped product number.
+   Anything that promises "point your phone at a weed" is still aspirational
+   until it is end-to-end tested on real field photos.
 2. **Retrieval confidence ≠ correctness.** The bands only re-rank gallery
-   similarity. A *confident* top-1 (score ≥ 0.80) can still be the *wrong*
+   similarity. A *confident* top-1 (score ≥ 0.68) can still be the *wrong*
    species — look-alikes, immature plants, unusual growth stages, phone
    lighting. The system will assert a wrong ID with high confidence and the
    funnel will then faithfully tell the farmer what that *wrong* species
    indicates. There is no second-opinion or uncertainty-aware fallback beyond
-   the score bands.
-3. **No "don't know" for the known-unknown.** Below 0.60 the system says "not
-   in my library" — but between 0.60 and 0.80 it *shows* top-3 and asks the
-   user to confirm. That is a UX decision point where an untrained user may
-   just accept suggestion #1. The refusal is honest but the interaction needs
-   real product testing.
+   the score bands. **This is the single most important reason the app must
+   always show top-3 and never silently accept a photo ID.**
+3. **No "don't know" for the known-unknown.** Below 0.43 the system says "not
+   in my library" — but from 0.43 to 0.68 it *shows* top-3 and asks the user to
+   confirm. That is a UX decision point where an untrained user may just accept
+   suggestion #1. The refusal is honest but the interaction needs real product
+   testing.
 
 ### 🟠 Medium — known data/quality gaps
 
-4. **DB coverage holes.** ~35 species exist without indicator data (22 with no
-   regions, 13 with empty indicators) — e.g. **serrated tussock
-   (*Nassella trichotoma*), a major AU weed** — the funnel correctly refuses
-   them ("no indicator data"), which is honest but a product gap for exactly
-   the farmers it targets. 14 DB entries carry mojibake/soft-hyphen garbage.
-5. **Common-name thinness.** Only ~110 of 2,230 species have real common
-   names. Farmers think and speak in common names ("serrated tussock", "Paterson's
-   curse", "capeweed"). The 188 AU species are the priority for this fix and
-   are partially covered, but extraction quality for free-text common names is
-   a ceiling on the text funnel's usefulness.
+4. **DB coverage holes.** **51 species** load with no indicator data in any
+   region (`SpeciesDB`), and 17 entries in `database-merged.json` have no
+   indicators at all — e.g. **serrated tussock (*Nassella trichotoma*), a major
+   AU weed**. The funnel correctly refuses them ("no indicator data"), which is
+   honest but a product gap for exactly the farmers it targets. ✅ The 14
+   mojibake/soft-hyphen entries were repaired 2026-09-19.
+5. **Common-name coverage is better than previously recorded.** **2,264** of
+   ~2,319 species carry at least one vernacular name, and **185 of the 188 AU
+   species** in `species_list.json` do. The old "~110 species" figure was a
+   stale count from the pass-2 era and understated the picker's viability
+   considerably. ✅ **The remaining ceiling is *extraction*, not coverage**:
+   held-out measurement gives fuzzy matching alone only **56.3%** on curated
+   synonyms — which is why the app's tap-a-weed picker is the primary path and
+   free-text is secondary.
 6. **Alias merge is partial.** 18 keys merged in the eval; `species_list.json`
    still carries alias keys (ribwort plantain / plantago lanceolata, spear
    thistle / cirsium vulgare, juncus acutus / spiny rush). The eval merge is
    canonicalisation-at-eval-time, not necessarily at runtime in every path.
+   ✅ **Text path fixed 2026-09-19** — `get_indicators()` now resolves the whole
+   canonical group and *merges* indicators rather than choosing a side. The
+   vision path resolves canonical labels at index build and `PhotoID.__init__`
+   raises if any label escapes the index. **The app must reproduce both.**
 7. **Multi-species is synthesis, not reasoning.** "Docks and thistles" extracts
    both and concatenates facts — but conflicting indicators (one says wet, one
    says dry), abundance/density signals, and interactions are not modelled.
@@ -159,13 +181,14 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
     effectively uncovered — the DB has Australia/Europe/UK only.
 12. **Quantization.** Q4_K_M adds small fidelity loss vs fp16; the F16 GGUF
     exists but the shipped default is Q4.
-13. **Phone reality is unbuilt.** The phone UI, image-capture flow, on-device
-    index download, and offline behaviour **do not exist yet** — only a CLI and
-    a Flask script. "Designed to run on a phone" is a design constraint, not a
-    shipped property. The 15GB raw gallery is NOT what a phone downloads (see
-    the gallery discussion) — the phone would download the compact FAISS index
-    (~40-400MB depending on scope/quantisation), which is also not yet built at
-    full scale.
+13. **Phone reality is now being built (in progress).** The Android app is a
+    **shell** — it ships no model data and downloads everything from HF at
+    runtime, so the phone never sees the 15 GB gallery. On-device footprint is
+    ~1.15 GB: a **~88 MB** int8 encoder, the **42 MB** compact retrieval index
+    (`index-v3`, no FAISS — plain kNN), and the **688 MB** GGUF. See
+    `docs/mobile-app-decision.md`. Until that ships and is field-tested,
+    "designed to run on a phone" remains a design constraint rather than a
+    shipped property.
 
 ---
 
@@ -181,9 +204,15 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
 
 ## 6 · How to think about the numbers
 
-- **80.9% top-1 / 88.3% top-3 (AU, alias-merged)** is a **retrieval** metric on
-  held-out AU queries — it measures "did the right species surface in the
-  gallery kNN", not "was the farmer's question answered correctly end-to-end".
+- **81.8% top-1 / 89.7% top-3 (AU, canonical-merged, `index-v3`)** is a
+  **retrieval** metric on 910 held-out AU queries — it measures "did the right
+  species surface in the gallery kNN", not "was the farmer's question answered
+  correctly end-to-end". The superseded 80.9% came from a contaminated gallery;
+  do not quote it.
+- **95.1% auto-band precision** is the share of *correct* IDs among queries
+  scoring ≥ 0.68 — it covers only **51.6%** of queries, and it will not transfer
+  unchanged to messy field photos, because benchmark queries are drawn from the
+  same galleries.
 - **val loss 0.0398** measures the formatter's style/echo on DB-injected rows —
   it says nothing about retrieval accuracy or real-world soil truth.
 - Neither number says anything about **field accuracy** (is the indicator
@@ -191,4 +220,5 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
   done yet.
 
 *Companion docs: `technical-stack.md` (design), `data-roadmap.md` (data
-gaps/growth), `model-cards/augury-1b.md` (published card).*
+gaps/growth), `mobile-app-decision.md` (the Android shell + HF manifest
+contract), `model-cards/augury-1b.md` (published card).*

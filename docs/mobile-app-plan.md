@@ -1,4 +1,37 @@
-# AUGURY — Mobile App / Distribution Plan (PARKED)
+# AUGURY — Mobile App / Distribution Plan (SUPERSEDED)
+
+> **⚠️ SUPERSEDED 2026-09-19 by [`docs/mobile-app-decision.md`](mobile-app-decision.md).**
+>
+> The decision to **fork OpenBMB's MiniCPM-V-Apps** (§3 Option A, §6 Phase 0.3,
+> §9 decision 2) has been **rejected**, on evidence gathered 2026-09-19:
+>
+> 1. **`OpenBMB/MiniCPM-V-Apps` has no licence.** The GitHub API returns
+>    `"license": null` and there is no `LICENSE` file in the tree — unlicensed
+>    code is "all rights reserved", so vendoring it into an Apache-2.0 project
+>    breaks the open-source promise. (`llama.cpp` itself is MIT — fine.)
+> 2. **It cannot run AUGURY's photo path.** Their apps are a shell over a
+>    `llama.cpp` fork; AUGURY's retrieval is DINOv2-base embeddings + kNN over a
+>    13,448-vector index, none of which is a llama.cpp capability. We would
+>    rewrite the entire AI layer anyway.
+> 3. **It cannot deliver "pull from HF".** Their model weights download in-app,
+>    but app logic changes only via a new APK release — the exact problem the app
+>    is meant to solve.
+> 4. **Sideload/TestFlight is unusable for the target user** (zero technical
+>    ability, and iPhone unsupported).
+>
+> **What replaced it:** a standalone Android APK built on the MIT `llama.cpp`
+> bindings, structured as a **shell** — it bundles no model data and pulls every
+> artifact from HF through a version-pinned manifest.
+>
+> Also superseded by measurement: §7's confidence-band note (`0.80` auto-accept)
+> is **wrong** — see `docs/mobile-app-decision.md` §4. Bands are now calibrated
+> per index (`index-v3`: 0.68 / 0.43) and read from the artifact, never
+> hard-coded. And §2's "186/188 AU species, 14,274 vectors" describes the
+> abandoned v1 index; the shipped artifact is `index-v3`, 13,448 vectors.
+>
+> The rest of this document is retained for provenance — particularly §2's survey
+> of OpenBMB's repo internals and §5's distribution table, both of which remain
+> accurate and useful.
 
 **Status:** PARKED 2026-08-18 — this is a continuation document, not an active
 workstream. Pick up from here when ready.

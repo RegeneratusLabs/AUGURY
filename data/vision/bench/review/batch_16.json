@@ -1,0 +1,147 @@
+[
+ {
+  "path": "ranunculus repens/48229_707163132.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "raphanus raphanistrum/55411_702138766.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "raphanus raphanistrum/55411_702138796.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "rhagodia spinescens/627162_482068175.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "rhagodia spinescens/627162_620496798.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "ribwort plantain/53178_709480372.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "ribwort plantain/53178_709764639.jpg",
+  "reasons": [
+   "soft",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "rumex acetosa/55821_697343527.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "rumex acetosella/53195_710972073.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sagina procumbens/55667_695357481.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sagina procumbens/55667_699661546.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "sagina procumbens/55667_699661604.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "salsola australis/78955_647786458.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "saxifraga granulata/124135_666538136.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "saxifraga granulata/124135_666538177.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "saxifraga granulata/124135_672128620.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "saxifraga granulata/124135_674933735.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "saxifraga granulata/124135_693496449.jpg",
+  "reasons": [
+   "soft",
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "scrophularia nodosa/124485_706135447.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "scrophularia nodosa/124485_706135468.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": true
+ }
+]

@@ -1,0 +1,145 @@
+[
+ {
+  "path": "scrophularia nodosa/124485_706756788.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "senecio jacobaea/62498_709792824.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "senecio jacobaea/62498_709792865.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "senecio madagascariensis/168820_704320643.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "setaria viridis/79070_703821405.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene dioica/55759_705471981.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene dioica/55759_710486710.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene dioica/55759_710486880.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene latifolia/79109_709599401.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene latifolia/79109_709599528.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene latifolia/79109_709613427.jpg",
+  "reasons": [
+   "soft",
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene latifolia/79109_711736269.jpg",
+  "reasons": [
+   "compressed"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "silene latifolia/79109_711965850.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sisymbrium irio/58085_645254607.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sisymbrium irio/58085_710444192.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sonchus arvensis/79156_705198969.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sonchus oleraceus/53294_708869255.jpg",
+  "reasons": [
+   "flat"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "sonchus oleraceus/53294_709551650.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": true
+ },
+ {
+  "path": "spergula arvensis/57005_691427987.jpg",
+  "reasons": [
+   "soft"
+  ],
+  "is_query": false
+ },
+ {
+  "path": "spiny rush/77550_709309778.jpg",
+  "reasons": [
+   "compressed",
+   "flat"
+  ],
+  "is_query": false
+ }
+]
