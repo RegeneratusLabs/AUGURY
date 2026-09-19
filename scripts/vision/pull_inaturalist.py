@@ -36,6 +36,7 @@ import hashlib
 import io
 import json
 import random
+import re
 import sys
 import time
 from pathlib import Path
@@ -65,33 +66,164 @@ def api_get(path, params, session, retries=5):
     return None
 
 
+def _norm(s: str) -> str:
+    return " ".join((s or "").strip().lower().replace(".", " ").split())
+
+
+def _epithet(name: str) -> str:
+    """The specific epithet of a binomial ('sinapis arvensis' -> 'arvensis').
+
+    Genus names get swapped by reorganisation (*Sinapis arvensis* is now
+    *Mutarda arvensis*, *Prosopis* is now *Neltuma* in some taxonomies), so the
+    epithet is the stablest part of the name.
+    """
+    parts = _norm(name).split()
+    return parts[1] if len(parts) == 2 else ""
+
+
+# A capitalized two-word vernacular ("Wild radish", "Black nightshade") would pass
+# the shape test for a binomial, so the leading modifier is blocked explicitly.
+_VERNACULAR_MODIFIERS = {
+    "wild", "common", "black", "white", "red", "yellow", "blue", "purple", "pink",
+    "green", "great", "lesser", "small", "large", "creeping", "curled", "spiny",
+    "slender", "narrow", "broad", "hairy", "smooth", "annual", "perennial", "sea",
+    "field", "hedge", "water", "marsh", "sand", "silver", "golden", "scented",
+    "italian", "african", "australian", "european", "japanese", "chinese", "indian",
+}
+
+
+def _looks_binomial(name: str) -> bool:
+    """True for a two-word Latin name like 'Sinapis arvensis'.
+
+    Used to decide whether a string in a species' `common_names` is really an
+    alternate *scientific* name. The species list stores these interchangeably —
+    `sinapis arvensis` lists "Sinapis arvensis" among its common names — and
+    treating that as a vernacular name is what let a different species match.
+    """
+    parts = (name or "").split()
+    if len(parts) != 2:
+        return False
+    if parts[0].lower() in _VERNACULAR_MODIFIERS:
+        return False
+    return all(p[:1].isupper() and p[1:].islower() for p in parts)
+
+
 def match_taxon(species, session, cache):
-    """Return (taxon_id, matched_name) or (None, reason)."""
-    names = [species["scientific_name"]] + species["common_names"]
+    """Resolve a species/genus key to a taxon id.
+
+    Returns (taxon_id, matched_name, rank, method) — or (None, reason, None, None).
+
+    Correctness rules (these replace a rule that silently misfiled photographs)
+    -------------------------------------------------------------------------
+    The previous version accepted the first candidate with "any two shared tokens
+    of 4+ characters". That is far too weak: it let ``prosopis spp`` resolve to
+    **Holcus lanatus** (taxon 52793) and ``sinapis arvensis`` to
+    **Raphanus raphanistrum** (55411), so two different plants ended up holding the
+    same photographs. Those species were unlearnable, and their benchmark queries
+    carried wrong ground truth.
+
+    The rule is now **identity, not resemblance**: the candidate taxon must BE the
+    species asked for.
+
+    * a taxon name equal to the scientific name is accepted;
+    * an entry in ``common_names`` that is actually a binomial counts as an
+      alternate scientific name (the species list mixes the two);
+    * a vernacular common name is accepted only when the taxon's name equals that
+      name *and* the taxon is species rank — i.e. iNaturalist reports the taxon
+      itself under that name.
+
+    Deliberately NOT accepted: iNaturalist's ``matched_term``. It reports the
+    *query* it fuzzy-matched, so for ``q=Sinapis arvensis`` it happily returns
+    **Raphanus raphanistrum** with ``matched_term='Sinapis arvensis'`` — a synonym
+    relation, not an identity. Trusting it reintroduced the very bug being fixed.
+
+    Genus keys (``banksia spp``) are looked up at rank ``genus``; they have no
+    species-rank taxon, which is why the old rule sent them somewhere unrelated.
+    """
+    sci = _norm(species.get("scientific_name"))
+    bare = sci.split()[0] if sci else ""
+    is_genus = sci.endswith(" spp") or sci.endswith(" spp.")
+    want_rank = "genus" if is_genus else "species"
+
+    # Query strings to try. The previous version sent the raw key, so "banksia spp"
+    # was searched verbatim at rank=genus and returned zero results — which is how
+    # genus buckets previously fell through to an unrelated species.
+    if is_genus:
+        queries = [bare]
+        # "Banksia (Proteaceae)" -> "Banksia"
+        queries += [re.sub(r"\s*\(.*?\)\s*", "", c).strip()
+                    for c in (species.get("common_names") or []) if c]
+    else:
+        queries = [species.get("scientific_name")] + list(species.get("common_names") or [])
+
     seen = set()
-    for name in names:
-        if not name or name.lower() in seen:
+    for name in queries:
+        n = _norm(name)
+        if not n or n in seen:
             continue
-        seen.add(name.lower())
-        data = api_get("/taxa", {"q": name, "rank": "species", "per_page": 5}, session)
+        seen.add(n)
+        data = api_get("/taxa", {"q": name, "rank": want_rank, "per_page": 5}, session)
         time.sleep(1.0)  # throttle API
         if not data or not data.get("results"):
             continue
         for t in data["results"]:
-            tname = (t.get("name") or "").lower()
-            mt = (t.get("matched_term") or "").lower()
-            if tname == species["scientific_name"].lower():
-                return t["id"], t.get("name")
-            if mt and mt == name.lower():
-                return t["id"], t.get("name")
-            if species["scientific_name"].lower() in (tname, (t.get("preferred_common_name") or "").lower()):
-                return t["id"], t.get("name")
-            # token overlap >= 2 (handles genus renames e.g. Acacia -> Vachellia)
-            toks_q = {w for w in name.lower().replace(".", " ").split() if len(w) > 3}
-            toks_t = {w for w in tname.replace(".", " ").split() if len(w) > 3}
-            if len(toks_q & toks_t) >= 2:
-                return t["id"], t.get("name")
-    return None, "no-taxon-match"
+            if t.get("rank") != want_rank:
+                continue
+            tname = _norm(t.get("name"))
+            if not tname:
+                continue
+            if is_genus:
+                if tname == n or (bare and tname == bare):
+                    return t["id"], t.get("name"), t.get("rank"), "genus-exact"
+                continue
+            # identity: the taxon must be this species
+            if tname == sci:
+                return t["id"], t.get("name"), t.get("rank"), "scientific-exact"
+            # an alternate scientific name recorded among the common names
+            if _looks_binomial(name) and tname == n:
+                return t["id"], t.get("name"), t.get("rank"), "alt-scientific"
+            # a vernacular name, but only if the taxon is reported under it
+            if tname == n:
+                return t["id"], t.get("name"), t.get("rank"), "common-exact"
+            # Genus reorganisation: the specific epithet survives even when the
+            # genus is renamed (*Sinapis arvensis* -> *Mutarda arvensis*,
+            # *Callistemon* -> *Melaleuca*). Require the epithet to match AND
+            # iNaturalist to have matched our full query string.
+            #
+            # The epithet check is what keeps this safe. Without it, asking for
+            # "Sinapis arvensis" would accept *Raphanus raphanistrum* (a synonym
+            # relation, and the exact mislabel this work repairs); with it, the
+            # only candidate sharing the epithet `arvensis` is the true species.
+            # iNat sometimes pads the matched term ("Sinapis arvensis arvensis"),
+            # so this is a prefix test rather than equality.
+            ep_q, ep_t = _epithet(sci), _epithet(tname)
+            mt = _norm(t.get("matched_term"))
+            if ep_q and ep_q == ep_t and mt.startswith(sci):
+                return t["id"], t.get("name"), t.get("rank"), "epithet+matched-term"
+    return None, "no-taxon-match", None, None
+
+
+def validate_query_photos(photos, taxon_id, session, sample: int = 3) -> bool:
+    """Confirm full-text observation hits really belong to the intended clade.
+
+    `collect_photos_q` searches observations by free text, which can return a
+    different genus entirely. Sample the first few observations and require each
+    one's taxon to be the resolved taxon or a descendant of it.
+    """
+    if not photos or not taxon_id:
+        return False
+    ids = [p[0] for p in photos[:sample]]
+    data = api_get("/observations", {"id": ",".join(str(i) for i in ids),
+                                     "per_page": sample, "fields": "id,taxon"}, session)
+    time.sleep(1.0)
+    if not data or not data.get("results"):
+        return False
+    for obs in data["results"]:
+        tax = obs.get("taxon") or {}
+        anc = {a.get("id") for a in (tax.get("ancestors") or [])}
+        if tax.get("id") != taxon_id and taxon_id not in anc:
+            return False
+    return True
 
 
 def collect_photos_from_obs(data, target, cands, seen):
@@ -179,6 +311,9 @@ def main() -> int:
     ap.add_argument("--target", type=int, default=50)
     ap.add_argument("--min", dest="min_imgs", type=int, default=10)
     ap.add_argument("--limit-species", type=int, default=0, help="0 = all species")
+    ap.add_argument("--only", default="",
+                    help="comma-separated keys to re-pull; clears their cached "
+                         "state/taxon so the match is genuinely redone")
     ap.add_argument("--au-first", action="store_true")
     ap.add_argument("--reset", action="store_true")
     args = ap.parse_args()
@@ -197,6 +332,19 @@ def main() -> int:
     cache_path = out_dir.parent / "inat_taxa_cache.json"
     taxa_cache = json.loads(cache_path.read_text()) if cache_path.exists() else {}
 
+    if args.only:
+        wanted = {k.strip().lower() for k in args.only.split(",") if k.strip()}
+        known = {s["key"].lower() for s in species}
+        missing = wanted - known
+        if missing:
+            print(f"[pull] WARNING: not in species list: {sorted(missing)}")
+        species = [s for s in species if s["key"].lower() in wanted]
+        # A targeted re-pull must genuinely re-resolve: the cached state and taxon
+        # for these keys are exactly what was wrong, so clear them first.
+        for s in species:
+            state.pop(s["key"], None)
+            taxa_cache.pop(s["key"], None)
+
     session = requests.Session()
     logf = open(log_path, "a", buffering=1)
     summary = {"ok": 0, "no_images": 0, "no_taxon": 0, "failed": 0}
@@ -210,12 +358,21 @@ def main() -> int:
         sp_dir = out_dir / key
         sp_dir.mkdir(parents=True, exist_ok=True)
 
-        taxon_id = st.get("taxon_id") or taxa_cache.get(key)
+        # The cache may hold either a bare id (legacy) or a record with the
+        # resolved name/rank/method. Recording the name is what makes a wrong
+        # assignment visible later instead of silent.
+        cached = taxa_cache.get(key)
+        if isinstance(cached, dict):
+            taxon_id = cached.get("taxon_id") or st.get("taxon_id")
+        else:
+            taxon_id = st.get("taxon_id") or cached
         query = st.get("query")
         if not taxon_id and not query:
-            taxon_id, matched = match_taxon(s, session, taxa_cache)
+            taxon_id, matched, rank, method = match_taxon(s, session, taxa_cache)
             if taxon_id:
-                taxa_cache[key] = taxon_id
+                taxa_cache[key] = {"taxon_id": taxon_id, "name": matched,
+                                   "rank": rank, "method": method}
+                logf.write(f"[{key}] taxon={taxon_id} ({matched}, {rank}) via {method}\n")
             else:
                 query = s["scientific_name"]  # fallback: observations full-text search
 
@@ -223,6 +380,15 @@ def main() -> int:
             photos = collect_photos(taxon_id, session, args.target)
         else:
             photos = collect_photos_q(query, session, args.target)
+            if photos and not validate_query_photos(photos, taxon_id, session):
+                # free-text search returned a different clade — refuse rather than
+                # file another species' photographs under this key
+                state[key] = {"status": "no_images", "query": query,
+                              "reason": "full-text results failed clade validation"}
+                json.dump(state, open(state_path, "w"))
+                summary["no_images"] += 1
+                logf.write(f"[{key}] REJECTED: full-text q='{query}' returned another clade\n")
+                continue
             if not photos:
                 state[key] = {"status": "no_images", "query": query}
                 json.dump(state, open(state_path, "w"))
