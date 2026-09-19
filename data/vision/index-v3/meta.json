@@ -1,0 +1,15 @@
+{
+ "version": 2,
+ "backend": "dinov2-base",
+ "vectors": 13448,
+ "dim": 384,
+ "species": 173,
+ "canonical_merged": 21,
+ "transform": {
+  "pca": true,
+  "pca_file": "pca_whiten.npz",
+  "dim": 384,
+  "whiten": 0.5
+ },
+ "notes": "canonical labels + optional PCA whitening; see bench/ship_candidate.json"
+}

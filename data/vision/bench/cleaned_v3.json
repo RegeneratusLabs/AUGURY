@@ -1,0 +1,175 @@
+{
+ "backend": "dinov2-base",
+ "canonical": true,
+ "cap": 0,
+ "dim": 384,
+ "gallery": 13448,
+ "queries": 910,
+ "missing_gallery": 0,
+ "missing_query": 0,
+ "top1": 0.8175824175824176,
+ "top3": 0.8967032967032967,
+ "macro_top1": 0.8048169556840077,
+ "macro_top3": 0.8897880539499037,
+ "top1_ci": [
+  0.7911726425054154,
+  0.8413220918117791
+ ],
+ "top3_ci": [
+  0.8752325176201244,
+  0.914838759502738
+ ],
+ "index_build_s": 0.010284423828125,
+ "search_ms_per_query": 0.31132776658613603,
+ "worst_species": [
+  {
+   "key": "crepis capillaris",
+   "top1": 0.0,
+   "top3": 0.6,
+   "n": 5
+  },
+  {
+   "key": "austrostipa spp",
+   "top1": 0.2,
+   "top3": 0.6,
+   "n": 5
+  },
+  {
+   "key": "digitaria sanguinalis",
+   "top1": 0.2,
+   "top3": 0.2,
+   "n": 5
+  },
+  {
+   "key": "hakea spp",
+   "top1": 0.2,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "agrostis stolonifera",
+   "top1": 0.4,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "artemisia vulgaris",
+   "top1": 0.4,
+   "top3": 0.8,
+   "n": 5
+  },
+  {
+   "key": "banksia spp",
+   "top1": 0.4,
+   "top3": 0.8,
+   "n": 5
+  },
+  {
+   "key": "chloris gayana",
+   "top1": 0.4,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "dianella spp",
+   "top1": 0.4,
+   "top3": 0.6,
+   "n": 5
+  },
+  {
+   "key": "festuca rubra",
+   "top1": 0.4,
+   "top3": 0.4,
+   "n": 5
+  },
+  {
+   "key": "gahnia spp",
+   "top1": 0.4,
+   "top3": 0.6,
+   "n": 5
+  },
+  {
+   "key": "hypochaeris radicata",
+   "top1": 0.4,
+   "top3": 0.4,
+   "n": 5
+  }
+ ],
+ "top_confusions": [
+  {
+   "gt": "banksia spp",
+   "pred": "hakea spp",
+   "n": 2
+  },
+  {
+   "gt": "callistemon spp",
+   "pred": "banksia spp",
+   "n": 2
+  },
+  {
+   "gt": "hakea spp",
+   "pred": "banksia spp",
+   "n": 2
+  },
+  {
+   "gt": "hypochaeris radicata",
+   "pred": "cirsium vulgare",
+   "n": 2
+  },
+  {
+   "gt": "phalaris arundinacea",
+   "pred": "arrhenatherum elatius",
+   "n": 2
+  },
+  {
+   "gt": "poa annua",
+   "pred": "agrostis capillaris",
+   "n": 2
+  },
+  {
+   "gt": "rumex obtusifolius",
+   "pred": "rumex crispus",
+   "n": 2
+  },
+  {
+   "gt": "setaria viridis",
+   "pred": "hordeum leporinum",
+   "n": 2
+  },
+  {
+   "gt": "agrostis capillaris",
+   "pred": "phalaris arundinacea",
+   "n": 1
+  },
+  {
+   "gt": "agrostis capillaris",
+   "pred": "arrhenatherum elatius",
+   "n": 1
+  },
+  {
+   "gt": "agrostis stolonifera",
+   "pred": "echinochloa colona",
+   "n": 1
+  },
+  {
+   "gt": "agrostis stolonifera",
+   "pred": "holcus lanatus",
+   "n": 1
+  },
+  {
+   "gt": "agrostis stolonifera",
+   "pred": "hymenachne amplexicaulis",
+   "n": 1
+  },
+  {
+   "gt": "allocasuarina verticillata",
+   "pred": "parkinsonia aculeata",
+   "n": 1
+  },
+  {
+   "gt": "alopecurus pratensis",
+   "pred": "dactyloctenium radulans",
+   "n": 1
+  }
+ ]
+}
