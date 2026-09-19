@@ -1,7 +1,7 @@
 {
   "manifest_schema": 1,
-  "generated": "2026-09-19T04:03:09Z",
-  "generation": "a5231be37c36a8276cd12f9e03e34462b54df6c2f456c42658da91e5995b01bc",
+  "generated": "2026-09-19T12:15:59Z",
+  "generation": "1a40b92daff31597c3b58c0ded3eeb37e53b9a0805b3fb3034e203b94b2239ff",
   "formatter": {
     "protocol": "formatter.chatml-grounded@1",
     "repo": "RegeneratusLabs/augury-1b",
@@ -18,8 +18,8 @@
     "path": "augury-ondevice.json",
     "revision": null,
     "bytes": 990143,
-    "sha256": "859fda1e407a9f9f48853d20a779795aa07c2dc7dbe98c7fe635373620273068",
-    "generation": "859fda1e407a"
+    "sha256": "0549ecdd6930551f23b442cc9a97eab71509802c8c242de3700cfc5720cba83f",
+    "generation": "0549ecdd6930"
   },
   "vision": {
     "index": {
@@ -28,13 +28,13 @@
       "repo": "RegeneratusLabs/augury-vision-index",
       "path": "vision-index-v3.tar.gz",
       "revision": null,
-      "bytes": 20266506,
-      "sha256": "f51b48ba160f997e97d161ed4755dbd2b6fbac8e1bdc07edb0f01f5c9456fb67",
+      "bytes": 24718110,
+      "sha256": "6e82348f5edd6c39f3d8078e627dfa399125f6dc9a6b86b1d06b854c911664f5",
       "backend": "dinov2-base",
-      "vectors": 13448,
+      "vectors": 16580,
       "dim": 384,
       "species": 173,
-      "generation": "f51b48ba160f"
+      "generation": "6e82348f5edd"
     },
     "encoders": [
       {
@@ -50,8 +50,8 @@
       }
     ],
     "bands": {
-      "auto_conf": 0.68,
-      "confirm_conf": 0.43,
+      "auto_conf": 0.64,
+      "confirm_conf": 0.3,
       "source": "index-v3 band_config.json"
     },
     "preprocess": {
