@@ -1,7 +1,7 @@
 {
  "version": 2,
  "backend": "dinov2-base",
- "vectors": 13448,
+ "vectors": 16580,
  "dim": 384,
  "species": 173,
  "canonical_merged": 21,

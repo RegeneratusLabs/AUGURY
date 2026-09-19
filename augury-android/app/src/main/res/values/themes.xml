@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Plain platform theme: the spike deliberately pulls in no AndroidX/Material. -->
+    <style name="Theme.AugurySpike" parent="@android:style/Theme.Material.Light.DarkActionBar" />
+</resources>

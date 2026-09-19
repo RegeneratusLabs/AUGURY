@@ -1,0 +1,74 @@
+{
+  "manifest_schema": 1,
+  "generated": "2026-09-19T04:03:09Z",
+  "generation": "a5231be37c36a8276cd12f9e03e34462b54df6c2f456c42658da91e5995b01bc",
+  "formatter": {
+    "protocol": "formatter.chatml-grounded@1",
+    "repo": "RegeneratusLabs/augury-1b",
+    "path": "MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+    "revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
+    "bytes": 688065824,
+    "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
+    "generation": "febcf5e6dfcc"
+  },
+  "facts": {
+    "protocol": "species.db@1",
+    "schema": 1,
+    "repo": "RegeneratusLabs/augury-app",
+    "path": "augury-ondevice.json",
+    "revision": null,
+    "bytes": 990143,
+    "sha256": "859fda1e407a9f9f48853d20a779795aa07c2dc7dbe98c7fe635373620273068",
+    "generation": "859fda1e407a"
+  },
+  "vision": {
+    "index": {
+      "protocol": "vision.clip-token-l2-pca-knn-ip@1",
+      "schema": 1,
+      "repo": "RegeneratusLabs/augury-vision-index",
+      "path": "vision-index-v3.tar.gz",
+      "revision": null,
+      "bytes": 20266506,
+      "sha256": "f51b48ba160f997e97d161ed4755dbd2b6fbac8e1bdc07edb0f01f5c9456fb67",
+      "backend": "dinov2-base",
+      "vectors": 13448,
+      "dim": 384,
+      "species": 173,
+      "generation": "f51b48ba160f"
+    },
+    "encoders": [
+      {
+        "backend": "dinov2-base",
+        "protocol": "vision.clip-token-l2-pca-knn-ip@1",
+        "repo": "RegeneratusLabs/augury-app",
+        "path": "dinov2-base-fp32.onnx",
+        "revision": null,
+        "bytes": 346524147,
+        "sha256": "bddcaec4d939f7905595e8daf1ba5750001408637fee6adb17dae1838cf98d81",
+        "quant": "fp32",
+        "generation": "bddcaec4d939"
+      }
+    ],
+    "bands": {
+      "auto_conf": 0.68,
+      "confirm_conf": 0.43,
+      "source": "index-v3 band_config.json"
+    },
+    "preprocess": {
+      "resize_shortest_edge": 256,
+      "crop": 224,
+      "resample": "bicubic",
+      "mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "output": "cls_token"
+    }
+  }
+}

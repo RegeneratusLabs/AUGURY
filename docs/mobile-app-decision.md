@@ -229,22 +229,96 @@ the benchmark harness and the shipped `PhotoID` read it.
 
 | Artifact | Size | Notes |
 |---|---|---|
-| formatter GGUF Q4_K_M | **688 MB** | `RegeneratusLabs/augury-1b` |
-| encoder ONNX int8 | **~88 MB** | *pending measurement — see §6* |
-| retrieval index (`index-v3`) | **42 MB** | 13,448 vectors × 384-d, no FAISS |
-| species DB | **~1.5 MB** | from the manifest, not the APK |
-| **Total first-launch download** | **~1.15 GB** | |
+| formatter GGUF Q4_K_M | **688.1 MB** | `RegeneratusLabs/augury-1b` |
+| encoder ONNX **fp32** | **346.5 MB** | `dinov2-base-fp32.onnx` — int8 rejected, see §5.1 |
+| retrieval index (`index-v3`, gzipped) | **20.3 MB** | 13,448 vectors × 384-d, **no FAISS** |
+| species DB | **1.0 MB** | `augury-ondevice.json`, from the manifest |
+| **Total first-launch download** | **~1.06 GB** | |
 
 **The ~1 GB first-launch download is accepted and expected.** It is the price of a
 local, open-source, self-hosted model with no server bill: the weights must reach
 the device exactly once. `index.faiss` is deliberately excluded from the published
-index, because the app performs brute-force kNN over 13,448 × 384 floats in plain
-Kotlin — which removes FAISS as a native dependency and shrinks the artifact.
+tarball, because the app performs brute-force kNN over 13,448 × 384 floats in plain
+Kotlin — which removes FAISS as a native dependency and keeps the artifact at
+20 MB compressed instead of 42 MB.
 
 **Memory constraint carried over from the CLI:** the encoder (~350 MB) and the
 GGUF (~700 MB) are never resident together — `scripts/thirdparty_test/run_field_test.py`
 documents this for a 16 GB host. The app must release the encoder before
 generation.
+
+### 5.1 Encoder quantisation: int8 measured and REJECTED
+
+The obvious way to shrink the 346 MB encoder is int8. It does not work, and this
+was measured rather than assumed.
+
+Both arms were scored on the **same queries**, against the **shipped fp32-built
+gallery** — which is the real configuration, since the phone embeds only the
+user's photo and downloads the gallery vectors pre-computed:
+
+| Arm | top-1 | top-3 | delta |
+|---|---|---|---|
+| fp32 PyTorch (control) | 0.7500 | 0.8500 | — |
+| **ONNX fp32** | **0.7500** | **0.8500** | **+0.00p** |
+| ONNX int8 (dynamic) | 0.0500 | 0.1250 | **−70.00p** |
+
+The **fp32 control matching PyTorch exactly** is what makes this conclusive: it
+proves the measurement pipeline is sound, so the collapse is a genuine
+quantisation effect rather than a harness bug. Dynamic int8 weight quantisation is
+known to be destructive for ViTs — attention needs more dynamic range than int8
+weights provide.
+
+**Decision: ship fp32.** The full-corpus gate (866 comparable queries) confirms
+`dinov2-base-fp32.onnx` is faithful:
+
+| Arm | n | top-1 | top-3 |
+|---|---|---|---|
+| fp32 PyTorch | 866 | 0.8360 | 0.9226 |
+| ONNX fp32 | 866 | **0.8360** | **0.9226** |
+| delta | | **+0.00p** | **+0.00p** |
+
+Record: `data/vision/bench/encoder_gate_dinov2-base-fp32.json`. Two things worth
+noting about that measurement: it covers **866 of 910** queries because 44 query
+images referenced by `au_split.json` no longer exist on disk (removed after the
+fp32 cache was built), and the 866-query subset scores **83.6%**, i.e. the
+excluded queries were the harder ones. Both arms were restricted to the same
+subset so the delta stays honest.
+
+### 5.2 The native engine is verified running the real model
+
+The llama.cpp JNI layer builds for **arm64-v8a** (4.1 MB stripped, all 7 JNI entry
+points present, NDK r27b) and the *same* C++ translation unit was compiled as a
+host binary and run against the real 688 MB GGUF:
+
+```
+template_source : embedded-chat-template   (the model's own template, not a fallback)
+prompt_tokens   : 174
+gen_tokens      : 78
+tokens_per_sec  : 66.84
+wall_ms         : 1685                      ← 1.7 s per answer, native
+```
+
+**What this proves and what it does not.** It proves the engine's llama.cpp API
+usage, chat-template application, sampling and tokenisation are all correct, and
+that the arm64 build succeeds. It does **not** yet prove the `.so` loads on a real
+phone, because this host has no `/dev/kvm` — the Android emulator falls back to
+QEMU-TCG, which is both far too slow for a 1B model and missing AVX/F16C (an
+AVX2-built ggml SIGILLs inside the guest; the x86_64 build pins SSE4.2 for this
+reason). **A real-device test remains the outstanding verification.**
+
+### 5.3 The grounding pass is mandatory, not decorative
+
+Running the real GGUF with the real prompt, the model was given the fact
+`Soil pH: neutral to slightly acidic` and produced:
+
+> *"The pH picture: Dandelion indicates acidic conditions, **likely below 6.5**."*
+
+**"6.5" appears nowhere in the injected facts** — the DB says "wide range, weakly
+acid to neutral". It is an invented number, reproduced on demand. This is the
+documented failure `scripts/grounding.py` exists to repair ("raw answers invented
+numbers in 6/10 fresh runs; after the repair pass 10/10 clean"), and it confirms
+the grounding pass must be ported to Kotlin and run **on-device**. A build without
+it will confidently print invented soil chemistry.
 
 ---
 
@@ -328,9 +402,20 @@ was a symptom of the contamination, not an encoder limit.
   `requires_verification`). `scripts/backfill_sidecars.py --check-publishable`
   exits non-zero while that holds, by design — the gallery cannot be published by
   accident.
-- **Encoder accuracy on-device is unmeasured until §5's export gate runs.**
-  Whatever int8 costs, it must be measured through the *app's* encoder, not
-  assumed from the fp32 benchmark.
+- ✅ **Encoder gate resolved** (§5.1): fp32 ONNX is faithful to PyTorch
+  (+0.00p on 866 queries); int8 was measured and rejected. The remaining gap is
+  **not** encoder accuracy but that no **real device** has run the app — the
+  emulator is unusable here (no `/dev/kvm`).
+- **44 of 910 benchmark query images and 368 of 13,448 gallery images referenced
+  by `au_split.json` no longer exist on disk**, though their cached fp32
+  embeddings do. The shipped index was built from those cached vectors, so this
+  affects reproducible *re-embedding* (e.g. rebuilding the index) more than
+  scoring. Recorded, not fixed — it is a data-acquisition concern.
+- **`index-v3` ships `band_calibration.json`, but `PhotoID` reads
+  `band_config.json`.** `data/vision/index-v3/band_config.json` now exists with the
+  calibrated `0.68`/`0.43` values, so the Python path is correct — but
+  `calibrate_bands.py` writing only the former is a recurring hazard (see the note
+  in §4). The app is immune: it reads bands from the **manifest**.
 
 ---
 

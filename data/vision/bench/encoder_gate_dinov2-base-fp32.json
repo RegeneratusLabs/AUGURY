@@ -1,0 +1,26 @@
+{
+ "encoder": "dinov2-base-fp32.onnx",
+ "encoder_bytes": 346524147,
+ "gallery": "index-v3",
+ "gallery_vectors": 13448,
+ "comparable_queries": 866,
+ "excluded_missing_images": 44,
+ "arms": {
+  "fp32_pytorch": {
+   "n": 866,
+   "top1": 0.836027713625866,
+   "top3": 0.9226327944572749
+  },
+  "onnx": {
+   "n": 866,
+   "top1": 0.836027713625866,
+   "top3": 0.9226327944572749
+  }
+ },
+ "delta_top1_pts": 0.0,
+ "delta_top3_pts": 0.0,
+ "max_drop_pts": 2.5,
+ "verdict": "GO",
+ "method": "int8 ONNX query embeddings vs fp32 PyTorch query embeddings, both searched against index-v3's fp32-built whitened gallery",
+ "note_int8_rejected": "Dynamic int8 quantisation was measured and REJECTED. Control on the same 40 queries: ONNX fp32 = 0.7500/0.8500 (delta +0.00p vs PyTorch), ONNX int8 = 0.0500/0.1250 (delta -70.00p). The fp32 control matching PyTorch exactly proves the measurement pipeline is correct, so the collapse is a genuine quantisation effect, not a harness bug. Dynamic int8 weight quantisation is known to be destructive for ViTs because attention needs more dynamic range than int8 weights provide. The app therefore ships fp32 (346.5 MB)."
+}

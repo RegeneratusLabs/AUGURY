@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">AUGURY Spike</string>
+    <string name="model_path_label">GGUF model path (on-device)</string>
+    <string name="user_prompt_label">User prompt (AUGURY formatter contract)</string>
+    <string name="generate">Generate</string>
+    <string name="stats_label">Measured performance</string>
+    <string name="output_label">Model output</string>
+</resources>

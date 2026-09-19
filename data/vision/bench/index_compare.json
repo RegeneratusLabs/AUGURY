@@ -1,0 +1,17 @@
+{
+ "query_split": "data/vision/bench/_au_split_original.json",
+ "results": {
+  "data/vision/index-v2": {
+   "scored": 910,
+   "skipped": 0,
+   "top1": 0.954945054945055,
+   "top3": 0.9824175824175824
+  },
+  "data/vision/index-v3": {
+   "scored": 910,
+   "skipped": 0,
+   "top1": 0.9439560439560439,
+   "top3": 0.9538461538461539
+  }
+ }
+}
