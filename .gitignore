@@ -73,6 +73,11 @@ data/research/_tools/cache/
 # ---- agent scratch dirs (transient) ----
 .*_scratch/
 .dsh-runtime/
+# Gradle user home, redirected into the workspace because $HOME is read-only in
+# this sandbox. Pure build cache (~500-600MB per copy), never source. Covers both
+# the repo root and the Android project root: Gradle resolves a RELATIVE
+# GRADLE_USER_HOME against the CWD it was invoked from, so both appeared.
+.gradle-home/
 
 # ---- regenerable scan output (48MB; rerun scan_image_quality.py) ----
 data/vision/bench/image_quality.jsonl
@@ -83,3 +88,8 @@ data/vision/quarantine_fallback/
 augury-android/.gradle/
 augury-android/build/
 augury-android/app/build/
+
+# ---- Android native/CMake and gradle-home build state (embeds absolute paths) ----
+augury-android/app/.cxx/
+augury-android/.gradle-home/
+.gradle-home/
