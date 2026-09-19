@@ -78,3 +78,8 @@ data/research/_tools/cache/
 data/vision/bench/image_quality.jsonl
 # ---- quarantined galleries pending re-pull ----
 data/vision/quarantine_fallback/
+
+# ---- Android build artifacts ----
+augury-android/.gradle/
+augury-android/build/
+augury-android/app/build/
