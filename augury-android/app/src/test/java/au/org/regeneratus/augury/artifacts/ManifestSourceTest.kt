@@ -31,22 +31,30 @@ class ManifestSourceTest {
             repoType = HuggingFaceRepoType.MODEL,
         )
         assertEquals(
-            "https://mirror.invalid/models/some-org/some-repo/resolve/v3/app-manifest.json",
+            // A MODEL repo has NO path prefix. Hugging Face resolves it at
+            // /<repo>/resolve/... ; the /models/ form is a 404, which is what
+            // this test previously asserted (and what made the app request the
+            // 688 MB GGUF from a path that does not exist).
+            "https://mirror.invalid/some-org/some-repo/resolve/v3/app-manifest.json",
             source.url,
         )
     }
 
     @Test
     fun `artifact urls use each artifact's own repo and the default revision when unpinned`() {
+        // The formatter GGUF is published to a MODEL repo, so its URL must have
+        // no prefix. Verified against the live service:
+        //   /datasets/RegeneratusLabs/augury-1b/resolve/.../MiniCPM5-...gguf -> 401
+        //   /RegeneratusLabs/augury-1b/resolve/.../MiniCPM5-...gguf          -> 200
         val url = HuggingFaceUrls.resolve(
             ManifestSource.DEFAULT_BASE_URL,
-            HuggingFaceRepoType.DATASET,
+            HuggingFaceRepoType.MODEL,
             "RegeneratusLabs/augury-1b",
             null,
             "MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
         )
         assertEquals(
-            "https://huggingface.co/datasets/RegeneratusLabs/augury-1b/resolve/main/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
+            "https://huggingface.co/RegeneratusLabs/augury-1b/resolve/main/MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
             url,
         )
     }

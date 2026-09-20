@@ -1,7 +1,7 @@
 {
   "manifest_schema": 1,
   "generated": "2026-09-20T07:58:50Z",
-  "generation": "481d9df103f2579292652fa217d6455a8cd3917a6b69549770924a0bea6647f6",
+  "generation": "81e85f0815746fb41b48b0833f1dd0bc1f5162bea88807fe0a2a48287bf49a9f",
   "formatter": {
     "protocol": "formatter.chatml-grounded@1",
     "repo": "RegeneratusLabs/augury-1b",
@@ -9,7 +9,8 @@
     "revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
     "bytes": 688065824,
     "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
-    "generation": "febcf5e6dfcc"
+    "generation": "febcf5e6dfcc",
+    "repo_type": "model"
   },
   "facts": {
     "protocol": "species.db@1",
@@ -19,7 +20,8 @@
     "revision": "3fb4801eb7f75a9ee89e63e86efb04cb4ce9a15b",
     "bytes": 990143,
     "sha256": "b44c1f96c5658bbe60f3146e6aef89e3fe5c72d114f9260ea16d0362a3939f10",
-    "generation": "b44c1f96c565"
+    "generation": "b44c1f96c565",
+    "repo_type": "dataset"
   },
   "vision": {
     "index": {
@@ -34,7 +36,8 @@
       "vectors": 16580,
       "dim": 384,
       "species": 173,
-      "generation": "6e82348f5edd"
+      "generation": "6e82348f5edd",
+      "repo_type": "dataset"
     },
     "encoders": [
       {
@@ -46,7 +49,8 @@
         "bytes": 346524147,
         "sha256": "bddcaec4d939f7905595e8daf1ba5750001408637fee6adb17dae1838cf98d81",
         "quant": "fp32",
-        "generation": "bddcaec4d939"
+        "generation": "bddcaec4d939",
+        "repo_type": "dataset"
       }
     ],
     "bands": {

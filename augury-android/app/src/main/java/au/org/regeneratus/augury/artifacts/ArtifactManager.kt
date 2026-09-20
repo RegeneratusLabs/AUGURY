@@ -218,7 +218,12 @@ class ArtifactManager(
         val resumeFrom = if (Files.exists(part)) Files.size(part) else 0L
         listener.onArtifactStarted(artifact, resumeFrom, spec.bytes)
 
-        val url = HuggingFaceUrls.resolve(source.baseUrl, source.repoType, spec.repo, spec.revision, spec.path)
+        // Each artifact carries its OWN repo kind: the GGUF is a model repo, the
+        // rest are dataset repos, and HF resolves them with different prefixes
+        // (see HuggingFaceUrls.resolve). Using source.repoType here fetched the
+        // formatter from a dataset path that does not exist, so the very first
+        // artifact 401'd and the whole install aborted.
+        val url = HuggingFaceUrls.resolve(source.baseUrl, spec.repoType, spec.repo, spec.revision, spec.path)
         val report = downloader.download(
             url = url,
             target = part,

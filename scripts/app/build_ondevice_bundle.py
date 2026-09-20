@@ -570,6 +570,11 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
         "generation": None,  # filled in below
         "formatter": {
             "protocol": FORMATTER_PROTOCOL,
+            # The GGUF is published to a *model* repo; HF resolves model repos
+            # with NO path prefix, while datasets use /datasets. The app builds
+            # its download URL from this field, so omitting it makes the very
+            # first (688 MB) download 401.
+            "repo_type": "model",
             "repo": FORMATTER_REPO,
             "path": FORMATTER_PATH,
             "revision": revisions.get(FORMATTER_REPO),
@@ -580,6 +585,7 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
         "facts": {
             "protocol": FACTS_PROTOCOL,
             "schema": FACTS_SCHEMA,
+            "repo_type": "dataset",
             "repo": FACTS_REPO,
             "path": FACTS_PATH,
             "revision": revisions.get(FACTS_REPO),
@@ -591,6 +597,7 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
             "index": {
                 "protocol": VISION_PROTOCOL,
                 "schema": VISION_INDEX_SCHEMA,
+                "repo_type": "dataset",
                 "repo": VISION_INDEX_REPO,
                 "path": VISION_INDEX_PATH,
                 "revision": revisions.get(VISION_INDEX_REPO),
@@ -606,6 +613,7 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
                 {
                     "backend": meta.get("backend"),
                     "protocol": VISION_PROTOCOL,
+                    "repo_type": "dataset",
                     "repo": ENCODER_REPO,
                     "path": ENCODER_PATH,
                     "revision": revisions.get(ENCODER_REPO),

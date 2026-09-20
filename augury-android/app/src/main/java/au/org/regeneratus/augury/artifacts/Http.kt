@@ -149,10 +149,43 @@ class JavaHttpTransport(
     }
 }
 
-/** Whether a dataset or a model repo is being read; it changes the URL segment. */
+/**
+ * Whether a dataset or a model repo is being read.
+ *
+ * The segment is **not** symmetric, and getting it wrong is a 404 that looks
+ * like "the artifact was never published":
+ *
+ * ```
+ *   dataset : https://huggingface.co/datasets/<repo>/resolve/<rev>/<path>   -> 200
+ *   model   : https://huggingface.co/<repo>/resolve/<rev>/<path>            -> 200
+ *   model   : https://huggingface.co/models/<repo>/resolve/<rev>/<path>     -> 404
+ * ```
+ *
+ * A model repo has **no** path prefix at all, so [segment] is empty for [MODEL]
+ * and [HuggingFaceUrls.resolve] omits the slash entirely.
+ */
 enum class HuggingFaceRepoType(val segment: String) {
     DATASET("datasets"),
-    MODEL("models"),
+    MODEL(""),
+    ;
+
+    companion object {
+        /**
+         * Parses the manifest's `repo_type`. Absent means `"dataset"`, which
+         * keeps older manifests working — every artifact except the GGUF lives in
+         * a dataset repo.
+         */
+        fun fromManifest(raw: String?, context: String): HuggingFaceRepoType {
+            val value = (raw ?: "dataset").trim().lowercase()
+            return when (value) {
+                "dataset" -> DATASET
+                "model" -> MODEL
+                else -> throw ManifestFormatException(
+                    "manifest field $context: repo_type must be \"dataset\" or \"model\", found \"$raw\""
+                )
+            }
+        }
+    }
 }
 
 /**
@@ -184,8 +217,14 @@ data class ManifestSource(
 object HuggingFaceUrls {
 
     /**
-     * Builds the `resolve` URL for one file:
-     * `<base>/<datasets|models>/<repo>/resolve/<revision>/<path>`.
+     * Builds the `resolve` URL for one file.
+     *
+     * The dataset/model distinction is a *prefix that only datasets have*:
+     *
+     * ```
+     *   dataset -> <base>/datasets/<repo>/resolve/<rev>/<path>
+     *   model   -> <base>/<repo>/resolve/<rev>/<path>
+     * ```
      *
      * A `null` revision falls back to [ManifestSource.DEFAULT_REVISION] — the
      * manifest's own artifact entries may leave `revision` null until the
@@ -201,7 +240,8 @@ object HuggingFaceUrls {
     ): String {
         val base = baseUrl.trimEnd('/')
         val rev = (revision ?: ManifestSource.DEFAULT_REVISION).trim().ifEmpty { ManifestSource.DEFAULT_REVISION }
-        return "$base/${repoType.segment}/${repo.trim('/')}/resolve/$rev/${encodePath(path)}"
+        val prefix = repoType.segment.trim('/').let { if (it.isEmpty()) "" else "/$it" }
+        return "$base$prefix/${repo.trim('/')}/resolve/$rev/${encodePath(path)}"
     }
 
     /** Minimal escaping: spaces are legal in HF filenames and must not become a broken URL. */

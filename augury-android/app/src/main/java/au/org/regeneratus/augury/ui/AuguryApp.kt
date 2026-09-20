@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -81,7 +84,12 @@ fun ScreenScaffold(
     Column(
         Modifier
             .fillMaxSize()
-            .background(c.background),
+            .background(c.background)
+            // MainActivity calls enableEdgeToEdge(), so the app draws under the
+            // status and navigation bars. Without this the footer's primary
+            // button sits UNDER the navigation bar: its centre is not tappable,
+            // and "Start identifying" silently did nothing on a device.
+            .windowInsetsPadding(WindowInsets.safeDrawing),
     ) {
         Row(
             Modifier

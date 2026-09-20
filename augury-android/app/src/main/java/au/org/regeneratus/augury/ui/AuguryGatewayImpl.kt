@@ -1,6 +1,7 @@
 package au.org.regeneratus.augury.ui
 
 import android.content.Context
+import android.util.Log
 import au.org.regeneratus.augury.LlamaEngine
 import au.org.regeneratus.augury.artifacts.ArtifactManager
 import au.org.regeneratus.augury.artifacts.ArtifactManifest
@@ -80,12 +81,16 @@ class AuguryGatewayImpl private constructor(
     /** Set once the manifest declares something this build cannot execute. */
     private val updateRequiredReasons = AtomicReference<List<String>>(emptyList())
 
+
     private val cancelToken = AtomicReference(CancellationToken.NONE)
 
     /** Set by [cancelDownload]; the in-flight [startDownload] observes it and stops. */
     private val cancelRequested = java.util.concurrent.atomic.AtomicBoolean(false)
 
     companion object {
+        /** logcat tag for this gateway. */
+        private const val TAG = "AuguryGateway"
+
         /** The bootstrap pointer: the one URL the shell cannot download. */
         const val MANIFEST_REPO = "RegeneratusLabs/augury-app"
         const val MANIFEST_FILE = "manifest.json"
@@ -333,7 +338,12 @@ class AuguryGatewayImpl private constructor(
             }
 
             override fun onArtifactFailed(artifact: ManifestArtifact, error: Throwable) {
+                // Keep the reason. A bare "failed" in the UI with nothing in
+                // logcat is undiagnosable, and the download phase is exactly the
+                // part that has been hard to debug.
+                val reason = "${error.javaClass.simpleName}: ${error.message}"
                 progress[artifact.name] = Progress(phase = ArtifactStatus.FAILED)
+                Log.e(TAG, "artifact '${artifact.name}' failed: $reason", error)
             }
         }
 
@@ -345,6 +355,10 @@ class AuguryGatewayImpl private constructor(
                     listener = listener,
                     cancel = token,
                 )
+            }.onFailure { t ->
+                // install() can also fail outside a per-artifact callback
+                // (manifest-level, the protocol gate, disk).
+                Log.e(TAG, "artifact install aborted", t)
             }
         } finally {
             downloadActive.set(false)

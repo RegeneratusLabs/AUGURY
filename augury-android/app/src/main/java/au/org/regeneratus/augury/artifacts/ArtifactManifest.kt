@@ -44,9 +44,18 @@ package au.org.regeneratus.augury.artifacts
  *    [ManifestRejectedException] *before* any artifact URL is touched. That is
  *    the "tampered/stale manifest is rejected" invariant.
  */
+/** Which Hugging Face repo *kind* an artifact lives in; it changes the URL prefix. */
 data class ArtifactSpec(
     /** The wire contract this artifact must be executed under, e.g. `species.db@1`. */
     val protocol: String,
+    /**
+     * `dataset` or `model`. Not uniform across an app's artifacts: the formatter
+     * GGUF is published to a **model** repo while the species DB, index and
+     * encoder live in **dataset** repos, and HF resolves those with different
+     * URL prefixes (a model repo has none). Hard-coding one kind for the whole
+     * manifest is what made the 688 MB download 401.
+     */
+    val repoType: HuggingFaceRepoType,
     /** Hugging Face repo id, e.g. `RegeneratusLabs/augury-app`. */
     val repo: String,
     /** Path within that repo, e.g. `augury-ondevice.json`. */
@@ -327,6 +336,12 @@ object ManifestParser {
     private fun parseSpec(node: JsonNode): ArtifactSpec {
         val protocol = nonEmpty(node, "protocol")
         val repo = nonEmpty(node, "repo")
+        // Absent means "dataset": only the formatter GGUF is a model repo, and an
+        // older manifest without the field must keep working.
+        val repoType = HuggingFaceRepoType.fromManifest(
+            node.fieldOrNull("repo_type")?.string(),
+            "${node.path}.repo_type",
+        )
         val path = nonEmpty(node, "path")
         val revision = node.fieldOrNull("revision")?.string()?.trim()?.ifEmpty { null }
         val bytesNode = node.field("bytes")
@@ -348,6 +363,7 @@ object ManifestParser {
         }
         return ArtifactSpec(
             protocol = protocol,
+            repoType = repoType,
             repo = repo,
             path = path,
             revision = revision,
