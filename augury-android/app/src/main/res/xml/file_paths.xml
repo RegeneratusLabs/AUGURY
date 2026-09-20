@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Where a captured photo is staged before the system camera writes to it.
+         App-private, so the camera app needs a granted URI and no storage
+         permission. -->
+    <files-path
+        name="captures"
+        path="captures/" />
+</paths>

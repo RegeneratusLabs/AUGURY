@@ -1,7 +1,7 @@
 {
   "manifest_schema": 1,
-  "generated": "2026-09-19T12:15:59Z",
-  "generation": "1a40b92daff31597c3b58c0ded3eeb37e53b9a0805b3fb3034e203b94b2239ff",
+  "generated": "2026-09-20T07:58:50Z",
+  "generation": "481d9df103f2579292652fa217d6455a8cd3917a6b69549770924a0bea6647f6",
   "formatter": {
     "protocol": "formatter.chatml-grounded@1",
     "repo": "RegeneratusLabs/augury-1b",
@@ -16,10 +16,10 @@
     "schema": 1,
     "repo": "RegeneratusLabs/augury-app",
     "path": "augury-ondevice.json",
-    "revision": null,
+    "revision": "3fb4801eb7f75a9ee89e63e86efb04cb4ce9a15b",
     "bytes": 990143,
-    "sha256": "0549ecdd6930551f23b442cc9a97eab71509802c8c242de3700cfc5720cba83f",
-    "generation": "0549ecdd6930"
+    "sha256": "b44c1f96c5658bbe60f3146e6aef89e3fe5c72d114f9260ea16d0362a3939f10",
+    "generation": "b44c1f96c565"
   },
   "vision": {
     "index": {
@@ -27,7 +27,7 @@
       "schema": 1,
       "repo": "RegeneratusLabs/augury-vision-index",
       "path": "vision-index-v3.tar.gz",
-      "revision": null,
+      "revision": "4202596653fd0f96625b9a888ad68c9b092ca403",
       "bytes": 24718110,
       "sha256": "6e82348f5edd6c39f3d8078e627dfa399125f6dc9a6b86b1d06b854c911664f5",
       "backend": "dinov2-base",
@@ -42,7 +42,7 @@
         "protocol": "vision.clip-token-l2-pca-knn-ip@1",
         "repo": "RegeneratusLabs/augury-app",
         "path": "dinov2-base-fp32.onnx",
-        "revision": null,
+        "revision": "ce2ab16ffe68b236f6f6f8032ecb04979e6c62d6",
         "bytes": 346524147,
         "sha256": "bddcaec4d939f7905595e8daf1ba5750001408637fee6adb17dae1838cf98d81",
         "quant": "fp32",

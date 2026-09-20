@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Palette mirrors au.org.regeneratus.augury.ui.theme.AuguryColors. Kept in
+         XML only for the pre-Compose window background (avoids a white flash). -->
+    <color name="augury_background">#FBF9F4</color>
+</resources>

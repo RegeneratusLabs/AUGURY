@@ -61,6 +61,9 @@ object Grounding {
 
     private val SENTENCE_SPLIT_RE = Regex("""(?<=[.!?])\s+""")
     private val WS_RUN_RE = Regex("""\s{2,}""")
+
+    /** Python's argument-less `str.split()`, i.e. **any** whitespace run. */
+    private val WS_RE = Regex("""\s+""")
     private val SPACE_BEFORE_PUNCT_RE = Regex("""\s+([.,;:])""")
     private val REPEATED_PUNCT_RE = Regex("""([.,;:])\1+""")
     private val LEADING_PUNCT_RE = Regex("""^\s*[,;:\-–—]\s*""")
@@ -246,8 +249,16 @@ object Grounding {
         return t.trimEnd(',', ';', ':') + (if (t.isNotEmpty() && !t.endsWith(".")) "." else "")
     }
 
-    /** Python's `len(str.split())`. */
-    private fun wordCount(s: String): Int = s.split(WS_RUN_RE).count { it.isNotEmpty() }
+    /**
+     * Python's `len(str.split())`.
+     *
+     * NOT `len(re.split(r"\s{2,}", s))`: the argument-less `str.split()` splits
+     * on *every* whitespace run, so a normal sentence of single-spaced words
+     * counts as one word per word. Using [WS_RUN_RE] here made every sentence
+     * count as 1, which failed the `< 4 words` bar and dropped every sentence
+     * that carried an unsupported number instead of neutralising or stripping it.
+     */
+    private fun wordCount(s: String): Int = WS_RE.split(s).count { it.isNotEmpty() }
 
     // CLAIM_CONTEXT_RE / LOAD_BEARING_RE are part of the ported module's surface.
     // The Python file defines them and its own docs describe them; `repair`'s

@@ -345,10 +345,28 @@ class SpeciesStore private constructor(
      *
      * Returns `null` when the species is unknown or carries no usable rows
      * anywhere — the honest no-data path.
+     *
+     * Name resolution: a DB key resolves directly; any other name is resolved
+     * through the common-name and scientific-name indexes first (see the comment
+     * on `queried` below). Python's `get_indicators()` accepts keys only, so this
+     * is a strict extension — every key input behaves identically to the Python.
      */
     fun getIndicators(name: String, region: String? = null): IndicatorResult? {
-        val queried = name.trim().lowercase()
-        if (queried.isEmpty()) return null
+        val raw = name.trim().lowercase()
+        if (raw.isEmpty()) return null
+
+        // The funnel only ever hands in a DB key (`resolve()` looks the species up
+        // by `match["key"]`), and Python's `get_indicators()` is key-only: a common
+        // name returns None there. The port additionally accepts a name a user
+        // could have typed — "thistles" is *Cirsium spp.*'s common name, not a DB
+        // key — by resolving it through the same indexes `search()` uses. The
+        // resolved key then plays the part of the queried key, so the identity
+        // rule below still follows what the caller asked for.
+        val queried = if (species.containsKey(raw)) {
+            raw
+        } else {
+            commonIndex[raw] ?: sciNameToKey[raw] ?: raw
+        }
 
         val group = canonicalGroup(queried)
         // Canonical entry leads, then the remaining siblings sorted. Without the
@@ -471,16 +489,28 @@ class SpeciesStore private constructor(
 
         val results = ArrayList<SpeciesMatch>()
 
+        // Python de-duplicates on `r["key"]`, and steps 3 and 5 store a
+        // **lowercased scientific name** there rather than a DB key
+        // (KNOWN_PYTHON_BUGS #1). This port reports the real key, so the two
+        // cannot share one field: `seen` carries exactly what Python would have
+        // stored, which keeps a scientific-name hit and a common-name hit for
+        // the same species distinct, as they are in Python (`prosopis spp.`
+        // yields 'sporobolus spp.' fuzzy_scientific *and* 'sporobolus spp'
+        // fuzzy_common, because the fabricated key differs from the real one).
+        val seen = LinkedHashSet<String>()
+
         // 1. Exact scientific name.
         species[queryLower]?.let {
             results.add(SpeciesMatch(it.scientificName, it.commonNames, "exact_scientific", 1.0, queryLower))
+            seen.add(queryLower)
         }
 
         // 2. Exact common name.
         commonIndex[queryLower]?.let { key ->
-            if (results.none { it.key == key }) {
+            if (key !in seen) {
                 val info = species[key]!!
                 results.add(SpeciesMatch(info.scientificName, info.commonNames, "exact_common", 1.0, key))
+                seen.add(key)
             }
         }
 
@@ -490,12 +520,13 @@ class SpeciesStore private constructor(
                 for (name in scientificNames) {
                     val nameLower = name.lowercase()
                     if (!(nameLower.contains(v) || v.contains(nameLower))) continue
+                    if (nameLower in seen) continue // Python's `key`, see above
                     val key = sciNameToKey[nameLower] ?: continue // KNOWN_PYTHON_BUGS #1
-                    if (results.any { it.key == key }) continue
                     val info = species[key] ?: continue
                     val matchLen = nameLower.length
                     val score = minOf(0.9, 0.6 + (matchLen.toDouble() / maxOf(v.length, 1)) * 0.3)
                     results.add(SpeciesMatch(info.scientificName, info.commonNames, "partial_scientific", round2(score), key))
+                    seen.add(nameLower)
                 }
             }
         }
@@ -506,11 +537,12 @@ class SpeciesStore private constructor(
             for (v in variants) {
                 for ((cnLower, key) in commonIndex) {
                     if (!(cnLower.contains(v) || v.contains(cnLower))) continue
-                    if (results.any { it.key == key }) continue
+                    if (key in seen) continue
                     if ((contentTokens(v) intersect contentTokens(cnLower)).isEmpty()) continue
                     val info = species[key] ?: continue
                     val score = minOf(0.85, 0.55 + (cnLower.length.toDouble() / maxOf(v.length, 1)) * 0.3)
                     results.add(SpeciesMatch(info.scientificName, info.commonNames, "partial_common", round2(score), key))
+                    seen.add(key)
                 }
             }
         }
@@ -523,12 +555,13 @@ class SpeciesStore private constructor(
             val want = maxOf(limit - results.size, 3)
             val possibilities = scientificNames.map { it.lowercase() }
             for (match in getCloseMatches(queryLower, possibilities, want, 0.6)) {
-                if (results.any { it.key == match }) continue
+                if (match in seen) continue
                 val key = sciNameToKey[match] ?: continue // KNOWN_PYTHON_BUGS #1
                 val info = species[key] ?: continue
                 val seq = SequenceMatcher.ratio(queryLower, match)
                 val tok = tokenOverlap(queryLower, match)
                 results.add(SpeciesMatch(info.scientificName, info.commonNames, "fuzzy_scientific", round2(0.5 * seq + 0.5 * tok), key))
+                seen.add(match)
             }
         }
 
@@ -539,7 +572,7 @@ class SpeciesStore private constructor(
             if (qTokens.isNotEmpty()) {
                 val best = ArrayList<ScoredCommonName>()
                 for ((cnLower, key) in commonIndex) {
-                    if (results.any { it.key == key }) continue
+                    if (key in seen) continue
                     val cnTokens = contentTokens(cnLower)
                     if (cnTokens.isEmpty() || (qTokens intersect cnTokens).isEmpty()) continue
                     val seq = SequenceMatcher.ratio(queryLower, cnLower)
@@ -561,6 +594,7 @@ class SpeciesStore private constructor(
                             round2(minOf(b.score, 0.85)), b.key,
                         )
                     )
+                    seen.add(b.key)
                 }
             }
         }

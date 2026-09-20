@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AUGURY — Android UI (as implemented)</title>
+<style>
+  /* ---- Palette copied verbatim from
+         app/src/main/java/au/org/regeneratus/augury/ui/theme/Color.kt ---- */
+  :root{
+    --bg:#141812; --phone:#FBF9F4; --card:#FFFFFF; --muted-surface:#F1F0EA;
+    --ink:#1B1F17; --muted:#6B7364; --line:#E4E1D6;
+    --sage:#43603F; --sage-deep:#34492F; --sage-soft:#EAF0E6; --sage-on:#F6F9F3;
+    --amber:#B0722A; --amber-soft:#FBF1E2; --amber-ink:#7A5316;
+    --shadow:0 18px 40px rgba(0,0,0,.45), 0 2px 6px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+  body{margin:0;padding:40px 28px 72px;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    background:radial-gradient(1100px 500px at 12% -8%,#26301f 0,transparent 62%),
+               radial-gradient(900px 460px at 92% 4%,#2d2a1f 0,transparent 58%),var(--bg);
+    color:#EDEFE6}
+  header{max-width:2100px;margin:0 auto 30px}
+  h1{font-size:23px;margin:0 0 10px;letter-spacing:-.3px;font-weight:650}
+  h1 span{color:#9DB58F;font-weight:500}
+  .lede{color:#A9B0A0;font-size:14px;line-height:1.65;max-width:1180px;margin:0 0 14px}
+  .lede b{color:#DCE3D2;font-weight:600}
+  .lede code{background:#232a1e;padding:1px 5px;border-radius:4px;font-size:12.5px;color:#BFD3AE}
+  .banner{max-width:1180px;background:#2a2417;border:1px solid #4a3d21;border-radius:12px;
+    padding:13px 16px;color:#E3CBA0;font-size:12.5px;line-height:1.65;margin:0 0 8px}
+  .banner b{color:#F2DDB4}
+  .banner code{background:#201c11;padding:1px 5px;border-radius:4px;color:#E9D3A8}
+  .rail{display:flex;gap:30px;overflow-x:auto;padding:20px 4px 28px;max-width:2100px;margin:0 auto;align-items:flex-start}
+  .slot{flex:0 0 auto;display:flex;flex-direction:column;gap:12px;align-items:center}
+  .slot h2{font-size:13.5px;margin:0;color:#C8D2BC;font-weight:650}
+  .slot h2 em{color:#8A9382;font-weight:500;font-style:normal}
+  .slot .note{font-size:11.5px;color:#8A9382;margin:0;text-align:center;max-width:320px;line-height:1.55}
+  .slot .file{font-size:10.5px;color:#6f7a67;font-family:ui-monospace,Menlo,Consolas,monospace;margin:0}
+
+  .phone{width:330px;height:672px;background:var(--phone);border-radius:30px;box-shadow:var(--shadow);
+    overflow:hidden;display:flex;flex-direction:column;color:var(--ink);position:relative;
+    border:1px solid rgba(255,255,255,.07)}
+  .statusbar{height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;
+    font-size:11px;color:var(--muted);flex:0 0 auto;font-weight:600}
+  .appbar{padding:2px 18px 12px;display:flex;align-items:center;gap:10px;flex:0 0 auto}
+  .appbar .title{font-size:17px;font-weight:700;letter-spacing:-.2px}
+  .appbar .sub{font-size:11.5px;color:var(--muted);font-weight:500;margin-top:1px}
+  .back{width:26px;height:26px;border-radius:8px;background:var(--muted-surface);display:grid;place-items:center;
+    font-size:14px;color:var(--muted);flex:0 0 auto;font-weight:700}
+  .body{flex:1 1 auto;overflow:hidden;padding:0 18px;display:flex;flex-direction:column;gap:11px}
+  .spacer{height:12px}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:14px}
+  .label{font-size:10.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--muted);
+    font-weight:700;display:flex;justify-content:space-between}
+  .label .trail{text-transform:none;letter-spacing:0;color:var(--sage);font-weight:600;font-size:11.5px}
+
+  .hero{background:linear-gradient(160deg,#4C6B46 0%,#3A5436 100%);border:none;color:var(--sage-on);padding:17px;border-radius:15px}
+  .hero .kicker{font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;color:var(--sage-soft);font-weight:700}
+  .hero .big{font-size:20px;font-weight:700;margin:6px 0 5px;letter-spacing:-.3px;line-height:1.25}
+  .hero .tiny{font-size:12px;color:var(--sage-soft);line-height:1.5}
+
+  .search{display:flex;align-items:center;gap:9px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:0 13px;height:46px;font-size:14px;color:var(--muted)}
+  .chiprow{display:flex;gap:7px;flex-wrap:wrap}
+  .chip{font-size:11.5px;padding:6px 12px;border-radius:20px;background:var(--muted-surface);color:var(--muted);
+    font-weight:600;border:1px solid transparent}
+  .chip.on{background:var(--sage-soft);color:var(--sage);border-color:rgba(67,96,63,.35)}
+
+  .row{display:flex;align-items:center;gap:11px;padding:11px 12px}
+  .row .dot{width:30px;height:30px;border-radius:10px;background:var(--sage-soft);display:grid;place-items:center;font-size:13px;flex:0 0 auto}
+  .row .meta{flex:1 1 auto;min-width:0}
+  .row .nm{font-size:14px;font-weight:600;line-height:1.25;color:var(--ink)}
+  .row .sc{font-size:11.5px;color:var(--muted);font-style:italic}
+  .row .rt{font-size:10.5px;font-weight:700;color:var(--sage);background:var(--sage-soft);
+    padding:3px 8px;border-radius:9px;flex:0 0 auto}
+  .row .score{font-size:11px;font-weight:700;color:var(--muted);background:var(--muted-surface);
+    padding:3px 8px;border-radius:9px;flex:0 0 auto}
+  .divider{height:1px;background:var(--line);margin-left:53px}
+
+  .pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;
+    padding:4px 10px;border-radius:20px}
+  .pill.hi{background:var(--sage-soft);color:var(--sage)}
+  .pill.mid{background:var(--amber-soft);color:var(--amber)}
+  .pill.lo{background:var(--muted-surface);color:var(--muted)}
+
+  .bar{height:5px;border-radius:6px;background:var(--muted-surface);overflow:hidden;margin-top:6px}
+  .bar i{display:block;height:100%;background:var(--sage);border-radius:6px}
+  .prog{font-size:11.5px;color:var(--muted);display:flex;justify-content:space-between;font-variant-numeric:tabular-nums;margin-top:6px}
+  .prog .ok{color:var(--sage);font-weight:700}
+  .artname{font-size:12.5px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+  .badge{font-size:10px;font-weight:700;padding:2px 8px;border-radius:9px}
+  .badge.ready{background:var(--sage-soft);color:var(--sage)}
+  .badge.dl{background:var(--sage-soft);color:var(--sage)}
+  .badge.queue{background:var(--muted-surface);color:var(--muted)}
+  .artsub{font-size:10.5px;color:var(--muted);margin-top:2px}
+
+  .notice{background:var(--muted-surface);border:1px solid rgba(107,115,100,.22);border-radius:11px;
+    padding:10px 12px;font-size:11.5px;line-height:1.55;color:var(--muted)}
+  .notice.warn{background:var(--amber-soft);border-color:rgba(176,114,42,.25);color:var(--amber-ink)}
+  .notice.good{background:var(--sage-soft);border-color:rgba(67,96,63,.25);color:var(--sage)}
+
+  .toggle{margin-left:auto;width:38px;height:22px;border-radius:20px;background:var(--sage);position:relative;flex:0 0 auto}
+  .toggle:after{content:"";position:absolute;top:3px;right:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+  .trust{position:absolute;top:-9px;left:14px;font-size:10px;font-weight:800;color:var(--sage);
+    background:#fff;border:1px solid rgba(67,96,63,.35);border-radius:8px;padding:2px 8px;letter-spacing:.05em}
+
+  .footer{flex:0 0 auto;padding:12px 18px 14px;border-top:1px solid var(--line);background:var(--card);
+    display:flex;flex-direction:column;gap:8px}
+  .cta{display:block;width:100%;text-align:center;background:var(--sage);color:var(--sage-on);border:none;
+    border-radius:14px;padding:14px;font-size:14.5px;font-weight:600}
+  .cta.sec{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+  .split{display:flex;gap:9px}
+  .split>*{flex:1}
+
+  .kv{display:flex;font-size:11.5px;padding:3px 0}
+  .kv .k{width:112px;color:var(--muted);flex:0 0 auto}
+  .kv .v{flex:1 1 auto;color:var(--ink);line-height:1.45}
+  .ind{margin-bottom:11px}
+  .ind .k{font-size:12px;font-weight:700;color:var(--sage);margin-bottom:2px}
+  .ind .v{font-size:13px;line-height:1.5;color:#3A4034}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>AUGURY · Android UI <span>— as implemented</span></h1>
+  <p class="lede">
+    Six screens, all written and compiling in
+    <code>app/src/main/java/au/org/regeneratus/augury/ui/</code>. This page is a
+    visual record of that code: the palette, wording and layout come from the
+    Compose sources, not from a design sketch.
+  </p>
+  <div class="banner">
+    <b>Why this page exists and not a screenshot.</b> This host has no <code>/dev/kvm</code>, so
+    Android's x86_64 emulator refuses to run at all — <i>“x86_64 emulation currently requires
+    hardware acceleration”</i> — with no software fallback. There is no way to execute the app on
+    this machine, and <b>therefore no way to capture a real screenshot here</b>. What follows is
+    the UI as the code defines it; it is a faithful rendering, not a photograph.
+    The honest consequence: <b>nobody has yet seen this app run.</b>
+  </div>
+</header>
+
+<div class="rail">
+
+  <!-- ═══════════ 1 · SETUP ═══════════ -->
+  <div class="slot">
+    <h2>1 · Setup <em>first launch only</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div>
+        <div class="title">Getting AUGURY ready</div>
+        <div class="sub">One-time download · do it on Wi-Fi</div>
+      </div></div>
+      <div class="body">
+        <div class="card">
+          <div class="label"><span>DOWNLOADING</span></div>
+          <div class="spacer"></div>
+
+          <div class="ind">
+            <div class="artname">Species database <span class="badge ready">ready</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+            <div class="prog"><span>990 KB</span><span class="ok">✓ done</span></div>
+            <div class="artsub">2,256 species · 98 synonyms</div>
+          </div>
+
+          <div class="ind">
+            <div class="artname">Retrieval index <span class="badge ready">ready</span></div>
+            <div class="bar"><i style="width:100%"></i></div>
+            <div class="prog"><span>24.7 MB</span><span class="ok">✓ done</span></div>
+            <div class="artsub">16,580 vectors · 173 species · 384-d</div>
+          </div>
+
+          <div class="ind">
+            <div class="artname">Image recogniser <span class="badge dl">downloading</span></div>
+            <div class="bar"><i style="width:61%"></i></div>
+            <div class="prog"><span>211 MB of 347 MB</span><span>61% · 1.4 MB/s</span></div>
+            <div class="artsub">dinov2-base · fp32</div>
+          </div>
+
+          <div class="ind" style="margin-bottom:0">
+            <div class="artname">Story writer <span class="badge queue">queued</span></div>
+            <div class="bar"><i style="width:0%"></i></div>
+            <div class="prog"><span>688 MB</span><span>queued</span></div>
+            <div class="artsub">MiniCPM5-1B-AUGURY · Q4_K_M</div>
+          </div>
+        </div>
+
+        <div class="notice">About 1.06 GB in total. Nothing leaves your phone: no account,
+          no upload, no server. You can pause and finish later — it resumes where it stopped.</div>
+
+        <div class="card" style="display:flex;align-items:center">
+          <div>
+            <div style="font-size:13.5px;font-weight:600">Download over Wi-Fi only</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">Recommended — this is the large part</div>
+          </div>
+          <div class="toggle"></div>
+        </div>
+
+        <div class="card">
+          <div class="label"><span>OVERALL</span><span class="trail">38%</span></div>
+          <div class="bar" style="height:6px"><i style="width:38%"></i></div>
+          <div class="prog"><span>236 MB of 1.06 GB</span><span>in progress</span></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="cta">Downloading… (keep the app open)</div>
+        <div class="cta sec">Pause</div>
+      </div>
+    </div>
+    <p class="note">Per-artifact progress with real manifest byte counts. Wi-Fi-only is on by
+      default; a metered connection blocks the download until you override it.</p>
+    <p class="file">screens/SetupScreen.kt</p>
+  </div>
+
+  <!-- ═══════════ 2 · HOME ═══════════ -->
+  <div class="slot">
+    <h2>2 · Home <em>default surface</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div>
+        <div class="title">AUGURY</div>
+        <div class="sub">Weeds tell you what your soil is doing</div>
+      </div></div>
+      <div class="body">
+        <div class="hero">
+          <div class="kicker">FASTEST WAY</div>
+          <div class="big">Know the weed,<br>read the soil</div>
+          <div class="tiny">Type a name or pick from the list — no photo needed.</div>
+        </div>
+
+        <div class="search">🔎 Search 2,256 species…</div>
+
+        <div class="chiprow">
+          <div class="chip on">Australia</div>
+          <div class="chip">UK</div>
+          <div class="chip">Europe</div>
+          <div class="chip on">With soil data</div>
+        </div>
+
+        <div class="card" style="padding:6px 0">
+          <div class="row"><div class="dot">🌿</div>
+            <div class="meta"><div class="nm">Capeweed</div><div class="sc">arctotheca calendula</div></div>
+            <div class="rt">soil data</div></div>
+          <div class="divider"></div>
+          <div class="row"><div class="dot">🌿</div>
+            <div class="meta"><div class="nm">Cat's ear / Flat weed</div><div class="sc">hypochaeris radicata</div></div>
+            <div class="rt">soil data</div></div>
+          <div class="divider"></div>
+          <div class="row"><div class="dot">🌿</div>
+            <div class="meta"><div class="nm">Spear thistle (Cirsium vulgare)</div><div class="sc">cirsium vulgare</div></div>
+            <div class="rt">soil data</div></div>
+          <div class="divider"></div>
+          <div class="row"><div class="dot">🌿</div>
+            <div class="meta"><div class="nm">Dandelion</div><div class="sc">taraxacum officinale</div></div>
+            <div class="rt">soil data</div></div>
+          <div class="divider"></div>
+          <div class="row" style="justify-content:center;color:var(--sage);font-size:12.5px;font-weight:600">
+            See all 25 matches</div>
+        </div>
+
+        <div class="card" style="background:var(--sage-soft);border-color:rgba(67,96,63,.25)">
+          <div style="font-size:11.5px;line-height:1.55;color:var(--sage)">
+            Indicators only. AUGURY reads what a plant says about your soil — it never gives
+            management, herbicide or remediation advice, and it never invents a number that is
+            not in the database.</div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="split">
+          <div class="cta">📷  Take photo</div>
+          <div class="cta sec">Browse all</div>
+        </div>
+      </div>
+    </div>
+    <p class="note">The picker leads and the camera follows — a deliberate inversion, because
+      tap-a-weed is the most reliable path in the product. Region chips are built from the
+      manifest, not hard-coded.</p>
+    <p class="file">screens/HomeScreen.kt</p>
+  </div>
+
+  <!-- ═══════════ 3 · PHOTO ═══════════ -->
+  <div class="slot">
+    <h2>3 · Photo result <em>confirm always</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div class="back">‹</div><div>
+        <div class="title">Is this your plant?</div>
+        <div class="sub">Best match first · top 3 shown</div>
+      </div></div>
+      <div class="body">
+        <div class="card" style="position:relative;background:var(--sage-soft);border-color:rgba(67,96,63,.35);margin-top:8px">
+          <div class="trust">BEST MATCH</div>
+          <div class="label"><span></span><span class="trail">confirm to continue</span></div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:10px">
+            <div style="width:46px;height:46px;border-radius:13px;background:#fff;display:grid;place-items:center;font-size:21px">🌿</div>
+            <div>
+              <div style="font-size:16.5px;font-weight:700;letter-spacing:-.2px">cirsium vulgare</div>
+              <div style="font-size:12px;color:var(--muted);font-style:italic">cirsium vulgare</div>
+            </div>
+          </div>
+          <div style="margin-top:10px;display:flex;align-items:center;gap:8px">
+            <span class="pill hi">● High confidence</span>
+            <span style="font-size:11.5px;color:var(--muted)">0.71</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding:6px 0">
+          <div class="label" style="padding:10px 12px 4px"><span>OR ONE OF THESE</span></div>
+          <div class="row"><div class="dot" style="background:var(--muted-surface)">🌿</div>
+            <div class="meta"><div class="nm" style="font-size:13.5px">creeping thistle</div>
+              <div class="sc">creeping thistle</div></div>
+            <div class="score">0.58</div></div>
+          <div class="divider"></div>
+          <div class="row"><div class="dot" style="background:var(--muted-surface)">🌿</div>
+            <div class="meta"><div class="nm" style="font-size:13.5px">sonchus oleraceus</div>
+              <div class="sc">sonchus oleraceus</div></div>
+            <div class="score">0.51</div></div>
+        </div>
+
+        <div class="notice">Look-alikes are common at the seedling stage. If none of these is
+          right, search by name — the list covers every species with soil data.</div>
+      </div>
+      <div class="footer">
+        <div class="cta">Yes, this is it — show my soil</div>
+        <div class="cta sec">None of these — search by name</div>
+      </div>
+    </div>
+    <p class="note">The confirm card appears at <b>every</b> confidence level. The band changes
+      the label, never the requirement to tap. Bands come from the manifest (0.64 / 0.30).</p>
+    <p class="file">screens/PhotoScreen.kt</p>
+  </div>
+
+  <!-- ═══════════ 4 · STORY ═══════════ -->
+  <div class="slot">
+    <h2>4 · Soil story <em>the payload</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div class="back">‹</div><div>
+        <div class="title">Dandelion</div>
+        <div class="sub">taraxacum officinale · Australia</div>
+      </div></div>
+      <div class="body">
+        <div class="card">
+          <div class="label"><span>WHAT IT SAYS ABOUT YOUR SOIL</span></div>
+          <div class="spacer"></div>
+          <div style="font-size:13.5px;line-height:1.6;color:#3A4034">
+            Dandelion turns up where the ground has been worked and fed. It reads as a plant of
+            moist, reasonably fertile soil with high nitrogen and a pH that sits around neutral.</div>
+        </div>
+
+        <div class="card">
+          <div class="label"><span>INDICATORS</span><span class="trail">5 from database</span></div>
+          <div class="spacer"></div>
+          <div class="ind"><div class="k">Moisture</div>
+            <div class="v">Fresh, moist soil</div></div>
+          <div class="ind"><div class="k">Soil pH</div>
+            <div class="v">Neutral to slightly acidic — wide range, weakly acid to neutral</div></div>
+          <div class="ind" style="margin-bottom:0"><div class="k">Fertility</div>
+            <div class="v">Good fertility, high nitrogen</div></div>
+        </div>
+
+        <div class="card" style="background:var(--amber-soft);border-color:rgba(176,114,42,.3)">
+          <div class="label" style="color:var(--amber)"><span>CORRECTED</span></div>
+          <div class="spacer"></div>
+          <div style="font-size:11.5px;line-height:1.55;color:var(--amber-ink)">
+            The story writer produced 1 statement that the database did not support. It was
+            removed before you saw it:<br><br>
+            <span style="font-weight:700;color:var(--amber)">number_not_in_facts</span><br>
+            <i>removed: “likely below 6.5”</i></div>
+        </div>
+
+        <div class="card">
+          <div class="label"><span>WHERE THIS COMES FROM</span></div>
+          <div class="spacer"></div>
+          <div class="kv"><div class="k">Source</div><div class="v">Ellenberg Indicator Values</div></div>
+          <div class="kv"><div class="k">Region</div><div class="v">Australia (you selected Australia)</div></div>
+          <div class="kv"><div class="k">Database key</div><div class="v">taraxacum officinale</div></div>
+          <div class="kv"><div class="k">Written by</div><div class="v">the deterministic template — no model was used</div></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="cta">Identify another plant</div>
+        <div class="cta sec">Photo instead</div>
+      </div>
+    </div>
+    <p class="note">Indicator rows are verbatim from the database; the model only phrases them.
+      The <b>grounding pass is shown, not hidden</b> — this is the “likely below 6.5”
+      hallucination being caught and disclosed.</p>
+    <p class="file">screens/StoryScreen.kt</p>
+  </div>
+
+  <!-- ═══════════ 5 · LOW CONFIDENCE ═══════════ -->
+  <div class="slot">
+    <h2>5 · Low confidence <em>honest failure</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div class="back">‹</div><div>
+        <div class="title">Is this your plant?</div>
+        <div class="sub">Best match first · top 3 shown</div>
+      </div></div>
+      <div class="body">
+        <div class="notice">No reliable match. The best score was below the confirm line, so
+          AUGURY will not guess.</div>
+
+        <div class="card">
+          <div class="label"><span>TRY THIS INSTEAD</span></div>
+          <div class="spacer"></div>
+          <div class="row" style="padding:6px 0"><div class="dot">💡</div>
+            <div class="nm" style="font-weight:500;font-size:13px">Get closer — fill the frame with one leaf and a flower</div></div>
+          <div class="row" style="padding:6px 0"><div class="dot">☀️</div>
+            <div class="nm" style="font-weight:500;font-size:13px">Shoot in daylight, avoid deep shadow</div></div>
+          <div class="row" style="padding:6px 0"><div class="dot">🌿</div>
+            <div class="nm" style="font-weight:500;font-size:13px">Photograph the whole plant, not one leaf</div></div>
+          <div class="row" style="padding:6px 0"><div class="dot">🔎</div>
+            <div class="nm" style="font-weight:500;font-size:13px">Or just search the name you already know</div></div>
+        </div>
+
+        <div class="notice good">Nothing is uploaded. The photo is read on your phone and discarded.</div>
+
+        <div class="card" style="background:var(--muted-surface);border-color:var(--line)">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:44px;height:44px;border-radius:13px;background:#fff;display:grid;place-items:center;font-size:20px">❓</div>
+            <div>
+              <div style="font-size:15px;font-weight:700">No reliable match</div>
+              <div style="font-size:11.5px;color:var(--muted);margin-top:2px;line-height:1.45">
+                Every candidate scored under the confirm threshold.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="cta">📷  Take photo</div>
+        <div class="cta sec">Choose from gallery</div>
+      </div>
+    </div>
+    <p class="note">Under the confirm band the app says so and steers to the picker — which has
+      real coverage anyway. It never guesses to look competent.</p>
+    <p class="file">screens/PhotoScreen.kt (photoEmpty branch)</p>
+  </div>
+
+  <!-- ═══════════ 6 · SETTINGS ═══════════ -->
+  <div class="slot">
+    <h2>6 · Settings <em>storage &amp; versions</em></h2>
+    <div class="phone">
+      <div class="statusbar"><span>9:41</span><span>▮▮▮ ⌁ 84%</span></div>
+      <div class="appbar"><div class="back">‹</div><div>
+        <div class="title">Settings</div>
+        <div class="sub">Everything downloaded is listed here</div>
+      </div></div>
+      <div class="body">
+        <div class="card">
+          <div class="label"><span>ON THIS PHONE</span><span class="trail">complete</span></div>
+          <div class="spacer"></div>
+          <div class="row" style="padding:8px 0"><div class="dot">🧠</div>
+            <div class="meta"><div class="nm" style="font-size:13px">Story writer</div>
+              <div class="sc">MiniCPM5-1B-AUGURY · Q4_K_M</div>
+              <div style="font-size:10px;color:var(--muted)">688.1 MB · febcf5e6dfcc</div></div>
+            <div class="ok" style="color:var(--sage);font-weight:700">✓</div></div>
+          <div class="row" style="padding:8px 0"><div class="dot">👁️</div>
+            <div class="meta"><div class="nm" style="font-size:13px">Image recogniser</div>
+              <div class="sc">dinov2-base · fp32</div>
+              <div style="font-size:10px;color:var(--muted)">346.5 MB · bddcaec4d939</div></div>
+            <div class="ok" style="color:var(--sage);font-weight:700">✓</div></div>
+          <div class="row" style="padding:8px 0"><div class="dot">🗂️</div>
+            <div class="meta"><div class="nm" style="font-size:13px">Retrieval index</div>
+              <div class="sc">16,580 vectors · 173 species · 384-d</div>
+              <div style="font-size:10px;color:var(--muted)">24.7 MB · 6e82348f5edd</div></div>
+            <div class="ok" style="color:var(--sage);font-weight:700">✓</div></div>
+          <div class="row" style="padding:8px 0"><div class="dot">📖</div>
+            <div class="meta"><div class="nm" style="font-size:13px">Species database</div>
+              <div class="sc">2,256 species · 3 regions</div>
+              <div style="font-size:10px;color:var(--muted)">990 KB · b44c1f96c565</div></div>
+            <div class="ok" style="color:var(--sage);font-weight:700">✓</div></div>
+        </div>
+
+        <div class="card">
+          <div class="label"><span>MODEL DATA</span></div>
+          <div class="spacer"></div>
+          <div class="kv"><div class="k">Confidence bands</div><div class="v">auto 0.64 · confirm 0.30</div></div>
+          <div class="kv"><div class="k">Protocols</div><div class="v">vision.clip-token-l2-pca-knn-ip@1, formatter.chatml-grounded@1</div></div>
+          <div class="kv"><div class="k">Manifest</div><div class="v">schema 1 · gen 481d9df103f2</div></div>
+        </div>
+
+        <div class="card" style="display:flex;align-items:center">
+          <div>
+            <div style="font-size:13.5px;font-weight:600">Wi-Fi only</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:2px">For downloads and updates</div>
+          </div>
+          <div class="toggle"></div>
+        </div>
+
+        <div class="notice warn">
+          <b>App update required</b> — shown when the published manifest declares a protocol this
+          build cannot execute. The shell refuses rather than running a mismatched encoder and
+          returning plausible garbage.
+        </div>
+      </div>
+      <div class="footer">
+        <div class="cta">Check for updates</div>
+      </div>
+    </div>
+    <p class="note">Every value here is read from the manifest at runtime — vector count, species
+      count, band thresholds, protocol ids. A stale constant would be visible to the user.</p>
+    <p class="file">screens/SettingsScreen.kt</p>
+  </div>
+
+</div>
+</body>
+</html>

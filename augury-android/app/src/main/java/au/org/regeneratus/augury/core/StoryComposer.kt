@@ -69,16 +69,37 @@ class StoryComposer {
                 if (key in shown) continue
                 if (value.isEmpty()) continue
                 val flat = value.trim().lowercase()
-                if (flat == "not specified" || flat == "none") continue
+                if (flat == "not specified") continue
                 shown.add(key)
                 lines.add("\n📋 **$key:** $value")
             }
             if (source.isNotEmpty()) {
                 lines.add("\n---\n*Source: $source ($region)*")
             }
-            blocks.add(lines.joinToString("\n"))
+            blocks.add(stripNoneRows(lines.joinToString("\n"), r.indicators))
         }
         return blocks.joinToString("\n\n")
+    }
+
+    /**
+     * [NONE_VALUE_DEVIATION], implemented the only way that keeps the rendered
+     * spacing byte-identical to Python's own template: render the `none` row
+     * exactly as `_compose_template` does and then excise the emitted segment
+     * `"\n📋 **key:** value"`.
+     *
+     * Skipping the row inside the loop instead (what this port used to do) is
+     * *not* equivalent: the row's own leading `"\n"` disappears with it, so
+     * `...neutral\n\n📋 **Moisture:**` became `...neutral\n📋 **Moisture:**` and
+     * every story carrying a `none` value drifted from the Python fixture.
+     * Excising the segment leaves the blank line the row occupied, which is
+     * exactly what `GoldenParityTest.stripNoneValues` does to the Python story.
+     */
+    private fun stripNoneRows(block: String, indicators: Map<String, String>): String {
+        var out = block
+        for ((key, value) in indicators) {
+            if (value.trim().lowercase() == "none") out = out.replace("\n📋 **$key:** $value", "")
+        }
+        return out
     }
 
     /**

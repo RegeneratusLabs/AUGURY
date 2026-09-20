@@ -1,25 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Spike deliberately has NO permissions: no network, no storage access beyond the
-         app-private files dir which is readable without any permission. -->
+    <!-- The app is a shell: it downloads every model artifact from Hugging Face on
+         first launch, so INTERNET is required. ACCESS_NETWORK_STATE backs the
+         "Wi-Fi only" default; the downloader refuses to start a ~1.06 GB fetch on
+         a metered connection unless the user overrides it.
+
+         Deliberately absent: WRITE_EXTERNAL_STORAGE / READ_EXTERNAL_STORAGE (the
+         photo picker and the app-private files dir need neither) and CAMERA (the
+         system camera app is launched via ACTION_IMAGE_CAPTURE, which grants its
+         own permission). -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="false"
         android:extractNativeLibs="false"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AugurySpike">
+        android:theme="@style/Theme.Augury">
 
         <activity
-            android:name=".spike.SpikeActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
-            android:configChanges="orientation|screenSize|keyboardHidden">
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- The spike harness is retained but is no longer the launcher and is not
+             exported, so it cannot be reached by accident while staying runnable via
+             `adb shell am start` for engine de-risking. -->
+        <activity
+            android:name=".spike.SpikeActivity"
+            android:exported="false"
+            android:configChanges="orientation|screenSize|keyboardHidden" />
+
+        <!-- A captured photo is handed to the system camera app as a content:// URI
+             in our own files dir, so no storage permission is involved. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

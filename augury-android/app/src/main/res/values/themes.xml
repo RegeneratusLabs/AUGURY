@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Plain platform theme: the spike deliberately pulls in no AndroidX/Material. -->
+    <!-- The UI is fully Jetpack Compose, so the platform theme only has to get out
+         of the way: no action bar, transparent system bars (Compose paints under
+         them), and the cream window background so there is no white flash on cold
+         start before the first frame is composed. -->
+    <style name="Theme.Augury" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/augury_background</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+
+    <!-- Retained for the spike harness only. -->
     <style name="Theme.AugurySpike" parent="@android:style/Theme.Material.Light.DarkActionBar" />
 </resources>

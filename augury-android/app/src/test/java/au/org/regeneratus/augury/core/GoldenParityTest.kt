@@ -59,7 +59,7 @@ class GoldenParityTest {
         var searchComparisons = 0
         var groupComparisons = 0
         var resultComparisons = 0
-        var nullResults = 0
+        val unresolvable = ArrayList<String>()
 
         for (probe in probes) {
             val query = AuguryTestSupport.str(probe["query"])!!
@@ -88,7 +88,7 @@ class GoldenParityTest {
             val actual = store.resolveQuery(query, region)
             if (expected == null) {
                 assertNull("$label should not resolve", actual)
-                nullResults++
+                unresolvable.add(query)
                 continue
             }
             assertNotNull("$label should resolve", actual)
@@ -111,7 +111,20 @@ class GoldenParityTest {
             resultComparisons += 12
         }
 
-        assertTrue("expected some unresolvable probes", nullResults >= 5)
+        // CORRECTED EXPECTATION (was `assertTrue(nullResults >= 5)`): exactly four
+        // of the fixture's 110 probes carry a null result, and naming them makes a
+        // fifth a deliberate, visible delta rather than a silent pass. Three are
+        // known to the DB but carry no indicator rows anywhere; the fourth is
+        // simply unknown, and none of the four has a reachable search() hit that
+        // the reference resolves (e.g. "asdfghjkl qwerty" has an empty search_all).
+        // Verified by re-running tools/emit_golden_fixtures.py: the regenerated
+        // db_probes are byte-identical to the committed fixture, so this is the
+        // reference's own count, not a stale one.
+        assertEquals(
+            "the fixture's unresolvable probes",
+            listOf("bothriochloa macra", "cheilanthes sieberi", "glycine tabacina", "asdfghjkl qwerty"),
+            unresolvable,
+        )
         assertTrue("search comparisons", searchComparisons > 200)
         assertTrue("group comparisons", groupComparisons == 110)
         assertTrue("result comparisons", resultComparisons > 900)

@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">AUGURY Spike</string>
+    <string name="app_name">AUGURY</string>
+
+    <!-- ========================================================================
+         Retained for the engine de-risking harness only (spike/SpikeActivity.kt
+         and res/layout/activity_spike.xml). That activity is no longer the
+         launcher and is not exported, but it is still built and is still the
+         quickest way to time the native engine on a real device via
+         `adb shell am start -n au.org.regeneratus.augury/.spike.SpikeActivity`.
+         Do not add new product strings here; they belong in the Compose UI.
+         ======================================================================== -->
     <string name="model_path_label">GGUF model path (on-device)</string>
     <string name="user_prompt_label">User prompt (AUGURY formatter contract)</string>
     <string name="generate">Generate</string>

@@ -3,6 +3,7 @@ import java.util.Properties
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 // ---------------------------------------------------------------------------
@@ -60,6 +61,27 @@ android {
         }
     }
 
+    /**
+     * Per-ABI APKs.
+     *
+     * A "fat" APK carrying both ABIs is 97 MB, but the two ONNX Runtime builds are
+     * 32 MB (arm64) and 38 MB (x86_64) and a device needs exactly one. Splitting
+     * means a real phone downloads only the arm64 half. x86_64 exists solely for
+     * the emulator, which cannot run on the build host (no /dev/kvm), so it is a
+     * developer convenience rather than something to ship.
+     */
+    splits {
+        abi {
+            isEnable = true
+            reset()
+            include("arm64-v8a", "x86_64")
+            // Keep producing the universal APK too, so the existing
+            // `app/build/outputs/apk/debug/app-debug.apk` path and the handover's
+            // documented build command keep working unchanged.
+            isUniversalApk = true
+        }
+    }
+
     packaging {
         jniLibs {
             useLegacyPackaging = false
@@ -71,6 +93,7 @@ android {
 
     buildFeatures {
         viewBinding = false
+        compose = true
     }
 
     compileOptions {
@@ -89,15 +112,37 @@ android {
 }
 
 dependencies {
-    // Intentionally minimal. The spike uses plain android.app.Activity + framework
-    // views so that the build needs no AndroidX/Material artifacts at all --
-    // fewer moving parts for a de-risking spike. The real app module will add them.
-    //
-    // Kotlin stdlib is added automatically by the Kotlin Gradle plugin.
-    //
-    // JUnit 4 for the pure-JVM unit tests under src/test/java. The ported core
-    // (au.org.regeneratus.augury.core) deliberately uses no android.* types, so
-    // :app:testDebugUnitTest needs no device, no emulator and no Robolectric.
+    // Kotlin stdlib arrives automatically via the Kotlin Gradle plugin.
+
+    // ---- UI: Jetpack Compose (Material 3) -----------------------------------
+    // Versions come from the BOM so the Compose artifacts cannot drift apart.
+    val composeBom = platform("androidx.compose:compose-bom:2026.06.00")
+    implementation(composeBom)
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.material3:material3")
+    // Deliberately NOT material-icons-extended: it is the single largest dex
+    // contributor in this app and the UI draws its own iconography from a handful
+    // of glyphs. Add the specific icons artifact only if a real Material icon is
+    // needed later.
+    implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.9.4")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4")
+    implementation("androidx.core:core-ktx:1.17.0")
+
+    // ---- Vision: ONNX Runtime Mobile ----------------------------------------
+    // The fp32 DINOv2 encoder is the only shipped quantisation (int8 was measured
+    // and rejected -- see docs/mobile-app-decision.md 5.1).
+    implementation("com.microsoft.onnxruntime:onnxruntime-android:1.29.0")
+
+    // ---- Artifact unpacking --------------------------------------------------
+    // The vision index ships as .tar.gz; java.util.zip handles the gzip half but
+    // the platform has no tar reader, so commons-compress supplies it.
+    implementation("org.apache.commons:commons-compress:1.27.1")
+
+    // ---- Tests ---------------------------------------------------------------
+    // The ported core (au.org.regeneratus.augury.core) deliberately uses no
+    // android.* types, so :app:testDebugUnitTest needs no device and no Robolectric.
     testImplementation("junit:junit:4.13.2")
 }
 
