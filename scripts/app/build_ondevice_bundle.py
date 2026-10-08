@@ -286,6 +286,76 @@ def display_scientific_name(name):
     return " ".join(tokens)
 
 
+def pick_common_name(rec: dict):
+    """Choose the vernacular name to ship, or `None` if the record has none.
+
+    `common_names[0]` is NOT the vernacular name. For 1,961 of the 2,256 records
+    the first entry simply repeats the binomial (`['Geranium phaeum']`), while a
+    later entry carries the name a farmer actually types. Taking `[0]` silently
+    dropped the vernacular name for **14 Australian species**, including several
+    of the most-searched weeds in the country:
+
+        nassella trichotoma  -> 'serrated tussock', 'Yass River tussock'
+        lolium rigidum       -> 'annual ryegrass', 'rigid ryegrass'
+        alternanthera philoxeroides -> 'alligator weed'
+        bromus diandrus      -> 'great brome', 'ripgut brome'
+        salvinia molesta     -> 'salvinia', 'giant salvinia'
+        juncus bufonius      -> 'Toad rush'
+        rumex obtusifolius   -> 'Broad-leaved dock'
+
+    A picker-first product cannot afford that: searching "serrated tussock"
+    returned nothing while the row sat in the database. Preference order is
+
+      1. the first differing name that carries no parenthetical
+         (`'alligator weed'`, `'serrated tussock'`),
+      2. otherwise the first differing name, with a trailing
+         `(<scientific name>)` removed when that is exactly what the
+         parenthetical contains (`'Broad-leaved dock (Rumex obtusifolius)'`
+         -> `'Broad-leaved dock'`),
+      3. otherwise the first non-empty name, parenthetical and all,
+      4. otherwise `None`.
+
+    Everything else is left byte-for-byte as the source has it: stripping
+    arbitrary parentheticals would be a data edit, and this script makes none.
+    """
+    names = [n.strip() for n in (rec.get("common_names") or []) if isinstance(n, str) and n.strip()]
+    if not names:
+        return None
+
+    sci = (rec.get("scientific_name") or "").strip()
+    sci_cf = sci.casefold()
+    differing = [n for n in names if n.casefold() != sci_cf]
+    if not differing:
+        return names[0]
+
+    plain = [n for n in differing if "(" not in n]
+    if plain:
+        return plain[0]
+
+    candidate = differing[0]
+    suffix = f"({sci_cf})"
+    if sci and candidate.casefold().endswith(suffix):
+        stripped = candidate[: -len(suffix)].strip()
+        if stripped:
+            return stripped
+    return candidate
+
+
+def has_vernacular_name(rec: dict) -> bool:
+    """True when the record carries a name that is not just its own binomial.
+
+    This is the metric the docs should quote. Counting a non-empty
+    `common_names` field overstates coverage roughly tenfold: 2,188 of 2,256
+    records have one, but only 227 carry a genuine vernacular name.
+    """
+    return pick_common_name(rec) is not None and any(
+        isinstance(n, str)
+        and n.strip()
+        and n.strip().casefold() != (rec.get("scientific_name") or "").strip().casefold()
+        for n in (rec.get("common_names") or [])
+    )
+
+
 def build_species_entries(db: dict, classify) -> tuple:
     entries = []
     for key, rec in db.items():
@@ -302,10 +372,7 @@ def build_species_entries(db: dict, classify) -> tuple:
             # VERBATIM passthrough: keys, values and insertion order untouched.
             out_regions.append({"region": region, "indicators": dict(indicators)})
 
-        common_names = rec.get("common_names") or []
-        common_name = common_names[0] if common_names else None
-        if isinstance(common_name, str) and not common_name.strip():
-            common_name = None
+        common_name = pick_common_name(rec)
 
         entries.append(
             {
@@ -352,19 +419,20 @@ def audit_against_species_list(db: dict, entries: list, species_list, out=print)
             for r in (e.get("regions") or [])
         )
     }
-    sl_au_cn = {
-        e.get("key")
-        for e in species_list
-        if isinstance(e, dict)
-        and e.get("key") in sl_au
-        and (e.get("common_names") or [])
-    }
+    # "w/ common name" below means a GENUINE vernacular name, not merely a
+    # non-empty `common_names` field: those are not the same thing, and conflating
+    # them is how "185 of 188 AU species have real common names" got into the docs
+    # when the true figure was 161 of 221. See `pick_common_name()`.
+    sl_by_key = {e.get("key"): e for e in species_list if isinstance(e, dict)}
+    sl_au_cn = {k for k in sl_au if has_vernacular_name(sl_by_key.get(k) or {})}
     out_au = {e["key"] for e in entries if any(r["region"] == "Australia" for r in e["regions"])}
     out_au_cn = {
         e["key"]
         for e in entries
         if e["key"] in out_au and e["common_name"]
     }
+    db_by_key = {k: v for k, v in db.items() if isinstance(v, dict)}
+    out_au_vernacular = {k for k in out_au if has_vernacular_name(db_by_key.get(k) or {})}
     report = {
         "db_keys": len(db_keys),
         "species_list_keys": len(sl_keys),
@@ -374,6 +442,8 @@ def audit_against_species_list(db: dict, entries: list, species_list, out=print)
         "species_list_au_with_common_name": len(sl_au_cn),
         "output_au": len(out_au),
         "output_au_with_common_name": len(out_au_cn),
+        "output_au_with_vernacular_name": len(out_au_vernacular),
+        "output_au_missing_vernacular_name": sorted(out_au - out_au_vernacular),
         "au_in_db_not_in_species_list": sorted(out_au - sl_au),
         "au_stale_in_species_list": sorted(
             k for k in (out_au - sl_au) if k in sl_keys
@@ -390,8 +460,15 @@ def audit_against_species_list(db: dict, entries: list, species_list, out=print)
     )
     out(
         f"    DB keys (output universe) ...... {report['db_keys']}"
-        f"   (AU {report['output_au']}, AU w/ common name {report['output_au_with_common_name']})"
+        f"   (AU {report['output_au']}, AU w/ a name {report['output_au_with_common_name']}, "
+        f"AU w/ a genuine vernacular name {report['output_au_with_vernacular_name']})"
     )
+    if report["output_au_missing_vernacular_name"]:
+        out(
+            f"    AU with no vernacular name ..... "
+            f"{len(report['output_au_missing_vernacular_name'])} (the picker can still "
+            f"reach these by scientific name)"
+        )
     out(f"    species_list-only keys ......... {len(report['species_list_only_keys'])}")
     out(f"    DB-only keys ................... {len(report['db_only_keys'])}")
     out(
