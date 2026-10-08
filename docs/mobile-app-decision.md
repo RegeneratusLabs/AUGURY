@@ -134,7 +134,7 @@ Every artifact is listed with **its own repo, revision, bytes and sha256**:
     "index":    {"protocol":"vision.clip-token-l2-pca-knn-ip@1","schema":1,
                  "backend":"dinov2-base","vectors":0,"dim":0,"species":0,"…":"…"},
     "encoders": [{"backend":"dinov2-base","quant":"int8","…":"…"}],
-    "bands":    {"auto_conf":0.68,"confirm_conf":0.43},
+    "bands":    {"auto_conf":0.64,"confirm_conf":0.30},
     "preprocess": {"resize_shortest_edge":256,"crop":224,"resample":"bicubic",
                    "mean":[0.485,0.456,0.406],"std":[0.229,0.224,0.225],
                    "output":"cls_token"}
@@ -201,19 +201,30 @@ PhotoID(index_dir='data/vision/index-v3').band_config
 # -> {'auto_conf': 0.8, 'confirm_conf': 0.6, 'calibrated': False}
 ```
 
-v3's measured calibration is **auto ≥ 0.68** (51.6% coverage, **95.1% precision**)
-and **confirm ≥ 0.43**. It was silently running on the legacy `0.80/0.60`
+v3's measured calibration is **auto ≥ 0.64** (63.7% coverage, **95.4% precision**)
+and **confirm ≥ 0.30**. It was silently running on the legacy `0.80/0.60`
 constants — which is exactly the threshold `index-v2/README.md` documents as
-*actively harmful*, because on the whitened score scale precision **peaks near
-0.68 and falls above 0.75**. In the app, almost no photo would have cleared 0.80,
-so users would have been asked to confirm nearly every identification even when
-the model was 95% sure.
+*actively harmful*, because on the whitened score scale precision **peaks near the
+auto threshold and falls above 0.75**. In the app, almost no photo would have
+cleared 0.80, so users would have been asked to confirm nearly every
+identification even when the model was 95% sure.
+
+> **Correction (2026-10-08).** This section previously said **0.68 / 0.43** with
+> 51.6% coverage. That was never v3's calibration. The shipped artifact
+> (`data/vision/index-v3/band_config.json`), the audit trail
+> (`band_calibration.json`, 920 queries) and `data/app/manifest.json` all say
+> **0.64 / 0.30** — 63.70% of queries in `auto` at 95.39% precision, 36.09% in
+> `confirm` at 69.58%. `docs/HANDOVER-2026-09-19.md:119-120` recorded the correct
+> values at the time; the prose in `technical-stack.md`,
+> `model-understanding-and-blindspots.md` and `mobile-app-plan.md` regressed to
+> the old pair and has been corrected. The app was never affected: it reads bands
+> from the manifest.
 
 **The fix.** `calibrate_bands.py` now emits **both** files from one computation —
 `band_config.json` in the shape `PhotoID` reads, and `band_calibration.json` as
 the audit trail — and reports `calibrated: false` plus a stderr warning when the
 precision targets are unreachable, instead of shipping thresholds that only look
-confident. `data/vision/index-v3/band_config.json` was regenerated (`0.68`/`0.43`,
+confident. `data/vision/index-v3/band_config.json` was regenerated (`0.64`/`0.30`,
 `calibrated: true`).
 
 **The guard.** `tests/test_band_config.py` (6 checks, stdlib-only, offline) pins
@@ -423,7 +434,7 @@ was a symptom of the contamination, not an encoder limit.
 1. **Never silently accept a species from a photo.** Top-1 is 81.8%; the app
    always shows top-3 and requires a tap. `auto` means *higher confidence*, never
    *safe to accept*.
-2. **Do not resurrect `0.80`.** v3 uses `0.68`/`0.43`, read from the manifest.
+2. **Do not resurrect `0.80`.** v3 uses `0.64`/`0.30`, read from the manifest.
 3. **A confident wrong ID yields a faithfully-formatted story about the wrong
    plant.** Blind spot #2 in `docs/model-understanding-and-blindspots.md` is the
    strongest argument for the confirm step.
@@ -461,7 +472,7 @@ was a symptom of the contamination, not an encoder limit.
   scoring. Recorded, not fixed — it is a data-acquisition concern.
 - **`index-v3` ships `band_calibration.json`, but `PhotoID` reads
   `band_config.json`.** `data/vision/index-v3/band_config.json` now exists with the
-  calibrated `0.68`/`0.43` values, so the Python path is correct — but
+  calibrated `0.64`/`0.30` values, so the Python path is correct — but
   `calibrate_bands.py` writing only the former is a recurring hazard (see the note
   in §4). The app is immune: it reads bands from the **manifest**.
 

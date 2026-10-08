@@ -25,7 +25,7 @@
 >
 > Also superseded by measurement: §7's confidence-band note (`0.80` auto-accept)
 > is **wrong** — see `docs/mobile-app-decision.md` §4. Bands are now calibrated
-> per index (`index-v3`: 0.68 / 0.43) and read from the artifact, never
+> per index (`index-v3`: 0.64 / 0.30) and read from the artifact, never
 > hard-coded. And §2's "186/188 AU species, 14,274 vectors" describes the
 > abandoned v1 index; the shipped artifact is `index-v3`, 13,448 vectors.
 >

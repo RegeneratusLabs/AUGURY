@@ -43,7 +43,7 @@ a pH value because it never generates one); and the LLM is reduced to a
 | Index | FAISS `IndexFlatIP` (inner product ≈ cosine on normalised vectors) |
 | Gallery | 111,320 photos, 2,231 species keys (iNat research-grade + DeepWeeds + GBIF), per-image license sidecars |
 | Scope metric | AU-scoped **retrieval**: top-1 **81.8%** / top-3 **89.7%** (`index-v3`, 910 held-out queries / 184 species, 2026-09-19) |
-| Confidence bands | **calibrated per index, read from the artifact** — `index-v3`: ≥ 0.68 auto (51.6% coverage, **95.1% precision**) · ≥ 0.43 top-3 + confirm · below → honest "not in my library" |
+| Confidence bands | **calibrated per index, read from the artifact** — `index-v3`: ≥ 0.64 auto (63.7% coverage, **95.4% precision**) · ≥ 0.30 top-3 + confirm · below → honest "not in my library" |
 | Canonical merge | 21 duplicate keys collapsed (e.g. ribwort plantain = *Plantago lanceolata*) — worth **+8.3 top-1 points** |
 
 **The earlier 80.9% / 88.3% figure is superseded.** It came from a bake-off on a
@@ -121,15 +121,15 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
    Anything that promises "point your phone at a weed" is still aspirational
    until it is end-to-end tested on real field photos.
 2. **Retrieval confidence ≠ correctness.** The bands only re-rank gallery
-   similarity. A *confident* top-1 (score ≥ 0.68) can still be the *wrong*
+   similarity. A *confident* top-1 (score ≥ 0.64) can still be the *wrong*
    species — look-alikes, immature plants, unusual growth stages, phone
    lighting. The system will assert a wrong ID with high confidence and the
    funnel will then faithfully tell the farmer what that *wrong* species
    indicates. There is no second-opinion or uncertainty-aware fallback beyond
    the score bands. **This is the single most important reason the app must
    always show top-3 and never silently accept a photo ID.**
-3. **No "don't know" for the known-unknown.** Below 0.43 the system says "not
-   in my library" — but from 0.43 to 0.68 it *shows* top-3 and asks the user to
+3. **No "don't know" for the known-unknown.** Below 0.30 the system says "not
+   in my library" — but from 0.30 to 0.64 it *shows* top-3 and asks the user to
    confirm. That is a UX decision point where an untrained user may just accept
    suggestion #1. The refusal is honest but the interaction needs real product
    testing.
@@ -209,8 +209,8 @@ told "do not add or change any indicator". Temperature 0.3, max_tokens 500.
   species surface in the gallery kNN", not "was the farmer's question answered
   correctly end-to-end". The superseded 80.9% came from a contaminated gallery;
   do not quote it.
-- **95.1% auto-band precision** is the share of *correct* IDs among queries
-  scoring ≥ 0.68 — it covers only **51.6%** of queries, and it will not transfer
+- **95.4% auto-band precision** is the share of *correct* IDs among queries
+  scoring ≥ 0.64 — it covers **63.7%** of queries, and it will not transfer
   unchanged to messy field photos, because benchmark queries are drawn from the
   same galleries.
 - **val loss 0.0398** measures the formatter's style/echo on DB-injected rows —

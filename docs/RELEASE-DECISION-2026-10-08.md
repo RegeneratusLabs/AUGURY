@@ -316,6 +316,7 @@ is taken, because they are claims that do not survive contact with the artefacts
 | `docs/technical-stack.md:40,132` | index-v3 13,448 vectors / 42 MB / unpublished | The shipped index is 16,580 vectors and is published (two HF repos). |
 | `docs/data-roadmap.md` §3.1 | "~110 species have real common names" | Understated the other way, but the figure is still not the one to quote. Use "227 of 2,256 globally; 147 of 221 for AU". |
 | `docs/model-understanding-and-blindspots.md:184-191` | "on-device footprint ~1.15 GB: an ~88 MB int8 encoder..." | int8 was measured and rejected; fp32 is 346.5 MB. |
+| `docs/mobile-app-decision.md` §4; `docs/model-understanding-and-blindspots.md` §2.1; `docs/technical-stack.md:55` | index-v3 bands are **0.68 / 0.43** (51.6% coverage, 95.1% precision) | The shipped artifact, its audit trail and the manifest all say **0.64 / 0.30** — 63.7% coverage at 95.4% precision. `docs/HANDOVER-2026-09-19.md:119-120` recorded the right values at the time. The app was never affected (it reads the manifest). **Corrected in this commit.** |
 
 ---
 

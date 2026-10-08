@@ -52,11 +52,12 @@ as the data grows**:
   pairs held *different* data, so a farmer asking "curled dock" and one asking
   *Rumex crispus* used to get different soil stories for the same weed.
 - **Confidence bands are calibrated per index and read from the artifact — never
-  hard-coded.** `index-v3`: **auto ≥ 0.68** (51.6% coverage, **95.1% precision**),
-  **confirm ≥ 0.43** (94.1% coverage), below → honest "not in my library".
-  Precision on the whitened scale **peaks near 0.68 and falls above 0.75**, so the
-  legacy `0.80/0.60` constants select the worst decile. They must not be
-  reintroduced — `tests/test_band_config.py` now enforces this.
+  hard-coded.** `index-v3`: **auto ≥ 0.64** (63.7% coverage, **95.4% precision**),
+  **confirm ≥ 0.30** (36.1% of queries, 69.6% precision), below → honest "not in my
+  library".
+  Precision on the whitened scale **peaks near the auto threshold and falls above
+  0.75**, so the legacy `0.80/0.60` constants select the worst decile. They must
+  not be reintroduced — `tests/test_band_config.py` now enforces this.
 
 **Why retrieval over fine-tuning:** new species = new gallery photos + one DB
 row. The encoder never retrains. The index is a public artifact — anyone can
