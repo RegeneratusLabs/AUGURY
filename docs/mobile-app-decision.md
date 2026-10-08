@@ -4,6 +4,12 @@
 **Question answered:** how do non-technical users get AUGURY on a phone, for free,
 with an open-source licence, and keep getting model updates?
 
+> **Shipped build: template-only (ID + indicators).** The published manifest carries
+> **no formatter**, so the app downloads **~368 MB** and renders the deterministic
+> template. The MiniCPM5-1B voice is a **separate conversational version** (§5): its
+> code paths remain in the shell and remain gated by protocol, but nothing about it
+> is downloaded or required here.
+
 ---
 
 ## 1 · The constraint that decides everything
@@ -90,9 +96,8 @@ verified, and version-pinned.
 │                            ▼                                  │
 │  species_lookup (Kotlin) → augury-ondevice.json               │
 │                            ▼                                  │
-│  prompt → llama.cpp JNI → GGUF                                │
-│                            ▼                                  │
-│  grounding + intent guard → soil story                        │
+│  deterministic template → soil story                          │
+│  [optional] prompt → llama.cpp JNI → GGUF → grounding         │
 └───────────────────────────────────────────────────────────────┘
 ```
 
@@ -100,9 +105,9 @@ verified, and version-pinned.
 
 | In the APK | On Hugging Face |
 |---|---|
-| UI code | formatter GGUF (688 MB) |
-| The **protocols** it can execute (§3.3) | encoder ONNX (~88 MB int8) |
-| Download / verify / storage / rollback logic | retrieval index (42 MB) |
+| UI code | formatter GGUF (688 MB) — **optional, not in the shipped generation** |
+| The **protocols** it can execute (§3.3) | encoder ONNX (346.5 MB **fp32** — int8 rejected, §5.1) |
+| Download / verify / storage / rollback logic | retrieval index (20.3 MB gzipped, no FAISS) |
 | Bootstrap pointer (manifest repo + filename) | **confidence bands** |
 | — | **species database** |
 
@@ -227,25 +232,63 @@ the benchmark harness and the shipped `PhotoID` read it.
 
 ## 5 · On-device budget
 
+**The shipped build is template-only.** The story is rendered by the deterministic
+`StoryComposer`, so the formatter GGUF is not downloaded, not expected, and not
+missed — the published manifest carries **no `formatter` entry at all**.
+
 | Artifact | Size | Notes |
 |---|---|---|
-| formatter GGUF Q4_K_M | **688.1 MB** | `RegeneratusLabs/augury-1b` |
 | encoder ONNX **fp32** | **346.5 MB** | `dinov2-base-fp32.onnx` — int8 rejected, see §5.1 |
 | retrieval index (`index-v3`, gzipped) | **20.3 MB** | 13,448 vectors × 384-d, **no FAISS** |
 | species DB | **1.0 MB** | `augury-ondevice.json`, from the manifest |
-| **Total first-launch download** | **~1.06 GB** | |
+| **Total first-launch download** | **~368 MB** | |
 
-**The ~1 GB first-launch download is accepted and expected.** It is the price of a
-local, open-source, self-hosted model with no server bill: the weights must reach
-the device exactly once. `index.faiss` is deliberately excluded from the published
-tarball, because the app performs brute-force kNN over 13,448 × 384 floats in plain
-Kotlin — which removes FAISS as a native dependency and keeps the artifact at
-20 MB compressed instead of 42 MB.
+| Optional artifact — *separate conversational version* | Size | Notes |
+|---|---|---|
+| formatter GGUF Q4_K_M | **688.1 MB** | `RegeneratusLabs/augury-1b`; would take the download to ~1.06 GB |
 
-**Memory constraint carried over from the CLI:** the encoder (~350 MB) and the
-GGUF (~700 MB) are never resident together — `scripts/thirdparty_test/run_field_test.py`
-documents this for a 16 GB host. The app must release the encoder before
-generation.
+**Why the smaller build is the default.** The formatter was **65%** of the download
+and the only component ever observed inventing facts: it wrote a decimal pH
+threshold that appeared nowhere in the injected data in **7/20** independent
+field-test answers, and a stricter prompt did not fix it
+(`data/thirdparty/report-augury-thirdparty-test.md` §4.4). The template is
+100% faithful by construction, so the shipped app needs no generation, no
+per-answer latency, and no grounding pass at runtime.
+
+A manifest that *does* declare a formatter is still parsed and still gated by
+protocol (§3.3), but the shipped build **strips it before use**:
+`ShellCapabilities.USES_STORY_MODEL = false` is a compiled build capability, and
+`ShellCapabilities.effectiveManifest()` removes the formatter entry at the single
+point where a fetched manifest enters the app. The gate, the download plan and the
+UI therefore see three artifacts (**372.2 MB**, verified on device) even though the
+published manifest still catalogs a 688 MB formatter. `formatterModelFile()` also
+returns `null` unconditionally, so a GGUF left on disk by an earlier build is never
+loaded.
+
+> **Why a compiled constant and not a manifest value.** The manifest is remote and
+> mutable. A manifest-only fix is invisible to every already-installed app until it
+> is republished, and it silently reverts if the formatter entry returns. Only the
+> APK can guarantee that this build downloads ~372 MB and cannot fall back to
+> generating prose. The published manifest stays a **catalog** of everything on
+> Hugging Face; the conversational version is the same shell with
+> `USES_STORY_MODEL = true`, not a manifest edit.
+
+**This was a real defect, found on device (2026-09-29).** The first template-only
+change was made only to `data/app/manifest.json` and was never published, so the
+app — which fetches the *live* manifest — still offered the 688 MB story writer and
+a ~1.06 GB total. The manifest fix was correct but had no effect. Hence the
+enforcement is now in the APK.
+
+`index.faiss` is deliberately excluded from the published tarball, because the app
+performs brute-force kNN over 13,448 × 384 floats in plain Kotlin — which removes
+FAISS as a native dependency and keeps the artifact at 20 MB compressed instead of
+42 MB.
+
+**Memory constraint carried over from the CLI (conversational version only):** the
+encoder (~350 MB) and the GGUF (~700 MB) are never resident together —
+`scripts/thirdparty_test/run_field_test.py` documents this for a 16 GB host. That
+app must release the encoder before generation. The template-only build has no such
+constraint.
 
 ### 5.1 Encoder quantisation: int8 measured and REJECTED
 
@@ -306,9 +349,10 @@ QEMU-TCG, which is both far too slow for a 1B model and missing AVX/F16C (an
 AVX2-built ggml SIGILLs inside the guest; the x86_64 build pins SSE4.2 for this
 reason). **A real-device test remains the outstanding verification.**
 
-### 5.3 The grounding pass is mandatory, not decorative
+### 5.3 The grounding pass is mandatory *wherever a model writes the story*
 
-Running the real GGUF with the real prompt, the model was given the fact
+This is the finding that made the template the default (§5). Running the real GGUF
+with the real prompt, the model was given the fact
 `Soil pH: neutral to slightly acidic` and produced:
 
 > *"The pH picture: Dandelion indicates acidic conditions, **likely below 6.5**."*
@@ -316,9 +360,13 @@ Running the real GGUF with the real prompt, the model was given the fact
 **"6.5" appears nowhere in the injected facts** — the DB says "wide range, weakly
 acid to neutral". It is an invented number, reproduced on demand. This is the
 documented failure `scripts/grounding.py` exists to repair ("raw answers invented
-numbers in 6/10 fresh runs; after the repair pass 10/10 clean"), and it confirms
-the grounding pass must be ported to Kotlin and run **on-device**. A build without
-it will confidently print invented soil chemistry.
+numbers in 6/10 fresh runs; after the repair pass 10/10 clean"), and it is why the
+grounding pass was ported to Kotlin and runs **on-device** in the conversational
+version. Any build where a model writes the story needs it; the template-only build
+cannot produce the failure in the first place, so it needs no runtime guard.
+
+`Grounding` is **not deleted** — it remains the guard rail for the separate
+conversational version, and the Kotlin tests still pin its behaviour.
 
 ---
 
