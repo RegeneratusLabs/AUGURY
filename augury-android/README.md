@@ -12,17 +12,25 @@ downloaded from Hugging Face on first launch and verified against a manifest.
 
 ## What it downloads
 
+This is the **template-only build**: the story is rendered deterministically from
+the database, so no language model is downloaded and none is needed.
+
 | Artifact | Size | Purpose |
 |---|---|---|
-| `MiniCPM5-1B-AUGURY-Q4_K_M.gguf` | 688 MB | the formatter ("the voice") |
-| `dinov2-base-fp32.onnx` | 347 MB | image encoder for the photo path |
-| `vision-index-v3.tar.gz` | 20 MB | retrieval index (13,448 vectors) |
-| `augury-ondevice.json` | 1 MB | species database |
-| **total** | **~1.06 GB** | one-time, Wi-Fi by default |
+| `augury-ondevice.json` | 1.0 MB | species database — **enough for the picker on its own** |
+| `dinov2-base-fp32.onnx` | 346.5 MB | image encoder for the photo path |
+| `vision-index-v3.tar.gz` | 24.7 MB | retrieval index (16,580 vectors, 173 AU species) |
+| **total** | **~372 MB** | one-time, Wi-Fi by default |
 
 The raw 15 GB image gallery is **never** downloaded — the phone gets the compact
 index. `index.faiss` is deliberately excluded: retrieval is brute-force kNN in
-Kotlin over 13,448 × 384 floats, so FAISS is not a runtime dependency.
+Kotlin over 16,580 × 384 floats, so FAISS is not a runtime dependency.
+
+> **The 688 MB `MiniCPM5-1B-AUGURY-Q4_K_M.gguf` is not part of this build.**
+> `ShellCapabilities.USES_STORY_MODEL` is `false`, `formatterModelFile()` returns
+> `null`, and the formatter path returns before `LlamaEngine` is ever class-loaded.
+> A conversational build is the same shell with that constant flipped; see
+> `../docs/mobile-app-decision.md` §5.
 
 ---
 
@@ -39,11 +47,17 @@ manifest.json (HF)  ← the only update lever
 │  ONNX CLS → L2 → PCA-whiten → L2 → kNN             │
 │        └──► top-3 + confidence band ──┐            │
 │                                       ▼            │
-│  SpeciesStore → prompt → llama.cpp JNI → GGUF      │
+│  SpeciesStore → indicator rows from the manifest DB │
 │                                       ▼            │
-│  Grounding + IntentGuard → soil story              │
+│  StoryComposer (deterministic template) → soil story│
+│                                                    │
+│  [conversational version only] Grounding +         │
+│  IntentGuard → llama.cpp JNI → GGUF                │
 └────────────────────────────────────────────────────┘
 ```
+
+The shipped build has **no generation step**, so it needs no grounding pass: a
+template cannot invent a number, because no model writes one.
 
 **The app never hard-codes a version, species count, dimension, or threshold.**
 Species, indicators, regions, band thresholds and preprocessing parameters all come
@@ -64,13 +78,28 @@ release. See `../docs/mobile-app-decision.md`.
 ### On a normal machine
 
 ```bash
-git clone --recursive <this repo>
+git clone <this repo>          # no --recursive: there is no submodule
 cd augury-android
 echo "sdk.dir=$ANDROID_HOME" > local.properties
 ./gradlew :app:assembleDebug
 ```
 
-The llama.cpp submodule is pinned; `./gradlew checkLlamaCppPin` verifies it.
+**This builds with no vendored dependencies.** llama.cpp is **optional**: the
+shipped build is template-only and never loads the native formatter, so
+`app/src/main/cpp/CMakeLists.txt` compiles `augury_jni_stub.cpp` when
+`third_party/llama.cpp` is absent. The stub keeps the JNI symbols resolvable and
+fails loudly if the formatter is ever invoked.
+
+To build the **real** native engine (for the conversational version, or native
+work), fetch the pinned sources first:
+
+```bash
+./scripts/fetch-llama-cpp.sh      # clones llama.cpp at the pinned commit
+./gradlew checkLlamaCppPin        # verifies the revision
+```
+
+`third_party/llama.cpp` is gitignored — it is a vendored build input, not part of
+the repository.
 
 ### In this sandbox
 
@@ -97,6 +126,9 @@ source scripts/spike-env.sh
 ---
 
 ## Verifying the engine without a phone
+
+> Requires the vendored sources: run `./scripts/fetch-llama-cpp.sh` first. In the
+> shipped (stub) configuration there is no engine to verify — by design.
 
 This host has **no `/dev/kvm`**, so the Android emulator falls back to QEMU-TCG —
 far too slow for a 1B model, and its guest CPU lacks AVX/F16C (an AVX2-built ggml
@@ -170,16 +202,23 @@ it will confidently print invented soil chemistry.
 
 ## Confidence bands
 
-Calibrated per index and read from the **manifest** — never hard-coded.
+Calibrated per index and read from the **manifest** — never hard-coded. Shipped
+values, from `data/vision/index-v3/band_config.json` (920 queries):
 
 | Band | Threshold | Coverage | Precision |
 |---|---|---|---|
-| auto | ≥ 0.68 | 51.6% | **95.1%** |
-| confirm | 0.43 – 0.68 | 94.1% cumulative | 85.0% |
-| unknown | < 0.43 | 5.9% | — |
+| auto | ≥ 0.64 | 63.7% | **95.4%** |
+| confirm | 0.30 – 0.64 | 36.1% | 69.6% |
+| unknown | < 0.30 | ~0.2% | — |
 
-Precision on the whitened score scale **peaks near 0.68 and falls above 0.75**, so
-the legacy `0.80/0.60` constants select the worst decile. Do not reintroduce them.
+Precision on the whitened score scale **peaks near the auto threshold and falls
+above 0.75**, so the legacy `0.80/0.60` constants select the worst decile. Do not
+reintroduce them.
+
+> **Doc-drift warning.** `docs/mobile-app-decision.md` §4 and
+> `docs/model-understanding-and-blindspots.md` §2.1 quote **0.68 / 0.43** for
+> `index-v3`. That is wrong: the shipped artifact and the manifest both say
+> **0.64 / 0.30**. The app reads the manifest, so it is correct; the prose is not.
 
 ---
 
@@ -206,18 +245,26 @@ than int8 weights provide. Full corpus: fp32 ONNX matches PyTorch to **+0.00p** 
 ```
 app/src/main/cpp/          native engine (llama.cpp JNI shim)
   augury_engine.{h,cpp}    engine core — no <jni.h>, so it builds as a host binary too
-  augury_jni.cpp           the JNI surface
+  augury_jni.cpp           the JNI surface (real engine)
+  augury_jni_stub.cpp      the JNI surface when llama.cpp is absent (shipped build)
 app/src/main/java/au/org/regeneratus/augury/
-  LlamaEngine.kt           Kotlin facade over the native layer
+  LlamaEngine.kt           Kotlin facade over the native layer (conversational build only)
   core/                    SpeciesStore, StoryComposer, IntentGuard, Grounding
   ui/                      setup, picker, photo
 tools/                     host test harness
-third_party/llama.cpp      pinned submodule (MIT)
+third_party/llama.cpp      OPTIONAL vendored build input (MIT), gitignored
+scripts/fetch-llama-cpp.sh fetches it at the pinned commit
 scripts/spike-env.sh       sandbox environment shim
 ```
 
 ## Licence
 
 Apache-2.0. `llama.cpp` is MIT. Base model `openbmb/MiniCPM5-1B` is Apache-2.0.
-The retrieval gallery is a non-commercial aggregate with per-image licence
-sidecars; only the compact index is a runtime artifact.
+
+> **The photo path is not licence-clean yet.** The retrieval index is derived from
+> a gallery that is ~8.7% CC-BY-NC (including 47 NoDerivatives images), so it is
+> **not** Apache-2.0/CC-BY-4.0 and must not be described as open source. It is
+> published with no licence card at all, which is a defect. The clean fix is to
+> rebuild the index from CC0/CC-BY/CC-BY-SA images only — the filter already exists
+> in `scripts/vision/pull_inaturalist.py` (`NC_OK`). See
+> `../docs/RELEASE-DECISION-2026-10-08.md` §5.
