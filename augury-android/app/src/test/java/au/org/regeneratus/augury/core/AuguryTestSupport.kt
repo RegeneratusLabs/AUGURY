@@ -30,6 +30,19 @@ object AuguryTestSupport {
     val canonicalMapFile: File get() = File(repoRoot, "data/vision/canonical_map.json")
     val synonymsFile: File get() = File(repoRoot, "data/research/common_name_synonyms.json")
 
+    /** The shipped retrieval index's key list. */
+    val visionIndexFile: File get() = File(repoRoot, "data/vision/index-v3/keys.json")
+
+    /**
+     * The distinct species keys the shipped index can return.
+     *
+     * The photo path takes its identity from this list, so the confirm card's
+     * display-name lookup is tested against exactly this set rather than against a
+     * hand-picked sample: a key here that resolves to no name is a real defect.
+     */
+    fun visionIndexKeys(): List<String> =
+        list(Json.parse(visionIndexFile.readText())).map { it as String }.distinct()
+
     /** Loaded once: parsing 990 KB of JSON per test would dominate the run. */
     val store: SpeciesStore by lazy {
         SpeciesStore.fromFiles(speciesDbFile, canonicalMapFile, synonymsFile)

@@ -325,6 +325,61 @@ class SpeciesStore private constructor(
         return out
     }
 
+    /**
+     * The species row [key] denotes: the key itself, its scientific-name spelling,
+     * or a canonical sibling of it. `null` when the key is unknown entirely.
+     */
+    private fun speciesFor(key: String): Species? {
+        val k = key.trim().lowercase()
+        if (k.isEmpty()) return null
+        species[k]?.let { return it }
+        sciNameToKey[k]?.let { mapped -> species[mapped]?.let { return it } }
+        for (sibling in canonicalGroup(k)) species[sibling]?.let { return it }
+        return null
+    }
+
+    /**
+     * Curated common names for a species key, most-preferred first.
+     *
+     * The photo path takes its identity from the retrieval index, whose canonical
+     * keys are lowercased scientific names. This resolves one of those to the name
+     * the audience actually uses ("cirsium vulgare" -> "Spear thistle") **by direct
+     * lookup only** -- never through [search], because a fuzzy match could attach a
+     * different species' name to a candidate the user is being asked to confirm.
+     *
+     * Empty for a species the database carries no vernacular name for (113 of the
+     * index's 173 have one), and for a key that is unknown entirely.
+     */
+    fun commonNamesForKey(key: String): List<String> =
+        speciesFor(key)?.commonNames?.toList().orEmpty()
+
+    /**
+     * The best name to show for [key]: a curated common name when the database has
+     * one, else the database's own scientific spelling (which keeps the capital
+     * and the punctuation the index's lowercased key drops), else `null` only when
+     * the key is unknown to the database altogether.
+     *
+     * Never returns a blank string: the caller's last resort — showing the
+     * canonical key — is already meaningful.
+     */
+    fun displayNameForKey(key: String): String? = speciesFor(key)?.let { sp ->
+        sp.commonNames.firstOrNull()?.takeIf { it.isNotBlank() }
+            ?: sp.scientificName.takeIf { it.isNotBlank() }
+            ?: sp.key
+    }
+
+    /**
+     * The database's own spelling of [key]'s scientific name, or `null` when the
+     * key is unknown.
+     *
+     * For display only: the retrieval index's canonical keys are lowercased, so a
+     * confirm card built from the key alone reads "acacia nilotica" rather than
+     * the binomial "Acacia nilotica". The key remains the identity the rest of the
+     * app uses.
+     */
+    fun scientificNameForKey(key: String): String? =
+        speciesFor(key)?.scientificName?.takeIf { it.isNotBlank() }
+
     // ── lookup ───────────────────────────────────────────────────────────────
 
     /**

@@ -494,10 +494,19 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
         unresolved.append((field, why))
 
     # ---- local artifacts: measured, never invented -------------------------- #
+    # A template-only publication (--no-formatter) omits the formatter entirely:
+    # the story is rendered by the deterministic template, so there is no 688 MB
+    # GGUF to download. Absence is a decision, not an unresolved field, so it
+    # must not be reported as "incomplete".
+    include_formatter = not getattr(args, "no_formatter", False)
     print("  measuring local artifacts (sha256 over real bytes)")
-    formatter_local, formatter_searched = resolve_local_file(
-        Path(FORMATTER_PATH).name, FORMATTER_CANDIDATES, args.formatter_gguf, out_dir
-    )
+    if include_formatter:
+        formatter_local, formatter_searched = resolve_local_file(
+            Path(FORMATTER_PATH).name, FORMATTER_CANDIDATES, args.formatter_gguf, out_dir
+        )
+    else:
+        formatter_local, formatter_searched = None, []
+        print("    formatter: omitted (--no-formatter: template-only publication)")
     index_tar_local, index_tar_searched = resolve_local_file(
         VISION_INDEX_PATH, INDEX_CANDIDATES, args.index_tar, out_dir
     )
@@ -514,13 +523,16 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
         print(f"    {field_prefix}: {local}  {nbytes} bytes  sha256={digest}")
         return nbytes, digest
 
-    fmt_bytes, fmt_sha = measure_or_null(formatter_local, "formatter", formatter_searched)
+    fmt_bytes, fmt_sha = (
+        measure_or_null(formatter_local, "formatter", formatter_searched)
+        if include_formatter else (None, None)
+    )
     idx_bytes, idx_sha = measure_or_null(index_tar_local, "vision.index", index_tar_searched)
     enc_bytes, enc_sha = measure_or_null(encoder_local, "vision.encoders[0]", encoder_searched)
 
     # The published formatter is the same file we just hashed: cross-check it
     # against the Hub's LFS metadata when we can, so a stale local copy is caught.
-    if formatter_local is not None and not args.offline:
+    if include_formatter and formatter_local is not None and not args.offline:
         try:
             from huggingface_hub import HfApi
 
@@ -548,7 +560,9 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
 
     # ---- revisions ---------------------------------------------------------- #
     print("  resolving HF revisions")
-    repos = [FORMATTER_REPO, FACTS_REPO, VISION_INDEX_REPO, ENCODER_REPO]
+    repos = ([FORMATTER_REPO] if include_formatter else []) + [
+        FACTS_REPO, VISION_INDEX_REPO, ENCODER_REPO
+    ]
     revisions, _reasons = hf_revisions(repos, args.revision, args.offline)
     for repo, field in (
         (FACTS_REPO, "facts.revision"),
@@ -564,11 +578,9 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
             return None
         return digest[:12]
 
-    manifest = {
-        "manifest_schema": 1,
-        "generated": args.generated,
-        "generation": None,  # filled in below
-        "formatter": {
+    formatter_entry = None
+    if include_formatter:
+        formatter_entry = {
             "protocol": FORMATTER_PROTOCOL,
             # The GGUF is published to a *model* repo; HF resolves model repos
             # with NO path prefix, while datasets use /datasets. The app builds
@@ -581,7 +593,16 @@ def build_manifest(args, out_dir: Path, facts_path: Path) -> tuple:
             "bytes": fmt_bytes,
             "sha256": fmt_sha,
             "generation": gen12(fmt_sha, "formatter"),
-        },
+        }
+
+    manifest = {
+        "manifest_schema": 1,
+        "generated": args.generated,
+        "generation": None,  # filled in below
+        # Absent for a template-only publication (--no-formatter). The app treats
+        # a missing formatter as a complete product and renders the deterministic
+        # template; it is not an "app update required" condition.
+        **({"formatter": formatter_entry} if formatter_entry is not None else {}),
         "facts": {
             "protocol": FACTS_PROTOCOL,
             "schema": FACTS_SCHEMA,
@@ -834,7 +855,15 @@ def cmd_verify(args) -> int:
 
     unresolved: list = []
     vision = manifest.get("vision") or {}
-    checks = [("formatter", manifest.get("formatter") or {}), ("facts", manifest.get("facts") or {})]
+    checks: list = []
+    if manifest.get("formatter"):
+        checks.append(("formatter", manifest["formatter"]))
+    else:
+        # A template-only publication legitimately omits the formatter — the story
+        # is rendered by the deterministic template. Absence is a product
+        # decision, not an unresolved field, so it must not fail verification.
+        print("  [ok]   formatter           absent (template-only publication)")
+    checks.append(("facts", manifest.get("facts") or {}))
     checks.append(("vision.index", vision.get("index") or {}))
     for i, enc in enumerate(vision.get("encoders") or []):
         checks.append((f"vision.encoders[{i}]", enc or {}))
@@ -886,6 +915,12 @@ def main(argv=None) -> int:
     ap.add_argument("--species-list", default=str(DEFAULT_SPECIES_LIST), help="vision species_list.json")
     ap.add_argument("--index-dir", default=str(DEFAULT_INDEX_DIR), help="vision index-v3 directory")
     ap.add_argument("--formatter-gguf", default=None, help="override local GGUF path")
+    ap.add_argument(
+        "--no-formatter",
+        action="store_true",
+        help="omit the formatter GGUF entirely — a template-only publication "
+             "(the story is rendered deterministically; no 688 MB download)",
+    )
     ap.add_argument("--index-tar", default=None, help="override local vision index tarball path")
     ap.add_argument("--encoder-onnx", default=None, help="override local encoder ONNX path")
     ap.add_argument(

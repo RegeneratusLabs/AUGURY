@@ -25,6 +25,31 @@ import java.nio.file.Path
 class ArtifactManagerTest {
 
     @Test
+    fun `a template-only publication installs without requesting the formatter`() {
+        // The simplified app: no story model. The install must complete on facts +
+        // vision alone and must never ask for the 688 MB GGUF's URL.
+        TempDir().use { temp ->
+            val harness = Harness(temp)
+            val bundle = TestFixtures.bundle(includeFormatter = false)
+            harness.serve(bundle)
+
+            val result = harness.manager.install(bundle.manifest, bundle.source)
+
+            assertEquals(
+                listOf("facts", "vision-index", "vision-encoder-dinov2-base-fp32"),
+                result.artifacts.map { it.artifact.name },
+            )
+            assertTrue(
+                "the formatter URL must never be requested: ${harness.transport.requests.map { it.url }}",
+                harness.transport.requests.none { it.url == bundle.formatterUrl },
+            )
+            assertNull("no formatter is installed", harness.manager.activeDirectory("formatter"))
+            assertNotNull("facts must install", harness.manager.activeDirectory("facts"))
+            assertNotNull("the index must install", harness.manager.activeDirectory("vision-index"))
+        }
+    }
+
+    @Test
     fun `installs every artifact, verifies it and flips every pointer`() {
         TempDir().use { temp ->
             val harness = Harness(temp)
@@ -204,7 +229,7 @@ class ArtifactManagerTest {
             assertEquals(0, harness.transport.requestCount())
             assertTrue(result.downloaded.isEmpty())
             assertEquals(
-                first.manifest.formatter.generation,
+                first.manifest.formatter!!.generation,
                 harness.store.currentGeneration("formatter"),
             )
             assertTrue(Files.readAllBytes(
@@ -420,8 +445,8 @@ class ArtifactManagerTest {
 
             val restored = harness.manager.rollback("formatter")
 
-            assertEquals(first.manifest.formatter.generation, restored)
-            assertEquals(first.manifest.formatter.generation, harness.manager.installedGeneration("formatter"))
+            assertEquals(first.manifest.formatter!!.generation, restored)
+            assertEquals(first.manifest.formatter!!.generation, harness.manager.installedGeneration("formatter"))
             assertNotNull(harness.manager.activeRecord("formatter"))
         }
     }

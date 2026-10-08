@@ -316,6 +316,28 @@ bool Engine::generate(const std::string & system_prompt,
                       int                 max_tokens,
                       std::string &       out_text,
                       std::string &       err) {
+    return run_turn(system_prompt, user_prompt, temperature, max_tokens,
+                    TokenCallback(), out_text, err);
+}
+
+bool Engine::generate_stream(const std::string & system_prompt,
+                             const std::string & user_prompt,
+                             float               temperature,
+                             int                 max_tokens,
+                             const TokenCallback & on_piece,
+                             std::string &       out_text,
+                             std::string &       err) {
+    return run_turn(system_prompt, user_prompt, temperature, max_tokens,
+                    on_piece, out_text, err);
+}
+
+bool Engine::run_turn(const std::string & system_prompt,
+                      const std::string & user_prompt,
+                      float               temperature,
+                      int                 max_tokens,
+                      const TokenCallback & on_piece,
+                      std::string &       out_text,
+                      std::string &       err) {
     out_text.clear();
     if (!ready()) {
         err = "engine not initialised";
@@ -429,8 +451,18 @@ bool Engine::generate(const std::string & system_prompt,
                 break;
             }
 
-            out_text += token_to_text(cur);
+            const std::string piece = token_to_text(cur);
+            out_text += piece;
             last_stats_.gen_tokens += 1;
+
+            // Hand the piece to the caller before decoding it, so the UI sees a
+            // token at the earliest possible moment. A false return means "stop";
+            // that is the caller's choice, not a failure, so the turn still
+            // reports success with the prefix produced so far.
+            if (on_piece && !on_piece(piece)) {
+                LOGI("streaming stopped by the caller after %d tokens", last_stats_.gen_tokens);
+                break;
+            }
 
             batch.n_tokens     = 1;
             batch.token[0]     = cur;

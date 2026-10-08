@@ -172,8 +172,18 @@ internal object VisionJson {
     fun array(value: Any?, context: String): List<Any?> =
         value as? List<Any?> ?: throw VisionContractException("$context: expected a JSON array")
 
+    /**
+     * Any [Number], not only a `Double`.
+     *
+     * The JSON parsers in this app produce `Double`, but a caller that rebuilds a
+     * block from the *typed* manifest hands over `Int`/`Long` — and rejecting
+     * those made the gateway's preprocessing block fail with a misleading
+     * "expected a number". The widened check accepts exactly the same values as
+     * before and one more shape that is unambiguously a number.
+     */
     fun num(value: Any?, context: String): Double =
-        (value as? Double) ?: throw VisionContractException("$context: expected a number")
+        (value as? Number)?.toDouble()
+            ?: throw VisionContractException("$context: expected a number")
 
     fun int(value: Any?, context: String): Int = num(value, context).toInt()
 

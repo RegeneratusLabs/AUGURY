@@ -5,7 +5,15 @@
 //
 //   nativeInit(modelPath, nCtx, nThreads) -> handle (long)
 //   nativeGenerate(handle, system, user, temperature, maxTokens) -> String
+//   nativeGenerateStream(handle, system, user, temperature, maxTokens, sink)
 //   nativeFree(handle)
+//
+// `sink` is any object with `boolean onPiece(String piece)`. It is called on the
+// generation thread -- the same thread that entered this JNI function -- so the
+// JNIEnv it needs is the one passed in here and no AttachCurrentThread is
+// required. Returning false from onPiece stops generation early; the text
+// produced so far is still written back to the sink's accumulator on the Kotlin
+// side.
 //
 // Two extra read-only helpers exist only to surface *measured* evidence:
 //   nativeLastStats(handle)  -> one-line stats for the most recent generate()
@@ -87,6 +95,84 @@ AUGURY_JNI(jstring, nativeGenerate)(JNIEnv * env,
     std::string err;
     if (!engine->generate(system_prompt, user_prompt, (float) temperature, (int) max_tokens, out, err)) {
         throw_runtime(env, "LlamaEngine.generate failed: " + err);
+        return nullptr;
+    }
+    return to_jstring(env, out);
+}
+
+AUGURY_JNI(jstring, nativeGenerateStream)(JNIEnv * env,
+                                          jclass,
+                                          jlong       handle,
+                                          jstring     j_system,
+                                          jstring     j_user,
+                                          jfloat      temperature,
+                                          jint        max_tokens,
+                                          jobject     sink) {
+    augury::Engine * engine = as_engine(handle);
+    if (engine == nullptr || !engine->ready()) {
+        throw_runtime(env, "LlamaEngine.generateStream: engine handle is null or not initialised");
+        return nullptr;
+    }
+    if (sink == nullptr) {
+        throw_runtime(env, "LlamaEngine.generateStream: sink is null");
+        return nullptr;
+    }
+
+    // Resolve onPiece once, before any decoding: a lookup failure is a
+    // programming error, not a per-token one, and must not be swallowed.
+    jclass sink_cls = env->GetObjectClass(sink);
+    jmethodID on_piece = sink_cls != nullptr
+        ? env->GetMethodID(sink_cls, "onPiece", "(Ljava/lang/String;)Z")
+        : nullptr;
+    if (on_piece == nullptr) {
+        if (env->ExceptionCheck()) {
+            env->ExceptionClear();
+        }
+        throw_runtime(env, "LlamaEngine.generateStream: sink has no boolean onPiece(String)");
+        return nullptr;
+    }
+
+    const std::string system_prompt = to_string(env, j_system);
+    const std::string user_prompt   = to_string(env, j_user);
+
+    bool sink_failed = false;
+
+    augury::Engine::TokenCallback callback =
+        [env, sink, on_piece, &sink_failed](const std::string & piece) -> bool {
+            if (sink_failed) {
+                return false;
+            }
+            jstring j_piece = env->NewStringUTF(piece.c_str());
+            if (j_piece == nullptr) {
+                // Out of memory, or the piece was not valid modified UTF-8. Both
+                // are fatal to the stream; stop rather than spam the JVM.
+                sink_failed = true;
+                return false;
+            }
+            jboolean keep_going = env->CallBooleanMethod(sink, on_piece, j_piece);
+            env->DeleteLocalRef(j_piece);
+            if (env->ExceptionCheck()) {
+                // The Kotlin sink threw. Let the exception propagate: the caller
+                // asked for a stream and a broken consumer must not be silent.
+                sink_failed = true;
+                return false;
+            }
+            return keep_going == JNI_TRUE;
+        };
+
+    std::string out;
+    std::string err;
+    const bool ok = engine->generate_stream(
+        system_prompt, user_prompt, (float) temperature, (int) max_tokens,
+        callback, out, err);
+
+    if (!ok) {
+        throw_runtime(env, "LlamaEngine.generateStream failed: " + err);
+        return nullptr;
+    }
+    // An exception raised by the sink is already pending; returning now lets the
+    // JVM deliver it to the caller of generateStream().
+    if (sink_failed && env->ExceptionCheck()) {
         return nullptr;
     }
     return to_jstring(env, out);

@@ -38,9 +38,12 @@ import au.org.regeneratus.augury.ui.theme.AuguryDesign
  *  1. **The indicator rows are verbatim from the database.** The formatter model
  *     phrases them; it never supplies them. Constraint 5: "the model never
  *     generates facts — indicators come from the DB and only from the DB."
- *  2. **Grounding repairs are shown, not swallowed.** If the model produced a
- *     number the facts did not support, the app removed it and this screen says
- *     so. That is the "likely below 6.5" failure, caught and disclosed.
+ *  2. **Grounding repairs are applied, not shown.** If the model produced a
+ *     number the facts did not support, the app removes or rewrites it before the
+ *     text reaches this screen — that is the "likely below 6.5" failure, caught.
+ *     The reading is then presented simply as the reading; the repair record is
+ *     kept in `StoryResult.repairs` for the device tests and the log, but the user
+ *     is not shown an audit of what was corrected.
  *  3. **Provenance is visible.** Source, region, and — for a genus-level bucket —
  *     the fact that the answer covers a group rather than one species. "thistles"
  *     must never be silently relabelled *Cirsium vulgare*.
@@ -52,7 +55,11 @@ fun StoryScreen(state: AuguryUiState, vm: AuguryViewModel) {
     val reading = result?.reading
 
     ScreenScaffold(
-        title = reading?.displayName ?: "Soil reading",
+        // While the turn is running there is no `reading` yet — the species is only
+        // resolved once the answerer has run — so the name the user tapped is
+        // carried in the state. Without it the title flickered from the species
+        // name to "Soil reading" and back on every open.
+        title = reading?.displayName ?: state.storyDisplayName ?: "Soil reading",
         subtitle = buildString {
             if (reading != null) {
                 append(reading.scientificName)
@@ -71,13 +78,56 @@ fun StoryScreen(state: AuguryUiState, vm: AuguryViewModel) {
                 )
                 SecondaryButton(
                     text = "Photo instead",
-                    onClick = { vm.go(Screen.PHOTO) },
+                    // A new capture, so the previous photo session's card must go.
+                    onClick = { vm.startPhoto() },
                 )
             }
         },
     ) {
         when {
-            state.composing -> Notice("Looking up the soil indicators…", NoticeTone.NEUTRAL)
+            // The formatter model writes on-device: ~10 s of prompt evaluation
+            // before its first token, then ~40 s of prose on the emulator. Three
+            // distinct states, because they mean three different things:
+            //   composing && !streaming -> the model is still reading the prompt
+            //   streaming               -> prose is arriving, UNVERIFIED
+            //   neither                 -> the grounded answer below
+            state.streaming && state.storyDraft != null -> {
+                // The draft is shown dimmed and labelled "writing…" on purpose.
+                // Grounding runs on the finished text, so a prefix is a claim the
+                // database has not vouched for yet: it must never look like the
+                // answer. When the turn lands this block is replaced by the
+                // grounded prose.
+                AuguryCard(
+                    background = c.sageSoft,
+                    borderColor = c.sage.copy(alpha = 0.25f),
+                ) {
+                    SectionLabel("Writing…")
+                    Spacer(Modifier.height(8.dp))
+                    Text(
+                        // A token piece can be a leading space or a word fragment,
+                        // so the draft starts with whitespace surprisingly often --
+                        // the first thing the user sees must not be an indent.
+                        state.storyDraft.trimStart(),
+                        fontSize = 13.5.sp,
+                        lineHeight = 21.sp,
+                        color = c.inkMuted,
+                        fontStyle = FontStyle.Italic,
+                    )
+                    Spacer(Modifier.height(10.dp))
+                    Text(
+                        "Not checked against the database yet. The verified reading " +
+                            "replaces this as soon as the writer finishes.",
+                        fontSize = 11.sp,
+                        lineHeight = 16.sp,
+                        color = c.inkMuted,
+                    )
+                }
+            }
+
+            state.composing -> Notice(
+                "Reading the database and writing your reading…",
+                NoticeTone.NEUTRAL,
+            )
 
             state.storyError != null -> {
                 Notice(state.storyError, NoticeTone.CAUTION)
@@ -162,50 +212,6 @@ fun StoryScreen(state: AuguryUiState, vm: AuguryViewModel) {
                             "showing ${reading.region} data instead.",
                         tone = NoticeTone.NEUTRAL,
                     )
-                }
-
-                // ── the grounding audit trail ──
-                if (result.repairs.isNotEmpty()) {
-                    AuguryCard(background = c.amberSoft, borderColor = c.amber.copy(alpha = 0.3f)) {
-                        SectionLabel("Corrected")
-                        Spacer(Modifier.height(8.dp))
-                        Text(
-                            "The story writer produced ${result.repairs.size} statement(s) " +
-                                "that the database did not support. They were removed or " +
-                                "rewritten before you saw them:",
-                            fontSize = 11.5.sp,
-                            lineHeight = 17.sp,
-                            color = c.amberInk,
-                        )
-                        Spacer(Modifier.height(8.dp))
-                        result.repairs.forEach { r ->
-                            Column(Modifier.padding(bottom = 7.dp)) {
-                                Text(
-                                    r.action,
-                                    fontSize = 10.5.sp,
-                                    fontWeight = FontWeight.Bold,
-                                    color = c.amber,
-                                )
-                                if (r.removed.isNotEmpty()) {
-                                    Text(
-                                        "removed: “${r.removed.joinToString(" ")}”",
-                                        fontSize = 11.sp,
-                                        lineHeight = 16.sp,
-                                        color = c.amberInk,
-                                        fontStyle = FontStyle.Italic,
-                                    )
-                                }
-                                if (r.after.isNotBlank()) {
-                                    Text(
-                                        "now reads: “${r.after}”",
-                                        fontSize = 11.sp,
-                                        lineHeight = 16.sp,
-                                        color = c.amberInk,
-                                    )
-                                }
-                            }
-                        }
-                    }
                 }
 
                 // ── provenance ──

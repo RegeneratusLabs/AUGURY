@@ -8,6 +8,7 @@
 #pragma once
 
 #include <cstdint>
+#include <functional>
 #include <string>
 #include <vector>
 
@@ -35,6 +36,12 @@ public:
     Engine(const Engine &)            = delete;
     Engine & operator=(const Engine &) = delete;
 
+    /// Called once per generated piece with the text of that piece. Returning
+    /// false stops generation early (the caller has seen enough). It runs on the
+    /// thread that called generate()/generate_stream(), which is also the thread
+    /// that owns the JNI env, so a JNI callback needs no AttachCurrentThread.
+    using TokenCallback = std::function<bool(const std::string &)>;
+
     /// Loads the GGUF (mmap) and creates the context. Returns false and fills
     /// `err` on failure.
     bool init(const std::string & model_path, int n_ctx, int n_threads, std::string & err);
@@ -48,6 +55,20 @@ public:
                   std::string &       out_text,
                   std::string &       err);
 
+    /// The same turn as generate(), but hands each piece to `on_piece` as it is
+    /// produced instead of only returning the whole answer. The accumulated text
+    /// is written to `out_text` as well, so a caller that ignores the callback
+    /// sees exactly what generate() would have returned. Returning false from
+    /// `on_piece` stops the loop and is not an error: `out_text` then holds the
+    /// prefix produced so far and the call still returns true.
+    bool generate_stream(const std::string & system_prompt,
+                         const std::string & user_prompt,
+                         float               temperature,
+                         int                 max_tokens,
+                         const TokenCallback & on_piece,
+                         std::string &       out_text,
+                         std::string &       err);
+
     void free();
     bool ready() const { return model_ != nullptr && ctx_ != nullptr; }
 
@@ -56,6 +77,16 @@ public:
     const std::string & chat_template() const { return chat_template_; }
 
 private:
+    /// The shared body of generate() and generate_stream(). `on_piece` may be an
+    /// empty std::function, in which case pieces are only accumulated.
+    bool run_turn(const std::string & system_prompt,
+                  const std::string & user_prompt,
+                  float               temperature,
+                  int                 max_tokens,
+                  const TokenCallback & on_piece,
+                  std::string &       out_text,
+                  std::string &       err);
+
     bool render_prompt(const std::string & system_prompt,
                        const std::string & user_prompt,
                        std::string &       out,

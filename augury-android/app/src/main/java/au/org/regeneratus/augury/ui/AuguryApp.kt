@@ -1,5 +1,6 @@
 package au.org.regeneratus.augury.ui
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -53,6 +54,18 @@ import au.org.regeneratus.augury.ui.theme.AuguryDesign
 @Composable
 fun AuguryApp(vm: AuguryViewModel) {
     val state by vm.state.collectAsStateWithLifecycle()
+
+    // Android's back gesture/button has to walk the app's own navigation.
+    // Without this the system back finished the activity from any sub-screen, so
+    // a user on the Story screen who pressed back landed on their phone's home
+    // screen and lost their place. It is enabled exactly where a screen shows its
+    // own back affordance: never on Home (nothing to go back to, so the system
+    // keeps it and the app exits as expected), and not on a Setup that still has
+    // work to do (leaving it early would strand the user on a Home screen whose
+    // database is not installed).
+    val canGoBack = state.screen != Screen.HOME &&
+        !(state.screen == Screen.SETUP && state.setup?.allReady != true)
+    BackHandler(enabled = canGoBack) { vm.back() }
 
     when (state.screen) {
         Screen.SETUP -> SetupScreen(state, vm)

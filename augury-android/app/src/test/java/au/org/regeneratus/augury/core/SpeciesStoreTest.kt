@@ -408,5 +408,59 @@ class SpeciesStoreTest {
         assertEquals(AuguryTestSupport.synonymsFile.readText(), bundled)
     }
 
+    // ── display names for the photo path ────────────────────────────────────
+
+    @Test
+    fun `a canonical index key resolves to the vernacular name`() {
+        // The retrieval index's keys are lowercased scientific names; the confirm
+        // card must show the name the audience uses, not the Latin binomial.
+        assertEquals("Dandelion", store.displayNameForKey("taraxacum officinale"))
+        assertEquals("Capeweed", store.displayNameForKey("arctotheca calendula"))
+        assertEquals("Yarrow", store.displayNameForKey("achillea millefolium"))
+    }
+
+    @Test
+    fun `every species the shipped index can return resolves to a display name`() {
+        // All 173 canonical keys in index-v3 are in the database, so a null here
+        // means the accessor is wrong, not the data.
+        val keys = AuguryTestSupport.visionIndexKeys()
+        var named = 0
+        for (key in keys) {
+            val name = store.displayNameForKey(key)
+            assertNotNull("no display name for index key '$key'", name)
+            assertTrue("blank display name for index key '$key'", name!!.isNotBlank())
+            if (store.commonNamesForKey(key).isNotEmpty()) named++
+        }
+        assertEquals(173, keys.size)
+        // 170 of the index's 173 species carry a common name in the database; the
+        // three that do not fall back to its scientific spelling (tested below).
+        assertEquals(170, named)
+    }
+
+    @Test
+    fun `a species with no vernacular name falls back to the database's spelling`() {
+        // The database's `scientific_name`, not the lowercased index key: it keeps
+        // the capital the index drops, which is why this is worth a lookup at all.
+        assertEquals("Cynodon dactylon", store.displayNameForKey("cynodon dactylon"))
+        assertTrue(store.commonNamesForKey("cynodon dactylon").isEmpty())
+    }
+
+    @Test
+    fun `the scientific spelling is the database's, not the lowercased index key`() {
+        assertEquals("Cirsium vulgare", store.scientificNameForKey("cirsium vulgare"))
+        assertEquals("Taraxacum officinale", store.scientificNameForKey("taraxacum officinale"))
+        assertNull(store.scientificNameForKey("not a real species at all"))
+    }
+
+    @Test
+    fun `the display lookup is direct, never a fuzzy search`() {
+        // An unknown key must resolve to nothing rather than borrowing a similar
+        // species' name onto a candidate the user is asked to confirm.
+        assertNull(store.displayNameForKey("not a real species at all"))
+        assertTrue(store.commonNamesForKey("").isEmpty())
+        // Case and surrounding whitespace are the only normalisation applied.
+        assertEquals("Dandelion", store.displayNameForKey("  Taraxacum Officinale  "))
+    }
+
     private fun allKeys(): List<String> = AuguryTestSupport.speciesKeys()
 }

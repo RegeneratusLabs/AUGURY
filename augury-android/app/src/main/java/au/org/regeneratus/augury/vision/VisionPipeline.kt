@@ -1,5 +1,7 @@
 package au.org.regeneratus.augury.vision
 
+import java.io.Closeable
+
 /**
  * AUGURY — the vision path, end to end.
  *
@@ -33,7 +35,7 @@ class VisionPipeline(
     private val index: KnnIndex,
     private val bands: Bands,
     val topK: Int = VisionSettings.REQUIRED_TOP_K,
-) {
+) : Closeable {
 
     init {
         require(topK >= 1) { "topK must be >= 1" }
@@ -115,6 +117,20 @@ class VisionPipeline(
 
     /** How many species the shipped index can return. */
     val speciesCount: Int get() = index.canonicalCount
+
+    /**
+     * Releases the encoder's ONNX session — the 346 MB fp32 graph, which is the
+     * largest resident allocation the app can hold.
+     *
+     * This exists for hard constraint 7: the encoder and the ~700 MB GGUF must
+     * never be resident together. [AuguryGatewayImpl] calls it before it asks the
+     * formatter for a draft, and rebuilds the pipeline lazily on the next photo.
+     * The pipeline is unusable afterwards; the gallery and PCA matrices are small
+     * enough that only the session is worth reclaiming here.
+     */
+    override fun close() {
+        encoder.close()
+    }
 
     companion object {
         /**

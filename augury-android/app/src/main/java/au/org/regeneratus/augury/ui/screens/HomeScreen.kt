@@ -66,7 +66,9 @@ fun HomeScreen(state: AuguryUiState, vm: AuguryViewModel) {
                 Box(Modifier.weight(1f)) {
                     PrimaryButton(
                         text = "📷  Take photo",
-                        onClick = { vm.go(Screen.PHOTO) },
+                        // startPhoto, not go(PHOTO): the photo session's previous
+                        // result must not leak into a new capture.
+                        onClick = { vm.startPhoto() },
                     )
                 }
                 Box(Modifier.weight(1f)) {

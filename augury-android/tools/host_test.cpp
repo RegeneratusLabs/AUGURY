@@ -110,6 +110,75 @@ int main(int argc, char ** argv) {
     std::printf("template_source  : %s\n", st.template_source.c_str());
     std::fflush(stdout);
 
+    // ---- streaming parity ---------------------------------------------------
+    // generate_stream() must be the same turn as generate(), delivered in
+    // pieces. The model is seeded, so a second run is the control: the
+    // concatenation of the streamed pieces must equal the whole answer exactly.
+    //
+    // `pieces` is accumulated by the callback ONLY. `streamed` is filled by
+    // generate_stream() itself -- accumulating it in the callback too would
+    // double every piece and make the parity check below vacuous, which is
+    // exactly what the first version of this harness did.
+    std::string streamed;
+    std::string pieces;
+    int         piece_count = 0;
+    std::printf("\n== STREAM ==\n");
+    std::fflush(stdout);
+
+    auto s0 = std::chrono::steady_clock::now();
+    const bool stream_ok = engine.generate_stream(
+        kSystemPrompt, kUserPrompt, 0.3f, 500,
+        [&](const std::string & piece) -> bool {
+            pieces += piece;
+            ++piece_count;
+            std::fputs(piece.c_str(), stdout);
+            std::fflush(stdout);
+            // Stop early on the first 40 pieces: proves the stop path works and
+            // keeps the control run cheap.
+            return piece_count < 40;
+        },
+        streamed, err);
+    auto s1 = std::chrono::steady_clock::now();
+    const auto stream_ms =
+        std::chrono::duration_cast<std::chrono::milliseconds>(s1 - s0).count();
+
+    std::printf("\n== END STREAM ==\n");
+    std::printf("stream_pieces    : %d\n", piece_count);
+    std::printf("stream_chars     : %zu\n", streamed.size());
+    std::printf("stream_ms        : %lld\n", static_cast<long long>(stream_ms));
+    std::fflush(stdout);
+
+    if (!stream_ok) {
+        std::fprintf(stderr, "STREAM FAILED: %s\n", err.c_str());
+        return 1;
+    }
+    if (piece_count == 0 || streamed.empty()) {
+        std::fprintf(stderr, "FAIL: generate_stream produced nothing\n");
+        return 1;
+    }
+    // The callback saw exactly the text the accumulator holds: a stream that
+    // silently drops or duplicates a piece is the bug this pins.
+    if (pieces != streamed) {
+        std::fprintf(stderr, "FAIL: streamed pieces (%zu bytes) != accumulated (%zu bytes)\n",
+                     pieces.size(), streamed.size());
+        return 1;
+    }
+    // The early stop must have stopped it.
+    if (piece_count != 40) {
+        std::fprintf(stderr, "FAIL: callback asked to stop at 40 pieces, saw %d\n", piece_count);
+        return 1;
+    }
+    // The streamed prefix is a prefix of the whole answer: the stream is the same
+    // turn delivered earlier, not a different one. This is the assertion that
+    // would catch a sampler or template drift between the two entry points.
+    if (out.compare(0, streamed.size(), streamed) != 0) {
+        std::fprintf(stderr,
+                     "FAIL: the streamed prefix is not a prefix of generate()'s output\n"
+                     "  streamed: %.80s...\n  full    : %.80s...\n",
+                     streamed.c_str(), out.c_str());
+        return 1;
+    }
+
     engine.free();
 
     // Non-zero exit if the model produced nothing usable -- a silent empty

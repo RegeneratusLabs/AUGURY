@@ -6,11 +6,13 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -41,23 +43,44 @@ import au.org.regeneratus.augury.ui.theme.AuguryDesign
 private val CardShape = RoundedCornerShape(15.dp)
 private val ControlShape = RoundedCornerShape(14.dp)
 
-/** A white card on the cream background. The app's only container. */
+/**
+ * A white card on the cream background. The app's only container.
+ *
+ * **The content is a [ColumnScope], and that is load-bearing.** This used to be a
+ * `Box`, which stacked every child at the same position — so a card written the
+ * obvious way
+ *
+ * ```
+ * AuguryCard {
+ *     SectionLabel("DOWNLOADING")
+ *     Spacer(Modifier.height(10.dp))
+ *     columnOfArtifactRows()
+ * }
+ * ```
+ *
+ * drew the label *on top of* the rows, and the download screen showed
+ * "Downloading" and "Story writer" overprinted. Twenty-two call sites, most of
+ * them multi-child, so nearly every card in the app was affected. A `Box` makes
+ * that mistake silent; a `Column` makes it unwritable, and no caller legitimately
+ * wanted an overlay.
+ */
 @Composable
 fun AuguryCard(
     modifier: Modifier = Modifier,
     background: Color = AuguryDesign.colors.surface,
     borderColor: Color = AuguryDesign.colors.line,
     padding: Int = 14,
-    content: @Composable () -> Unit,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
-    Box(
+    Column(
         modifier
             .fillMaxWidth()
             .clip(CardShape)
             .background(background)
             .border(1.dp, borderColor, CardShape)
             .padding(padding.dp),
-    ) { content() }
+        content = content,
+    )
 }
 
 /**
@@ -83,6 +106,9 @@ fun SectionLabel(
             modifier = Modifier.weight(1f),
         )
         if (trailing != null) {
+            // A gap, so a long label and its trailing value never read as one run
+            // of text when the label fills its weight.
+            Spacer(Modifier.width(8.dp))
             Text(
                 text = trailing,
                 fontSize = 11.5.sp,
@@ -145,7 +171,8 @@ fun PrimaryButton(
     Box(
         modifier
             .fillMaxWidth()
-            .height(50.dp)
+            .heightIn(min = 50.dp)
+            .padding(vertical = 8.dp)
             .clip(ControlShape)
             .background(if (enabled) c.sage else c.sage.copy(alpha = 0.4f))
             .clickable(enabled = enabled, onClick = onClick),
@@ -173,7 +200,8 @@ fun SecondaryButton(
     Box(
         modifier
             .fillMaxWidth()
-            .height(50.dp)
+            .heightIn(min = 50.dp)
+            .padding(vertical = 8.dp)
             .clip(ControlShape)
             .background(c.surface)
             .border(1.dp, c.line, ControlShape)
@@ -385,7 +413,7 @@ fun SearchField(
     Row(
         modifier
             .fillMaxWidth()
-            .height(46.dp)
+            .heightIn(min = 46.dp)
             .clip(RoundedCornerShape(12.dp))
             .background(c.surface)
             .border(1.dp, c.line, RoundedCornerShape(12.dp))

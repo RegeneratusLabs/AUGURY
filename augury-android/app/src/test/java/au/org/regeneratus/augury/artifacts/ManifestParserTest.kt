@@ -2,6 +2,7 @@ package au.org.regeneratus.augury.artifacts
 
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
@@ -58,12 +59,15 @@ class ManifestParserTest {
         assertEquals(rawString(shippedManifestJson, "generation"), manifest.generation)
         assertTrue(manifest.generation.matches(Regex("[0-9a-f]{64}")))
 
-        assertEquals("formatter.chatml-grounded@1", manifest.formatter.protocol)
-        assertEquals("RegeneratusLabs/augury-1b", manifest.formatter.repo)
-        assertEquals("MiniCPM5-1B-AUGURY-Q4_K_M.gguf", manifest.formatter.path)
-        assertEquals("342d62ab82a985fbc26e6d01c6d2953815f3a434", manifest.formatter.revision)
-        assertEquals(688065824L, manifest.formatter.bytes)
-        assertEquals("febcf5e6dfcc", manifest.formatter.generation)
+        // The shipped publication is template-only: the manifest carries no
+        // formatter at all, so the story is rendered by the deterministic template
+        // and no 688 MB GGUF is downloaded. The parsed `null` is the contract. A
+        // formatter that *is* present is covered by TestFixtures.bundle().
+        assertNull("the shipped manifest must be template-only", manifest.formatter)
+        assertTrue(
+            "data/app/manifest.json must not publish a formatter block",
+            shippedManifestJson.entries["formatter"] == null,
+        )
 
         assertEquals("species.db@1", manifest.facts.spec.protocol)
         assertEquals(1, manifest.facts.schema)
@@ -109,24 +113,25 @@ class ManifestParserTest {
     }
 
     @Test
-    fun `resolves the shipped manifest into four artifacts with the right roles and unpack flags`() {
+    fun `resolves the shipped manifest into three artifacts with the right roles and unpack flags`() {
+        // Template-only: no formatter entry, so three artifacts. The
+        // formatter-present shape is covered by TestFixtures.bundle().
         val artifacts = ManifestParser.parse(shippedManifestFile.readBytes()).artifacts()
 
         assertEquals(
-            listOf("formatter", "facts", "vision-index", "vision-encoder-dinov2-base-fp32"),
+            listOf("facts", "vision-index", "vision-encoder-dinov2-base-fp32"),
             artifacts.map { it.name },
         )
         assertEquals(
             listOf(
-                ArtifactRole.FORMATTER,
                 ArtifactRole.FACTS,
                 ArtifactRole.VISION_INDEX,
                 ArtifactRole.VISION_ENCODER,
             ),
             artifacts.map { it.role },
         )
-        // Only the gzipped tar unpacks; the GGUF, the species DB and the ONNX stay whole.
-        assertEquals(listOf(false, false, true, false), artifacts.map { it.unpack })
+        // Only the gzipped tar unpacks; the species DB and the ONNX stay whole.
+        assertEquals(listOf(false, true, false), artifacts.map { it.unpack })
     }
 
     // ── canonical digest: byte-compatible with CPython ──────────────────────

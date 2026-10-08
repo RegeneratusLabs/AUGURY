@@ -44,6 +44,32 @@ data class ShellCapabilities(
         /** `vision.clip-token-l2-pca-knn-ip@1` — CLS token → L2 → PCA-whiten → L2 → kNN inner product. */
         const val VISION_CLIP_TOKEN_L2_PCA_KNN_IP_V1 = "vision.clip-token-l2-pca-knn-ip@1"
 
+        /**
+         * Whether this build downloads and loads the conversational story model.
+         *
+         * **`false` for the shipped "weed ID + indicators" build.** The story is
+         * rendered by the deterministic template, so the formatter is never
+         * downloaded and never loaded — even when the published manifest still
+         * catalogs one. This is a build capability, like the protocol sets above:
+         * flipping it is what makes the separate conversational version a different
+         * APK rather than a manifest edit.
+         *
+         * The reason it is enforced here and not only in the manifest: the manifest
+         * is remote and mutable, so only a compiled constant can guarantee this
+         * build downloads ~368 MB rather than ~1.06 GB, and cannot fall back to
+         * generating prose.
+         */
+        const val USES_STORY_MODEL = false
+
+        /**
+         * The manifest as *this build* should act on: with the story model stripped
+         * when [USES_STORY_MODEL] is false. Applied at the one point where a fetched
+         * manifest enters the app, so the gate, the download plan and the UI all
+         * agree by construction.
+         */
+        fun effectiveManifest(manifest: ArtifactManifest): ArtifactManifest =
+            if (USES_STORY_MODEL) manifest else manifest.withoutStoryModel()
+
         /** What the current APK implements. Change only alongside the code that implements it. */
         val CURRENT = ShellCapabilities(
             manifestSchemas = setOf(1),
@@ -96,7 +122,13 @@ object ProtocolGate {
                 "(implements ${capabilities.manifestSchemas.joinToString()})"
         }
 
-        protocolReason(reasons, "formatter", manifest.formatter.protocol, capabilities)
+        // The formatter is optional: a template-only publication omits it, and
+        // that is a complete product (the deterministic template renders the
+        // story). Only a *declared but unsupported* formatter protocol is a
+        // reason to demand an app update.
+        manifest.formatter?.let {
+            protocolReason(reasons, "formatter", it.protocol, capabilities)
+        }
         protocolReason(reasons, "facts", manifest.facts.spec.protocol, capabilities)
 
         if (manifest.facts.schema !in capabilities.speciesDbSchemas) {

@@ -1,17 +1,7 @@
 {
   "manifest_schema": 1,
   "generated": "2026-09-20T07:58:50Z",
-  "generation": "81e85f0815746fb41b48b0833f1dd0bc1f5162bea88807fe0a2a48287bf49a9f",
-  "formatter": {
-    "protocol": "formatter.chatml-grounded@1",
-    "repo": "RegeneratusLabs/augury-1b",
-    "path": "MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
-    "revision": "342d62ab82a985fbc26e6d01c6d2953815f3a434",
-    "bytes": 688065824,
-    "sha256": "febcf5e6dfcc8b79326ca9a5f4dcf9c2535464ef086a48edbf4dd925254d7026",
-    "generation": "febcf5e6dfcc",
-    "repo_type": "model"
-  },
+  "generation": "ca09f9c53eb7403cc60c0f8dbd01b8ec3b2b97aff5d57f25043093b8cc754d7f",
   "facts": {
     "protocol": "species.db@1",
     "schema": 1,

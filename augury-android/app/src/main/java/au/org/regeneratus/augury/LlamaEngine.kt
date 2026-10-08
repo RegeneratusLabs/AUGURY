@@ -6,12 +6,28 @@ package au.org.regeneratus.augury
 class LlamaException(message: String) : RuntimeException(message)
 
 /**
+ * Receives the formatter's text as it is produced.
+ *
+ * `onPiece` is called on the generation thread — the same background thread that
+ * called [LlamaEngine.generateStream] — once per generated piece, in order. It
+ * must be cheap and must not block: at ~2 tokens/sec on a phone there is slack,
+ * but a callback that waits on the main thread would still stall the model.
+ *
+ * Returning `false` stops generation early. That is not an error: the text
+ * produced so far is still returned, which is how a caller can cap the answer.
+ */
+fun interface TokenSink {
+    fun onPiece(piece: String): Boolean
+}
+
+/**
  * Kotlin facade over the hand-written JNI shim in `app/src/main/cpp/augury_jni.cpp`.
  *
- * The whole native surface is three calls:
+ * The whole native surface is four calls:
  * ```
  * nativeInit(modelPath, nCtx, nThreads) -> handle
  * nativeGenerate(handle, system, user, temperature, maxTokens) -> String
+ * nativeGenerateStream(handle, system, user, temperature, maxTokens, sink)
  * nativeFree(handle)
  * ```
  *
@@ -20,11 +36,17 @@ class LlamaException(message: String) : RuntimeException(message)
  * LlamaEngine().use { engine ->
  *     engine.load(modelPath, nCtx = 2048, nThreads = LlamaEngine.recommendedThreads())
  *     val answer = engine.generate(system, user, temperature = 0.3f, maxTokens = 500)
+ *
+ *     // ...or the same turn, delivered as it is written:
+ *     val streamed = engine.generateStream(system, user, 0.3f, 500) { piece ->
+ *         ui.appendDraft(piece); true
+ *     }
  * }
  * ```
  *
- * [generate] is blocking and CPU-bound: call it from a background thread (the
- * spike Activity uses a single-thread executor).
+ * Both calls are blocking and CPU-bound: call them from a background thread (the
+ * spike Activity uses a single-thread executor). [generateStream] invokes its
+ * callback on that same thread.
  */
 class LlamaEngine : AutoCloseable {
 
@@ -78,6 +100,32 @@ class LlamaEngine : AutoCloseable {
         }
     }
 
+    /**
+     * The same turn as [generate], but [onDelta] receives each piece as it is
+     * produced and the whole text is still returned at the end.
+     *
+     * The pieces concatenate to exactly what [generate] would have returned for
+     * the same inputs: this is the same sampler and the same seed, delivered
+     * earlier rather than differently. `onDelta` may return `false` to stop early.
+     *
+     * @throws LlamaException on a native failure, or if [onDelta] throws.
+     */
+    fun generateStream(
+        system: String,
+        user: String,
+        temperature: Float = 0.3f,
+        maxTokens: Int = 500,
+        onDelta: (String) -> Boolean,
+    ): String {
+        val h = handle
+        check(h != 0L) { "engine not loaded" }
+        return try {
+            nativeGenerateStream(h, system, user, temperature, maxTokens, TokenSink(onDelta)) ?: ""
+        } catch (t: RuntimeException) {
+            throw LlamaException(t.message ?: "native generateStream failed")
+        }
+    }
+
     /** One-line stats for the most recent [generate] call (measured, not estimated). */
     val lastStats: String
         get() = if (handle == 0L) "" else nativeLastStats(handle)
@@ -122,6 +170,21 @@ class LlamaEngine : AutoCloseable {
             user: String,
             temperature: Float,
             maxTokens: Int,
+        ): String?
+
+        /**
+         * [sink] is typed [TokenSink] rather than `Any` on purpose: the native
+         * side resolves `boolean onPiece(String)` on it, and the Kotlin compiler
+         * is what guarantees that method exists with that exact signature.
+         */
+        @JvmStatic
+        private external fun nativeGenerateStream(
+            handle: Long,
+            system: String,
+            user: String,
+            temperature: Float,
+            maxTokens: Int,
+            sink: TokenSink,
         ): String?
 
         @JvmStatic

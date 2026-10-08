@@ -43,6 +43,12 @@ class DemoGateway private constructor(
     private val demoSpecies: List<DemoSpecies> = DEMO_SPECIES
 
     companion object {
+        /** How many words of the template each simulated draft piece carries. */
+        private const val DRAFT_CHUNK_WORDS = 4
+
+        /** The gap between simulated pieces, so a preview shows the draft building. */
+        private const val DRAFT_CHUNK_DELAY_MS = 40L
+
         /**
          * Loads the shipped species database.
          *
@@ -232,27 +238,33 @@ class DemoGateway private constructor(
      * three candidates, and the scores deliberately straddle the manifest bands so
      * both the confirm card and the low-confidence screen are reachable.
      */
-    override suspend fun identify(imageBytes: ByteArray, region: String?): List<PhotoCandidate> {
-        if (imageBytes.isEmpty()) return emptyList()
+    override suspend fun identify(imageBytes: ByteArray, region: String?): PhotoIdentification {
+        if (imageBytes.isEmpty()) {
+            return PhotoIdentification(emptyList(), "That image was empty.")
+        }
         val seed = imageBytes.fold(0) { acc, b -> (acc * 31 + b.toInt()) and 0x7fffffff }
         val pool = demoSpecies.filter { it.indicators > 0 }
-        if (pool.isEmpty()) return emptyList()
+        if (pool.isEmpty()) {
+            return PhotoIdentification(emptyList(), "The demo species list is empty.")
+        }
         val first = pool[seed % pool.size]
         val second = pool[(seed / 7 + 3) % pool.size]
         val third = pool[(seed / 13 + 11) % pool.size]
         val distinct = listOf(first, second, third).distinctBy { it.key }
 
         val scores = listOf(0.71, 0.58, 0.51)
-        return distinct.mapIndexed { i, sp ->
-            val score = scores.getOrElse(i) { 0.4 - i * 0.05 }
-            PhotoCandidate(
-                key = sp.key,
-                commonName = sp.commonName,
-                scientificName = sp.key,
-                score = score,
-                band = bandFor(score),
-            )
-        }
+        return PhotoIdentification(
+            distinct.mapIndexed { i, sp ->
+                val score = scores.getOrElse(i) { 0.4 - i * 0.05 }
+                PhotoCandidate(
+                    key = sp.key,
+                    commonName = sp.commonName,
+                    scientificName = sp.key,
+                    score = score,
+                    band = bandFor(score),
+                )
+            },
+        )
     }
 
     private fun bandFor(score: Double): Band = when {
@@ -290,6 +302,54 @@ class DemoGateway private constructor(
             refused = payload.refused,
             refusedReason = payload.refusedReason,
         )
+    }
+
+    /**
+     * **A simulation, not the model.** There is no GGUF here, so the text already
+     * exists by the time this is called; it is handed to [onDraft] a few words at
+     * a time so a preview or a UI test can watch the draft rendering and the
+     * draft→verified swap happen without a device.
+     *
+     * It deliberately emits the *finished* template text rather than a plausible
+     * hallucination: a demo that showed fabricated numbers as a draft would be
+     * demonstrating the exact failure the real pipeline's grounding pass exists to
+     * catch, and would train reviewers to accept it. [StoryResult.repairs] is
+     * always empty here for the same reason — the deterministic template cannot
+     * invent a number.
+     *
+     * The early-stop contract is honoured the same way the real gateway honours
+     * it: if [onDraft] returns `false` the result is built from the prefix that was
+     * actually produced, not from the full text.
+     */
+    override suspend fun storyStream(
+        speciesKey: String,
+        question: String,
+        region: String?,
+        onDraft: (String) -> Boolean,
+    ): StoryResult? {
+        val full = story(speciesKey, question, region, modelText = null) ?: return null
+
+        val words = full.story.split(' ')
+        val draft = StringBuilder()
+        var stopped = false
+        for ((i, word) in words.withIndex()) {
+            draft.append(if (i == 0) word else " $word")
+            // Every few words, not every word: a real token is often a fragment of
+            // a word, and a per-word delay would make a test needlessly slow.
+            if (i % DRAFT_CHUNK_WORDS == DRAFT_CHUNK_WORDS - 1) {
+                if (!onDraft(draft.toString())) {
+                    stopped = true
+                    break
+                }
+                kotlinx.coroutines.delay(DRAFT_CHUNK_DELAY_MS)
+            }
+        }
+        if (!stopped) onDraft(draft.toString())
+
+        // A stop means the caller has seen enough of the *draft*, so the verified
+        // result must be built from what was produced — returning the whole story
+        // would answer a question the caller stopped asking.
+        return if (stopped) story(speciesKey, question, region, modelText = draft.toString()) else full
     }
 
     /** One curated species for the picker: real key, real common name, real row count. */

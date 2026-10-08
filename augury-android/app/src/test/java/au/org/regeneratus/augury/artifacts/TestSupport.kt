@@ -308,6 +308,13 @@ object TestFixtures {
         factsBytes: ByteArray = "FACTS-BYTES".toByteArray(),
         indexBytes: ByteArray = tarGz(indexEntries()),
         encoderBytes: ByteArray = "ENCODER-BYTES".toByteArray(),
+        /**
+         * `false` builds a **template-only** publication: the manifest has no
+         * `formatter` key at all and no formatter body is served. This is a
+         * complete product (the deterministic template writes the story), so it
+         * must gate as compatible and install without touching the formatter URL.
+         */
+        includeFormatter: Boolean = true,
         formatterPath: String = "MiniCPM5-1B-AUGURY-Q4_K_M.gguf",
         factsPath: String = "augury-ondevice.json",
         indexPath: String = "vision-index-v3.tar.gz",
@@ -368,12 +375,20 @@ object TestFixtures {
                 |      "quant": "$encoderQuant"""".trimMargin(),
         )
 
+        val formatterEntry = if (includeFormatter) {
+            "  \"formatter\": ${specJson(formatterProtocol, formatterRepo, formatterPath, formatterBytes)},"
+        } else {
+            // Absent, not null: this is the template-only shape the parser treats
+            // as "no story model".
+            ""
+        }
+
         val template = """
             |{
             |  "manifest_schema": $manifestSchema,
             |  "generated": "2026-09-19T12:15:59Z",
             |  "generation": "$GENERATION_PLACEHOLDER",
-            |  "formatter": ${specJson(formatterProtocol, formatterRepo, formatterPath, formatterBytes)},
+            |$formatterEntry
             |  "facts": ${specJson(factsProtocol, factsRepo, factsPath, factsBytes)
                 .replaceFirst("{", "{\n      \"schema\": $factsSchema,")},
             |  "vision": {
@@ -408,7 +423,9 @@ object TestFixtures {
         val indexUrl = url(indexRepo, indexPath, revision)
         val encoderUrl = url(encoderRepo, encoderPath, revision)
         val bodies = LinkedHashMap<String, ByteArray>()
-        bodies[formatterUrl] = formatterBytes
+        // A template-only bundle serves no formatter body, so a test can prove
+        // the install path never asks for one.
+        if (includeFormatter) bodies[formatterUrl] = formatterBytes
         bodies[factsUrl] = factsBytes
         bodies[indexUrl] = indexBytes
         bodies[encoderUrl] = encoderBytes

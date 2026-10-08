@@ -132,12 +132,43 @@ data class ArtifactManifest(
     val generated: String?,
     /** Digest of the manifest body — verified during parsing. */
     val generation: String,
-    val formatter: ArtifactSpec,
+    /**
+     * The optional conversational formatter.
+     *
+     * `null` means the publication is **template-only**: the story is rendered
+     * by the deterministic [au.org.regeneratus.augury.core.StoryComposer], which
+     * needs no model and cannot invent an indicator. That is a valid, complete
+     * product — not a degraded state — so an absent formatter is accepted rather
+     * than treated as a malformed manifest.
+     *
+     * Why this is a load-bearing distinction: the formatter is 688 MB of a
+     * ~1.06 GB first-launch download and the only component ever observed
+     * inventing facts (a fabricated pH threshold in 7/20 field-test answers,
+     * repaired by `Grounding`). Making it optional lets a publication ship the
+     * smaller, fabrication-free path without an app change.
+     */
+    val formatter: ArtifactSpec?,
     val facts: SpeciesDbArtifact,
     val vision: VisionSpec,
 ) {
     /** Every downloadable artifact, in the order the Setup screen should present them. */
     fun artifacts(): List<ManifestArtifact> = ManifestArtifacts.list(this)
+
+    /**
+     * The same manifest with the story model removed.
+     *
+     * The published manifest is a **catalog** of everything on Hugging Face: it may
+     * list the conversational formatter because the voice build uses it. A build
+     * that does not use a story model selects the artifacts it needs, so the
+     * formatter is stripped before the gate, the download plan, and the UI ever
+     * see it — it is neither downloaded nor reported, and a declared-but-unknown
+     * formatter protocol cannot fail the gate for a build that will not run it.
+     *
+     * Returning `this` when there is already no formatter keeps the common case
+     * allocation-free and makes the transform idempotent.
+     */
+    fun withoutStoryModel(): ArtifactManifest =
+        if (formatter == null) this else copy(formatter = null)
 
     /** The encoder for the index's backend, or `null` when the manifest is inconsistent. */
     fun encoderForIndexBackend(): VisionEncoderArtifact? =
@@ -193,7 +224,12 @@ object ManifestArtifacts {
 
     fun list(manifest: ArtifactManifest): List<ManifestArtifact> {
         val out = ArrayList<ManifestArtifact>()
-        out += ManifestArtifact(ArtifactNames.FORMATTER, ArtifactRole.FORMATTER, manifest.formatter, unpack(manifest.formatter), "text formatter")
+        // A template-only publication has no formatter entry, so nothing is
+        // downloaded, listed on Setup, or expected at runtime. The story path
+        // falls through to the deterministic template (see StoryComposer).
+        manifest.formatter?.let {
+            out += ManifestArtifact(ArtifactNames.FORMATTER, ArtifactRole.FORMATTER, it, unpack(it), "text formatter")
+        }
         out += ManifestArtifact(ArtifactNames.FACTS, ArtifactRole.FACTS, manifest.facts.spec, unpack(manifest.facts.spec), "species database")
         out += ManifestArtifact(ArtifactNames.VISION_INDEX, ArtifactRole.VISION_INDEX, manifest.vision.index.spec, unpack(manifest.vision.index.spec), manifest.vision.index.backend)
         val used = HashSet<String>()
@@ -267,7 +303,9 @@ object ManifestParser {
 
         val manifestSchema = root.field("manifest_schema").int()
         val generated = root.fieldOrNull("generated")?.string()
-        val formatter = parseSpec(root.field("formatter"))
+        // Absent (not null-valued) means "template-only publication" — see the
+        // `formatter` field on ArtifactManifest.
+        val formatter = root.fieldOrNull("formatter")?.let { parseSpec(it) }
         val factsNode = root.field("facts")
         val facts = SpeciesDbArtifact(
             spec = parseSpec(factsNode),

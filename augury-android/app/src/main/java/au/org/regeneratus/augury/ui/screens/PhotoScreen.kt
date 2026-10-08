@@ -128,6 +128,13 @@ fun PhotoScreen(state: AuguryUiState, vm: AuguryViewModel) {
                     onClick = { vm.openStory(top.key) },
                 )
                 SecondaryButton(
+                    text = "📷  Take another photo",
+                    // Back to a clean capture screen. Without this the confirm
+                    // card had no way to retake a bad shot: it offers only the
+                    // three matches and a search.
+                    onClick = { vm.startPhoto() },
+                )
+                SecondaryButton(
                     text = "None of these — search by name",
                     onClick = { vm.go(Screen.PICKER) },
                 )
@@ -153,6 +160,19 @@ fun PhotoScreen(state: AuguryUiState, vm: AuguryViewModel) {
     ) {
         when {
             state.identifying -> IdentifyingCard()
+
+            // The path could not RUN. Say which part is missing rather than
+            // showing the "no reliable match" copy, which would imply the photo
+            // was compared and lost.
+            state.photoUnavailable != null -> {
+                Notice(state.photoUnavailable, tone = NoticeTone.CAUTION)
+                AuguryCard {
+                    SectionLabel("What to try")
+                    Spacer(Modifier.height(8.dp))
+                    Tip("⬇️", "Finish the download on the Setup screen, then try again")
+                    Tip("🔎", "Or search the plant by name — that path needs no model")
+                }
+            }
 
             state.photoEmpty -> {
                 Notice(
@@ -254,12 +274,16 @@ private fun CandidateHeadline(candidate: PhotoCandidate) {
                 color = c.ink,
                 lineHeight = 21.sp,
             )
-            Text(
-                candidate.scientificName,
-                fontSize = 12.sp,
-                color = c.inkMuted,
-                fontStyle = FontStyle.Italic,
-            )
+            // When the database carries no vernacular name the common name IS the
+            // binomial, and printing it twice reads like a bug.
+            if (!candidate.scientificName.equals(candidate.displayName, ignoreCase = true)) {
+                Text(
+                    candidate.scientificName,
+                    fontSize = 12.sp,
+                    color = c.inkMuted,
+                    fontStyle = FontStyle.Italic,
+                )
+            }
         }
     }
 }
@@ -297,12 +321,14 @@ private fun AlternativeRow(
                     fontWeight = FontWeight.SemiBold,
                     color = c.ink,
                 )
-                Text(
-                    candidate.scientificName,
-                    fontSize = 11.5.sp,
-                    color = c.inkMuted,
-                    fontStyle = FontStyle.Italic,
-                )
+                if (!candidate.scientificName.equals(candidate.displayName, ignoreCase = true)) {
+                    Text(
+                        candidate.scientificName,
+                        fontSize = 11.5.sp,
+                        color = c.inkMuted,
+                        fontStyle = FontStyle.Italic,
+                    )
+                }
             }
             Box(
                 Modifier

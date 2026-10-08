@@ -1,6 +1,8 @@
 package au.org.regeneratus.augury.artifacts
 
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Test
@@ -24,9 +26,81 @@ class ProtocolGateTest {
     }
 
     @Test
+    fun `accepts a template-only manifest with no formatter`() {
+        // A publication that omits the formatter is a complete product: the
+        // deterministic template writes the story. Absence must not demand an app
+        // update — only a *declared but unsupported* protocol may.
+        assertEquals(
+            CompatibilityVerdict.Compatible,
+            ProtocolGate.check(TestFixtures.bundle(includeFormatter = false).manifest),
+        )
+    }
+
+    @Test
+    fun `a template-only manifest lists no downloadable formatter`() {
+        val manifest = TestFixtures.bundle(includeFormatter = false).manifest
+
+        assertNull("the manifest must carry no formatter spec", manifest.formatter)
+        assertEquals(
+            listOf("facts", "vision-index", "vision-encoder-dinov2-base-fp32"),
+            manifest.artifacts().map { it.name },
+        )
+        assertTrue(
+            "no manifest artifact may fill the FORMATTER role",
+            manifest.artifacts().none { it.role == ArtifactRole.FORMATTER },
+        )
+    }
+
+    @Test
     fun `a newer manifest schema requires an app update`() {
         val verdict = check(TestFixtures.bundle(manifestSchema = 2).manifest)
         assertReason(verdict, "manifest_schema 2 is not implemented")
+    }
+
+    @Test
+    fun `a template-only build strips a catalogued story model`() {
+        // The published manifest is a *catalog* and may still list the formatter for
+        // the conversational build. This build must select it away so the gate, the
+        // download plan and the UI never see the 688 MB GGUF — that is what makes
+        // "does not rely on the language model" a property of the APK, not of the
+        // mutable remote manifest.
+        val catalogued = TestFixtures.bundle().manifest
+        assertNotNull("the fixture must declare a formatter", catalogued.formatter)
+
+        val effective = ShellCapabilities.effectiveManifest(catalogued)
+
+        assertNull(effective.formatter)
+        assertEquals(
+            listOf("facts", "vision-index", "vision-encoder-dinov2-base-fp32"),
+            effective.artifacts().map { it.name },
+        )
+        assertEquals(CompatibilityVerdict.Compatible, ProtocolGate.check(effective))
+        // Everything else is preserved, not rebuilt.
+        assertEquals(catalogued.generation, effective.generation)
+        assertEquals(catalogued.facts.spec.sha256, effective.facts.spec.sha256)
+        assertEquals(catalogued.vision.index.spec.sha256, effective.vision.index.spec.sha256)
+    }
+
+    @Test
+    fun `stripping the story model cannot fail the gate on an unknown formatter protocol`() {
+        // A build that will never run the formatter must not refuse to install the
+        // species DB and the index because the catalog lists a formatter protocol it
+        // has never heard of. (The raw manifest still fails the gate — see
+        // `an unknown formatter protocol requires an app update` — because the gate
+        // itself must stay strict for a build that *would* run it.)
+        val future = TestFixtures.bundle(formatterProtocol = "formatter.chatml-grounded@9").manifest
+        assertEquals(
+            CompatibilityVerdict.Compatible,
+            ProtocolGate.check(ShellCapabilities.effectiveManifest(future)),
+        )
+    }
+
+    @Test
+    fun `the shipped build declares it does not use a story model`() {
+        assertTrue(
+            "USES_STORY_MODEL=true would ship the 688 MB voice model again",
+            !ShellCapabilities.USES_STORY_MODEL,
+        )
     }
 
     @Test

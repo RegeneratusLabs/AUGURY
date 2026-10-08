@@ -58,6 +58,27 @@ data class PhotoCandidate(
 }
 
 /**
+ * What the photo path produced, and -- when it could not run -- why.
+ *
+ * [unavailableReason] is `null` on a completed run, including one that genuinely
+ * found nothing (that is `candidates.isEmpty()` with no reason). A non-null
+ * reason means the path never ran: the encoder is not installed, the graph does
+ * not match the manifest, or the image would not decode. Those call for a
+ * different action from the user than "this photo matched nothing", so the screen
+ * shows them differently.
+ *
+ * This type exists because the download bug of 2026-09-20 hid behind a silent
+ * `runCatching`, and the photo path had the same shape: an ONNX load failure and
+ * a low score both rendered as an empty list.
+ */
+data class PhotoIdentification(
+    val candidates: List<PhotoCandidate>,
+    val unavailableReason: String? = null,
+) {
+    val available: Boolean get() = unavailableReason == null
+}
+
+/**
  * A picker row. Deliberately *not* the full species record: the list is 2,256
  * entries and only these fields are rendered.
  */
@@ -117,10 +138,11 @@ data class SpeciesReading(
 /**
  * The result of asking the pipeline for a story.
  *
- * [repairs] is the grounding audit trail and is surfaced in the UI rather than
- * hidden: a non-empty list means the formatter model produced something the facts
- * did not support and the app removed or rewrote it. That is the "likely below
- * 6.5" failure, and the user is entitled to see that it was caught.
+ * [repairs] is the grounding audit trail. A non-empty list means the formatter
+ * model produced something the facts did not support and the app removed or
+ * rewrote it — the "likely below 6.5" failure. It is kept for the device tests
+ * and the log; the Story screen presents the corrected text as the reading and
+ * deliberately does **not** surface the repair record to the user.
  */
 data class StoryResult(
     val reading: SpeciesReading,
@@ -189,7 +211,12 @@ data class ManifestInfo(
     val factsSchema: Int,
     val speciesCount: Int,
     val regions: List<String>,
-    val formatterProtocol: String,
+    /**
+     * The declared formatter protocol, or `null` when this publication is
+     * **template-only**. `null` is a supported state, not an error: the story is
+     * rendered by the deterministic template and no GGUF is downloaded.
+     */
+    val formatterProtocol: String?,
     val visionProtocol: String,
     val factsProtocol: String,
     val encoderQuant: String,
@@ -199,12 +226,15 @@ data class ManifestInfo(
      * manifest declares a protocol or schema this build cannot execute, the app
      * must say **"app update required"** rather than run a mismatched encoder and
      * return plausible garbage.
+     *
+     * An absent formatter is compatible by definition — there is nothing to
+     * execute — so only a *present but unsupported* formatter protocol fails.
      */
     val supported: Boolean
         get() = manifestSchema in SUPPORTED_MANIFEST_SCHEMAS &&
             indexSchema in SUPPORTED_INDEX_SCHEMAS &&
             factsSchema in SUPPORTED_SPECIES_DB_SCHEMAS &&
-            formatterProtocol in SUPPORTED_PROTOCOLS &&
+            (formatterProtocol == null || formatterProtocol in SUPPORTED_PROTOCOLS) &&
             visionProtocol in SUPPORTED_PROTOCOLS &&
             factsProtocol in SUPPORTED_PROTOCOLS
 
@@ -264,11 +294,14 @@ interface AuguryGateway {
     /**
      * The photo path: embed, kNN, canonical collapse, band.
      *
-     * **Must always return up to three candidates** (hard constraint: the user is
-     * never shown a single silently-accepted species). Returns an empty list only
-     * when retrieval genuinely produced nothing.
+     * **Must return three candidates whenever it runs at all** (hard constraint:
+     * the user is never shown a single silently-accepted species). When the path
+     * could not run, it returns a [PhotoIdentification.unavailableReason] rather
+     * than an empty list, so "the recogniser is not installed" is never rendered
+     * as "nothing matched" — the failure mode that hid the first-launch download
+     * bug for a whole session.
      */
-    suspend fun identify(imageBytes: ByteArray, region: String?): List<PhotoCandidate>
+    suspend fun identify(imageBytes: ByteArray, region: String?): PhotoIdentification
 
     /**
      * The text path: resolve the species the user chose and produce the soil story.
@@ -278,4 +311,34 @@ interface AuguryGateway {
      *   injected facts before it is returned.
      */
     suspend fun story(speciesKey: String, question: String, region: String?, modelText: String? = null): StoryResult?
+
+    /**
+     * The same result as [story], but the formatter's prose arrives as it is
+     * written instead of after a ~40 s wait.
+     *
+     * [onDraft] receives the model's text **so far**, accumulated, and is called
+     * on the generation thread. The returned [StoryResult] is the grounded,
+     * verified answer — exactly what [story] would have returned for the same
+     * species — so a caller must render the draft as provisional and replace it
+     * with the result.
+     *
+     * That split is the whole point. Grounding runs on the *finished* text, so a
+     * streamed prefix is a claim the database has not vouched for yet: showing it
+     * as the answer would contradict "never invent indicator data". The contract
+     * is therefore *draft, then verified swap*, never *stream straight in*.
+     *
+     * The default implementation has no model to stream from, so it calls
+     * [story] and never invokes [onDraft]. Gateways with a real formatter
+     * override it.
+     *
+     * @param onDraft called with the accumulated draft text. Return `false` to
+     *   stop generation early; the result is then built from the prefix that was
+     *   actually produced, not from text the model never wrote.
+     */
+    suspend fun storyStream(
+        speciesKey: String,
+        question: String,
+        region: String?,
+        onDraft: (String) -> Boolean,
+    ): StoryResult? = story(speciesKey, question, region, modelText = null)
 }

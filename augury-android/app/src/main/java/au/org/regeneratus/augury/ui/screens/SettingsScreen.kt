@@ -84,8 +84,9 @@ fun SettingsScreen(state: AuguryUiState, vm: AuguryViewModel) {
                 if (manifest != null) {
                     Spacer(Modifier.height(8.dp))
                     Text(
-                        "This build supports: ${manifest.let { it.formatterProtocol }}, " +
-                            "${manifest.visionProtocol}, ${manifest.factsProtocol}",
+                        "This build supports: " +
+                            (manifest.formatterProtocol ?: "no story model (deterministic template)") +
+                            ", ${manifest.visionProtocol}, ${manifest.factsProtocol}",
                         fontSize = 10.5.sp,
                         lineHeight = 15.sp,
                         color = c.amberInk,
@@ -171,7 +172,11 @@ fun SettingsScreen(state: AuguryUiState, vm: AuguryViewModel) {
                 InfoRow("Encoder", "${manifest.backend} · ${manifest.encoderQuant}")
                 InfoRow("Species", "${"%,d".format(manifest.speciesCount)} across ${manifest.regions.size} regions")
                 InfoRow("Confidence bands", "auto ${"%.2f".format(manifest.autoConf)} · confirm ${"%.2f".format(manifest.confirmConf)}")
-                InfoRow("Protocols", "${manifest.visionProtocol}, ${manifest.formatterProtocol}")
+                InfoRow(
+                    "Protocols",
+                    "${manifest.visionProtocol}, " +
+                        (manifest.formatterProtocol ?: "template-only (no story model)"),
+                )
                 InfoRow("Manifest", "schema ${manifest.manifestSchema} · gen ${manifest.generation.take(12)}")
             }
         }
@@ -181,10 +186,11 @@ fun SettingsScreen(state: AuguryUiState, vm: AuguryViewModel) {
             SectionLabel("App")
             Spacer(Modifier.height(8.dp))
             Text(
-                "AUGURY bundles no model data. The species database, retrieval index, " +
-                    "image recogniser and story writer are all downloaded and verified " +
-                    "against a signed manifest, so adding species or recalibrating " +
-                    "confidence is a data change — not a new install.",
+                "AUGURY bundles no model data. The species database, retrieval index " +
+                    "and image recogniser are downloaded and verified against a signed " +
+                    "manifest, so adding species or recalibrating confidence is a data " +
+                    "change — not a new install. Stories are written by the " +
+                    "deterministic template, on-device, with no story model.",
                 fontSize = 11.5.sp,
                 lineHeight = 17.sp,
                 color = c.inkMuted,
