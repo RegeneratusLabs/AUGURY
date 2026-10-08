@@ -132,33 +132,46 @@ nice-to-have, not the product.
 | First-launch download | **~372 MB** | ~1 MB | **~1 MB** |
 | Species reachable by photo | 173 (7.7% of DB) | open-set; intersect with your DB list | n/a |
 | Works offline | ✅ | ❌ (falls back to picker) | ✅ (picker) |
-| Licence exposure | **CC-BY-NC/ND-derived index** | third-party terms + attribution | **none** |
-| Build complexity | ONNX Runtime + llama.cpp native + CMake + NDK | HTTP client | none of it |
-| Real-photo top-1 | 60% (n=20 independent) | unknown; needs a trial | n/a |
-| Grass/rosette performance | **worst class** (grasses 1/4 top-1, 2/4 top-3) | unknown; likely better coverage | n/a |
-| Effort to ship | blocked (build is broken) | ~2-5 days + API key | **~0** |
+| Licence exposure | **CC-BY-NC/ND-derived index** | plant.id forbids competing use and claims user photos; iNat is CC-BY-NC + no commercial AI training | **none** |
+| Build complexity | ONNX Runtime + llama.cpp native + CMake + NDK | HTTP client **plus the proxy the vendor requires** | none of it |
+| Real-photo top-1 | 60% (n=20 independent) | Pl@ntNet measured 39% across 38 British-flora images | n/a |
+| Grass/rosette performance | **worst class** (grasses 1/4 top-1, 2/4 top-3) | also worst class — graminoids fail in every published study | n/a |
+| Effort to ship | blocked (build is broken) | contract review + proxy + key; **not legally available as designed** | **~0** |
 | Marginal value over picker | shortlist | shortlist | — |
 
-> **API specifics, pricing, quotas and terms:** see the companion research summary
-> in §12 once the market survey lands. The decisive constraint is not price — it is
-> that the free tiers are sized for a *pilot*, not a public launch, and every option
-> introduces a third-party runtime dependency into a project whose stated design
-> constraint is "no cloud at runtime".
+> **API specifics, pricing, quotas and terms:** see §12 and
+> `docs/PLANT_ID_API_RESEARCH-2026-10-08.md`. The decisive constraint is not price —
+> it is that the two credible vendors each bar the use AUGURY would need, and both
+> require the server this project exists without.
 
 ### 4.3 Recommendation
 
-**C now → B next → A parked.**
+**C now → A (licence-clean) later → B only as a narrow fallback.**
+
+> This ordering was revised on 2026-10-08 after the market survey landed. The first
+> draft put "buy an API" ahead of the in-house component on the assumption that an
+> API would be an accuracy upgrade and a legal non-issue. Neither holds: the
+> accuracy evidence favours retrieval (§12), and the buy path is contractually
+> barred from an ID system. See §12 for the sources.
 
 1. **v1.0 ships with no photo ID at all.** The picker is offline, instant, 1 MB, and
    already written. This is the shortest possible path to "released".
-2. **v1.1 adds photo ID as an online assist**, behind a flag, clearly labelled
-   "needs internet", which *pre-filters the picker* rather than answering. Use an
-   existing API. Intersect its ranked output with the 2,256-species DB list so the
-   candidates it offers are always answerable.
-3. **Park the custom index** as a research track. Revisit it only if (a) the
-   licence is fixed by rebuilding NC-free, **and** (b) it beats the API on the same
-   30 third-party photos. That is a measurable question, and cheap to answer once
-   the API baseline exists — which is another reason to buy first.
+2. **v1.1, if there is demand, keeps the in-house component** — but only after the
+   index is rebuilt licence-clean (see §5), and shipped as an *optional* pack so
+   the base install stays at 1 MB.
+3. **Do not build v1.1 on a third-party API.** This was the initial recommendation
+   and the market survey overturned it (§12): plant.id contractually forbids use in
+   a competing ID system and takes an irrevocable licence over user photos;
+   iNaturalist's CV endpoint returns 401 and its content is CC-BY-NC with a
+   commercial-AI-training prohibition; Pl@ntNet's free tier is 500 identifications
+   per day for the whole app on a single account. All three also break
+   "no cloud at runtime", and plant.id's own guidance is to put a server in front.
+   Keep Pl@ntNet as an *optional, user-invoked* fallback for species outside the
+   gallery, subject to its terms.
+4. **Park the custom index** as a research track. Revisit it when the licence is
+   fixed and there are users asking for a camera. Note that this is a lower bar
+   than it sounds: the encoder is already Apache-2.0 and the only defect is gallery
+   provenance.
 
 ### 4.4 The one real cost of dropping photo ID
 
@@ -236,7 +249,7 @@ Assumes one focused person and the current code. Durations are working days.
 | # | Task | Days | Why it blocks release |
 |---|---|---|---|
 | 1 | **Commit the template-only pivot.** Then make the llama.cpp native build conditional (or delete it and `SpikeActivity`) and get `git clone && ./gradlew assembleRelease` working on a clean checkout. | 1 | The shipped app provably never loads llama.cpp (`ShellCapabilities.kt:62`, `AuguryGatewayImpl.kt:911-919`). Removing it unblocks reproducible builds and drops a native crash class. |
-| 2 | **Make vision optional** in the manifest contract and the download plan, and fix the startup/offline error path (the real message is currently trapped on an unreachable Settings screen). | 1 | Turns a 372 MB first launch into a 1 MB one. This is the single highest-leverage product change. |
+| 2 | **Make vision optional** in the manifest contract and the download plan, and fix the startup/offline error path (the real message is currently trapped on an unreachable Settings screen). **Rebuild and republish the facts bundle** with the vernacular-name fix (below) — atomically, with the manifest, or installed apps reject it on a hash mismatch. | 1 | Turns a 372 MB first launch into a 1 MB one. This is the single highest-leverage product change. |
 | 3 | **Release config:** `isDebuggable = false`, signing keystore (outside the repo), R8, `versionCode`/`versionName`, launcher + adaptive icon, `targetSdk` 36. | 1 | Play rejects debuggable APKs outright; a missing icon is a hard listing failure. |
 | 4 | **Install on a real phone and use it for a day.** Fix what breaks. | 1 | The only verification that has never been performed. Everything on-device is currently unproven. |
 | 5 | **Ship:** privacy policy, data-safety answers, a "what this is / is not" screen, then publish the APK to GitHub Releases. | 1 | Distribution. GitHub Releases first (no account gate); Play in parallel if wanted. |
@@ -291,14 +304,15 @@ These are decisions, not research tasks. Each can be made today:
 
 1. **Distribution:** GitHub Releases APK only, or Play too? (Recommendation: both,
    APK first.)
-2. **Do you accept an online photo assist** (the photo leaves the device) as the
-   v1.1 trade for a 1 MB install? (Recommendation: yes, opt-in and labelled.)
+2. **Do you commit to rebuilding the photo index licence-clean** (CC0/CC-BY/
+   CC-BY-SA only) if the photo path is revisited — or do you retire it? Either is
+   defensible; leaving it in its current state is not. (Recommendation: unpublish
+   the index now — it has no licence card anyway — and decide later.)
 3. **Do you kill the conversational version publicly**, or keep it as a separate
    published artefact with no roadmap presence? (Recommendation: the latter.)
-4. **Do you rebuild the index licence-clean**, or unpublish it and declare the photo
-   component non-commercial until you do? (Recommendation: unpublish the tarball
-   now — it has no licence card anyway — and rebuild only if v1.1 evidence justifies
-   it.)
+4. **Do you remove the four-model ecosystem roadmap from the public README**
+   (AUGURY → Soil → Remediation → Grazing) until the first one is released?
+   (Recommendation: yes. It tells a visitor you have not shipped the first.)
 
 ---
 
@@ -311,42 +325,49 @@ is taken, because they are claims that do not survive contact with the artefacts
 |---|---|---|
 | `README.md:28-29` | Juxtaposes 81.8/89.7 and 85.87/92.83 as if two independent results | The 920-query set is the same holdout used to **calibrate the bands**, and its top-3 is 89.7% in the measurement log; 92.83% is the app's duplicate-collapsing variant. Present one number, labelled. |
 | `README.md:96-103` | "Apache-2.0 (code, weights) · CC-BY-4.0" and "All open source" | Not true while a CC-BY-NC/ND-derived index is distributed. Either rebuild or restate. |
-| `docs/mobile-app-decision.md:430-433`; `HomeScreen.kt:41-43` | "185 of 188 AU species have real common names" | 185 have a `common_names` field; **57 repeat the scientific name**. Genuine vernacular names: 147/221 AU species in the shipped bundle. The picker still works, but the claim is ~25% overstated. |
-| `augury-android/README.md:8-21,31-46` | ~1.06 GB download; llama.cpp architecture diagram | Contradicts the shipped template-only manifest (~372 MB, no GGUF). |
+| `docs/mobile-app-decision.md:430-433`; `HomeScreen.kt:41-43` | "185 of 188 AU species have real common names" | Superseded by the row below; kept here so the claim is traceable. |
+| `augury-android/README.md:8-21,31-46` | ~1.06 GB download; llama.cpp architecture diagram | Contradicts the shipped template-only manifest (~372 MB, no GGUF). **Corrected.** |
 | `docs/technical-stack.md:40,132` | index-v3 13,448 vectors / 42 MB / unpublished | The shipped index is 16,580 vectors and is published (two HF repos). |
-| `docs/data-roadmap.md` §3.1 | "~110 species have real common names" | Understated the other way, but the figure is still not the one to quote. Use "227 of 2,256 globally; 147 of 221 for AU". |
+| `docs/data-roadmap.md` §3.1 | "~110 species have real common names" | Understated in the other direction, but still not the figure to quote. Use "**227 of 2,256** globally; **161 of 221** for AU (source DB)". |
 | `docs/model-understanding-and-blindspots.md:184-191` | "on-device footprint ~1.15 GB: an ~88 MB int8 encoder..." | int8 was measured and rejected; fp32 is 346.5 MB. |
 | `docs/mobile-app-decision.md` §4; `docs/model-understanding-and-blindspots.md` §2.1; `docs/technical-stack.md:55` | index-v3 bands are **0.68 / 0.43** (51.6% coverage, 95.1% precision) | The shipped artifact, its audit trail and the manifest all say **0.64 / 0.30** — 63.7% coverage at 95.4% precision. `docs/HANDOVER-2026-09-19.md:119-120` recorded the right values at the time. The app was never affected (it reads the manifest). **Corrected in this commit.** |
+| `HomeScreen.kt:42`, `AuguryViewModel.kt:79`, `docs/mobile-app-decision.md` §6.4 | The picker works because "185 of 188 Australian species have real common names" | 185 of 188 have a non-empty `common_names` field; **57 of those just repeat the binomial**. Genuine vernacular names: **161 of 221** AU species (147 in the shipped bundle, before the fix below). The picker is still the right call, but the number was wrong. |
+| `scripts/app/build_ondevice_bundle.py` (behaviour, not prose) | — | Took `common_names[0]` as the search name, which is usually the binomial, silently dropping the vernacular name for **14 AU species** — including **serrated tussock**, **annual ryegrass**, **alligator weed**, **great brome** and **salvinia**. Searching those names returned nothing. **Fixed**: 147 → 161 AU species. Requires an atomic rebuild + HF republish. |
 
 ---
 
-## 12 · External platform survey
+## 12 · External platform survey — result
 
-**Status: market survey in progress (Pl@ntNet, Plant.id/Kindwise, iNaturalist CV,
-on-device VLMs, and the OpenBMB weight licences). It will be appended here when it
-lands.** The questions it must answer:
+**Complete: `docs/PLANT_ID_API_RESEARCH-2026-10-08.md`.** Prices and terms were
+fetched from the vendors' own pages on 2026-10-08. One caveat from that work:
+`web_search` was unavailable in the research session, so its sweep for brand-new
+2025-26 entrants is not exhaustive; everything else is grounded in primary sources.
 
-1. Free-tier quota and **commercial-use terms** for Pl@ntNet and each alternative.
-2. Whether the API accepts a **candidate species list** (so results can be
-   constrained to the 2,256 species that actually have indicator data).
-3. Attribution and result-storage obligations.
-4. Published accuracy on **grasses, rosettes and immature plants** — the class the
-   custom index is worst at.
-5. Monthly cost at 1k / 10k / 100k identifications.
-6. Whether an on-device VLM is a realistic photo-ID engine on a phone in 2026, and
-   under what licence.
+**It changes the v1.1 recommendation.** "Drop photo ID for v1.0" survives. "Buy an
+API for v1.1" does not.
 
-**What matters for the decision today, independent of the survey:** option C does
-not depend on any of it. Ship the picker; evaluate the APIs when there are users to
-justify the evaluation. The survey informs **v1.1**, not **v1.0**.
+| Finding | Consequence |
+|---|---|
+| **plant.id** T&C §17.3.3 forbids using the service *"to develop … an application based on the same principle"*; §17.5 grants Kindwise an irrevocable licence over every submitted photo, including redistribution under CC-BY-SA; the vendor recommends a **backend proxy** | The buy path is contractually barred from being part of an ID system, imposes a privacy disclosure on farmers, and **requires the server this project is built not to have** |
+| **iNaturalist** CV endpoint returns **401** and appears nowhere in the documented API spec; iNat content defaults to **CC-BY-NC** with an explicit "Prohibited Use for Commercial AI Training" clause | The default path in `scripts/plant_id.py` is dead code and must not be the fallback |
+| **Pl@ntNet** free tier = **500 identifications/day for the whole app on one account**, multiple accounts explicitly forbidden; commercial-use wording is self-contradictory; Pro is **€1,000/yr** for 200k requests (€0.005 overage) | Fine for a pilot, unusable as the basis of a public launch. `k-australia` is a real flora filter and `/v2/projects` accepts lat/lon — but there is **no self-service custom species list** |
+| **Accuracy** (AoB PLANTS 2020: Pl@ntNet 39% across 38 British-flora images; Alberta 2026: graminoids the *only* failing growth form, 4 of 6 *Carex* under 60%) | A third-party API is not an upgrade on AUGURY's hard cases; graminoids are hard for everyone |
+| **VLMs are not a vision component** (OpenPlant 2026: best closed VLM **49.7%** vs fine-tuned CNN **91.4%**; calibration error up to **69%**) | Do not replace retrieval with a VLM. A confidently-wrong species name is precisely the failure this product cannot afford |
+| **MiniCPM5-1B and MiniCPM-V-4.6 are Apache-2.0 and ungated** (only MiniCPM-V-2_6 is gated, with no declared licence) | The OpenBMB licence worry does not apply. Freezing the formatter is a **product** decision, not a legal one |
 
-One project-specific finding worth carrying into that evaluation: the repo already
-contains working clients for both iNaturalist CV and Pl@ntNet
-(`scripts/plant_id.py`), so the "buy" path is a day of integration, not a rewrite.
-Note also that the photo path has already been compared to Pl@ntNet-300K once —
-`data/vision/plantnet_verdict.md` records that the *dataset* overlap was only
-155 of 2,230 species, which is a statement about that dataset, **not** about the
-live API. Do not let the earlier verdict stand in for an API trial.
+**Revised v1.1 position:** if the photo path is revisited, it should be the
+**in-house component with a licence-clean index**, not a third-party API. The
+custom architecture is the better bet on the evidence — its encoder
+(`facebook/dinov2-base`) is Apache-2.0 and its only defect is the provenance of the
+gallery it indexes, which is fixable with an existing filter.
+
+Three things worth chasing before any of that: read Pl@ntNet's Pro copyright-licence
+PDFs (the real terms), get a written answer on their free-tier commercial wording,
+and run one `GET /v2/projects` call with a free key to enumerate the Australian
+floras. Only the third is cheap.
+
+**What does not change:** option C depends on none of this. Ship the picker now;
+revisit photo identification when there are users to justify it.
 
 ---
 
