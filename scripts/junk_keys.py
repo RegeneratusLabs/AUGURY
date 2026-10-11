@@ -54,9 +54,25 @@ TRUNCATED_KEYS = {
 }
 
 # Misspellings of real genera that already have a correct entry:
-#   'astrebia spp' -> Astrebla spp (Mitchell grass)
+#   'astrebia spp'        -> Astrebla spp (Mitchell grass)
+#   'fallopia convovulvus' -> fallopia convolvulus (black-bindweed; the
+#                            misspelling carries 1 UK row against the correct
+#                            key's 3 UK + 3 Europe, so it is a lossy duplicate)
 MISSPELLED_KEYS = {
-    "astrebia spp",
+    "astrebia spp", "fallopia convovulvus",
+}
+
+# Vernacular names cut off at the hyphen by the mining layer's name extractor,
+# each of which has a correctly named sibling in the database carrying the real
+# indicator rows. They surfaced as first-class "species" in a name picker
+# because the fragment — not the plant — had been stored as the key.
+#   'field forget'   -> myosotis arvensis    (Field forget-me-not)
+#   'italian rye'    -> lolium multiflorum   (Italian ryegrass)
+#   'perennial sow'  -> sonchus arvensis     (Perennial sowthistle)
+#   'henbit dead'    -> lamium amplexicaule  (Henbit dead-nettle)
+#   'red dead'       -> lamium purpureum     (Red dead-nettle)
+TRUNCATED_VERNACULAR_KEYS = {
+    "field forget", "italian rye", "perennial sow", "henbit dead", "red dead",
 }
 
 # Catch-all buckets that are not taxa.
@@ -65,7 +81,9 @@ MISC_JUNK = {
 }
 
 # Every non-species key, lowercased.
-JUNK_KEYS = frozenset(PSEUDO_SPECIES | TRUNCATED_KEYS | MISSPELLED_KEYS | MISC_JUNK)
+JUNK_KEYS = frozenset(
+    PSEUDO_SPECIES | TRUNCATED_KEYS | MISSPELLED_KEYS | TRUNCATED_VERNACULAR_KEYS | MISC_JUNK
+)
 
 
 def is_junk(key: str) -> bool:
@@ -75,7 +93,8 @@ def is_junk(key: str) -> bool:
 
 if __name__ == "__main__":
     for name, group in (("pseudo-species", PSEUDO_SPECIES), ("truncated", TRUNCATED_KEYS),
-                        ("misspelled", MISSPELLED_KEYS), ("misc", MISC_JUNK)):
+                        ("misspelled", MISSPELLED_KEYS),
+                        ("truncated vernacular", TRUNCATED_VERNACULAR_KEYS), ("misc", MISC_JUNK)):
         print(f"{name} ({len(group)}):")
         for k in sorted(group):
             print(f"   {k}")
