@@ -8,7 +8,9 @@ advice.
 **The app is one HTML file.** `augury.html` — ~1 MB, opens from `file://`, works
 with no server, no install, no network, and no model. You type a weed's name
 (common or scientific) and get the reading the database holds for it, with the
-source of every data point shown next to it.
+source of every data point shown next to it. The interface says that in plain
+language: it shows you the reading and its sources rather than announcing what it
+is not.
 
 ```
 open augury.html          # that is the whole install
@@ -64,8 +66,9 @@ stores, and the sources it was read from. Below the reading:
   URLs and the exact indicator each was used for ("Read for: Soil type,
   Moisture, Disturbance"), plus any source named inside the evidence text, plus
   the region's declared pipeline lineage.
-- **How to read this** — the database path, its sha256, and the matched key, so
-  any answer can be traced back to the bytes it came from.
+- **How to read this** — the database path, its sha256, and the matched key, kept
+  in a collapsible *Technical details* panel so any answer can be traced back to
+  the file it came from.
 
 ### How provenance is graded — and not overstated
 

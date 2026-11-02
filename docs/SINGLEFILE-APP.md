@@ -189,6 +189,14 @@ renders.
 
 ## 6 · Presentation decisions worth knowing
 
+- **The copy explains; it does not argue.** Early builds carried defensive
+  slogans in the interface — "No AI, no guessing", "no model · no network",
+  "Offline single file" — and a footer line printing the database sha256. They
+  were removed: a reader wants to know what the page did, not what it refused to
+  do. The substance survives in plain language ("each row is quoted from the
+  species database"), and the database identity moved one level down, into the
+  collapsible *Technical details* panel inside *Where this came from*. Both
+  suites assert the slogans stay gone while the sha256 stays present.
 - **A shown name must resolve back to the species it names.** The database lists
   the binomial first for most rows, so the app takes the first *vernacular* name
   — and then checks it against the matcher. Two keys can claim one vernacular
@@ -200,17 +208,51 @@ renders.
   same reading as its key. A trailing parenthetical is stripped only when it is a
   scientific name the database knows — "Spear thistle (Cirsium vulgare)" →
   "Spear thistle".
+- **One organisation is listed once.** The database names the same body at
+  several lengths and several grades: `NSW WeedWise (NSW DPIRD) - African
+  boxthorn` is the recorded document, while `NSW WeedWise (NSW DPIRD)` and
+  `NSW WeedWise` are the same body named inside evidence text. The sources card
+  keeps the longest form of each name, and a mention that is already covered by a
+  recorded source is absorbed into it rather than listed again as a second,
+  weaker source. Recorded provenance still outranks everything else.
 - **Long evidence is previewed, never hidden.** Australian rows are often a
   paragraph. The row shows the first sentence with "full text under Evidence";
   the Evidence panel always carries the whole string verbatim.
+- **Nutrient claims group by nutrient.** 251 claims, up to 15 on one species, read
+  as noise as a flat table. They are grouped under a nutrient heading with a
+  claim count, one row per claim, each keeping its own confidence badge, detail
+  and source.
 - **"None" is shown.** 103 rows record the literal value `None` (e.g.
   `Salinity: None`). That is a recorded answer, so it renders; only the literal
   placeholder `not specified` is suppressed (0 rows in the current database).
 - **Multi-species queries are split only when every part resolves.** "dandelion
   and thistles" renders two independent readings and says explicitly that the app
-  does not average them or draw a combined conclusion.
+  does not blend them into one answer.
+- **The reading is portable.** A reading can be copied as plain text (name,
+  region, every row, its sources), printed (the print stylesheet expands every
+  Evidence panel and drops the chrome), or jumped to from the hero.
 - **Input is escaped.** The only user-controlled text that reaches the DOM is the
   query, and it is HTML-escaped; `test_app.js` asserts this.
+
+### 6.1 The interface itself
+
+The shell is a single CSS token set with a light ("paper") and dark theme, both
+reachable from the masthead toggle (auto → light → dark, remembered in
+`localStorage` when the browser allows it). No external font, image or script is
+loaded; every icon is inline SVG and the palette is defined once. The page uses a
+warm paper canvas, one moss accent and a serif display face for headings, with:
+
+- a sticky masthead, a keyboard path (`/` focuses search, `↵` reads, `↑`/`↓`
+  walk suggestions, `Esc` closes them), and a skip link;
+- a hero card per reading carrying the region, the data-point count and the
+  copy / print / jump-to-sources controls;
+- indicator rows whose Evidence panel animates open from `0fr` to `1fr`;
+- a "How a reading is made" panel behind the masthead help button, so the
+  three-step path is visible without reading the repository;
+- a browse list of every species with indicator data, filtered and paged rather
+  than rendered whole;
+- `prefers-reduced-motion` and print stylesheets, and no horizontal overflow at
+  390 px.
 
 ---
 
@@ -221,10 +263,12 @@ renders.
 | No external asset, no network API, no wasm/onnx/gguf | `tests/test_singlefile_app.py` |
 | Every source-database key embedded; sampled rows byte-identical to the DB | same |
 | Provenance and lineage survive into the artefact | same |
+| The removed slogans stay gone; the sha256 stays disclosed | same |
 | Rebuild reproduces the committed file byte for byte | same |
-| Search, region policy, fallback, rendering, escaping (46 checks) | `scripts/app/singlefile/test_app.js` (node) |
+| Search, region policy, fallback, rendering, escaping | `scripts/app/singlefile/test_app.js` (node) |
+| Softened wording, reading text, browse paging, source dedup (75 checks) | same |
 | Boot, typing, suggestions, Enter, Evidence toggle, region chips, browse, clear (18 checks) | jsdom run of the built page |
-| Rendered page: no console error, no network request | headless Chromium run of the built page |
+| Rendered page: no console error, no network request, no overflow at 390 px | headless Chromium run of the built page |
 
 The jsdom and headless-browser runs are not part of the committed suite (they
 need packages outside the repo); the two committed suites cover the logic and the

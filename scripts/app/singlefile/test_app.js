@@ -115,7 +115,15 @@ function fakeDoc() {
   return {
     nodes,
     getElementById(id) {
-      if (!nodes[id]) nodes[id] = { id, innerHTML: '', className: '', value: '', addEventListener() {} };
+      if (!nodes[id]) {
+        const node = {
+          id, innerHTML: '', className: '', value: '', attrs: {},
+          addEventListener() {},
+          setAttribute(k, v) { this.attrs[k] = String(v); },
+          getAttribute(k) { return k in this.attrs ? this.attrs[k] : null; }
+        };
+        nodes[id] = node;
+      }
       return nodes[id];
     },
     querySelectorAll() { return []; },
@@ -159,11 +167,120 @@ ok('multi-name query renders independent readings', (markup.match(/class="card h
 
 app.render('zzzqqq');
 markup = out();
-ok('unknown name renders the not-found card', /No species found/.test(markup));
+ok('unknown name renders the not-found card', /No match for/.test(markup));
 
 app.render('<img src=x onerror=alert(1)>');
 markup = out();
 ok('user input is HTML-escaped', markup.indexOf('<img src=x') < 0 && markup.indexOf('&lt;img') >= 0);
+
+console.log('\nsoftened, human-first wording');
+{
+  const pages = [];
+  const probes = [
+    'dandelion', 'thistles', 'dandelion and thistles', 'lycium ferocissimum',
+    'geranium phaeum', 'zzzqqq', ''
+  ];
+  app.region = '';
+  for (const p of probes) { app.render(p); pages.push(out()); }
+  app.region = 'Australia';
+  app.render('geranium phaeum');
+  pages.push(out());
+  const fallbackPage = pages.length - 1;
+  app.region = '';
+  app.render('dandelion');
+  pages.push(out());
+  const regionPage = pages.length - 1;
+  const all = pages.join('\n');
+  for (const ban of ['No AI', 'no guessing', 'no model', 'no network', 'Offline single file',
+                     'Database rows merged', 'not generated']) {
+    ok('never says "' + ban + '"', all.toLowerCase().indexOf(ban.toLowerCase()) < 0);
+  }
+  ok('the empty state invites a name instead of asserting absence',
+    /Name a weed, read the soil/.test(pages[probes.length - 1]));
+  ok('the hero states the region as data, not as a boast', /Australia data/.test(pages[regionPage]));
+  ok('the fallback notice still says the row was not recorded for the asked-for region',
+    /not recorded for Australia/.test(pages[fallbackPage]));
+}
+
+console.log('\ntechnical details stay available, one level down');
+{
+  app.region = '';
+  app.render('dandelion');
+  const markup2 = out();
+  ok('the database sha256 is still in the page', markup2.indexOf(data.meta.db_sha256.slice(0, 12)) >= 0);
+  ok('it lives inside the collapsible Technical details panel',
+    /Technical details/.test(markup2) && /<details class="more">/.test(markup2));
+  ok('the reading offers copy, print and jump-to-sources controls',
+    /data-act="copy"/.test(markup2) && /data-act="print"/.test(markup2) && /data-act="sources"/.test(markup2));
+  app.region = '';
+  app.render('lycium ferocissimum');
+  const text = app.readingText(app.lastReadings[0]);
+  ok('the plain-text reading carries the name, a row and a source',
+    /African boxthorn/.test(text) && /Moisture:/.test(text) && /Sources: .+/.test(text), text.slice(0, 160));
+  ok('the plain-text reading makes no offline/anti-AI claim',
+    !/no model|no network|no ai/i.test(text));
+  app.render('dandelion');
+  const fallbackText = app.readingText(app.lastReadings[0]);
+  ok('a species with no recorded source still names its region lineage',
+    /Sources: .+/.test(fallbackText), fallbackText.slice(0, 160));
+}
+
+console.log('\nsource list deduplication');
+{
+  app.region = 'Australia';
+  app.render('lycium ferocissimum');
+  const markup3 = out();
+  const names = (markup3.match(/class="sname">(?:<a[^>]*>)?([^<]+)/g) || [])
+    .map(s => s.replace(/.*?>/, '').trim());
+  const keys = names.map(n => n.toLowerCase().replace(/[^a-z0-9]+/g, ''));
+  ok('the sources card lists each organisation once',
+    keys.length === new Set(keys).size, names.join(' | '));
+  ok('a lower-grade mention of a recorded source is absorbed, not repeated',
+    !keys.includes('nswweedwisenswdpird') && !keys.includes('herbiguideau'),
+    names.join(' | '));
+  ok('the recorded document keeps its "read for" mapping', /Read for:/.test(markup3));
+  ok('each evidence panel lists each source once',
+    (() => {
+      const rows = markup3.split('<div class="ev-src">').slice(1);
+      return rows.every(r => {
+        const chips = [...r.split('</div>')[0].matchAll(/class="refchip[^"]*"[^>]*>([^<]+)</g)].map(m => m[1]);
+        const ck = chips.map(n => n.toLowerCase().replace(/[^a-z0-9]+/g, ''));
+        return ck.length === new Set(ck).size;
+      });
+    })(), 'duplicate chips inside one evidence panel');
+}
+
+console.log('\npicker hygiene');
+{
+  // A suggestion the app refuses to answer is a trap: "dandelion clay" is a
+  // soil-association pseudo-species that bestPlantMatch() rejects, so the picker
+  // and the browse list must not offer it.
+  const doc2 = fakeDoc();
+  const app2 = new AUGURY.App(data, doc2);
+  const keysFor = q => {
+    app2.suggest(q);
+    const html = doc2.getElementById('suggest').innerHTML;
+    return [...html.matchAll(/data-key="([^"]+)"/g)].map(m => m[1]);
+  };
+  const dand = keysFor('dandelion');
+  ok('the picker offers the real species first', dand[0] === 'taraxacum officinale', dand.join(', '));
+  ok('the picker never offers a pseudo-species', dand.every(k => k !== 'dandelion clay'), dand.join(', '));
+  ok('the picker never offers a junk key',
+    !keysFor('dandelion clay').some(k => (data.junk || []).includes(k)));
+  ok('the picker still returns suggestions', dand.length > 0);
+  ok('browse never lists a pseudo-species',
+    !app2.browseRows('dandelion').some(sp => sp.k === 'dandelion clay'));
+}
+
+console.log('\nbrowse list');
+{
+  const b = app.browseListHtml('', 40);
+  ok('browse renders a bounded page of species', (b.html.match(/class="row"/g) || []).length === 40);
+  ok('browse reports the full total, not just the page', b.total > 1000, String(b.total));
+  ok('browse offers a "show more" affordance when truncated', /id="bmore"/.test(b.html));
+  ok('a filter narrows the list', app.browseListHtml('thistle', 40).total < b.total);
+  ok('a filter that matches nothing says so', /No species match/.test(app.browseListHtml('zzzqqq', 40).html));
+}
 
 console.log('\nself-consistency sweep');
 {

@@ -3,7 +3,8 @@
  * Two halves:
  *   1. A dependency-free port of the deterministic lookup that already ships in
  *      the Android app (SpeciesStore.kt / species_lookup.py): name search,
- *      canonical grouping, region policy. No model, no network, no randomness.
+ *      canonical grouping, region policy. Deterministic throughout — no
+ *      randomness, and nothing that reaches outside this file.
  *   2. The render layer: turns a resolved species into a soil reading whose
  *      every row carries the evidence it was read from and the source it came
  *      from.
@@ -564,6 +565,14 @@
     return t.charAt(0).toUpperCase() + t.slice(1);
   }
 
+  /** Two-letter monogram for an avatar chip, from the display name. */
+  function monogram(name) {
+    var words = String(name || '').replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filter(Boolean);
+    if (!words.length) return '·';
+    if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+    return (words[0][0] + words[1][0]).toUpperCase();
+  }
+
   /**
    * Australian rows are often a paragraph of quoted evidence rather than a short
    * reading, which turns a card into a wall of text. The row shows the first
@@ -584,6 +593,61 @@
 
   function regionLabel(r) { return r || 'Europe'; }
 
+  /** Lowercase, alphanumerics only — for deciding whether two source names are
+   *  the same organisation written at two lengths ("NSW WeedWise (NSW DPIRD)" is
+   *  contained in "NSW WeedWise (NSW DPIRD) - African boxthorn"). */
+  function srcKey(s) {
+    return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '');
+  }
+
+  /** Drop a source name when a longer name in the same list already contains it. */
+  function dedupeNames(names) {
+    var keys = names.map(srcKey);
+    return names.filter(function (n, i) {
+      var k = keys[i];
+      if (!k) return false;
+      for (var j = 0; j < keys.length; j++) {
+        if (j === i || !keys[j]) continue;
+        if (keys[j] !== k && keys[j].indexOf(k) >= 0) return false;
+      }
+      return true;
+    });
+  }
+
+  function dedupeRefs(refs) {
+    var kept = dedupeNames(refs.map(function (r) { return r.name; }));
+    return refs.filter(function (r) { return kept.indexOf(r.name) >= 0; });
+  }
+
+  /** True when a key is a soil-association pseudo-species or a non-species key.
+   *  `bestPlantMatch` refuses these, so the picker and the browse list must not
+   *  offer them either — a suggestion the app will not answer is a trap. */
+  function isUnusable(store, key) {
+    return !!CLAY_PSEUDO[key] || store.classifySpecificity(key) === 'junk';
+  }
+
+  /* Small inline icon set — every glyph the page needs, as data URI-free SVG. */
+  var ICONS = {
+    leaf: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21V11M12 11c0-3.3 2.7-6 6-6 0 3.3-2.7 6-6 6Zm0 4.5c0-2.5-2-4.5-4.5-4.5 0 2.5 2 4.5 4.5 4.5Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    search: '<svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/><path d="m14 14 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    chevron: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    quote: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 7h4v4a4 4 0 0 1-4 4V7Zm8 0h4v4a4 4 0 0 1-4 4V7Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    info: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5.5M12 7.6v.2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>',
+    warn: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4.5 21 19.5H3L12 4.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M12 10v3.6M12 16.4v.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    check: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="m8 12.3 2.6 2.6L16 9.5" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+    copy: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M15 6.5V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>',
+    share: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 15V4M8.5 7.5 12 4l3.5 3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 13v5.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    print: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 9V4h10v5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><rect x="4" y="9" width="16" height="7" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M7 14h10v6H7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    source: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H10l2 2h6.5A1.5 1.5 0 0 1 20 7.5v11A1.5 1.5 0 0 1 18.5 20h-13A1.5 1.5 0 0 1 4 18.5v-13Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>',
+    flask: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 3h6M10 3v6.2L5.6 17A2 2 0 0 0 7.4 20h9.2a2 2 0 0 0 1.8-3L14 9.2V3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+  };
+
+  function notice(kind, body) {
+    var icon = kind === 'warn' ? ICONS.warn : kind === 'good' ? ICONS.check : ICONS.info;
+    return '<div class="notice ' + kind + '"><span class="nic">' + icon + '</span>' +
+      '<div class="nbody">' + body + '</div></div>';
+  }
+
   function App(data, doc) {
     this.doc = doc;
     this.data = data;
@@ -593,16 +657,82 @@
     this.lineage = data.lineage || {};
     this.region = '';
     this.sel = -1;
+    this.toastTimer = null;
+    this.copies = {};
   }
 
   App.prototype.el = function (id) { return this.doc.getElementById(id); };
 
   App.prototype.closeSuggest = function () {
     var box = this.el('suggest');
-    box.className = 'suggest';
-    box.innerHTML = '';
+    if (box) { box.className = 'suggest'; box.innerHTML = ''; }
     var q = this.el('q');
     if (q) q.setAttribute('aria-expanded', 'false');
+  };
+
+  App.prototype.toast = function (msg) {
+    var el = this.el('toast');
+    if (!el) return;
+    el.textContent = msg;
+    el.className = 'toast on';
+    var self = this;
+    if (this.toastTimer) clearTimeout(this.toastTimer);
+    this.toastTimer = setTimeout(function () { el.className = 'toast'; }, 2400);
+  };
+
+  /* ---- clipboard ------------------------------------------------------ */
+
+  App.prototype.copyText = function (text, okMessage) {
+    var self = this;
+    function fallback() {
+      var doc = self.doc;
+      try {
+        var ta = doc.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        ta.style.opacity = '0';
+        doc.body.appendChild(ta);
+        ta.select();
+        var done = doc.execCommand && doc.execCommand('copy');
+        doc.body.removeChild(ta);
+        self.toast(done === false ? 'Copy is blocked in this browser' : okMessage);
+      } catch (err) {
+        self.toast('Copy is blocked in this browser');
+      }
+    }
+    var nav = typeof navigator !== 'undefined' ? navigator : null;
+    if (nav && nav.clipboard && nav.clipboard.writeText) {
+      nav.clipboard.writeText(text).then(function () { self.toast(okMessage); }, fallback);
+      return;
+    }
+    fallback();
+  };
+
+  /** The reading as plain text — for the clipboard and for sharing. */
+  App.prototype.readingText = function (info) {
+    var sp = this.store.speciesFor(info.identityKey || info.key) || this.store.byKey.get(info.key);
+    var dn = displayName(sp);
+    var lines = [dn.main + (dn.sci && dn.sci !== dn.main ? ' (' + dn.sci + ')' : ''),
+      'Region: ' + regionLabel(info.region)];
+    var rows = this.visibleIndicators(info);
+    rows.forEach(function (pair) { lines.push(pair[0] + ': ' + String(pair[1]).replace(/\s+/g, ' ').trim()); });
+    var refs = this.referenceNames(sp, info.region);
+    if (refs.length) lines.push('Sources: ' + refs.join('; '));
+    lines.push('— AUGURY, indicators only.');
+    return lines.join('\n');
+  };
+
+  App.prototype.referenceNames = function (sp, region) {
+    var names = [];
+    ((sp.p && sp.p.s) || []).forEach(function (s) { if (names.indexOf(s.n) < 0) names.push(s.n); });
+    var byKey = (sp._src && sp._src[region]) || {};
+    Object.keys(byKey).forEach(function (k) {
+      (byKey[k] || []).forEach(function (n) { if (names.indexOf(n) < 0) names.push(n); });
+    });
+    if (!names.length && this.lineage[region]) names.push(this.lineage[region].label);
+    return dedupeNames(names);
   };
 
   /* ---- suggestions -------------------------------------------------- */
@@ -621,17 +751,19 @@
       if (input) input.setAttribute('aria-expanded', 'false');
     }
     if (!text || text.trim().length < 2) { close(); return; }
-    var matches = this.store.search(text, 6);
+    var matches = this.store.search(text, 10).filter(function (m) {
+      return !isUnusable(self.store, m.key);
+    }).slice(0, 6);
     if (!matches.length) {
       var dym = this.store.didYouMean(text, 4);
       if (dym.length) {
-        box.innerHTML = '<div class="sg-empty">No exact match — did you mean:</div>' +
+        box.innerHTML = '<div class="sg-empty">Nothing exact — <b>did you mean</b></div>' +
           dym.map(function (d) {
             var sp2 = self.store.byKey.get(d.key);
             var dn2 = displayName(sp2);
-            return '<div class="sg" role="option" data-key="' + esc(d.key) + '">' +
-              '<div class="ic">🌿</div><div class="nm"><b>' + esc(dn2.main) + '</b><i>' + esc(dn2.sci) +
-              '</i></div></div>';
+            return '<div class="sg" role="option" tabindex="-1" data-key="' + esc(d.key) + '">' +
+              '<div class="av">' + esc(monogram(dn2.main)) + '</div><div class="nm"><b>' + esc(dn2.main) +
+              '</b><i>' + esc(dn2.sci) + '</i></div></div>';
           }).join('');
         open();
         return;
@@ -647,8 +779,9 @@
       var sp = this.store.byKey.get(m.key);
       var dn = displayName(sp);
       var au = (sp.r || []).some(function (r) { return r.n === 'Australia'; });
-      html += '<div class="sg' + (i === this.sel ? ' sel' : '') + '" role="option" data-key="' + esc(m.key) + '">' +
-        '<div class="ic">🌿</div><div class="nm"><b>' + esc(dn.main) + '</b><i>' + esc(dn.sci) + '</i></div>' +
+      html += '<div class="sg' + (i === this.sel ? ' sel' : '') + '" role="option" tabindex="-1" data-key="' + esc(m.key) + '">' +
+        '<div class="av">' + esc(monogram(dn.main)) + '</div>' +
+        '<div class="nm"><b>' + esc(dn.main) + '</b><i>' + esc(dn.sci) + '</i></div>' +
         (au ? '<span class="rt au">AU</span>' : '') +
         '<span class="sc">' + esc(m.matchType.replace(/_/g, ' ')) + '</span></div>';
     }
@@ -686,14 +819,7 @@
       var lin = this.lineage[region];
       if (lin) add(lin.label, lin.url, 'lineage');
     }
-    return out;
-  };
-
-  App.prototype.lineageNote = function (region) {
-    var lin = this.lineage[region];
-    if (!lin) return '';
-    return '<div class="notice"><b>Where ' + esc(region) + ' data comes from.</b> ' +
-      esc(lin.note) + '</div>';
+    return dedupeRefs(out);
   };
 
   /* ---- answer -------------------------------------------------------- */
@@ -716,19 +842,39 @@
     // The heading is the identity's own display name — the same string the
     // picker shows and the search box accepts — not the canonical lead's.
     var sp = this.store.speciesFor(info.identityKey || info.key) || this.store.byKey.get(info.key);
-    var main = displayName(sp).main || info.scientificName;
+    var dn = displayName(sp);
+    var main = dn.main || info.scientificName;
+    var nPoints = Object.keys(info.indicators || {}).length;
+    var hasRecorded = !!((sp.p && sp.p.s && sp.p.s.length));
+    var safeIndex = String(index);
 
-    var html = '<div class="card hero">' +
+    var metaPills =
+      '<span class="pill">' + ICONS.leaf + esc(regionLabel(info.region)) + ' data</span>' +
+      '<span class="pill">' + esc(nPoints) + ' data point' + (nPoints === 1 ? '' : 's') + '</span>' +
+      (info.regionFallback ? '<span class="pill warn">' + ICONS.warn + 'fallback region</span>' : '') +
+      (info.specificity === 'genus_bucket' ? '<span class="pill warn">genus-level</span>' : '') +
+      (hasRecorded ? '<span class="pill">' + ICONS.check + 'sources recorded</span>' : '');
+
+    var actions =
+      '<div class="acts">' +
+        '<button class="act" type="button" data-act="copy" data-idx="' + safeIndex + '">' + ICONS.copy + 'Copy reading</button>' +
+        '<button class="act" type="button" data-act="print" data-idx="' + safeIndex + '">' + ICONS.print + 'Print</button>' +
+        '<button class="act" type="button" data-act="sources" data-idx="' + safeIndex + '">' + ICONS.source + 'Jump to sources</button>' +
+      '</div>';
+
+    var html = '<div class="card hero" data-hero="' + safeIndex + '">' +
+      '<div class="flora" aria-hidden="true">' +
+        '<svg viewBox="0 0 120 120" fill="none"><path d="M60 116V58M60 58c0-20 14-36 34-36 0 20-14 36-34 36Zm0 24c0-15-11-27-25-27 0 15 11 27 25 27Z" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><path d="M28 30c14 2 24 10 30 22M92 30c-14 2-24 10-30 22" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" opacity=".7"/></svg>' +
+      '</div>' +
       '<div class="kicker">' + (index ? 'Also in this reading' : 'Soil reading') + '</div>' +
       '<div class="big">' + esc(main) + '</div>' +
       '<div class="sci">' + esc(info.scientificName) + '</div>' +
       '<div class="matchline">' + (info.match
-        ? 'matched “' + esc(info.match.query) + '” · ' + esc(String(info.match.matchType).replace(/_/g, ' '))
-        : 'looked up by key') + '</div>' +
-      '<div class="meta">' +
-        '<span class="pill">' + esc(regionLabel(info.region)) + ' data</span>' +
-        '<span class="pill">' + esc(info.indicators ? Object.keys(info.indicators).length : 0) + ' data points</span>' +
-      '</div></div>';
+        ? 'read from “' + esc(info.match.query) + '”'
+        : 'read from the database key') + '</div>' +
+      '<div class="meta">' + metaPills + '</div>' +
+      actions +
+      '</div>';
 
     var rows = this.visibleIndicators(info);
     var body = '';
@@ -737,74 +883,82 @@
       var key = pair[0], val = pair[1];
       var refs = self.refsFor(sp, info.region, key);
       var chips = refs.map(function (r) {
-        var label = r.name + (r.kind === 'lineage' ? ' (pipeline default)' : '');
+        var label = r.name + (r.kind === 'lineage' ? ' · pipeline default' : '');
         return r.url
           ? '<a class="refchip" href="' + esc(r.url) + '" target="_blank" rel="noopener noreferrer">' + esc(label) + '</a>'
           : '<span class="refchip plain">' + esc(label) + '</span>';
       }).join('');
       var long = String(val).length > PREVIEW_LIMIT;
       var shown = long ? preview(val) : val;
-      body += '<div class="ind">' +
+      var id = safeIndex + ':' + key;
+      body += '<div class="ind" data-ind="' + esc(id) + '">' +
         '<div class="top"><div class="key">' + esc(key) + '</div>' +
         '<div class="val">' + esc(shown) +
           (long ? ' <span class="morehint">full text under Evidence</span>' : '') + '</div>' +
-        '<button class="ev-btn" type="button" aria-expanded="false" data-ev="' + esc(index + ':' + key) + '">Evidence</button></div>' +
-        '<div class="ev" id="ev-' + esc(index + ':' + key) + '">' +
-          '<div class="ev-lbl">Evidence — verbatim from the database</div>' +
+        '<button class="ev-btn" type="button" aria-expanded="false" aria-controls="ev-' + esc(id) + '" data-ev="' + esc(id) + '">' +
+          ICONS.quote + '<span>Evidence</span>' + ICONS.chevron + '</button></div>' +
+        '<div class="ev" id="ev-' + esc(id) + '"><div class="ev-in">' +
+          '<div class="ev-lbl">' + ICONS.quote + 'Verbatim from the database</div>' +
           '<div class="ev-text">' + esc(val) + '</div>' +
-          (chips ? '<div class="ev-src">' + chips + '</div>' : '') +
-        '</div></div>';
+          (chips ? '<div class="ev-src"><span class="lbl">Source</span>' + chips + '</div>' : '') +
+        '</div></div></div>';
     });
 
     var reading = '<div class="card"><div class="sec-h"><h2>What it indicates</h2>' +
-      '<span class="sub">each row is one database data point — open “Evidence” to see the source</span></div>' +
-      (body || '<div class="notice">No indicator rows are recorded for this species in this region.</div>') + '</div>';
+      '<span class="sub">each row is one stored data point — open “Evidence” for the source text</span>' +
+      '<span class="count">' + rows.length + '</span></div>' +
+      (body || notice('', 'No indicator rows are recorded for this species in this region.')) + '</div>';
 
-    var nutrients = this.renderNutrients(sp);
-    var refsCard = this.renderReferences(info, sp);
     var notices = '';
     if (info.specificity === 'genus_bucket') {
-      notices += '<div class="notice warn"><b>Genus-level match.</b> “' + esc(main) +
-        '” is a genus, not one species. The indicators below are for the group, so treat them as indicative of the genus.</div>';
+      notices += notice('warn', '<b>Genus-level match.</b> “' + esc(main) +
+        '” names a genus rather than one species, so the indicators below describe the group.');
     }
     if (info.regionFallback) {
-      notices += '<div class="notice warn"><b>Region fallback.</b> No ' + esc(info.requestedRegion) +
-        ' data is recorded for this species — showing <b>' + esc(info.region) + '</b> data instead. ' +
-        'Treat it as indicative only: it was not recorded for ' + esc(info.requestedRegion) + '.</div>';
-    }
-    if (info.mergedFrom && info.mergedFrom.length > 1) {
-      notices += '<div class="notice">Database rows merged for this reading: ' +
-        info.mergedFrom.map(function (k) { return '<b>' + esc(k) + '</b>'; }).join(', ') + '.</div>';
+      notices += notice('warn', '<b>Region fallback.</b> There is no ' + esc(info.requestedRegion) +
+        ' record for this species yet, so this is the <b>' + esc(info.region) + '</b> reading. ' +
+        'It is documented data for ' + esc(info.region) + ' — it was not recorded for ' +
+        esc(info.requestedRegion) + ', so treat it as a guide rather than a local measurement.');
     }
 
-    return html + notices + reading + nutrients + refsCard;
+    return html + notices + reading + this.renderNutrients(sp) + this.renderReferences(info, sp, safeIndex);
   };
 
   App.prototype.renderNutrients = function (sp) {
     var claims = sp.cl || [];
     if (!claims.length) return '';
-    var byNut = {};
+    // Grouped by nutrient, one row per recorded claim: the claim, its confidence
+    // and its own source stay legible without turning 15 claims into 15 cards.
+    var order = [], byNut = {};
     claims.forEach(function (c) {
       var n = c.n || 'nutrient';
-      (byNut[n] = byNut[n] || []).push(c);
+      if (!byNut[n]) { byNut[n] = []; order.push(n); }
+      byNut[n].push(c);
     });
-    var rows = '';
-    Object.keys(byNut).forEach(function (n) {
-      byNut[n].forEach(function (c, i) {
+    var groups = order.map(function (n) {
+      var list = byNut[n];
+      var rows = list.map(function (c) {
         var conf = (c.c || '').toLowerCase();
         var cls = conf === 'high' ? 'hi' : conf === 'medium' ? 'med' : 'lo';
-        rows += '<tr><td class="n">' + (i === 0 ? esc(n) : '') + '</td><td>' + esc(c.r) +
-          (c.d ? ' — ' + esc(c.d) : '') +
-          (c.c ? '<span class="badge ' + cls + '">' + esc(c.c) + ' confidence</span>' : '') + '</td>' +
-          '<td class="s">' + esc(c.s || '') + '</td></tr>';
-      });
-    });
+        return '<li class="claim">' +
+          '<div class="cr">' + esc(c.r || '') +
+            (c.c ? '<span class="badge ' + cls + '">' + esc(c.c) + '</span>' : '') + '</div>' +
+          (c.d ? '<div class="cd">' + esc(c.d) + '</div>' : '') +
+          (c.s ? '<div class="cs">' + esc(c.s) + '</div>' : '') +
+          '</li>';
+      }).join('');
+      return '<div class="ngroup">' +
+        '<div class="nhead"><span class="nn">' + esc(n) + '</span>' +
+        '<span class="nc">' + list.length + ' claim' + (list.length === 1 ? '' : 's') + '</span></div>' +
+        '<ul class="clist">' + rows + '</ul></div>';
+    }).join('');
     return '<div class="card"><div class="sec-h"><h2>Nutrient claims</h2>' +
-      '<span class="sub">recorded per nutrient, each with its own source and confidence</span></div>' +
-      '<table class="nut">' + rows + '</table></div>';
+      '<span class="sub">recorded one nutrient at a time, each with its own source and confidence</span>' +
+      '<span class="count">' + claims.length + '</span></div>' +
+      '<div class="nut">' + groups + '</div></div>';
   };
 
-  App.prototype.renderReferences = function (info, sp) {
+  App.prototype.renderReferences = function (info, sp, index) {
     var self = this;
     var prov = (sp.p && sp.p.s) ? sp.p.s : [];
     var inlineNames = [];
@@ -813,115 +967,147 @@
       (srcByKey[k] || []).forEach(function (n) { if (inlineNames.indexOf(n) < 0) inlineNames.push(n); });
     });
     var lin = this.lineage[info.region] || null;
-    var seen = {};
 
-    var items = '';
-    prov.forEach(function (s) {
-      seen[s.n.toLowerCase()] = 1;
-      var url = s.u || (self.sources[s.n] ? self.sources[s.n].u : null);
-      items += '<li><span class="sname">' + (url
-        ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(s.n) + '</a>'
-        : esc(s.n)) + '</span>' +
-        (url ? '<span class="surl">' + esc(url) + '</span>' : '') +
-        (s.f && s.f.length ? '<div class="used">Read for: <b>' + esc(s.f.join(', ')) + '</b></div>' : '') +
-        '</li>';
-    });
-    inlineNames.forEach(function (n) {
-      if (seen[n.toLowerCase()]) return;
-      seen[n.toLowerCase()] = 1;
-      var url = self.sources[n] ? self.sources[n].u : null;
-      items += '<li><span class="sname">' + (url
+    function link(n, url) {
+      return url
         ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(n) + '</a>'
-        : esc(n)) + '</span>' + (url ? '<span class="surl">' + esc(url) + '</span>' : '') +
-        '<div class="used">Named inside the recorded evidence text.</div></li>';
+        : esc(n);
+    }
+
+    // Every candidate source for this reading, recorded ones first. The database
+    // names one organisation at several lengths and at several grades ("NSW
+    // WeedWise (NSW DPIRD) - African boxthorn" is the recorded document;
+    // "NSW WeedWise (NSW DPIRD)" is the same body named inside the evidence), so
+    // the list is reduced to the longest form of each name, and a name already
+    // covered by a recorded source is not repeated lower down as a separate one.
+    var entries = [];
+    prov.forEach(function (s) {
+      entries.push({ kind: 'recorded', name: s.n, url: s.u || (self.sources[s.n] ? self.sources[s.n].u : null), read: s.f || [] });
+    });
+    var recordedKeys = prov.map(function (s) { return srcKey(s.n); });
+    inlineNames.forEach(function (n) {
+      entries.push({ kind: 'inline', name: n, url: self.sources[n] ? self.sources[n].u : null, read: [] });
     });
     var layer = (sp._lin && sp._lin[info.region]) || null;
-    if (layer) {
-      items += '<li><span class="sname">' + esc(layer) + '</span>' +
-        '<div class="used">The database\u2019s own layer marker for this region row.</div></li>';
-    }
-    if (lin) {
-      items += '<li><span class="sname">' + (lin.url
-        ? '<a href="' + esc(lin.url) + '" target="_blank" rel="noopener noreferrer">' + esc(lin.label) + '</a>'
-        : esc(lin.label)) + '</span>' +
-        '<div class="used">Pipeline default for <b>' + esc(info.region) +
-        '</b> — recorded at the dataset level, not per species. ' + esc(lin.note) + '</div></li>';
-    }
-
+    if (layer) entries.push({ kind: 'layer', name: layer, url: null, read: [] });
+    if (lin) entries.push({ kind: 'lineage', name: lin.label, url: lin.url, read: [], note: lin.note });
     var claimSrcs = {};
     (sp.cl || []).forEach(function (c) { if (c.s) claimSrcs[c.s] = 1; });
     Object.keys(claimSrcs).forEach(function (n) {
-      if (seen[n.toLowerCase()]) return;
-      seen[n.toLowerCase()] = 1;
-      var url = self.sources[n] ? self.sources[n].u : null;
-      items += '<li><span class="sname">' + (url
-        ? '<a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(n) + '</a>'
-        : esc(n)) + '</span><div class="used">Nutrient claim source.</div></li>';
+      entries.push({ kind: 'claim', name: n, url: self.sources[n] ? self.sources[n].u : null, read: [] });
     });
 
-    var dbNote = '<details class="more"><summary>How to read this, and where the database itself comes from</summary>' +
+    var keptKeys = dedupeNames(entries.map(function (e) { return e.name; })).map(srcKey);
+    var seen = {};
+    entries = entries.filter(function (e) {
+      var k = srcKey(e.name);
+      if (!k || keptKeys.indexOf(k) < 0 || seen[k]) return false;
+      seen[k] = 1;
+      // Only a recorded source may absorb a lower-grade mention of itself.
+      if (e.kind !== 'recorded' && recordedKeys.some(function (rk) { return rk.indexOf(k) >= 0; })) return false;
+      return true;
+    });
+
+    var KIND_LABEL = {
+      recorded: 'recorded',
+      inline: 'named in the evidence',
+      layer: 'database layer',
+      lineage: 'pipeline default',
+      claim: 'nutrient claim'
+    };
+    var KIND_NOTE = {
+      inline: 'Named inside the recorded evidence text.',
+      layer: 'The database\u2019s own layer marker for this region row.',
+      claim: 'Source for the nutrient claim above.'
+    };
+
+    var items = entries.map(function (e) {
+      var note = KIND_NOTE[e.kind] || '';
+      if (e.kind === 'recorded' && e.read.length) {
+        note = 'Read for: <b>' + esc(e.read.join(', ')) + '</b>';
+      } else if (e.kind === 'lineage') {
+        note = 'The documented lineage for <b>' + esc(info.region) +
+          '</b> — recorded for the dataset, not for this species. ' + esc(e.note || '');
+      }
+      return '<li><span class="sname">' + link(e.name, e.url) + '</span>' +
+        '<span class="kind' + (e.kind === 'recorded' ? ' recorded' : '') + '">' + KIND_LABEL[e.kind] + '</span>' +
+        (e.url ? '<span class="surl">' + esc(e.url) + '</span>' : '') +
+        (note ? '<div class="used">' + note + '</div>' : '') +
+        '</li>';
+    }).join('');
+
+    var merged = (info.mergedFrom && info.mergedFrom.length > 1)
+      ? '<div class="used" style="margin-top:10px">This reading gathers ' + info.mergedFrom.length +
+        ' database entries for the same plant: <b>' + esc(info.mergedFrom.join(', ')) + '</b>.</div>'
+      : '';
+
+    var dbNote = '<details class="more"><summary>' + ICONS.chevron + 'Technical details</summary>' +
       '<div class="body">' +
-      '<p><b>The reading is not generated.</b> Each row is a string stored in the species database for this ' +
-      'species and region. This app searches that database and prints what it finds; it contains no language ' +
-      'model and makes no network request.</p>' +
-      '<p><b>Two confidence levels exist here.</b> A source listed as <i>recorded</i> is attached to this ' +
-      'species in the database, often with the exact indicator it was read for. A source listed as ' +
-      '<i>pipeline default</i> is the dataset-level lineage for that region: the database does not record ' +
-      'which line of which document produced that particular row.</p>' +
-      '<p><b>Database:</b> <code>' + esc(this.meta.db_path || '') + '</code><br>' +
-      'sha256 <code>' + esc(this.meta.db_sha256 || '') + '</code><br>' +
-      'species <b>' + esc(this.meta.species_count || '') + '</b> · ' +
-      'with indicator data <b>' + esc(this.meta.with_data || '') + '</b> · ' +
-      'built <b>' + esc(this.meta.build_date || '') + '</b></p>' +
-      '<p><b>Matched key:</b> <code>' + esc(info.key) + '</code> · ' +
-      'match <b>' + esc(info.match ? info.match.matchType : 'direct') + '</b></p>' +
+      '<p><b>Where the reading comes from.</b> Each row is a stored string in the species database for this ' +
+      'species and region. The app looks that string up and prints it, working entirely from the copy of the ' +
+      'database inside this file.</p>' +
+      '<p><b>Two kinds of source.</b> A source marked <i>recorded</i> is attached to this species in the ' +
+      'database, often with the exact indicator it was read for. A <i>pipeline default</i> is the documented ' +
+      'lineage for the whole region: the database does not record which line of which document produced that ' +
+      'particular row, and the app does not pretend otherwise.</p>' +
+      '<p><b>Database</b></p>' +
+      '<div class="kv">' +
+        '<span class="k">File</span><span class="v"><code>' + esc(this.meta.db_path || '') + '</code></span>' +
+        '<span class="k">sha256</span><span class="v"><code>' + esc(this.meta.db_sha256 || '') + '</code></span>' +
+        '<span class="k">Species</span><span class="v">' + esc(this.meta.species_count || '') +
+          ' · ' + esc(this.meta.with_data || '') + ' with indicator data · built ' + esc(this.meta.build_date || '') + '</span>' +
+        '<span class="k">Matched key</span><span class="v"><code>' + esc(info.key) + '</code> · ' +
+          esc(info.match ? String(info.match.matchType).replace(/_/g, ' ') : 'direct') + '</span>' +
+      '</div>' +
       '</div></details>';
 
-    return '<div class="card"><div class="sec-h"><h2>Where this came from</h2>' +
-      '<span class="sub">' + (prov.length ? prov.length + ' source(s) recorded for this species' : 'dataset-level lineage') +
-      '</span></div>' +
-      '<ul class="srclist">' + items + '</ul>' + dbNote + '</div>';
+    var nRecorded = entries.filter(function (e) { return e.kind === 'recorded'; }).length;
+    var sub = nRecorded
+      ? nRecorded + ' source' + (nRecorded === 1 ? '' : 's') + ' recorded for this species'
+      : 'the documented lineage for this region';
+
+    return '<div class="card" id="sources-' + esc(index) + '"><div class="sec-h"><h2>Where this came from</h2>' +
+      '<span class="sub">' + esc(sub) + '</span></div>' +
+      '<ul class="srclist">' + items + '</ul>' + merged + dbNote + '</div>';
   };
 
   App.prototype.renderNotFound = function (query) {
     var dym = this.store.didYouMean(query, 4);
     var hints = '';
-    if (dym.length) {
-      hints = '<div class="examples">' + dym.map(function (d) {
+    var source = dym.length ? dym : this.store.search(query, 4);
+    if (source.length) {
+      hints = '<div class="examples">' + source.map(function (d) {
         var sp = this.store.byKey.get(d.key);
+        if (!sp) return '';
         var dn = displayName(sp);
         return '<button class="ex" type="button" data-key="' + esc(d.key) + '">' + esc(dn.main) + '</button>';
       }, this).join('') + '</div>';
-    } else {
-      var matches = this.store.search(query, 4);
-      if (matches.length) {
-        hints = '<div class="examples">' + matches.map(function (m) {
-          var sp = this.store.byKey.get(m.key);
-          var dn = displayName(sp);
-          return '<button class="ex" type="button" data-key="' + esc(m.key) + '">' + esc(dn.main) + '</button>';
-        }, this).join('') + '</div>';
-      }
     }
-    return '<div class="card empty"><div class="big">No species found for “' + esc(query) + '”</div>' +
-      '<p>AUGURY matches common and scientific names. Check the spelling, or try the other name — ' +
-      'many database rows are keyed by scientific name.</p>' + hints + '</div>';
+    return '<div class="card empty">' +
+      '<div class="glyph">' + ICONS.search + '</div>' +
+      '<div class="big">No match for “' + esc(query) + '”</div>' +
+      '<p>AUGURY looks up common and scientific names. Check the spelling, or try the other name — ' +
+      'many records are keyed by their scientific name.</p>' + hints + '</div>';
   };
 
   App.prototype.renderNoData = function (query) {
-    return '<div class="card empty"><div class="big">“' + esc(query) + '” is in the database, ' +
-      'but carries no indicator rows</div><p>Some species are recorded as present without any soil ' +
-      'indicator data. This app says so rather than inventing a reading.</p></div>';
+    return '<div class="card empty"><div class="glyph">' + ICONS.leaf + '</div>' +
+      '<div class="big">“' + esc(query) + '” has no indicator rows yet</div>' +
+      '<p>This species is recorded in the database without soil indicator data. ' +
+      'AUGURY says so rather than filling the gap with a guess.</p></div>';
   };
 
   App.prototype.renderEmpty = function () {
     var examples = ['dandelion', 'serrated tussock', 'curled dock', 'capeweed', 'bathurst burr',
       'African boxthorn', 'stinging nettle', 'couch'];
-    var html = '<div class="card empty"><div class="big">Name a weed, get a soil reading</div>' +
-      '<p>' + esc(this.meta.species_count) + ' species in the database, each with the evidence it was read from.</p>' +
+    return '<div class="card empty">' +
+      '<div class="glyph">' + ICONS.leaf + '</div>' +
+      '<div class="big">Name a weed, read the soil</div>' +
+      '<p>' + esc(this.meta.species_count) + ' species are in the database, each one with the evidence it was ' +
+      'read from. Start with a name you know, or browse the list.</p>' +
       '<div class="examples">' + examples.map(function (e) {
         return '<button class="ex" type="button" data-term="' + esc(e) + '">' + esc(e) + '</button>';
       }).join('') + '</div></div>';
-    return html;
   };
 
   /**
@@ -962,69 +1148,131 @@
 
     var html = '';
     if (found.length) {
+      this.lastReadings = found;
       for (var i = 0; i < found.length; i++) html += this.renderSpecies(found[i], i);
       if (found.length > 1) {
-        html += '<div class="notice good"><b>' + found.length +
-          ' species resolved.</b> Each block above is an independent reading from the database — ' +
-          'AUGURY does not average them or draw a combined conclusion.</div>';
+        html += notice('good', '<b>' + found.length + ' independent readings.</b> Each block above stands on ' +
+          'its own — AUGURY does not blend them into one answer.');
       }
     } else {
       html += this.renderNotFound(text);
     }
     if (noData.length) {
-      html += '<div class="notice warn"><b>Known, but no data:</b> ' + noData.map(esc).join(', ') +
-        ' — recorded in the database without indicator rows.</div>';
+      html += notice('warn', '<b>Known, but no data:</b> ' + noData.map(esc).join(', ') +
+        ' — recorded in the database without indicator rows.');
     }
     if (missing.length && found.length) {
-      html += '<div class="notice"><b>Not matched:</b> ' + missing.map(esc).join(', ') + '.</div>';
+      html += notice('', '<b>Not matched:</b> ' + missing.map(esc).join(', ') + '.');
     }
     answer.innerHTML = html;
   };
 
   /* ---- browse -------------------------------------------------------- */
 
-  App.prototype.browseList = function (filter, limit) {
-    var self = this;
+  App.prototype.browseRows = function (filter) {
     var q = String(filter || '').trim().toLowerCase();
-    var rows = this.store.species.filter(function (sp) {
+    return this.store.species.filter(function (sp) {
       if (!sp.r || !sp.r.length) return false;
-      if (sp.y === 'junk') return false;
+      if (isUnusable(this.store, sp.k)) return false;
       if (!q) return true;
       if (String(sp.k).indexOf(q) >= 0 || String(sp.s).toLowerCase().indexOf(q) >= 0) return true;
       return (sp.n || []).some(function (n) { return String(n).toLowerCase().indexOf(q) >= 0; });
-    });
-    rows.sort(function (a, b) {
+    }, this).sort(function (a, b) {
       var an = displayName(a).main.toLowerCase(), bn = displayName(b).main.toLowerCase();
       return an < bn ? -1 : an > bn ? 1 : 0;
     });
+  };
+
+  App.prototype.browseShell = function (filter) {
+    return '<div class="bhead"><div class="sec-h"><h2>Browse species</h2>' +
+      '<span class="sub" id="bcount"></span></div></div>' +
+      '<div class="bfilterrow">' + ICONS.search +
+      '<input id="bfilter" type="search" placeholder="Filter by any name…" value="' + esc(filter || '') + '" aria-label="Filter species"></div>' +
+      '<div class="list" id="blist"></div>';
+  };
+
+  App.prototype.browseListHtml = function (filter, limit) {
+    var rows = this.browseRows(filter);
     var slice = rows.slice(0, limit);
-    var html = '<div class="sec-h"><h2>Browse species</h2><span class="sub">' +
-      rows.length + ' with indicator data' + (rows.length > limit ? ' · showing ' + slice.length : '') +
-      '</span></div>' +
-      '<div class="searchrow" style="height:42px"><svg viewBox="0 0 20 20" fill="none"><circle cx="9" cy="9" r="6" stroke="currentColor" stroke-width="2"/><path d="m14 14 4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>' +
-      '<input id="bfilter" type="search" placeholder="Filter…" value="' + esc(filter || '') + '" style="flex:1;border:0;outline:0;font-size:14px;font-family:inherit;background:transparent"></div>';
     if (!slice.length) {
-      html += '<div class="notice">No species match that filter.</div>';
-    } else {
-      html += slice.map(function (sp) {
-        var dn = displayName(sp);
-        var au = (sp.r || []).some(function (r) { return r.n === 'Australia'; });
-        return '<div class="row" data-key="' + esc(sp.k) + '"><div class="nm">' + esc(dn.main) + '</div>' +
-          '<div class="sc">' + esc(dn.sci) + '</div>' +
-          '<span class="rt">' + (au ? 'AU' : (sp.r[0] ? sp.r[0].n : '')) + '</span></div>';
-      }).join('');
-      if (rows.length > limit) html += '<button class="morebtn" type="button" id="bmore">Show 60 more</button>';
+      return { html: '<div class="none">No species match that filter.</div>', total: rows.length };
+    }
+    var html = slice.map(function (sp) {
+      var dn = displayName(sp);
+      var au = (sp.r || []).some(function (r) { return r.n === 'Australia'; });
+      return '<div class="row" role="button" tabindex="0" data-key="' + esc(sp.k) + '">' +
+        '<div class="av">' + esc(monogram(dn.main)) + '</div>' +
+        '<div class="nm">' + esc(dn.main) + '</div>' +
+        '<div class="sc">' + esc(dn.sci) + '</div>' +
+        '<span class="rt">' + esc(au ? 'AU' : (sp.r[0] ? sp.r[0].n : '')) + '</span></div>';
+    }).join('');
+    if (rows.length > limit) {
+      html += '<button class="morebtn" type="button" id="bmore">Show more (' +
+        (rows.length - limit) + ' left)</button>';
     }
     return { html: html, total: rows.length };
   };
 
+  App.prototype.browseRender = function (filter, limit) {
+    var box = this.el('browse');
+    var out = this.browseListHtml(filter, limit);
+    var list = this.doc.getElementById('blist');
+    if (list) list.innerHTML = out.html;
+    var count = this.doc.getElementById('bcount');
+    if (count) {
+      count.textContent = out.total + ' with indicator data' +
+        (out.total > limit ? ' · showing ' + Math.min(limit, out.total) : '');
+    }
+  };
+
   App.prototype.toggleBrowse = function (on) {
     var box = this.el('browse');
-    if (!on) { box.className = 'card browse hidden'; return; }
-    this.browseLimit = 60;
+    var btn = this.el('browseBtn');
+    if (!on) {
+      box.className = 'card browse hidden';
+      if (btn) { btn.className = 'chip ghost'; btn.setAttribute('aria-expanded', 'false'); }
+      return;
+    }
+    this.browseLimit = 80;
     this.browseFilter = '';
     box.className = 'card browse';
-    box.innerHTML = this.browseList('', this.browseLimit).html;
+    box.innerHTML = this.browseShell('');
+    this.browseRender('', this.browseLimit);
+    if (btn) { btn.className = 'chip on'; btn.setAttribute('aria-expanded', 'true'); }
+  };
+
+  /* ---- theme --------------------------------------------------------- */
+
+  App.prototype.initTheme = function () {
+    var self = this;
+    var order = ['auto', 'light', 'dark'];
+    var label = { auto: 'Colour theme: follow system', light: 'Colour theme: light', dark: 'Colour theme: dark' };
+    function read() {
+      try {
+        var v = root.localStorage && root.localStorage.getItem('augury-theme');
+        return order.indexOf(v) >= 0 ? v : 'auto';
+      } catch (err) { return 'auto'; }
+    }
+    function apply(v) {
+      var html = self.doc.documentElement;
+      if (!html) return;
+      html.setAttribute('data-theme', v);
+      var btn = self.el('themeBtn');
+      if (btn) {
+        btn.setAttribute('aria-label', label[v]);
+        btn.title = label[v];
+      }
+    }
+    this.theme = read();
+    apply(this.theme);
+    var btn = this.el('themeBtn');
+    if (btn) {
+      btn.addEventListener('click', function () {
+        self.theme = order[(order.indexOf(self.theme) + 1) % order.length];
+        apply(self.theme);
+        try { if (root.localStorage) root.localStorage.setItem('augury-theme', self.theme); } catch (err) { /* ignore */ }
+      });
+    }
   };
 
   /* ---- wiring -------------------------------------------------------- */
@@ -1032,19 +1280,23 @@
   App.prototype.init = function () {
     var self = this, doc = this.doc;
     var q = this.el('q');
+    if (!q) return;
+
+    this.initTheme();
 
     var input = function () {
       self.sel = -1;
       self.render(q.value);
       self.suggest(q.value);
-      self.el('clear').className = q.value ? 'clear on' : 'clear';
+      var clear = self.el('clear');
+      if (clear) clear.className = q.value ? 'on' : '';
     };
 
     q.addEventListener('input', input);
 
     q.addEventListener('keydown', function (e) {
       var box = self.el('suggest');
-      var items = box.className.indexOf('on') >= 0 ? box.querySelectorAll('.sg') : [];
+      var items = box && box.className.indexOf('on') >= 0 ? box.querySelectorAll('.sg') : [];
       if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
         if (!items.length) return;
         e.preventDefault();
@@ -1052,6 +1304,7 @@
           ? Math.min(self.sel + 1, items.length - 1)
           : Math.max(self.sel - 1, 0);
         for (var i = 0; i < items.length; i++) items[i].className = 'sg' + (i === self.sel ? ' sel' : '');
+        if (items[self.sel] && items[self.sel].scrollIntoView) items[self.sel].scrollIntoView({ block: 'nearest' });
       } else if (e.key === 'Enter') {
         e.preventDefault();
         if (self.sel >= 0 && items[self.sel]) {
@@ -1065,97 +1318,185 @@
       }
     });
 
-    this.el('clear').addEventListener('click', function () {
-      q.value = ''; self.sel = -1; self.render(''); self.suggest('');
-      self.el('clear').className = 'clear'; q.focus();
-    });
+    var clear = this.el('clear');
+    if (clear) {
+      clear.addEventListener('click', function () {
+        q.value = ''; self.sel = -1; self.render(''); self.suggest('');
+        clear.className = ''; q.focus();
+      });
+    }
 
-    this.el('suggest').addEventListener('mousedown', function (e) {
-      var row = e.target.closest ? e.target.closest('.sg') : null;
-      if (!row) return;
-      e.preventDefault();
-      var sp = self.store.byKey.get(row.getAttribute('data-key'));
-      q.value = displayName(sp).main;
-      self.closeSuggest();
-      self.render(q.value);
-    });
+    var suggest = this.el('suggest');
+    if (suggest) {
+      suggest.addEventListener('mousedown', function (e) {
+        var row = e.target.closest ? e.target.closest('.sg') : null;
+        if (!row) return;
+        e.preventDefault();
+        var sp = self.store.byKey.get(row.getAttribute('data-key'));
+        q.value = displayName(sp).main;
+        self.closeSuggest();
+        self.render(q.value);
+      });
+    }
 
     doc.addEventListener('click', function (e) {
       var t = e.target;
-      var ex = t.closest ? t.closest('.ex') : null;
+      if (!t || !t.closest) return;
+      var ex = t.closest('.ex');
       if (ex) {
+        var keyAttr = ex.getAttribute('data-key');
         var term = ex.getAttribute('data-term') ||
-          displayName(self.store.byKey.get(ex.getAttribute('data-key'))).main;
+          displayName(self.store.byKey.get(keyAttr)).main;
         q.value = term;
         self.closeSuggest();
         self.render(term);
         return;
       }
-      var brow = t.closest ? t.closest('.browse .row') : null;
+      var brow = t.closest('.browse .row');
       if (brow) {
         var sp2 = self.store.byKey.get(brow.getAttribute('data-key'));
         q.value = displayName(sp2).main;
         self.toggleBrowse(false);
-        self.el('browseBtn').className = 'chip ghost';
         self.render(q.value);
         return;
       }
-      var mrow = t.closest ? t.closest('.sg') : null;
+      var mrow = t.closest('.sg');
       if (mrow && mrow.parentNode === self.el('suggest')) return;
-      if (!(t.closest && t.closest('.searchbox'))) self.closeSuggest();
+      if (!t.closest('.searchbox')) self.closeSuggest();
 
-      var evb = t.closest ? t.closest('.ev-btn') : null;
+      var evb = t.closest('.ev-btn');
       if (evb) {
         var id = 'ev-' + evb.getAttribute('data-ev');
         var panel = doc.getElementById(id);
+        if (!panel) return;
         var open = panel.className.indexOf('on') >= 0;
         panel.className = open ? 'ev' : 'ev on';
         evb.setAttribute('aria-expanded', open ? 'false' : 'true');
+        var wrap = evb.closest('.ind');
+        if (wrap) wrap.className = open ? 'ind' : 'ind is-open';
         return;
       }
-      var more = t.closest ? t.closest('#bmore') : null;
+
+      var act = t.closest('[data-act]');
+      if (act) {
+        var kind = act.getAttribute('data-act');
+        var info = (self.lastReadings || [])[Number(act.getAttribute('data-idx'))];
+        if (kind === 'print') { if (root.print) root.print(); return; }
+        if (kind === 'sources') {
+          var target = doc.getElementById('sources-' + act.getAttribute('data-idx'));
+          if (target && target.scrollIntoView) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+        if (kind === 'copy' && info) {
+          self.copyText(self.readingText(info), 'Reading copied');
+          return;
+        }
+      }
+
+      var more = t.closest('#bmore');
       if (more) {
-        self.browseLimit += 60;
-        var pos = self.el('browse').scrollTop;
-        self.el('browse').innerHTML = self.browseList(self.browseFilter, self.browseLimit).html;
-        self.el('browse').scrollTop = pos;
+        self.browseLimit += 80;
+        self.browseRender(self.browseFilter || '', self.browseLimit);
+        return;
       }
     });
 
-    this.el('browse').addEventListener('input', function (e) {
-      if (e.target.id !== 'bfilter') return;
-      self.browseFilter = e.target.value;
-      var pos = self.el('browse').scrollTop;
-      self.el('browse').innerHTML = self.browseList(self.browseFilter, self.browseLimit).html;
-      self.el('browse').scrollTop = pos;
-      var f = doc.getElementById('bfilter');
-      if (f) { f.focus(); f.setSelectionRange(f.value.length, f.value.length); }
+    doc.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' && e.target && e.target.classList && e.target.classList.contains('row') &&
+          e.target.closest && e.target.closest('.browse')) {
+        e.target.click();
+      }
     });
+
+    var browse = this.el('browse');
+    if (browse) {
+      browse.addEventListener('input', function (e) {
+        if (e.target.id !== 'bfilter') return;
+        self.browseFilter = e.target.value;
+        self.browseRender(self.browseFilter, self.browseLimit);
+      });
+    }
 
     Array.prototype.forEach.call(doc.querySelectorAll('.chip[data-region]'), function (c) {
       c.addEventListener('click', function () {
         Array.prototype.forEach.call(doc.querySelectorAll('.chip[data-region]'), function (o) {
           o.className = 'chip';
+          o.setAttribute('aria-pressed', 'false');
         });
         c.className = 'chip on';
+        c.setAttribute('aria-pressed', 'true');
         self.region = c.getAttribute('data-region');
         if (q.value) self.render(q.value);
       });
     });
 
-    this.el('browseBtn').addEventListener('click', function () {
-      var on = self.el('browse').className.indexOf('hidden') >= 0;
-      self.toggleBrowse(on);
-      self.el('browseBtn').className = on ? 'chip on' : 'chip ghost';
+    var browseBtn = this.el('browseBtn');
+    if (browseBtn) {
+      browseBtn.addEventListener('click', function () {
+        var on = self.el('browse').className.indexOf('hidden') >= 0;
+        self.toggleBrowse(on);
+      });
+    }
+
+    var howBtn = this.el('howBtn');
+    if (howBtn) {
+      howBtn.addEventListener('click', function () {
+        var panel = self.el('how');
+        if (!panel) return;
+        var opening = panel.className.indexOf('hidden') >= 0;
+        panel.className = opening ? 'card how' : 'card how hidden';
+        howBtn.setAttribute('aria-expanded', opening ? 'true' : 'false');
+        if (opening && panel.scrollIntoView) panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      });
+    }
+
+    var home = this.el('brandHome');
+    if (home) {
+      home.addEventListener('click', function (e) {
+        e.preventDefault();
+        q.value = ''; self.sel = -1;
+        self.toggleBrowse(false);
+        self.render(''); self.suggest('');
+        var c = self.el('clear'); if (c) c.className = '';
+        if (root.scrollTo) root.scrollTo({ top: 0, behavior: 'smooth' });
+        q.focus();
+      });
+    }
+
+    // "/" focuses the search box, Escape leaves it — a keyboard path to the app.
+    doc.addEventListener('keydown', function (e) {
+      var tag = (e.target && e.target.tagName) || '';
+      var typing = tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT';
+      if (e.key === '/' && !typing) { e.preventDefault(); q.focus(); q.select(); }
     });
 
+    var totop = this.el('totop');
+    if (totop) {
+      totop.addEventListener('click', function () {
+        if (root.scrollTo) root.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      var ticking = false;
+      var onScroll = function () {
+        if (ticking) return;
+        ticking = true;
+        (root.requestAnimationFrame || function (fn) { setTimeout(fn, 60); })(function () {
+          ticking = false;
+          var y = root.pageYOffset || (doc.documentElement && doc.documentElement.scrollTop) || 0;
+          totop.className = y > 640 ? 'on' : '';
+        });
+      };
+      if (root.addEventListener) root.addEventListener('scroll', onScroll, { passive: true });
+    }
+
     var meta = this.meta;
-    this.el('footmeta').innerHTML =
-      meta.species_count + ' species · ' + (meta.with_data || '') + ' with indicator data · ' +
-      'built ' + esc(meta.build_date || '') + ' · database sha256 <span style="font-family:var(--mono)">' +
-      esc((meta.db_sha256 || '').slice(0, 16)) + '…</span><br>' +
-      'Offline single file · no model · no network · ' +
-      '<a href="https://github.com/RegeneratusLabs/AUGURY" target="_blank" rel="noopener noreferrer">Apache-2.0 code / CC-BY-4.0 data</a>';
+    var footmeta = this.el('footmeta');
+    if (footmeta) {
+      footmeta.innerHTML =
+        '<b>' + esc(meta.species_count) + '</b> species' +
+        '<span class="dot">·</span><b>' + esc(meta.with_data || '') + '</b> with indicator data' +
+        '<span class="dot">·</span>Australia, UK and Europe' +
+        '<span class="dot">·</span><a href="https://github.com/RegeneratusLabs/AUGURY" target="_blank" rel="noopener noreferrer">Apache-2.0 code / CC-BY-4.0 data</a>';
+    }
 
     this.render('');
     q.focus();
@@ -1177,9 +1518,12 @@
         root.__auguryApp = app;
         app.init();
       } catch (err) {
-        document.getElementById('answer').innerHTML =
-          '<div class="card empty"><div class="big">The embedded database could not be read</div><p>' +
-          String(err && err.message ? err.message : err) + '</p></div>';
+        var answer = document.getElementById('answer');
+        if (answer) {
+          answer.innerHTML =
+            '<div class="card empty"><div class="big">The embedded database could not be read</div><p>' +
+            String(err && err.message ? err.message : err) + '</p></div>';
+        }
       }
     }
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

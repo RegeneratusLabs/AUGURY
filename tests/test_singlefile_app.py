@@ -140,6 +140,18 @@ def main() -> int:
        all(k in r["i"] for s in payload["species"] for r in (s.get("r") or [])
            for k in (r.get("src") or {})))
 
+    print("\nuser-facing copy")
+    # The page explains what it does; it does not argue with a straw man. These
+    # phrases were removed deliberately (no-AI / no-model / offline sloganeering),
+    # and the technical identity is one level down, under "Technical details".
+    for phrase in ("No AI", "no guessing", "no model", "no network", "Offline single file",
+                   "Database rows merged", "not generated"):
+        ok(f"the page never says “{phrase}”", phrase.lower() not in html.lower())
+    ok("the database identity is still disclosed", meta["db_sha256"] in html)
+    ok("it is disclosed under a collapsible Technical details panel", "Technical details" in html)
+    ok("the app offers a reading-level copy control", 'data-act="copy"' in html)
+    ok("the app offers a how-it-works panel", 'id="how"' in html and 'id="howBtn"' in html)
+
     print("\nreproducible build")
     rebuilt = builder.render(
         builder.build_payload(db,
