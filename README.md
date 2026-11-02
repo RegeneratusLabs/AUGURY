@@ -20,11 +20,19 @@ open augury.html          # that is the whole install
 
 ---
 
-## What the pivot changed
+## What ships, and what is still in progress
 
-The project previously shipped a photo-identification pipeline (DINOv2 + kNN over
-a 15 GB image gallery, a 346 MB encoder download) and a fine-tuned MiniCPM5-1B
-formatter. Both are now **out of the product**, deliberately:
+The working example is the single file. Two model tracks live in this tree, and
+neither one is what you run:
+
+| Track | State | Why it is not the thing you use yet |
+|---|---|---|
+| **Name lookup — one HTML file** (`augury.html`) | **Shipped. This is the project.** | — |
+| **Photo identification** — DINOv2 embeddings + kNN over a curated gallery | **In progress, gated on accuracy** | 85.87% top-1 on the AU holdout it was calibrated on, but **60% top-1 on 20 fresh third-party photos** it had never seen. Reaches **173 of 2,256 species (7.7%)** and no European or UK species at all, for **~372 MB** installed |
+| **Fine-tuned generator** — MiniCPM5-1B formatter | **In progress, gated on accuracy and grounding** | every answer it wrote had to be checked back against the database by a separate grounding pass. A generator that must be audited to be trusted is a slower route to the same row |
+
+Both tracks stay in the tree and continue. What changed is what ships: the app
+does not wait for either of them.
 
 | Then | Now |
 |---|---|
@@ -34,14 +42,12 @@ formatter. Both are now **out of the product**, deliberately:
 | ~372 MB first-launch download | **~1 MB**, one file |
 | Answer provenance implicit | **Every row shows its evidence and its source**, and the page records the sha256 of the database it was built from |
 
-The reason is in `docs/RELEASE-DECISION-2026-10-08.md`: the photo path reached
-173 of 2,256 species (7.7%), needed 368 MB to do it, carried an unresolved
-CC-BY-NC licensing question, and ended — structurally — at a species the user
-taps anyway. The name path reaches all 2,223 species with indicator data, in one
-file, with no model in the loop.
-
-The old components still exist in the tree for provenance (see
-[Legacy](#legacy-kept-for-provenance)); they are not part of the app.
+The reasoning is recorded in `docs/RELEASE-DECISION-2026-10-08.md`. The numbers
+in the two "in progress" rows are measured, not estimated: the photo path's
+accuracy was recalibrated on a leakage-checked gallery, and its honest score on
+photographs it had never seen is the 60% figure — not the 85.87% one. The name
+path reaches all 2,223 species with indicator data, in one file, with no model in
+the loop.
 
 ---
 
@@ -132,29 +138,49 @@ you it is showing European data and why.
 
 ---
 
-## Legacy (kept for provenance)
+## In progress: the model tracks
 
-These are **not** part of the app and are not required to build or run it:
+Neither track is required to build or run the app, and neither is abandoned —
+both are in the tree, both still move, both are gated on accuracy.
 
-- `augury-android/` — the Compose app, including the photo path and the
-  artifact-download pipeline. Its `SpeciesStore.kt` is the reference
-  implementation the app's JS search is ported from.
-- `scripts/augury_funnel.py`, `scripts/species_lookup.py`, `scripts/plant_id.py`,
-  `scripts/vision/` — the text funnel, the DB lookup, the photo-ID pipeline.
-- `scripts/train_*.py`, `data/training/`, `data/vision/` — the formatter training
-  corpus and the 15 GB image gallery (gallery is local-only and gitignored).
-- `docs/` — the research record: `RELEASE-DECISION-2026-10-08.md`,
-  `technical-stack.md`, `model-understanding-and-blindspots.md`, the handovers.
+**Photo identification** — `scripts/vision/`, `data/vision/`, `data/training/`.
+It is blocked on three things at once, which is exactly why it is a track and not
+a release:
+
+| Blocker | Where it stands |
+|---|---|
+| Coverage | 173 species of 2,256 (7.7%), and zero European or UK species despite 2,102 European rows in the database |
+| Accuracy on unseen photos | 85.87% top-1 on the holdout it was calibrated against, **60% top-1 on 20 fresh third-party photos**; 2 of 10 non-weed controls were false-accepted |
+| Licence hygiene | 5,636 of 64,520 gallery images are CC-BY-NC (8.7%), 47 are NoDerivatives, 18 are unresolved. The project's own publish gate exits non-zero by design |
+
+The 15 GB gallery is local-only and gitignored. What is committed is the measured
+evidence: bake-off reports, band calibration, coverage reports, dataset stats.
+
+**Fine-tuning** — `scripts/train_*.py`, `data/training/`, the MiniCPM5-1B
+formatter and its GGUF export. Behind the same accuracy bar, with a structural
+problem the photo path does not have: prose can drift from the row it was given,
+so it needs a verifier in front of it before it is allowed to answer anything.
+That verifier was built and measured; it is why nothing generated ships yet.
+
+**`augury-android/`** — the Compose app, including the photo path and the
+artifact-download pipeline. It stays because its `SpeciesStore.kt` is the
+reference implementation the single-file app's JS search is ported from.
+
+**`docs/`** — the research record, including the decision that set this shape:
+`RELEASE-DECISION-2026-10-08.md`, `technical-stack.md`,
+`model-understanding-and-blindspots.md` and the session handovers.
 
 ## Docs
 
 - [Single-file app — design & data contract](docs/SINGLEFILE-APP.md)
-- [Release decision: ship the database, park the model](docs/RELEASE-DECISION-2026-10-08.md)
+- [Release decision: what ships now, what keeps moving](docs/RELEASE-DECISION-2026-10-08.md)
 - [Technical stack](docs/technical-stack.md) · [Data roadmap](docs/data-roadmap.md) ·
   [Model understanding & blind spots](docs/model-understanding-and-blindspots.md)
 
 ## License
 
 Apache-2.0 (code) · CC-BY-4.0 (database) · individual sources cited per answer.
-The vision gallery is non-commercial aggregate with per-image license sidecars
-(iNat cc-by-nc photos) and is not redistributed by the app.
+The vision gallery is a non-commercial aggregate with per-image licence sidecars
+(iNat cc-by-nc photographs); it is not redistributed here, and the third-party
+test photographs are likewise committed as metadata — source, licence,
+attribution, URL, sha256 — rather than as bytes.
