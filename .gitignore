@@ -96,3 +96,24 @@ augury-android/.gradle-home/
 
 # ---- Android local SDK path (machine-specific) ----
 augury-android/local.properties
+
+# ---- Vendored Android/Gradle toolchains and build output (regenerable) ----
+# The ignore rules were added after these were first committed; this block is
+# what stops them coming back.
+.gradle-dist/
+.gradle-home/
+augury-android/build/
+augury-android/app/build/
+*.ses
+
+# ---- Build artefacts belong to releases, not to git ----
+data/app/*.tar.gz
+
+# ---- Third-party test photos are licensed per image, and some are CC-BY-NC or
+# NoDerivatives. The bytes are not redistributed; data/thirdparty/corpus.json
+# keeps each one's source, licence, attribution, URL and sha256, so the
+# third-party test remains auditable without republishing the photographs.
+data/thirdparty/photos/
+
+# ---- Review scratch ----
+.tmp_review_crops/
